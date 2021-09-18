@@ -6,7 +6,7 @@ languageCode = "zh-CN"
 # 是否包括中日韩文字
 hasCJKLanguage = true
 # 网站标题
-title = "我的全新 Hugo 网站"
+title = "工作笔记"
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "LoveIt"
@@ -14,7 +14,10 @@ theme = "LoveIt"
 [params]
   # LoveIt 主题版本
   version = "0.2.X"
-
+[author]
+  name = "volcan0"
+  email = ""
+  link = ""
 [menu]
   [[menu.main]]
     identifier = "posts"
