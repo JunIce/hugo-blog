@@ -2,7 +2,7 @@
 title: "Windows WSL 安装 Homebrew"
 date: 2021-09-18T13:20:55+08:00
 draft: false
-tags: ["安装教程", "WSL"]
+tags: ["安装教程", "WSL", "linux"]
 ---
 
 # wsl 安装Homebrew 进行包管理
