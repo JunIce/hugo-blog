@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+    class MyEvent {
+        constructor() {
+            this._eventMap = new Map()
+        }
+
+
+        on(event, callback) {
+            if(event && typeof callback == 'function') {
+                this._eventMap.has(event) || this._eventMap.set(event, []);
+                this._eventMap.get(event).push(callback);
+            }
+            return this;
+        }
+
+        off(event, callback) {
+            if(event) {
+                if(typeof callback == 'function') {
+                    const callbacks = this._eventMap.get(event) || [];
+                    for(let i in callbacks) {
+                        if(callbacks[i] === callback) {
+                            callbacks.splice(i, 1);
+                        }
+                    }
+                } else {
+                    this._eventMap.delete(event)
+                }
+
+            }
+            return this
+        }
+
+        once(event, callback) {
+
+        }
+
+        emit(event, ...args) {
+            if(!this._eventMap.has(event)) return false;
+            this._eventMap.get(event).map(callback => callback(...args))
+            return true;
+        }
+    }
+
+
+
+</script>
+
+
+</body>
+</html>
