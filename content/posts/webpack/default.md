@@ -16,6 +16,15 @@ module.exports = {
 };
 ```
 
+当entry是个对象的时候
+
+- `dependOn`: 当前入口文件的依赖，它会在当前文件之前加载完成
+- `filename`: 指定当前输入文件的文件名
+- `import`: 启动时需要加载的模块
+- `library`: 当前入口打包成library
+- `runtime`: 运行时chunk的名称
+- `publicPath`: 指定生成的文件的浏览器路径
+
 ### Output
 
 打包结果
@@ -29,6 +38,9 @@ module.exports = {
   },
 };
 ```
+- `filename`: '[name].js'
+- `path`: __dirname + '/dist',
+
 
 ### Loaders
 
