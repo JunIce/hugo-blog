@@ -6,6 +6,11 @@ draft: false
 
 
 `classnames`库是日常工作中用来操作dom中class相关的工具函数，这里我们对它进行解读
+
+使用
+
+> npm install classnames --save
+
 ```js
 function classNames() {
     let classes = [];
@@ -21,7 +26,7 @@ function classNames() {
             // 直接插入
             classes.push(arg)
         } else if (Array.isArray(arg)) {
-            // 子项是数组
+            // 子项是数组，递归调用自己
             arg.length && classes.push(classNames.call(null, arg))
         } else if(typeof arg === 'object') {
             // 判断是不是object, 是就进行遍历
@@ -32,13 +37,12 @@ function classNames() {
                     }
                 }
             } else {
-                // 不是object
+                // 不是object, 直接转成字符串
                 classes.push(arg.toString())
             }
         }
 
     }
-
 
     return classes.join(' ')
 }
