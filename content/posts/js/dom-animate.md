@@ -2,6 +2,7 @@
 title: "html Dom的Animate方法"
 date: 2021-10-08T10:59:45+08:00
 draft: false
+tags: ["js"]
 ---
 
 ```html

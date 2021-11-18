@@ -2,6 +2,7 @@
 title: "Copy Text to Clipboard"
 date: 2021-11-11T14:15:10+08:00
 draft: true
+tags: ["js"]
 ---
 
 代码中我们有把文本复制到剪切板的需求，这里我们可以自己写，也可以从npm中找，本着不重复造轮子（buhui）,我们使用 `copy-text-to-clipboard`

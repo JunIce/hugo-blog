@@ -2,6 +2,7 @@
 title: "Event Bus"
 date: 2021-11-01T09:39:16+08:00
 draft: false
+tags: ["js"]
 ---
 
 

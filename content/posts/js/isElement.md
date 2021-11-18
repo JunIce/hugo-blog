@@ -2,6 +2,7 @@
 title: "判断是不是DOM元素"
 date: 2021-11-01T10:22:17+08:00
 draft: false
+tags: ["js", "dom"]
 ---
 
 ```js

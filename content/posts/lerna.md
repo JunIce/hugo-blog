@@ -2,6 +2,7 @@
 title: "Lerna 包管理器命令行"
 date: 2021-11-16T09:14:20+08:00
 draft: false
+tags: [ "js", "nodejs" ]
 ---
 
 ```bash

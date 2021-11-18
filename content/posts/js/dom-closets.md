@@ -2,6 +2,7 @@
 title: "HTML DOM closest()用法及代码示例"
 date: 2021-10-08T10:32:27+08:00
 draft: false
+tags: ["js", "dom"]
 ---
 
 元素接口的closest()方法用于遍历HTML文档树中的元素及其父元素，直到找到与提供的选择器字符串匹配的第一个节点。只搜索父级节点。

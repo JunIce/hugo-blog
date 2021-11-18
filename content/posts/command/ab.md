@@ -3,6 +3,7 @@
 title: command ab
 date: 2021-10-19T13:41:27+08:00
 draft: true
+tags: ["linux"]
 ---
 
 ## ab

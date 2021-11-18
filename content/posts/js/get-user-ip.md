@@ -2,6 +2,7 @@
 title: "Get User Ip"
 date: 2021-10-20T09:20:10+08:00
 draft: true
+tags: ["js", "nodejs"]
 ---
 
 ## 获取用户地区

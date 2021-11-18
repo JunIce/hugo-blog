@@ -2,6 +2,7 @@
 title: "Windows ab 测试套件"
 date: 2021-10-19T13:41:27+08:00
 draft: true
+tags: [ "安装教程" ]
 ---
 
 ## windows10上安装ab测试套件

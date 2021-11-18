@@ -2,6 +2,7 @@
 title: "Lodash ToNumber"
 date: 2021-11-08T15:28:20+08:00
 draft: false
+tags: ["js"]
 ---
 
 ## toNumber

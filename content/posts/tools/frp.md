@@ -2,6 +2,7 @@
 title: "go Frp 工具使用"
 date: 2021-11-18T11:06:53+08:00
 draft: false
+tags: ["工具", "go"]
 ---
 
 ## frp使用

@@ -2,6 +2,7 @@
 title: "Proxy"
 date: 2021-11-09T15:38:21+08:00
 draft: true
+tags: ["js"]
 ---
 
 ## Proxy 构造器
