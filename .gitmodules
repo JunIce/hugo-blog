@@ -2,6 +2,6 @@
 	path = themes/LoveIt
 	url = https://github.com/dillonzq/LoveIt.git
 
-[submodule "demo/lerna-demo"]
-	path = demo/lerna-demo
-	url = https://github.com/JunIce/lerna-demo.git
+[submodule "demo/work-note"]
+	path = demo/work-note
+	url = https://github.com/JunIce/work-note.git
