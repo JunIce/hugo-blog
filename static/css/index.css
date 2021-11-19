@@ -1,0 +1,7 @@
+.nav_item .logo {
+    width: 32px;
+}
+
+pre.chroma code {
+    font-family: var(--font);
+}

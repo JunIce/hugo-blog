@@ -5,3 +5,6 @@
 [submodule "demo/work-note"]
 	path = demo/work-note
 	url = https://github.com/JunIce/work-note.git
+[submodule "themes/hugo-clarity"]
+	path = themes/hugo-clarity
+	url = https://hub.fastgit.org/chipzoller/hugo-clarity
