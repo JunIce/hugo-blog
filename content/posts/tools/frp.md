@@ -40,6 +40,7 @@ vhost_http_port = 8099 # frp 客户端监听端口
 
 ```ini
 [common]
+tls_enable = true # windows下客户端不能连接服务器问题
 server_addr = your.remote.ip # 你的服务器ip
 server_port = 7000 # 暴露端口
 
