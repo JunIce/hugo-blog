@@ -6,7 +6,7 @@ languageCode = "zh-CN"
 # 是否包括中日韩文字
 hasCJKLanguage = true
 # 网站标题
-title = "工作笔记"
+title = "时间的朋友"
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "LoveIt"
@@ -28,7 +28,7 @@ theme = "LoveIt"
   [params.footer]
     enable = true
     # LoveIt 新增 | 0.2.0 自定义内容 (支持 HTML 格式)
-    custom = '工作笔记'
+    custom = '时间的朋友'
     # LoveIt 新增 | 0.2.0 是否显示 Hugo 和主题信息
     hugo = false
     # LoveIt 新增 | 0.2.0 是否显示版权信息
