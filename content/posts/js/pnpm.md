@@ -3,7 +3,7 @@ title: "Pnpm"
 date: 2021-12-06T10:36:00+08:00
 draft: true
 ---
-## npm yarn 和 pnpm 区别
+## npm yarn 和 pnpm 区别
 
 `pnpm` 是最近一段时间刚刚出来的包管理工具，官方文档地址 [https://www.pnpm.cn/](https://www.pnpm.cn/)
 
@@ -11,11 +11,11 @@ draft: true
 
 这里研究一下具体和npm有什么不同
 
-### 安装
+### 安装
 
 > npm install -g pnpm
 
-### 使用
+### 使用
 
 > pnpm install xxx
 > 
@@ -25,7 +25,7 @@ draft: true
 
 其他使用命令和npm 使用方法一致
 
-### tree
+### tree
 
 我以项目中安装`express`为例
 
@@ -99,7 +99,7 @@ pnpm 安装的最终目录
 └── pnpm-lock.yaml
 ```
 
-#### npm/yarn 安装过程
+### npm/yarn 安装过程
 
 执行 npm/yarn install之后
 
@@ -114,7 +114,7 @@ pnpm 安装的最终目录
 
 npm3以后的版本 、yarn 安装后的目录是一个平铺的结构、扁平化依赖， 也就是我们安装一个express，出现了很多其他的包。 但其中问题也很明显， 1） 结构不在稳定， 2） 就是原本没有权限访问的npm包，现在因为都平铺了，导致都可以访问，这也是为什么出现`lock`文件的原因, 如果其他不同的包 依赖的同一个包 版本不一致
 
-#### pnpm 安装过程
+### pnpm 安装过程
 
 node_modules下安装的什么就是什么，这里`express`其实是一个软连接， 链接到同目录下的`.pnpm`目录，这里才是库最终的安装地址，其中文件夹的命名方式是`注册域名+包名@版本号`, 这种方式极大程度上避免了npm的那些确定，
 
