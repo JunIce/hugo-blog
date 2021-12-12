@@ -2,7 +2,7 @@
 title: "Arcgis Js Api 学习笔记"
 date: 2021-12-01T10:40:11+08:00
 draft: true
-tags: ["ArcGis"]
+tags: ["Javascript", "ArcGis", "ArcGis-V3"]
 ---
 
 ## ArcGis 学习笔记
