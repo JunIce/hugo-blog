@@ -27,7 +27,7 @@ Map即`ArcGIS`中地图类，每个应用中一个地图即对应一个地图实
 
 #### options
 
-- basemap : `string`
+##### basemap : `string`
 
 对应的基础地图
 可选值
@@ -37,60 +37,60 @@ Map即`ArcGIS`中地图类，每个应用中一个地图即对应一个地图实
 这些都是 arcgis 官方提供的地图，如果需要自定义地图，后续通过自定义的切片`layer`传入
 
 
-- center: `array & new Point()`
+##### center: `array & new Point()`
 
 地图定位中心
 
 > [`longtitude`, `latitude`] 或者一个`Point`实例
 
-- autoResize: `boolean`
+##### autoResize: `boolean`
 
 当浏览器窗口发生变化时，地图自动重绘
 
-- lods: `lod[]`
+##### lods: `lod[]`
 
 当使用切片地图的时候，自定义分辨率和比例
 
-- logo: `true`
+##### logo: `true`
 
 是否展示`ArcGIS` 的官方logo
 
-- extent： `new Extent()`
+##### extent： `new Extent()`
 
 地图边界，即自定义地图的边界大小，如果定义了，地图讲不能超出边界
 
-- maxScale : `number`
-- minScale
+##### maxScale : `number`
+##### minScale
 
 最大和最小可视比例，如果定义了就不能变焦超过这个值
 
-- maxZoom: `number`
-- minZoom
+##### maxZoom: `number`
+##### minZoom
 
 变焦值，如果定义了就不能变焦超过这个值，
 没有定义就根据`scale`值进行计算
 
-- nav: `boolean`
+##### nav: `boolean`
 
 是否展示导航按钮，默认关闭
 
-- scale： `number`
+##### scale： `number`
 
 初始地图的缩放比例
 
-- showAttribution: `boolean`
+##### showAttribution: `boolean`
 
 是否展示地图的属性，展示在logo的旁边， 默认关闭
 
-- slider
-- sliderLabels
-- sliderOrientation
-- sliderPosition
-- sliderStyle
+##### slider
+##### sliderLabels
+##### sliderOrientation
+##### sliderPosition
+##### sliderStyle
 
 地图操作按钮的相关属性，即放大或缩小，位置，样式等自定义
 
-- wrapAround180
+##### wrapAround180
 
 用来设置是否180旋转，因为地球是圆形的，但是地图是平面的，所以当过日期线时，是否连接显示
 
@@ -102,47 +102,47 @@ Map即`ArcGIS`中地图类，每个应用中一个地图即对应一个地图实
 
 #### methods
 
-- addLayer
-- addLayers: `layer[]`
+##### addLayer
+##### addLayers: `layer[]`
 addLayer(layer,index) 添加其他图层,当需要展示其他图层时需要使用
 
-- attr
+##### attr
 给地图添加其他属性
 
 > map.attr(key, value)
 
 
-- centerAndZoom
+##### centerAndZoom
 
 重新定义地图中心点和焦距值
 
 > map.centerAndZoom(new Point([x, y]), number)
 
-- centerAt
+##### centerAt
 
 移动地图中心
 
 > map.centerAt(new Point([x, y]) || [x, y])
 
-- destroy
+##### destroy
 
 销毁地图实例
 
 > map.destroy()
 
-- disableDoubleClickZoom
+##### disableDoubleClickZoom
 
 禁止点击地图缩放
 
 > map.disableDoubleClickZoom()
 
-- disablePan
+##### disablePan
 
 禁止鼠标操作上下左右
 
 > map.disablePan()
 
-- load
+##### load
 
 > map.on('load', function() { \
 >  ...your code
