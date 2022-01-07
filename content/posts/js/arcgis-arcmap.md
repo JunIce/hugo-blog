@@ -36,23 +36,31 @@ draft: true
 ![version](/arcmap/arcmap_step6.png)
 
 在解压目录里找到破解包，修改其中的`services.txt`文件
+
 修改其中的host为本地计算机名称
+
 ![version](/arcmap/arcmap_step7.png)
+
 ![version](/arcmap/arcmap_step8.png)
 
 复制哥俩到`C:\Program Files (x86)\ArcGIS\License10.2\bin`license安装目录并替换， 有需要你可以先备份一下
+
 ![version](/arcmap/arcmap_step9.png)
 
 重新回到`licenseManager`, 点击启动， 并且重新读取许可
+
 ![version](/arcmap/arcmap_step10.png)
 
 打开菜单栏， 找到 `Administrator`, 记住不是 `LicenseManager`
 
 选择`浮动版`, 修改其中的host名称为`localhost`
+
 ![version](/arcmap/arcmap_step11.png)
+
 ![version](/arcmap/arcmap_step12.png)
 
 如果有需要，你可以安装中文包
+
 ![version](/arcmap/arcmap_step13.png)
 
 
