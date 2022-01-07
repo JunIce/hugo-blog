@@ -29,15 +29,19 @@ draft: true
 
 ### 4. 破解
 
-在菜单里找到`licenseManager`， 并打开 
+在菜单里找到`licenseManager`， 并打开
+
 ![version](/arcmap/arcmap_step5.png)
 
-点击`停止` 
+点击`停止`
+
 ![version](/arcmap/arcmap_step6.png)
 
 在解压目录里找到破解包，修改其中的`services.txt`文件
 
 修改其中的host为本地计算机名称
+
+![version](/arcmap/arcmap_step14.png)
 
 ![version](/arcmap/arcmap_step7.png)
 
