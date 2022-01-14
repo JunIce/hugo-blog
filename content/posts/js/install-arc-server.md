@@ -70,8 +70,20 @@ draft: true
 
 再次打开 `http://localhost:6080/arcgis/manager` 就可以用刚刚的账户登录了
 
+## 2. Server machine is not a local server machine
+
+创建站点时报错 `Server machine is not a local server machine`
+
+找到`ArcGIS Server`安装目录文件 `C:\Program Files\ArcGIS\Server\geronimo\var\config\config-substitutions.properties`
+
+编辑其中的文件 `config-substitutions.properties`
 
 
+![server1.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7c14e4aeea3342f3b1a6ed46e510212e~tplv-k3u1fbpfcp-watermark.image?)
+
+重启服务
+
+重新创建站点
 
 
 
