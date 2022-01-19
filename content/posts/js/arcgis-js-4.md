@@ -1,5 +1,5 @@
 ---
-title: "ArcGIS Js V3 常用API -- 切片图层ArcGISTiledMapServiceLayer"
+title: "ArcGIS Js V3 -- 切片图层ArcGISTiledMapServiceLayer"
 date: 2021-12-12T14:29:06+08:00
 draft: true
 tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]
