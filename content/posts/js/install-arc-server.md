@@ -85,5 +85,18 @@ draft: true
 
 重新创建站点
 
+## 3. The setup cannot proceed because ArcGIS Server is not supported on machines that indude an underscore (_) in the machine name.
+
+
+The setup cannot proceed because ArcGIS Server is not supported on machines that indude an underscore (_) in the machine name.
+
+![ab557e2702220fdd9d54bbcd3adb75c.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3013ebb6faee47fe8c662d9e2921db52~tplv-k3u1fbpfcp-watermark.image?)
+
+计算机名称中不能含有下划线，重命名后重启电脑
+
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e19244f4076b47228b6cffcf74a35de5~tplv-k3u1fbpfcp-watermark.image?)
+
+
 
 
