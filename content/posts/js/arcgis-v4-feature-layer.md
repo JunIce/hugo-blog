@@ -1,5 +1,5 @@
 ---
-title: "Arcgis V4 Feature Layer"
+title: "ArcGIS V4 Feature Layer"
 date: 2022-01-18T16:44:35+08:00
 draft: true
 tags: ["Javascript", "ArcGIS", "ArcGIS-V4"]

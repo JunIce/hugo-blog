@@ -1,5 +1,5 @@
 ---
-title: "Arcgis Js V3 常用API "
+title: "ArcGIS Js V3 常用API "
 date: 2021-12-12T14:29:06+08:00
 draft: true
 tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]

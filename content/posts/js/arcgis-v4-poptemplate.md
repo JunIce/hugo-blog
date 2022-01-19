@@ -1,5 +1,5 @@
 ---
-title: "Arcgis V4 之 PopupTemplate使用手册"
+title: "ArcGIS V4 之 PopupTemplate使用手册"
 date: 2022-01-09T17:01:02+08:00
 draft: true
 tags: ["Javascript", "ArcGIS", "ArcGIS-V4"]
