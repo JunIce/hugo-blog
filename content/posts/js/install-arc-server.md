@@ -2,6 +2,8 @@
 title: "ArcGIS Server安装及常见问题"
 date: 2022-01-08T21:05:54+08:00
 draft: true
+tags: ["ArcGIS Server"]
+categories: ["ArcGIS"]
 ---
 
 # 安装详细步骤

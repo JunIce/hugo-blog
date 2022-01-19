@@ -2,7 +2,8 @@
 title: "Arcgis Js V3 常用API Point、Multipoint、Polyline、Polygon、Circle"
 date: 2021-12-12T15:54:27+08:00
 draft: true
-tags: ["Javascript", "ArcGis", "ArcGis-V3"]
+tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]
+categories: ["ArcGIS"]
 ---
 
 ## Point

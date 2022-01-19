@@ -2,12 +2,13 @@
 title: "Arcgis Js Api 学习笔记"
 date: 2021-12-01T10:40:11+08:00
 draft: true
-tags: ["Javascript", "ArcGis", "ArcGis-V3"]
+tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]
+categories: ["ArcGIS"]
 ---
 
-## ArcGis 学习笔记
+## ArcGIS 学习笔记
 
-本篇教程都是基于`ArcGis version 3.19`
+本篇教程都是基于`ArcGIS version 3.19`
 
 ![version](/snapshots/gis-1.png)
 

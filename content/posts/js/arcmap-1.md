@@ -1,10 +1,12 @@
 ---
-title: "ArcMap使用笔记1"
+title: "ArcMap使用 -- 点位图层制作"
 date: 2022-01-08T21:14:32+08:00
 draft: true
+tags: ["ArcGIS Map"]
+categories: ["ArcGIS"]
 ---
 
-# ArcMap使用笔记1
+# 点位图层制作
 
 ## 元数据
 

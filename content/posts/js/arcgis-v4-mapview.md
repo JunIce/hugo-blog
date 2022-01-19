@@ -2,6 +2,8 @@
 title: "Arcgis V4 MapView使用手册"
 date: 2022-01-09T15:12:03+08:00
 draft: true
+tags: ["Javascript", "ArcGIS", "ArcGIS-V4"]
+categories: ["ArcGIS"]
 ---
 
 ## MapView

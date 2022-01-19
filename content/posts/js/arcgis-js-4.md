@@ -2,7 +2,8 @@
 title: "Arcgis Js V3 常用API "
 date: 2021-12-12T14:29:06+08:00
 draft: true
-tags: ["Javascript", "ArcGis", "ArcGis-V3"]
+tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]
+categories: ["ArcGIS"]
 ---
 
 ## ArcGISTiledMapServiceLayer

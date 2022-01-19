@@ -2,7 +2,8 @@
 title: "Arcgis Js常用API整理 -- Map"
 date: 2021-12-12T10:48:48+08:00
 draft: true
-tags: ["Javascript", "ArcGis", "ArcGis-V3"]
+tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]
+categories: ["ArcGIS"]
 ---
 
 ## Arcgis Js常用API整理
