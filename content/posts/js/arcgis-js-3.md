@@ -1,5 +1,5 @@
 ---
-title: "ArcGIS Js V3 常用API -- Extent、Credential、domUtils"
+title: "ArcGIS Js V3 -- Extent、Credential、domUtils"
 date: 2021-12-12T14:22:05+08:00
 draft: true
 tags: ["Javascript", "ArcGIS", "ArcGIS-V3"]
