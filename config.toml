@@ -16,7 +16,7 @@ theme = "LoveIt"
   # LoveIt 主题版本
   version = "0.2.X"
   description = "工作中记录的笔记"
-  keywords = ["前端", "docker", "javascript"]
+  keywords = ["前端", "docker", "javascript", "ArcGIS"]
   defaultTheme = "dark"
 
   [params.page.code]
@@ -122,8 +122,8 @@ theme = "LoveIt"
 
 [author]
   name = "Sparrow"
-  email = ""
-  link = ""
+  email = "east_qiu@outlook.com"
+  link = "https://github.com/JunIce"
 [menu]
   [[menu.main]]
     identifier = "posts"
