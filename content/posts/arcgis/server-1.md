@@ -1,7 +1,9 @@
 ---
-title: "1"
+title: "ArcGIS Server 术语概念"
 date: 2021-12-24T09:41:38+08:00
 draft: true
+tags: ["ArcGIS Server", "ArcGIS"]
+categories: ["ArcGIS"]
 ---
 
 ## ArcGIS Serve
