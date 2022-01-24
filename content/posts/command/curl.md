@@ -52,6 +52,10 @@ curl -H "Content-Type:application/json" -X POST -d '{"service":10,"partId":"2354
 ## curl 测试websockt
 
 ```sh
+curl -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" -H "Host: echo.websocket.org" -H "Origin: http://www.websocket.org" http://echo.websocket.org
+```
+
+```sh
 curl --include \
      --no-buffer \
      --header "Connection: Upgrade" \
