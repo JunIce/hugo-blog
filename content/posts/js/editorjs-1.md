@@ -38,6 +38,9 @@ var editor = new EditorJS({
 
 ## codex.ts
 
+代码流程图
+
+![editor.js](/editor.js 流程图.png)
 ### contructor
 
 ```ts
