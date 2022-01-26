@@ -32,3 +32,4 @@ foo
 <!-- afterend -->
 ```
 
+![insertAdjacentElement](/insertAdjacentElement.png)
