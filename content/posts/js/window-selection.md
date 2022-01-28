@@ -28,7 +28,13 @@ draft: true
 anchor 指向的位置可能在 focus 指向的位置的前面，也可能在 focus 指向位置的后面，这取决于你选择文本时鼠标移动的方向（也就是按下鼠标键和松开鼠标键的位置）。
 
 ## Methods
+### addRange
 
+选区中添加范围
+
+```js
+selection = range.addRange(range)
+```
 ### getRangeAt
 
 获取选区范围
