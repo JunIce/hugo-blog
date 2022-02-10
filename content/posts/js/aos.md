@@ -9,6 +9,8 @@ draft: true
 
 项目中有个需求是官网浏览时，滚动鼠标，相对应的元素会以动画的形式加载到对应的位置。看到这个需求我第一印象就是window下有个`MutationObserver`这个api，可以监听对应的dom元素变化，应该可以使用。本着不重复造轮子，找了npm上有这个包，可以实现。
 
+[https://github.com/michalsnik/aos](https://github.com/michalsnik/aos)
+
 ## 安装
 
 ```js
@@ -266,3 +268,37 @@ function ready(selector, fn) {
 ```
 
 可以看到内部的实现就是用`new MutationObsever`来监听dom元素的变化，这里是兼容如果dom元素是异步生成的，就会强制刷新dom元素上的动画属性
+
+
+## 常见问题
+
+1. 一些情况下禁用AOS动画
+
+[https://github.com/michalsnik/aos/issues/646#issuecomment-861782982](https://github.com/michalsnik/aos/issues/646#issuecomment-861782982)
+
+```js
+AOS.init({
+  disable: window.innerWidth < 768,
+  ...
+});
+```
+> When you set the 'disable' prop it seems AOS will add pointer-events: none and opacity: 0 to your data-aos=* elements, so you need to overwrite the AOS styles in a media query.
+
+
+```css
+@media screen and (max-width: 768px) {
+  [data-aos] {
+    pointer-events: auto !important;
+  }
+
+  html:not(.no-js) [data-aos^=fade][data-aos^=fade] {
+    opacity: 1 !important;
+  }
+
+  html:not(.no-js) [data-aos=fade-up] {
+    transform: none !important;
+  }
+}
+```
+
+
