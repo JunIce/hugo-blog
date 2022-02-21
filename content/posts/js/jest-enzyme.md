@@ -2,6 +2,7 @@
 title: "React 组件搭建测试框架"
 date: 2022-02-16T16:03:55+08:00
 draft: true
+tags: ["jest", "enyzme", "react-test"]
 ---
 
 

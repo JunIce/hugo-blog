@@ -2,7 +2,11 @@
 title: "Jest config 配置文件参数"
 date: 2022-02-18T09:24:09+08:00
 draft: true
+tags: ["jest"]
 ---
+
+
+# jest V27.5
 
 ## jest.config.js 
 
