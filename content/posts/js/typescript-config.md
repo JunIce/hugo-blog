@@ -1,5 +1,5 @@
 ---
-title: "Typescript Config"
+title: "tsconfig.json 参数详解"
 date: 2022-02-23T09:08:57+08:00
 draft: true
 ---
