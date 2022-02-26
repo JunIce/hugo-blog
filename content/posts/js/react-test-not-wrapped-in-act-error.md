@@ -41,7 +41,7 @@ it("should render and update a counter", () => {
 
 出现以上错误的可能是以下原因
 
-### 1.组件内部有异步渲染
+### 1.组件内部有异步渲染
 
 待测试组件
 
@@ -75,7 +75,7 @@ it("should fetch person name", async () => {
 });
 ```
 
-### 2. 组件中有使用`setInterval` 或者`setTimeout`
+### 2. 组件中有使用`setInterval` 或者`setTimeout`
 
 ```tsx
 const TestComponent = () => {
