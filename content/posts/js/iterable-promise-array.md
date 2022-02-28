@@ -67,88 +67,74 @@ function iterablePromiseArray(iterable, mapper) {
 }
 ```
 
-### 最终DEMO
+### 最终 DEMO
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+```js
+let _log = (n) => console.log(n);
+let sleep = (fn, time) =>
+  new Promise((resolve) => setTimeout(() => resolve(fn), time));
+let a = [sleep(1, 1000), 2, sleep(3, 4000), 4, sleep(5, 3000)];
 
-  <body>
-    <script>
-      let _log = (n) => console.log(n);
-      let sleep = (fn, time) =>
-        new Promise((resolve) => setTimeout(() => resolve(fn), time));
-      let a = [sleep(1, 1000), 2, sleep(3, 4000), 4, sleep(5, 3000)];
+function iterablePromiseArray(iterable, mapper) {
+  return new Promise((resolve, reject) => {
+    const iterator = iterable[Symbol.iterator]();
+    // 当前元素索引， 对应到可遍历对象的每个next
+    let currentIndex = 0;
+    // 用来统计已经获取结果的计数
+    let resolveCount = 0;
+    //   是否有错误，错误退出
+    let isReject = false;
+    //   结果数组
+    let result = [];
 
-      function iterablePromiseArray(iterable, mapper) {
-        return new Promise((resolve, reject) => {
-          const iterator = iterable[Symbol.iterator]();
-          // 当前元素索引， 对应到可遍历对象的每个next
-          let currentIndex = 0;
-          // 用来统计已经获取结果的计数
-          let resolveCount = 0;
-          //   是否有错误，错误退出
-          let isReject = false;
-          //   结果数组
-          let result = [];
+    const next = () => {
+      if (isReject) return;
 
-          const next = () => {
-            if (isReject) return;
+      const nextItem = iterator.next();
 
-            const nextItem = iterator.next();
-
-            if (nextItem.done) {
-              // 已经获取所有结果，退出
-              if (resolveCount == 0) {
-                resolve(result);
-              }
-              return;
-            }
-            // 计数加一
-            const i = currentIndex++;
-            resolveCount++;
-
-            Promise.resolve(nextItem.value)
-              // 这里mapper可能是一个promise函数，所以外面用Promise.resolve包装一下
-              .then((element) => mapper(element, i))
-              .then(
-                (value) => {
-                  result[i] = value;
-                  resolveCount--;
-                  //   调用自身
-                  next();
-                },
-                (err) => {
-                  isReject = true;
-                  reject(err);
-                }
-              );
-          };
-          // 遍历数组，每个都执行一遍next
-          for (let i = 0; i < iterable.length; i++) {
-            next();
-          }
-        });
+      if (nextItem.done) {
+        // 已经获取所有结果，退出
+        if (resolveCount == 0) {
+          resolve(result);
+        }
+        return;
       }
-      console.time("start1");
+      // 计数加一
+      const i = currentIndex++;
+      resolveCount++;
 
-      iterablePromiseArray(a, (e) => {
-        _log(e);
-        // 输出 2、4、1、5、3
-        // 也可以return 一个Promise
-        return e;
-      }).then((result) => {
-        // [1,2,3,4,5]
-        console.timeEnd("start1");
-        console.log("result: ", result);
-      });
-    </script>
-  </body>
-</html>
+      Promise.resolve(nextItem.value)
+        // 这里mapper可能是一个promise函数，所以外面用Promise.resolve包装一下
+        .then((element) => mapper(element, i))
+        .then(
+          (value) => {
+            result[i] = value;
+            resolveCount--;
+            //   调用自身
+            next();
+          },
+          (err) => {
+            isReject = true;
+            reject(err);
+          }
+        );
+    };
+    // 遍历数组，每个都执行一遍next
+    for (let i = 0; i < iterable.length; i++) {
+      next();
+    }
+  });
+}
+console.time("start1");
+
+iterablePromiseArray(a, (e) => {
+  _log(e);
+  // 输出 2、4、1、5、3
+  // 也可以return 一个Promise
+  return e;
+}).then((result) => {
+  // [1,2,3,4,5]
+  console.timeEnd("start1");
+  console.log("result: ", result);
+});
 ```

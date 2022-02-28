@@ -1,8 +1,8 @@
 ---
-title: "Event Bus"
+title: "事件总线EventBus"
 date: 2021-11-01T09:39:16+08:00
 draft: false
-tags: ["js"]
+tags: ["js", "utils"]
 ---
 
 
