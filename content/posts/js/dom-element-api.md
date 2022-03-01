@@ -120,16 +120,16 @@ animate.effect;
 
 返回插入的元素， 插入失败则返回 null
 
-## position 可选值
+### position 可选值
 
 - `beforebegin`: 在该元素本身的前面.
 - `afterbegin`:只在该元素当中, 在该元素第一个子孩子前面.
 - `beforeend`:只在该元素当中, 在该元素最后一个子孩子后面.
 - `afterend`: 在该元素本身的后面.
 
-## element => dom 元素
+### element => dom 元素
 
-## 插入结果位置
+### 插入结果位置
 
 ```HTML
 <!-- beforebegin -->
@@ -142,3 +142,33 @@ foo
 ```
 
 ![insertAdjacentElement](/insertAdjacentElement.png)
+
+
+## Element.getAttributeNode
+
+返回指定元素的指定属性节点
+
+> var attrNode = element.getAttributeNode(attrName);
+
+
+`attrNode`  获得的属性返回值，是Attr 节点， nodeType 为 2
+`attrName` 是一个包含属性名称的 字符串
+
+
+```html
+<div id="app"></div>
+
+<script>
+    var el = document.querySelector('#app')
+    var idAttr = el.getAttributeNode("id") 
+</script>
+```
+
+## Element.getBoundingClientRect()
+
+返回元素的大小及其相对于浏览器视窗的位置。
+
+返回 top,lef,right,bottom,width,height 6个值
+
+注意： 该API返回的 DOMRect 对象在现代浏览器中可以被修改。
+
