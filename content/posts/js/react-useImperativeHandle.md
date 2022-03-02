@@ -14,7 +14,7 @@ categories: ["react"]
 
 - ref： 需要被赋值的 ref 对象。
 - createHandle：createHandle 函数的返回值作为 ref.current 的值。
-- [deps] ： 依赖数组，依赖发生变化会重新执行 createHandle 函数。
+- [deps] ： 依赖数组，依赖发生变化会重新执行 createHandle 函数。 当依赖是`[{}]`时, 组件每次重新渲染都会更新到最新
 
 ```jsx
 const MyInput = React.forwardRef((props, ref) => {
