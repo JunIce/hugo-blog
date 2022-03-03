@@ -5,11 +5,70 @@ draft: false
 tags: ["Element", "js"]
 ---
 
+## Element.append
+
+方法在 `Element`的最后一个子节点之后插入一组 `Node` 对象或 `DOMString` 对象。
+被插入的 `DOMString` 对象等价为 `Text` 节点。
+
+> Element.append((Node or DOMString)... nodes);
+
+示例代码
+
+```html
+<div id="container">
+  <h1>test</h1>
+
+  <h2>test2</h2>
+</div>
+
+<script>
+  var h1 = document.querySelector("h1");
+  var container = document.querySelector("#container");
+
+  let span2 = document.createElement("span");
+  span2.textContent = "span2";
+
+  container.append(span2);
+  console.log(container.children);
+</script>
+```
+
+## Element.before
+
+方法可以在这个节点的父节点中插入一些列的 Node 或者 DOMString 对象
+
+> Element.before((Node or DOMString)... nodes);
+
+```html
+<div id="container">
+  <h1>test</h1>
+
+  <h2>test2</h2>
+</div>
+
+<script>
+  var h1 = document.querySelector("h1");
+  var container = document.querySelector("#container");
+
+  var span = document.createElement("span");
+  span.textContent = "demo span";
+
+  h1.after(span);
+
+  var spanBefore = document.createElement("span");
+  spanBefore.textContent = "spanBebore";
+
+  span.before(spanBefore);
+</script>
+```
+
 ## Element.after
 
 > Element.after(...nodes | Text)
 
-参数为`html node` 或者直接是html文本, 也可以是多个参数同时插入
+参数为`html node` 或者直接是 html 文本, 也可以是多个参数同时插入
+
+示例代码
 
 ```html
 <div id="container">
@@ -74,36 +133,26 @@ targetElement.closest(selectors);
 
 元素的动画效果
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+示例代码
 
-  <body>
-    <div>
-      <h5>test paragraph</h5>
-    </div>
-    <script>
-      var animate = document.getElementsByTagName("h5")[0].animate(
-        [
-          // keyframes
-          { transform: "translateY(0px)" },
-          { transform: "translateY(-300px)" },
-        ],
-        {
-          // timing options
-          duration: 1000,
-          iterations: Infinity,
-        }
-      );
-    </script>
-  </body>
-</html>
+```html
+<div>
+  <h5>test paragraph</h5>
+</div>
+<script>
+  var animate = document.getElementsByTagName("h5")[0].animate(
+    [
+      // keyframes
+      { transform: "translateY(0px)" },
+      { transform: "translateY(-300px)" },
+    ],
+    {
+      // timing options
+      duration: 1000,
+      iterations: Infinity,
+    }
+  );
+</script>
 ```
 
 `h5`标签会一直在动画状态
@@ -113,6 +162,17 @@ animate.pause(); // 暂停
 animate.cancel(); // 取消暂停状态
 animate.effect;
 ```
+
+
+## Element.getAttribute
+
+获取元素相关属性
+
+## Element.getAttributeNames
+
+获取元素所有属性Array
+
+
 
 ## Element.insertAdjacentElement
 
