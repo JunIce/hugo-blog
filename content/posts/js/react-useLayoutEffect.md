@@ -3,7 +3,7 @@ title: "React hooks UseLayoutEffect使用"
 date: 2022-03-02T17:21:14+08:00
 draft: true
 tags: ["react", "hooks"]
-categories: ["react"]
+categories: ["React"]
 ---
 
 ## useLayoutEffect
@@ -16,6 +16,39 @@ Dom变化后同步触发。使用它去读取dom布局
 
 
 ### DEMO
+
+- 场景1: 浏览器尺寸变化
+
+```jsx
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+```
+
+- 场景2: componentDidUpdate
+
+```jsx
+const firstUpdate = useRef(true);
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    console.log("componentDidUpdateFunction");
+  });
+```
+
+- 场景3
 
 ```jsx
 const Message = ({boxRef, children}) => {

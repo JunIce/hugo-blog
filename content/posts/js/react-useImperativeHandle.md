@@ -3,7 +3,7 @@ title: "React hooks UseImperativeHandle 使用"
 date: 2022-03-02T17:07:39+08:00
 draft: true
 tags: ["react", "hooks"]
-categories: ["react"]
+categories: ["React"]
 ---
 
 ## useImperativeHandle
