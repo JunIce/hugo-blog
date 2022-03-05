@@ -2,6 +2,7 @@
 title: "React组件测试问题方案 -- not wrapped in act"
 date: 2022-02-26T11:57:01+08:00
 draft: true
+categories: ["React"]
 ---
 
 ## 在使用`@testing-library/react`进行react测试的时候可能会出现错误
