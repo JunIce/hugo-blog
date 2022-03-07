@@ -2,6 +2,7 @@
 title: "React 更新 State 的方式"
 date: 2022-02-18T11:00:36+08:00
 draft: true
+categories: ["React"]
 ---
 
 ## React 更新
