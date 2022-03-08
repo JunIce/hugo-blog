@@ -1,9 +1,3 @@
----
-title: "Vue -- 组件vnode diff 源码过程解读"
-date: 2022-03-07T14:03:30+08:00
-draft: true
----
-
 ## vue2 组件diff过程
 
 
@@ -59,5 +53,95 @@ function patchVnode(
         nodeOps.setTextContent(elm, vnode.text);
     }
 }
+```
+
+
+
+
+
+```javascript
+// 更新子元素
+function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
+    var oldStartIdx = 0;
+    var newStartIdx = 0;
+    var oldEndIdx = oldCh.length - 1;
+    var oldStartVnode = oldCh[0];
+    var oldEndVnode = oldCh[oldEndIdx];
+    var newEndIdx = newCh.length - 1;
+    var newStartVnode = newCh[0];
+    var newEndVnode = newCh[newEndIdx];
+    var oldKeyToIdx, idxInOld, vnodeToMove, refElm;
+
+    // removeOnly is a special flag used only by <transition-group>
+    // to ensure removed elements stay in correct relative positions
+    // during leaving transitions
+    var canMove = !removeOnly;
+
+    {
+        // 检查重复key并提示到控制台
+        checkDuplicateKeys(newCh);
+    }
+
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+        if (isUndef(oldStartVnode)) { // 旧数组不存在开始节点，开始指针右移
+            oldStartVnode = oldCh[++oldStartIdx];
+        } else if (isUndef(oldEndVnode)) {// 旧数组不存在开始节点，结束指针右移
+            oldEndVnode = oldCh[--oldEndIdx];
+        } else if (sameVnode(oldStartVnode, newStartVnode)) {// 开始节点相等， 直接patch， 新旧开始指针右移
+            patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
+            oldStartVnode = oldCh[++oldStartIdx];
+            newStartVnode = newCh[++newStartIdx];
+        } else if (sameVnode(oldEndVnode, newEndVnode)) {// 结束节点相等， 直接patch， 新旧开始指针左移
+            patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx);
+            oldEndVnode = oldCh[--oldEndIdx];
+            newEndVnode = newCh[--newEndIdx];
+        } else if (sameVnode(oldStartVnode, newEndVnode)) { // 旧的开始 == 新的结束, 先patch再移动位置
+            patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx);
+            canMove && nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm));
+            oldStartVnode = oldCh[++oldStartIdx];
+            newEndVnode = newCh[--newEndIdx];
+        } else if (sameVnode(oldEndVnode, newStartVnode)) {  // 旧的结束 == 新的开始, 先patch再移动位置
+            patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
+            canMove && nodeOps.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm);
+            oldEndVnode = oldCh[--oldEndIdx];
+            newStartVnode = newCh[++newStartIdx];
+        } else {
+            // 遍历出key的map
+            if (isUndef(oldKeyToIdx)) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx); }
+            // 旧数组中是否存在新的key对应的旧数组中的索引
+            idxInOld = isDef(newStartVnode.key)
+                ? oldKeyToIdx[newStartVnode.key]
+                : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx);
+            
+            if (isUndef(idxInOld)) { // 不存在，创建新的dom元素
+                createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx);
+            } else {
+                vnodeToMove = oldCh[idxInOld];
+                // 存在 是否一致
+                if (sameVnode(vnodeToMove, newStartVnode)) {
+                    // 一致就是先patch，再移动
+                    patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
+                    oldCh[idxInOld] = undefined;
+                    canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm);
+                } else {
+                    // key一样，但是不是同一个vnode， 创建新的元素
+                    createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx);
+                }
+            }
+            newStartVnode = newCh[++newStartIdx];
+        }
+    }
+
+    // 旧的开始结束索引提前相遇，即比对结束
+    if (oldStartIdx > oldEndIdx) {
+        refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
+        // 把剩下的从start到end的数据遍历插入到对应的位置
+        addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
+    } else if (newStartIdx > newEndIdx) { // 数组变短，新的数组开始结束指针提前相遇
+        // 遍历删除掉旧数组中不需要得到元素
+        removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+    }
+}
+
 ```
 
