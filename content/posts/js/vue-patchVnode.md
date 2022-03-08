@@ -1,7 +1,13 @@
+
+---
+title: "vue2 -- 核心diff 源码解读"
+date: 2022-01-11T10:18:05+08:00
+draft: true
+tags: ["vue", "javascript"]
+---
+
+
 ## vue2 组件diff过程
-
-
-
 ### patchVnode 
 
 打补丁过程
@@ -54,9 +60,6 @@ function patchVnode(
     }
 }
 ```
-
-
-
 
 
 ```javascript
