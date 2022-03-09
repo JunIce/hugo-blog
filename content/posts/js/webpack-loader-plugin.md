@@ -3,6 +3,7 @@ title: "Webpack Loader Plugin"
 date: 2021-10-19T09:00:29+08:00
 draft: false
 tags: ["js", "webpack"]
+categories: ["webpack"]
 ---
 
 # webpack Loaders and Plugins different
