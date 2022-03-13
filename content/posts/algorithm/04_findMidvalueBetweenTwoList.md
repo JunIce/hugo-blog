@@ -34,7 +34,7 @@ function findMidValueBetweenTwoList(list1: number[], list2: number[]): number {
         len2 = list2.length;
 
     let m1 = (len1 + len2 + 1) / 2,
-        m2 = (len1 + len2 + 1) / 2;
+        m2 = (len1 + len2 + 2) / 2;
 
     const findKth = (i: number, j: number, k: number): number => {
         if (i >= len1) {
