@@ -1,9 +1,9 @@
 ---
 title: "Vue3 -- break change 补充知识点"
-date: 2022-02-23T15:34:33+08:00
+date: 2022-03-15T08:00:00+08:00
 draft: true
 tags: ["vue3"]
-categries: ["vue"]
+categories: ["vue"]
 ---
 
 # vue3中更新知识点
