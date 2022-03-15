@@ -5,7 +5,6 @@ draft: true
 tags: ["vue3"]
 categories: ["vue"]
 ---
-
 # vue3中更新知识点
 
 ## createApp
@@ -88,6 +87,8 @@ export default defineComponent({
 </script>
 
 ```
+
+具体的`setup`语法中的使用方式[Vue3 Composition API -- setup内 props 和 component 使用 - 时间的朋友 (storycn.cn)](https://blog.storycn.cn/posts/js/vue3-setup/)
 
 
 
