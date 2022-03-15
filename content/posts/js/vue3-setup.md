@@ -3,6 +3,7 @@ title: "Vue3 Composition API -- setup内 props 和 component 使用"
 date: 2022-02-23T15:34:33+08:00
 draft: true
 tags: ["vue3"]
+categries: ["vue"]
 ---
 
 ## setup script
