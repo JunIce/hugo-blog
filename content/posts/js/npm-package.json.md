@@ -2,6 +2,7 @@
 title: "npm -- package.json文件各字段详细说明"
 date: 2022-03-12T21:15:04+08:00
 draft: true
+tags: ["js", "npm"]
 ---
 
 # package.json文件各字段详细说明

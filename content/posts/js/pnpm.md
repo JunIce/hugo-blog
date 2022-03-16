@@ -1,7 +1,8 @@
 ---
-title: "Pnpm"
+title: "pnpm -- 软件包管理器"
 date: 2021-12-06T10:36:00+08:00
 draft: true
+tags: ["js", "npm"]
 ---
 ## npm yarn 和 pnpm 区别
 
