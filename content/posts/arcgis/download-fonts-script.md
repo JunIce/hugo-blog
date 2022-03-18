@@ -2,6 +2,7 @@
 title: "ArcGIS Js V4 -- 字体下载"
 date: 2022-01-19T20:13:50+08:00
 draft: true
+categories: ["ArcGIS"]
 ---
 
 # 字体
