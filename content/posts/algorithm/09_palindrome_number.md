@@ -36,9 +36,7 @@ draft: true
 
 
 
-### 1
-
-数字转字符串
+### 1: 数字转字符串
 
 
 ```typescript
@@ -54,9 +52,7 @@ function isPalindrome(x: number): boolean {
 }
 ```
 
-### 2
-
-数字转字符串， 前后指针
+### 2: 数字转字符串， 前后指针
 
 ```typescript
 function isPalindrome(x: number): boolean {
@@ -81,5 +77,28 @@ function isPalindrome(x: number): boolean {
   }
 
   return bool
+}
+```
+
+
+### 3: 半数循环
+
+```typescript
+function isPalindrome(x: number): boolean {
+  if(x < 0) return false
+
+  if(x >= 0 && x < 10) return true
+
+  let s = x+''
+
+  let half = Math.floor(s.length / 2)
+
+  for (let i = 0; i < half; i++) {
+    if(s[i] !== s[s.length - 1 - i]) {
+        return false
+    }
+  }
+
+  return true
 }
 ```
