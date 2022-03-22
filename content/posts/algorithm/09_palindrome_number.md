@@ -22,6 +22,14 @@ draft: true
 
 
 
+### 解题思路
+
+直接构建倒序数
+
+- x ＜ 0时，全为false；
+- x ＜ 10时，个数全为true；
+- 其它情况，两位数的倒数 = （x%10）10 + x / 10，三位数的倒数 = （（x%10）10 + （x%10）% 10） 10 + x/10(后两位数的倒数10 + x%10)....既可
+
 
 
 ## 方案
@@ -29,6 +37,9 @@ draft: true
 
 
 ### 1
+
+数字转字符串
+
 
 ```typescript
 function isPalindrome(x: number): boolean {
@@ -43,3 +54,32 @@ function isPalindrome(x: number): boolean {
 }
 ```
 
+### 2
+
+数字转字符串， 前后指针
+
+```typescript
+function isPalindrome(x: number): boolean {
+  if(x < 0) return false
+
+  if(x >= 0 && x < 10) return true
+
+  let s = x+''
+  let startPi = 0
+  let endPi = 0
+  let bool = true
+
+  while(startPi < s.length) {
+    if(startPi + endPi > s.length) break
+    if(s.charAt(startPi) !== s.charAt(s.length - 1 - endPi)) {
+        bool = false
+        break
+    } else {
+        startPi++
+        endPi++
+    }
+  }
+
+  return bool
+}
+```
