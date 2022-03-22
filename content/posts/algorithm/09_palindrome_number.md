@@ -1,7 +1,8 @@
 ---
-title: "09_palindrome_number"
+title: "09_palindrome_number回文数"
 date: 2022-03-22T15:46:37+08:00
 draft: true
+categories: ["algorithm"]
 ---
 
 
