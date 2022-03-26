@@ -196,9 +196,7 @@ while (parent) {
 
 
 
-先备注这里
-
-
+### try-finally
 
 下面走到`try`里面
 
@@ -229,7 +227,7 @@ try {
 }
 ```
 
-**try**下面做了以下操作
+#### **try**下面做了以下操作
 
 - 之前的`activeEffect`赋值到`this.parent`上
 - 把当前的`this`赋值到`activeEffect`上
@@ -252,7 +250,7 @@ if (effectTrackDepth <= maxMarkerBits) {
 
 
 
-**finally**
+#### **finally**
 
 - `finalizeDepMarkers`这个方法， 把当前`effect`上的所有`deps`上的**w**和**s**清空
 
@@ -260,3 +258,93 @@ if (effectTrackDepth <= maxMarkerBits) {
 - `activeEffect`重新赋值`this.parent`
 - `shouldTrack`重置
 - `this.parent`置null
+
+
+
+### activeEffect
+
+
+
+这是`effect`中最重要的一环了， 在`effect`中会定义`activeEffect`的值
+
+
+
+我们回到 `ref.ts`中有个`trackRefValue`,  里面有个`trackEffects`函数
+
+同样`reactive`中`createGetter`方法,  里面也会走到这个函数
+
+#### trackEffects
+
+```typescript
+export function trackEffects(
+  dep: Dep,
+  debuggerEventExtraInfo?: DebuggerEventExtraInfo
+) {
+  let shouldTrack = false
+  if (effectTrackDepth <= maxMarkerBits) {
+    if (!newTracked(dep)) {
+      dep.n |= trackOpBit // set newly tracked
+      shouldTrack = !wasTracked(dep)
+    }
+  } else {
+    // Full cleanup mode.
+    shouldTrack = !dep.has(activeEffect!)
+  }
+
+  if (shouldTrack) {
+    dep.add(activeEffect!)
+    activeEffect!.deps.push(dep)
+  }
+}
+```
+
+
+
+这里就能看到， `get`函数最终会保存在`dep`中， `dep`会塞入当前激活的`effect`， 也就是`activeEffect`
+
+同样， `activeEffect`中也会放入当前的变量的依赖`dep`
+
+这里这样设置，不管是谁，都能在`deps`中找到对方
+
+
+
+#### triggerEffects
+
+触发effect
+
+```typescript
+export function triggerEffects(
+  dep: Dep | ReactiveEffect[],
+  debuggerEventExtraInfo?: DebuggerEventExtraInfo
+) {
+  // spread into array for stabilization
+  for (const effect of isArray(dep) ? dep : [...dep]) {
+    if (effect !== activeEffect || effect.allowRecurse) {
+      if (effect.scheduler) {
+        effect.scheduler()
+      } else {
+        effect.run()
+      }
+    }
+  }
+}          
+```
+
+
+
+`ref`或者`reactive`在触发`set`方法时，会触发到依赖它的`effect`
+
+
+
+也由此能预测到
+
+`effect`中存在多个依赖的响应式变量时，不管谁发生变化，都会触发当前的`effect`函数执行
+
+
+
+
+
+
+
+
+
