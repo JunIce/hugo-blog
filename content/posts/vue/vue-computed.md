@@ -2,7 +2,8 @@
 title: "Vue Computed"
 date: 2022-03-27T14:38:16+08:00
 draft: true
-
+tags: ["vue3"]
+categories: ["vue"]
 ---
 
 
