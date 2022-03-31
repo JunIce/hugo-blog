@@ -1,8 +1,8 @@
 ---
-title: "vue -- ant-design-vue table 可伸缩列"
+title: "Vue2 -- ant-design-vue table 可伸缩列"
 date: 2022-03-21T20:44:06+08:00
 draft: true
-tags: ["vue"]
+tags: ["vue2"]
 categories: ["vue"]
 ---
 
