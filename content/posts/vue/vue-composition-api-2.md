@@ -1,5 +1,5 @@
 ---
-title: "Vue Composition Api 2"
+title: "Vue -- Composition Api 2"
 date: 2021-03-21T20:47:17+08:00
 draft: true
 tags: ["vue2", "@vue/composition-api"]
