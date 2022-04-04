@@ -2,6 +2,8 @@
 title: "Vue2 --  new Vue()的内部执行过程"
 date: 2022-04-04T15:38:08+08:00
 draft: true
+tags: ["vue2"]
+categries: ["vue"]
 ---
 
 
