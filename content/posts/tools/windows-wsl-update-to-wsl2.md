@@ -28,6 +28,12 @@ categories: ["WSL"]
 
 
 
+### 查看ubuntu在线版本
+
+
+
+>  wsl --list --online
+
 
 
 ### 设置版本号
@@ -40,8 +46,6 @@ categories: ["WSL"]
 
 ### 查看已有的版本号
 > wsl --list -v
-
-
 
 
 
