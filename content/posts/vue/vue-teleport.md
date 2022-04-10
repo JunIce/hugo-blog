@@ -62,6 +62,10 @@ categories: ["vue"]
 
 
 
+内部的insert在dom下都是用的这个api
+
+
+
 ### resolveTarget
 
 ```typescript
