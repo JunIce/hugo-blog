@@ -1,5 +1,5 @@
 ---
-title: "Vue MountComponent"
+title: "Vue mountComponent函数解读"
 date: 2022-04-10T14:53:37+08:00
 draft: true
 tags: ["vue3"]
@@ -10,7 +10,7 @@ categories: ["vue"]
 
 
 
-# vue mountComponent
+# vue mountComponent函数解读
 
 
 
@@ -22,7 +22,7 @@ categories: ["vue"]
 
 
 
-## mountComponent
+## mountComponent入口
 
 
 
