@@ -51,3 +51,19 @@ categories: ["js"]
 
 
 
+### get
+
+属性的getter函数，如果没有getter，则为undefined。 执行时不会传入任何参数，但是会传入`this`
+
+
+
+
+
+### set
+
+当属性值被修改时，会调用此函数。
+
+
+
+
+
