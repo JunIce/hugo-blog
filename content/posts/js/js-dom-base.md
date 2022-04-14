@@ -2,6 +2,8 @@
 title: "js -- dom之EventTarget、Node、Element"
 date: 2022-04-12T09:08:16+08:00
 draft: true
+tags: ["js"]
+categories: ["js"]
 ---
 
 
