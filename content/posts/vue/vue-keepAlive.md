@@ -6,11 +6,87 @@ tags: ["vue2"]
 categories: ["vue"]
 ---
 
-## keep-alive
+
+
+# keep-alive
+
+
 
 `keep-alive`是 vue 中自带的组件，用作对组件实例进行缓存，通常我们用作在路由切换的同时，保持组件之前的状态
 
+
+
+### `created`中初始化变量`cache`和`keys`， 分别用作储存实例和实例对应的`key`
+
 ```js
+created () {
+    this.cache = Object.create(null)
+    this.keys = []
+}
+```
+
+
+
+### `mounted`中对实例进行缓存
+
+```js
+ mounted () {
+    this.cacheVNode()
+    this.$watch('include', val => {
+      pruneCache(this, name => matches(val, name))
+    })
+    this.$watch('exclude', val => {
+      pruneCache(this, name => !matches(val, name))
+    })
+  }
+```
+
+
+
+### `cacheVnode`
+
+`cacheVnode`针对对应的`key`构建对应的缓存，同时把`key`保存到`keys`队列中去
+
+
+
+```
+cacheVNode() {
+      const { cache, keys, vnodeToCache, keyToCache } = this
+      if (vnodeToCache) {
+        const { tag, componentInstance, componentOptions } = vnodeToCache
+        cache[keyToCache] = {
+          name: getComponentName(componentOptions),
+          tag,
+          componentInstance,
+        }
+        keys.push(keyToCache)
+        // prune oldest entry
+        if (this.max && keys.length > parseInt(this.max)) {
+          pruneCacheEntry(cache, keys[0], keys, this._vnode)
+        }
+        this.vnodeToCache = null
+      }
+    }
+```
+
+其中有个最大数量的限制，当超过最大限制时，把第一个卸载掉
+
+
+
+### render 
+
+1. render中在检查cache中是否有对应的缓存，有的话会赋值到对应vnode的`componentInstance`上
+
+2. 保证keys数组中的key唯一
+3. data上`keepAlive`设置为`true`
+
+
+
+
+
+#### 源码
+
+```javascript
 export default {
   name: "keep-alive",
   abstract: true,
@@ -46,7 +122,13 @@ export default {
 };
 ```
 
+
+
+#### pruneCacheEntry源码
+
 `pruneCacheEntry` 函数是用作清除缓存中的实例, 其中最重要的是调用缓存实例的 destroy 生命周期。
+
+
 
 ```js
 function pruneCacheEntry(
@@ -64,7 +146,11 @@ function pruneCacheEntry(
 }
 ```
 
-### render 函数
+
+
+#### render源码
+
+
 
 ```js
 render () {
