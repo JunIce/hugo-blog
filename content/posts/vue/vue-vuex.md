@@ -107,43 +107,128 @@ this.commit = function boundCommit (type, payload, options) {
 
 
 
-3. 接下来就到了安装模块
+3. 我们返回到上面`_modules`初始化这里
+
+>   this._modules = new ModuleCollection(options)
+
+
+
+4.  接下来就到了安装模块
+
+
+
+这里会依次循环mutation、action、getter， 并且注册到store根实例上
+
+
+
+```typescript
+store._mutations = Array<Function>
+    
+store._wrappedGetters = {
+    [key: string]: Fucntion
+}
+
+store._actions = Array<Function>
+```
+
+
+
+
 
 ```javascript
 function installModule (store, rootState, path, module, hot) {
   const isRoot = !path.length
   const namespace = store._modules.getNamespace(path)
+  
+  // ....
+  
+  const local = module.context = makeLocalContext(store, namespace, path)
 
-  // register in namespace map
-  if (module.namespaced) {
-    if (store._modulesNamespaceMap[namespace] && __DEV__) {
-      console.error(`[vuex] duplicate namespace ${namespace} for the namespaced module ${path.join('/')}`)
-    }
-    store._modulesNamespaceMap[namespace] = module
-  }
+  module.forEachMutation((mutation, key) => {
+    const namespacedType = namespace + key
+    registerMutation(store, namespacedType, mutation, local)
+  })
 
-  // set state
-  if (!isRoot && !hot) {
-    const parentState = getNestedState(rootState, path.slice(0, -1))
-    const moduleName = path[path.length - 1]
-    store._withCommit(() => {
-      if (__DEV__) {
-        if (moduleName in parentState) {
-          console.warn(
-            `[vuex] state field "${moduleName}" was overridden by a module with the same name at "${path.join('.')}"`
-          )
-        }
-      }
-      Vue.set(parentState, moduleName, module.state)
-    })
-  }
+  module.forEachAction((action, key) => {
+    const type = action.root ? key : namespace + key
+    const handler = action.handler || action
+    registerAction(store, type, handler, local)
+  })
+
+  module.forEachGetter((getter, key) => {
+    const namespacedType = namespace + key
+    registerGetter(store, namespacedType, getter, local)
+  })
+ 
+}
 ```
 
 
 
-4. 我们返回到上面`_modules`初始化这里
+同时遍历子模块， 调用本方法递归
 
->   this._modules = new ModuleCollection(options)
+```javascript
+module.forEachChild((child, key) => {
+    installModule(store, rootState, path.concat(key), child, hot)
+})
+```
+
+
+
+### resetStoreVM
+
+这个方法最终实现响应式
+
+
+
+第一步把getter上的数据都放到一个空对象上
+
+```javascript
+const wrappedGetters = store._wrappedGetters
+const computed = {}
+forEachValue(wrappedGetters, (fn, key) => {
+    computed[key] = partial(fn, store)
+    Object.defineProperty(store.getters, key, {
+      get: () => store._vm[key],
+      enumerable: true // for local getters
+    })
+})
+```
+
+
+
+第二步就是把`computed`挂载到一个vue实例上， 其中`state`放到`data`上就会进行遍历双向绑定
+
+```javascript
+const silent = Vue.config.silent
+  Vue.config.silent = true
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed
+  })
+  Vue.config.silent = silent
+```
+
+
+
+最后一步就是
+
+如果有旧实例，在新实例更新的下一个tick中，销毁旧实例
+
+```javascript
+if (oldVm) {
+    if (hot) {
+      store._withCommit(() => {
+        oldVm._data.$$state = null
+      })
+    }
+    Vue.nextTick(() => oldVm.$destroy())
+}
+```
+
+
 
 
 
