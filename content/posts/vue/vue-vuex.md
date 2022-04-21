@@ -2,9 +2,8 @@
 title: "Vue vuex源码解读"
 date: 2022-04-21T15:01:27+08:00
 draft: true
-tags: ["vue"]
-categories: ["vue2"]
-
+tags: ["vue2"]
+categories: ["vue"]
 ---
 
 
