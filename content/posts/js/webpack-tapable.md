@@ -1,14 +1,97 @@
 ---
-title: "Webpack Tapable源码解读"
+title: "Webpack Tapable插件机制源码解读"
 date: 2022-02-05T10:08:32+08:00
 draft: true
 tags: ["webpack"]
 categories: ["webpack"]
 ---
 
-# Tapable
+
+
+# webpack -- Tapable
+
+
+
+`webpack`是前端工具链中非常重要的一环，常规前端项目都会用到非常多的`webpack`插件，而其中`tapable`是实现插件机制的重要工具，已经独立出一个单独的项目进行维护了
+
+
+
+https://github.com/webpack/tapable
+
+
+
+这里看的源码版本是
+
+
+
+> "version": "2.2.1"
+
+
+
+## 使用
+
+
+
+1. 实例化是传入参数列表
+2. 实例上调用`tap`方法注册方法
+3. 实例上调用`call`方法进行调用，并且第二个参数传入对应的参数
+
+
+
+```javascript
+const hook = new SyncHook(["arg1", "arg2"]);
+
+const mockCall = jest.fn();
+const mock0 = jest.fn();
+const mockRegister = jest.fn(x => ({
+  name: "huh",
+  type: "sync",
+  fn: mock0
+}));
+
+const mock1 = jest.fn();
+hook.tap("Test1", mock1);
+
+hook.intercept({
+  call: mockCall,
+  register: mockRegister
+});
+
+const mock2 = jest.fn();
+hook.tap("Test2", mock2);
+
+hook.call(1, 2);
+```
+
+
+
+
+
+## 勾子列表
+
+
+
+| Hook Name                | 执行方式 | 备注                                                         |
+| ------------------------ | -------- | ------------------------------------------------------------ |
+| SyncHook                 | 同步执行 | 不关心监听函数的返回值                                       |
+| SyncBailHook             | 同步串行 | 只要监听函数中有一个函数的返回值不为 null,则跳过剩余逻辑     |
+| SyncWaterfallHook        | 同步串行 | 上一个监听函数的返回值将作为参数传递给下一个监听函数         |
+| SyncLoopHook             | 同步串行 | 当监听函数被触发的时候，如果该监听函数返回 true 时则这个监听函数会反复执行，如果返回 undefined 则表示退出循环 |
+| AsyncParallelHook        | 异步并行 | 不关心监听函数的返回值                                       |
+| AsyncParallelBailHook    | 异步并行 | 只要监听函数的返回值不为 null，就会忽略后面的监听函数执行，直接跳跃到 callAsync 等触发函数绑定的回调函数，然后执行这个被绑定的回调函数 |
+| AsyncSeriesHook          | 异步并行 | 不关心 callback()的参数                                      |
+| AsyncSeriesBailHook      | 异步并行 | callback()的参数不为 null，就会直接执行 callAsync 等触发函数绑定的回调函数 |
+| AsyncSeriesWaterfallHook | 异步并行 | 上一个监听函数的中的 callback(err, data)的第二个参数,可以作为下一个监听函数的参数 |
+
+
 
 ## Hook 勾子基类
+
+
+
+hook中最重要的就是声明了三种不同的hook调用方式，其实就是在hook列表中对应的type不同
+
+
 
 ```js
 class Hook {
@@ -156,22 +239,6 @@ class HookCodeFactory {
 
 其中最重要的就是这个`new Function`, 由这个函数我们可以初始化函数
 
-### Function
-
-在`MDN`文档中我们可以查到
-
-> new Function ([arg1[, arg2[, ...argN]],] functionBody)
-
-<b>注意</b>: 由 Function 构造器创建的函数不会创建当前环境的闭包，它们总是被创建于全局环境，因此在运行时它们只能访问全局变量和自己的局部变量，不能访问它们被 Function 构造器创建时所在的作用域的变量。
-
-示例
-
-```js
-var add = new Function("a", "b", "return a + b");
-
-add(1, 2); // => 3
-```
-
 ### contentWithInterceptors 存在拦截器的
 
 ```js
@@ -249,7 +316,12 @@ contentWithInterceptors(options) {
 其中`this.content`由外部继承子类去实现
 
 
+
+
+
 ### callTap
+
+
 
 ```js
 callTap(tapIndex, { onError, onResult, onDone, rethrowIfPossible }) {
@@ -285,3 +357,32 @@ callTap(tapIndex, { onError, onResult, onDone, rethrowIfPossible }) {
 }
 ```
 
+
+
+
+
+## Function
+
+
+
+在`MDN`文档中我们可以查到
+
+
+
+> new Function ([arg1[, arg2[, ...argN]],] functionBody)
+
+
+
+<b>注意</b>: 由 Function 构造器创建的函数不会创建当前环境的闭包，它们总是被创建于全局环境，因此在运行时它们只能访问全局变量和自己的局部变量，不能访问它们被 Function 构造器创建时所在的作用域的变量。
+
+
+
+
+
+```js
+var add = new Function("a", "b", "return a + b");
+
+add(1, 2); // => 3
+```
+
+### 
