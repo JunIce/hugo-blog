@@ -93,7 +93,7 @@ categories: ["js"]
 
 
 
-## Object.freeze()
+## Object.freeze
 
 
 
