@@ -241,3 +241,119 @@ let nonenum_only = allKeys.filter(key => enumKeys.indexOf(key) == -1)
 
 判断两个对象是否相等
 
+
+
+
+
+## Object.isExtensible
+
+
+
+判断对象是否可以扩展，是否可以添加新的属性
+
+
+
+可以使用`Object.seal()` `Object.freeze()` `Object.preventExtension()` 等方法锁定对象
+
+
+
+## Object.isFrozen
+
+
+
+对象是否被冻结， 即是被`Object.freeze()`
+
+
+
+## Object.isSealed
+
+
+
+是否封闭的对象
+
+
+
+## Object.preventExtensions
+
+
+
+阻止对象可扩展新的属性
+
+
+
+
+
+## Object.prototype.propertyIsEnumerable
+
+
+
+判断对象的某个属性是否可以被枚举
+
+
+
+
+
+## Object.seal
+
+
+
+冻结一个对象，不能新增和删除属性
+
+
+
+
+
+## Object.setPrototypeOf
+
+
+
+设置对象的内部属性`[[property]]`, 可以用来修改对象的原型
+
+
+
+
+
+## Object.prototype.toLocaleString
+
+
+
+返回一个该对象的字符串表示
+
+
+
+## Object.prototype.toString
+
+
+
+返回一个对象的字符串表示
+
+
+
+可以使用`toString()`检测对象类型
+
+
+
+
+
+## Object.prototype.valueOf
+
+
+
+返回指定对象的原始值。
+
+
+
+
+
+## Object.values
+
+
+
+方法返回一个给定对象自身的所有可枚举属性值的数组
+
+
+
+
+
+
+
