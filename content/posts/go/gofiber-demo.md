@@ -2,7 +2,7 @@
 title: "gofiber 开发demo"
 date: 2022-04-22T20:59:54+08:00
 draft: true
-
+categories: ["go"]
 ---
 
 

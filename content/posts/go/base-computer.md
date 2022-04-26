@@ -3,7 +3,7 @@ title: "golang -- 计算机基础"
 date: 2022-01-23T14:34:26+08:00
 draft: true
 tags: ["go"]
-categories: ["GoLang"]
+categories: ["go"]
 ---
 
 

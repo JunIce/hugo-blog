@@ -3,7 +3,7 @@ title: "golang 指针"
 date: 2022-01-23T13:37:10+08:00
 draft: true
 tags: ["go"]
-categories: ["GoLang"]
+categories: ["go"]
 ---
 
 
