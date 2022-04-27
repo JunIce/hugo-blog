@@ -151,7 +151,7 @@ newRange = range.selectNodeContents(referenceNode)
 
 
 
-如果内部含有非文本节点，会抛出错误
+如果内部含有非文本节点并且只选中了其中一个边界，也就是没有完全覆盖非文本节点，会抛出错误
 
 
 
