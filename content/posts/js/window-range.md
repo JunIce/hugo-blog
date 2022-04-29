@@ -10,6 +10,40 @@ draft: true
 
 
 
+## 获取
+
+
+
+1. `new Range()`
+2. `document.createRange()`
+3. 
+
+```javascript
+let selection = document.getSelection()
+
+selection.getRangeAt(0)
+```
+
+
+
+
+
+## Q & A
+
+
+
+1. difference-between-document-createrange-and-new-range
+
+其实没有区别
+
+[javascript - What's the difference between document.createRange() and new Range()? - Stack Overflow](https://stackoverflow.com/questions/46996162/whats-the-difference-between-document-createrange-and-new-range)
+
+
+
+
+
+
+
 ## Prototype
 
 
@@ -37,7 +71,7 @@ draft: true
 
 整体复制一个range，非引用
 
-```js
+```javascript
 newRange = range.cloneRange()
 ```
 
@@ -47,7 +81,7 @@ newRange = range.cloneRange()
 
 它是 Range 中所有的 Node 对象的副本
 
-```js
+```javascript
 newRange = range.cloneContents()
 ```
 
@@ -57,7 +91,7 @@ newRange = range.cloneContents()
 
 方法向边界点折叠该 Range 
 
-```js
+```javascript
 newRange = range.collapse(toStart)
 ```
 
@@ -69,7 +103,7 @@ newRange = range.collapse(toStart)
 
 删除内容
 
-```js
+```javascript
 newRange = range.deleteContents()
 ```
 
@@ -81,7 +115,7 @@ Range.extractContents() 方法移动了Range 中的内容从文档树到Document
 
 这个方法会移动原dom，所以不需要删除操作
 
-```js
+```javascript
 fragment = range.extractContents()
 ```
 
@@ -91,7 +125,7 @@ fragment = range.extractContents()
 
 
 
-```js
+```javascript
 let selection = window.getSelection()
 let range = selection?.getRangeAt(0)
 
@@ -112,7 +146,7 @@ range?.insertNode(wrapper)
 将 Range 设置为包含整个 Node 及其内容。Range 的起始和结束节点的<b>父节点</b>与 referenceNode 的<b>父节点</b>相同。
 这里需要注意的时选中的是传入节点的 <b>父节点</b>
 
-```js
+```javascript
 newRange = range.selectNode(referenceNode)
 ```
 
@@ -122,7 +156,7 @@ newRange = range.selectNode(referenceNode)
 
 将 Range 设置为包含整个 Node 及其内容。 startOffset 为 0,  endOffset 则是引用节点包含的字符数或子节点个数。
 
-```js
+```javascript
 newRange = range.selectNodeContents(referenceNode)
 ```
 
@@ -155,7 +189,7 @@ newRange = range.selectNodeContents(referenceNode)
 
 
 
-```js
+```javascript
 let selection = window.getSelection()
 let range = selection?.getRangeAt(0)
 
@@ -167,7 +201,6 @@ try {
 
 } catch (error) {
     console.log(error);
-
 }
 ```
 
