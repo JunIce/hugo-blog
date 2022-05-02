@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Lodash ToNumber - 时间的朋友</title><meta name="Description" content="工作中记录的笔记"><meta property="og:title" content="Lodash ToNumber" />
+<meta property="og:description" content="toNumber lodash中转数字函数 function isObject(value) { const type = typeof value return value != null &amp;&amp; (type === &#39;object&#39; || type === &#39;function&#39;) } function isSymbol(value) { const type = typeof value return type == &#39;symbol&#39; || (type === &#39;object&#39; &amp;&amp; value != null &amp;&amp; getTag(value) == &#39;[object Symbol]&#39;) } /** Used as references for various `Number` constants. */ const" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.storycn.cn/posts/js/lodash-tonumber/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-08T15:28:20+08:00" />
+<meta property="article:modified_time" content="2021-11-08T15:28:20+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lodash ToNumber"/>
+<meta name="twitter:description" content="toNumber lodash中转数字函数 function isObject(value) { const type = typeof value return value != null &amp;&amp; (type === &#39;object&#39; || type === &#39;function&#39;) } function isSymbol(value) { const type = typeof value return type == &#39;symbol&#39; || (type === &#39;object&#39; &amp;&amp; value != null &amp;&amp; getTag(value) == &#39;[object Symbol]&#39;) } /** Used as references for various `Number` constants. */ const"/>
+<meta name="application-name" content="时间的朋友">
+<meta name="apple-mobile-web-app-title" content="时间的朋友"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://blog.storycn.cn/posts/js/lodash-tonumber/" /><link rel="prev" href="https://blog.storycn.cn/posts/js/number-plus-minus/" /><link rel="next" href="https://blog.storycn.cn/posts/js/classnames/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lodash ToNumber",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.storycn.cn\/posts\/js\/lodash-tonumber\/"
+        },"genre": "posts","keywords": "js","wordcount":  637 ,
+        "url": "https:\/\/blog.storycn.cn\/posts\/js\/lodash-tonumber\/","datePublished": "2021-11-08T15:28:20+08:00","dateModified": "2021-11-08T15:28:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Sparrow"},"author": {
+                "@type": "Person",
+                "name": "Sparrow"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="时间的朋友">时间的朋友</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="时间的朋友">时间的朋友</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Lodash ToNumber</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/JunIce" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Sparrow</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-08">2021-11-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 637 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tonumber">toNumber</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="tonumber">toNumber</h2>
+<p><code>lodash</code>中转数字函数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js">
+<span class="kd">function</span> <span class="nx">isObject</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span>
+  <span class="k">return</span> <span class="nx">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">isSymbol</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span>
+  <span class="k">return</span> <span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;symbol&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">getTag</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;[object Symbol]&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="cm">/** Used as references for various `Number` constants. */</span>
+<span class="kr">const</span> <span class="nx">NAN</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span>
+
+<span class="cm">/** Used to match leading and trailing whitespace. */</span>
+<span class="kr">const</span> <span class="nx">reTrim</span> <span class="o">=</span> <span class="sr">/^\s+|\s+$/g</span>
+
+<span class="cm">/** Used to detect bad signed hexadecimal string values. */</span>
+<span class="c1">// 是否是十六进制数据
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">reIsBadHex</span> <span class="o">=</span> <span class="sr">/^[-+]0x[0-9a-f]+$/i</span>
+
+<span class="cm">/** Used to detect binary string values. */</span>
+<span class="kr">const</span> <span class="nx">reIsBinary</span> <span class="o">=</span> <span class="sr">/^0b[01]+$/i</span>
+
+<span class="cm">/** Used to detect octal string values. */</span>
+<span class="kr">const</span> <span class="nx">reIsOctal</span> <span class="o">=</span> <span class="sr">/^0o[0-7]+$/i</span>
+
+<span class="cm">/** Built-in method references without a dependency on `root`. */</span>
+<span class="kr">const</span> <span class="nx">freeParseInt</span> <span class="o">=</span> <span class="nb">parseInt</span>
+
+<span class="kd">function</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 类型是Number
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">value</span>
+  <span class="p">}</span>
+  <span class="c1">// 类型是symbol
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">isSymbol</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">NAN</span>
+  <span class="p">}</span>
+  <span class="c1">// 如果是对象，取出对象的值或者转成字符串
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">other</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span> <span class="o">?</span> <span class="nx">value</span><span class="p">.</span><span class="nx">valueOf</span><span class="p">()</span> <span class="o">:</span> <span class="nx">value</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">isObject</span><span class="p">(</span><span class="nx">other</span><span class="p">)</span> <span class="o">?</span> <span class="sb">`</span><span class="si">${</span><span class="nx">other</span><span class="si">}</span><span class="sb">`</span> <span class="o">:</span> <span class="nx">other</span>
+  <span class="p">}</span>
+  <span class="c1">// 不是字符串的情况
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">!==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">value</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">value</span> <span class="o">:</span> <span class="o">+</span><span class="nx">value</span>
+  <span class="p">}</span>
+  <span class="c1">// 去除两边空格
+</span><span class="c1"></span>  <span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reTrim</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+  <span class="c1">// 是否是二进制数据
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">isBinary</span> <span class="o">=</span> <span class="nx">reIsBinary</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+  <span class="c1">// 是否是八进制数据
+</span><span class="c1"></span>  <span class="k">return</span> <span class="p">(</span><span class="nx">isBinary</span> <span class="o">||</span> <span class="nx">reIsOctal</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
+    <span class="o">?</span> <span class="nx">freeParseInt</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nx">isBinary</span> <span class="o">?</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="o">:</span> <span class="p">(</span><span class="nx">reIsBadHex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">?</span> <span class="nx">NAN</span> <span class="o">:</span> <span class="o">+</span><span class="nx">value</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre></div><p><code>parseInt</code>函数解析</p>
+<ul>
+<li>第一个参数，string</li>
+<li>第二个参数， 2～36 表示解析数据的基数</li>
+</ul>
+<blockquote>
+<p>parseInt函数将其第一个参数转换为一个字符串，对该字符串进行解析，然后返回一个整数或 NaN。
+如果不是NaN，返回值将是以第一个参数作为指定基数 radix 的转换后的十进制整数。(例如，radix为10，就是可以转换十进制数，为8可以转换八进制数&quot;07&quot;，16可以转换十六进制数&quot;0xff&quot;，以此类推)。
+对于 radix 为10以上的，英文字母表示大于9的数字。例如，对于十六进制数（基数16），则使用 A 到 F 。
+如果 parseInt 遇到的字符不是指定 radix 参数中的数字，它将忽略该字符以及所有后续字符，并返回到该点为止已解析的整数值。 parseInt 将数字截断为整数值。 允许前导和尾随空格。</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/js/">JS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/js/number-plus-minus/" class="prev" rel="prev" title="数字加减问题解决精度问题"><i class="fas fa-angle-left fa-fw"></i>数字加减问题解决精度问题</a>
+            <a href="/posts/js/classnames/" class="next" rel="next" title="Classnames库代码解读">Classnames库代码解读<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">时间的朋友</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/JunIce" target="_blank">Sparrow</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

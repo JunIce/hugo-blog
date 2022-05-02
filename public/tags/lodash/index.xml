@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>lodash - 标签 - 时间的朋友</title>
+        <link>https://blog.storycn.cn/tags/lodash/</link>
+        <description>lodash - 标签 - 时间的朋友</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>east_qiu@outlook.com (Sparrow)</managingEditor>
+            <webMaster>east_qiu@outlook.com (Sparrow)</webMaster><lastBuildDate>Tue, 28 Sep 2021 20:25:49 &#43;0800</lastBuildDate><atom:link href="https://blog.storycn.cn/tags/lodash/" rel="self" type="application/rss+xml" /><item>
+    <title>BaseFindIndex</title>
+    <link>https://blog.storycn.cn/posts/js/basefindindex/</link>
+    <pubDate>Tue, 28 Sep 2021 20:25:49 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/basefindindex/</guid>
+    <description><![CDATA[baseFindIndex 查找数组中的索引 function baseFindIndex(array, predicate, fromIndex, fromRight) { const { length } = array let index = fromIndex + (fromRight ? 1 : -1) while ((fromRight ? index-- : ++index &lt; length)) { if (predicate(array[index], index, array)) { return index } } return -1 }]]></description>
+</item><item>
+    <title>ArrayEach</title>
+    <link>https://blog.storycn.cn/posts/js/arrayeach/</link>
+    <pubDate>Tue, 28 Sep 2021 20:06:39 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/arrayeach/</guid>
+    <description><![CDATA[ArrayEach实现循环 用while中的break实现原来Array.prototype.forEach未实现的打断功能 function arrayEach(array, iteratee) { // 从左往右]]></description>
+</item></channel>
+</rss>

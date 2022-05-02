@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>WSL - 标签 - 时间的朋友</title>
+        <link>https://blog.storycn.cn/tags/wsl/</link>
+        <description>WSL - 标签 - 时间的朋友</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>east_qiu@outlook.com (Sparrow)</managingEditor>
+            <webMaster>east_qiu@outlook.com (Sparrow)</webMaster><lastBuildDate>Sat, 18 Sep 2021 13:20:55 &#43;0800</lastBuildDate><atom:link href="https://blog.storycn.cn/tags/wsl/" rel="self" type="application/rss+xml" /><item>
+    <title>Windows WSL 安装 Homebrew</title>
+    <link>https://blog.storycn.cn/posts/linux-install-homebrew/</link>
+    <pubDate>Sat, 18 Sep 2021 13:20:55 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/linux-install-homebrew/</guid>
+    <description><![CDATA[wsl 安装Homebrew 进行包管理 1. 前提 操作系统 Windows10 安装wsl，可从微软商店安装，网上教程很多（前提打开主板虚拟化），以下教程不包括安装wsl步]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Axios 中 Cookie 操作及代码详解 - 时间的朋友</title><meta name="Description" content="工作中记录的笔记"><meta property="og:title" content="Axios 中 Cookie 操作及代码详解" />
+<meta property="og:description" content="1)Cookie名称，Cookie名称必须使用只能用在URL中的字符，一般用字母及数字，不能包含特殊字符，如有特殊字符想要转码。如js操作c" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.storycn.cn/posts/js/cookie/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-15T10:48:01+08:00" />
+<meta property="article:modified_time" content="2021-11-15T10:48:01+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Axios 中 Cookie 操作及代码详解"/>
+<meta name="twitter:description" content="1)Cookie名称，Cookie名称必须使用只能用在URL中的字符，一般用字母及数字，不能包含特殊字符，如有特殊字符想要转码。如js操作c"/>
+<meta name="application-name" content="时间的朋友">
+<meta name="apple-mobile-web-app-title" content="时间的朋友"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://blog.storycn.cn/posts/js/cookie/" /><link rel="prev" href="https://blog.storycn.cn/posts/js/classnames/" /><link rel="next" href="https://blog.storycn.cn/posts/lerna/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Axios 中 Cookie 操作及代码详解",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.storycn.cn\/posts\/js\/cookie\/"
+        },"genre": "posts","wordcount":  664 ,
+        "url": "https:\/\/blog.storycn.cn\/posts\/js\/cookie\/","datePublished": "2021-11-15T10:48:01+08:00","dateModified": "2021-11-15T10:48:01+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Sparrow"},"author": {
+                "@type": "Person",
+                "name": "Sparrow"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="时间的朋友">时间的朋友</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="时间的朋友">时间的朋友</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Axios 中 Cookie 操作及代码详解</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/JunIce" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Sparrow</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-15">2021-11-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 664 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>1)Cookie名称，Cookie名称必须使用只能用在URL中的字符，一般用字母及数字，不能包含特殊字符，如有特殊字符想要转码。如js操作cookie的时候可以使用escape()对名称转码。<br>
+2)Cookie值，Cookie值同理Cookie的名称，可以进行转码和加密。<br>
+3)Expires，过期日期，一个GMT格式的时间，当过了这个日期之后，浏览器就会将这个Cookie删除掉，当不设置这个的时候，Cookie在浏览器关闭后消失。<br>
+4)Path，一个路径，在这个路径下面的页面才可以访问该Cookie，一般设为“/”，以表示同一个站点的所有页面都可以访问这个Cookie。<br>
+5)Domain，子域，指定在该子域下才可以访问Cookie，例如要让Cookie在a.test.com下可以访问，但在b.test.com下不能访问，则可将domain设置成a.test.com。<br>
+6)Secure，安全性，指定Cookie是否只能通过https协议访问，一般的Cookie使用HTTP协议既可访问，如果设置了Secure（没有值），则只有当使用https协议连接时cookie才可以被页面访问. <br>
+7)HttpOnly，如果在Cookie中设置了&quot;HttpOnly&quot;属性，那么通过程序(JS脚本、Applet等)将无法读取到Cookie信息。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">doCookie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">write</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">write</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">expires</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">domain</span><span class="p">,</span> <span class="nx">secure</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">cookie</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="nx">cookie</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&#34;=&#34;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">expires</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">cookie</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;expires=&#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">expires</span><span class="p">).</span><span class="nx">toGMTString</span><span class="p">());</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">path</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">cookie</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;path=&#34;</span> <span class="o">+</span> <span class="nx">path</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">domain</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">cookie</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;domain=&#34;</span> <span class="o">+</span> <span class="nx">domain</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">secure</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cookie</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;secure&#34;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="nx">cookie</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;; &#34;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">read</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">read</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span>
+        <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;(^|;\\s*)(&#34;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&#34;)=([^;]*)&#34;</span><span class="p">)</span>
+      <span class="p">);</span>
+      <span class="k">return</span> <span class="nx">match</span> <span class="o">?</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">match</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">remove</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="mi">86400000</span><span class="p">);</span>
+    <span class="p">},</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/js/classnames/" class="prev" rel="prev" title="Classnames库代码解读"><i class="fas fa-angle-left fa-fw"></i>Classnames库代码解读</a>
+            <a href="/posts/lerna/" class="next" rel="next" title="Lerna 包管理器命令行">Lerna 包管理器命令行<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">时间的朋友</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/JunIce" target="_blank">Sparrow</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

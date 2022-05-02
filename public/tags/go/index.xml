@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>go - 标签 - 时间的朋友</title>
+        <link>https://blog.storycn.cn/tags/go/</link>
+        <description>go - 标签 - 时间的朋友</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>east_qiu@outlook.com (Sparrow)</managingEditor>
+            <webMaster>east_qiu@outlook.com (Sparrow)</webMaster><lastBuildDate>Thu, 18 Nov 2021 11:06:53 &#43;0800</lastBuildDate><atom:link href="https://blog.storycn.cn/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>go Frp 工具使用</title>
+    <link>https://blog.storycn.cn/posts/tools/frp/</link>
+    <pubDate>Thu, 18 Nov 2021 11:06:53 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/tools/frp/</guid>
+    <description><![CDATA[frp使用 frp是golang开发的内网穿透工具，日常我们本地的服务由于公网ip不固定，外网无法访问，有了内网穿透工具，就可以很轻松的把我们]]></description>
+</item></channel>
+</rss>

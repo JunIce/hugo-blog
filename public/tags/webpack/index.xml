@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>webpack - 标签 - 时间的朋友</title>
+        <link>https://blog.storycn.cn/tags/webpack/</link>
+        <description>webpack - 标签 - 时间的朋友</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>east_qiu@outlook.com (Sparrow)</managingEditor>
+            <webMaster>east_qiu@outlook.com (Sparrow)</webMaster><lastBuildDate>Tue, 19 Oct 2021 09:00:29 &#43;0800</lastBuildDate><atom:link href="https://blog.storycn.cn/tags/webpack/" rel="self" type="application/rss+xml" /><item>
+    <title>Webpack Loader Plugin</title>
+    <link>https://blog.storycn.cn/posts/js/webpack-loader-plugin/</link>
+    <pubDate>Tue, 19 Oct 2021 09:00:29 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/webpack-loader-plugin/</guid>
+    <description><![CDATA[webpack Loaders and Plugins different Loaders: Loaders work at the individual file level during or before the bundle is generated. loader是文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包]]></description>
+</item></channel>
+</rss>

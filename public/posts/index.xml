@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>所有文章 - 时间的朋友</title>
+        <link>https://blog.storycn.cn/posts/</link>
+        <description>所有文章 | 时间的朋友</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>east_qiu@outlook.com (Sparrow)</managingEditor>
+            <webMaster>east_qiu@outlook.com (Sparrow)</webMaster><lastBuildDate>Wed, 16 Mar 2022 17:56:26 &#43;0800</lastBuildDate><atom:link href="https://blog.storycn.cn/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Interview</title>
+    <link>https://blog.storycn.cn/posts/js/interview/</link>
+    <pubDate>Wed, 16 Mar 2022 17:56:26 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/interview/</guid>
+    <description><![CDATA[1. typeof null == object typeof null的结果是object。不同的对象在底层都表示为二进制，在 JavaScript 中二进制前三位都为 0 的话会被判断为 object 类型， null 的二进制表示是全 0]]></description>
+</item><item>
+    <title>go Frp 工具使用</title>
+    <link>https://blog.storycn.cn/posts/tools/frp/</link>
+    <pubDate>Thu, 18 Nov 2021 11:06:53 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/tools/frp/</guid>
+    <description><![CDATA[frp使用 frp是golang开发的内网穿透工具，日常我们本地的服务由于公网ip不固定，外网无法访问，有了内网穿透工具，就可以很轻松的把我们]]></description>
+</item><item>
+    <title>Lerna 包管理器命令行</title>
+    <link>https://blog.storycn.cn/posts/lerna/</link>
+    <pubDate>Tue, 16 Nov 2021 09:14:20 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/lerna/</guid>
+    <description><![CDATA[$ npm install lerna -g $ mkdir lerna-demo $ cd lerna-demo &amp;&amp; lerna init --independent # 用的默认的固定模式，vue babel等都是这个 $ cd packages $ mkdir moduleA &amp;&amp; mkdir moduleB ... #分别进入三个目录初始化成包 $ cd moduleA $ npm init -y]]></description>
+</item><item>
+    <title>Axios 中 Cookie 操作及代码详解</title>
+    <link>https://blog.storycn.cn/posts/js/cookie/</link>
+    <pubDate>Mon, 15 Nov 2021 10:48:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/cookie/</guid>
+    <description><![CDATA[1)Cookie名称，Cookie名称必须使用只能用在URL中的字符，一般用字母及数字，不能包含特殊字符，如有特殊字符想要转码。如js操作c]]></description>
+</item><item>
+    <title>Classnames库代码解读</title>
+    <link>https://blog.storycn.cn/posts/js/classnames/</link>
+    <pubDate>Thu, 11 Nov 2021 09:46:42 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/classnames/</guid>
+    <description><![CDATA[classnames库是日常工作中用来操作dom中class相关的工具函数，这里我们对它进行解读 使用 npm install classnames &ndash;save function classNames() { let classes = []; for (let i = 0; i &lt; arguments.length; i++]]></description>
+</item><item>
+    <title>Lodash ToNumber</title>
+    <link>https://blog.storycn.cn/posts/js/lodash-tonumber/</link>
+    <pubDate>Mon, 08 Nov 2021 15:28:20 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/lodash-tonumber/</guid>
+    <description><![CDATA[toNumber lodash中转数字函数 function isObject(value) { const type = typeof value return value != null &amp;&amp; (type === &#39;object&#39; || type === &#39;function&#39;) } function isSymbol(value) { const type = typeof value return type == &#39;symbol&#39; || (type === &#39;object&#39; &amp;&amp; value != null &amp;&amp; getTag(value) == &#39;[object Symbol]&#39;) } /** Used as references for various `Number` constants. */ const]]></description>
+</item><item>
+    <title>数字加减问题解决精度问题</title>
+    <link>https://blog.storycn.cn/posts/js/number-plus-minus/</link>
+    <pubDate>Mon, 01 Nov 2021 10:40:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/number-plus-minus/</guid>
+    <description><![CDATA[function plus(num1, num2) { const num1Digits = (num1.toString().split(&#39;.&#39;)[1] || &#39;&#39;).length; const num2Digits = (num2.toString().split(&#39;.&#39;)[1] || &#39;&#39;).length; const baseNumber = Math.pow(10, Math.max(num1Digits, num2Digits)); return (num1 * baseNumber + num2 * baseNumber) / baseNumber; } function minus(num1, num2) { return plus(num1, -1 * num2); }]]></description>
+</item><item>
+    <title>判断是不是DOM元素</title>
+    <link>https://blog.storycn.cn/posts/js/iselement/</link>
+    <pubDate>Mon, 01 Nov 2021 10:22:17 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/iselement/</guid>
+    <description><![CDATA[function isElement(obj: any) { try { // Using W3 DOM2 (works for FF, Opera and Chrome) return obj instanceof HTMLElement; } catch (e) { // Browsers not supporting W3 DOM2 don&#39;t have HTMLElement and // an exception is thrown and we end up here. Testing some // properties that all elements have (works on IE7) return ( typeof obj === &#39;object&#39; &amp;&amp; obj.nodeType === 1 &amp;&amp; typeof obj.style === &#39;object&#39;]]></description>
+</item><item>
+    <title>Classname Operation</title>
+    <link>https://blog.storycn.cn/posts/js/classname-operation/</link>
+    <pubDate>Mon, 01 Nov 2021 10:03:49 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/classname-operation/</guid>
+    <description><![CDATA[操作相关classname工具函数 // 增加目标class function addClass(target = &#39;&#39;, srcCls = &#39;&#39;) { const clss = target.split(/\s+/) return [...clss.filter(cls =&gt; !clss.includes(cls)), srcCls] } function removeClass(target = &#39;&#39;, srcCls = &#39;&#39;) { const clss = target.split(/\s+/) return [...clss.filter(cls =&gt; !clss.includes(srcCls))] }]]></description>
+</item><item>
+    <title>事件总线EventBus</title>
+    <link>https://blog.storycn.cn/posts/js/event-bus/</link>
+    <pubDate>Mon, 01 Nov 2021 09:39:16 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://blog.storycn.cn/posts/js/event-bus/</guid>
+    <description><![CDATA[日常我们在vue开发的时候使用公共事件总线进行跨组建数据传递，这里我们自己封装一个事件总线，了解其背后的原理 class MyEvent { constructor() { this._eventMap = new Map() } on(event, callback) { if(event &amp;&amp; typeof]]></description>
+</item></channel>
+</rss>
