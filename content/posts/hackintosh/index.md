@@ -2,7 +2,7 @@
 title: "hackintosh黑苹果相关资料整理"
 date: 2022-04-25T19:41:19+08:00
 draft: true
-tags: ["黑苹果"],
+tags: ["黑苹果"]
 categories: ["hackintosh"]
 ---
 
