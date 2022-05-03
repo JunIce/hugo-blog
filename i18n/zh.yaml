@@ -43,8 +43,7 @@ postsOlder:
 
 poweredBy:
   other: >-
-    Powered by <a href='http://www.gohugo.io/'>Hugo</a> Theme By <a
-    href='https://https://github.com/nodejh/hugo-theme-mini'>nodejh</a>
+    Powered by <a href='http://www.gohugo.io/'>Hugo</a>
 
 publishDateShort:
   other: '{{ .PublishDate.Format "01/02" }}'

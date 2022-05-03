@@ -57,7 +57,7 @@ params:
   # To enable RSS, you could set `enableRSS: true`, default is `true`
   enableRSS: true
   # To enable comments, you may need to set `disqusShortname`
-  enableComments: true
+  enableComments: false
   # To enable comments, you may need to set `googleAnalytics`
   enableGoogleAnalytics: true
   # To enable table of content, you could set `showToc: true`, default is `false`
@@ -69,7 +69,7 @@ params:
   # To hidden post summary in home page, you could set `hiddenPostSummaryInHomePage: true`, default is `false`
   hiddenPostSummaryInHomePage: false
   # Website copy write, default: '© Copyright 2021 ❤️ {params.author}'
-  copyright: '' 
+  copyright: '© Copyright 2020 ❤️ rongjun.qiu' 
 
   # Extra links in navigation
   links:

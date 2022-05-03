@@ -43,8 +43,7 @@ postsOlder:
 
 poweredBy:
   other: >-
-    Publiziert von <a href='http://www.gohugo.io/'>Hugo</a> Theme von <a
-    href='https://https://github.com/nodejh/hugo-theme-mini'>nodejh</a>
+    Publiziert von <a href='http://www.gohugo.io/'>Hugo</a>
 
 publishDateShort:
   other: '{{ .PublishDate.Format "02.01." }}'
