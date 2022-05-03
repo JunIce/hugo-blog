@@ -1,7 +1,8 @@
 ---
-title: "Commit 提交标准格式"
+title: "angular commit 提交标准格式"
 date: 2022-02-18T14:12:38+08:00
 draft: true
+tags: ["git"]
 ---
 
 
