@@ -4,7 +4,7 @@ date: 2022-02-08T08:52:24+08:00
 draft: true
 ---
 
-## Git提示You have not concluded your merge. (MERGE_HEAD exists) 
+### 1.Git提示You have not concluded your merge. (MERGE_HEAD exists) 
 
 ### solution
 
@@ -13,3 +13,12 @@ draft: true
 - 执行git reset --hard origin/master ----> git reset 把HEAD指向刚刚下载的最新的版本
 - commit代码
 - psh代码
+
+### 2.版本跟踪里出现`git submodule commit xxxxx`错误
+
+
+
+解决方法
+
+> git submodule update
+

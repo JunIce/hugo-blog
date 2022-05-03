@@ -83,3 +83,20 @@ git submodule update --init --remote a/submodule/path
 `git submodule deinit project-sub-1`
 
 `git rm project-sub-1`
+
+
+
+
+
+## issues
+
+
+
+#### 1.版本跟踪里出现`git submodule commit xxxxx`错误
+
+
+
+解决方法
+
+> git submodule update
+
