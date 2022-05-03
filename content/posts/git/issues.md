@@ -2,11 +2,14 @@
 title: "git 中常见问题及解决方案"
 date: 2022-02-08T08:52:24+08:00
 draft: true
+tags: ["git"]
 ---
+
+
 
 ### 1.Git提示You have not concluded your merge. (MERGE_HEAD exists) 
 
-### solution
+### 
 
 - 保存本地代码
 - 执行git fetch --all，检查有无冲突
@@ -14,11 +17,13 @@ draft: true
 - commit代码
 - psh代码
 
+
+
+
+
 ### 2.版本跟踪里出现`git submodule commit xxxxx`错误
 
 
-
-解决方法
 
 > git submodule update
 
