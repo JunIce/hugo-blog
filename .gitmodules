@@ -4,4 +4,4 @@
 
 [submodule "demo/work-note"]
 	path = demo/work-note
-	url = https://github.com/JunIce/work-note.git
+	url = git@github.com:JunIce/work-note.git
