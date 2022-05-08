@@ -85,7 +85,7 @@ function Item({ id, value, onChange }) {
 
 在只输入一个输入框的同时，其他子组件都在重新渲染
 
-<video src="./react-rerender.assets/initial.mp4"></video
+<video src="/react-rerender.assets/initial.mp4"></video
 
 
 
@@ -95,7 +95,7 @@ function Item({ id, value, onChange }) {
 
 
 
-<video src="./react-rerender.assets/simple.mp4"></video>
+<video src="/react-rerender.assets/simple.mp4"></video>
 
 
 
@@ -115,7 +115,7 @@ const Item = memo(() => <div>Item</div>)
 
 
 
-<video src="./react-rerender.assets/simple-memo.mp4"></video>
+<video src="/react-rerender.assets/simple-memo.mp4"></video>
 
 
 
@@ -177,4 +177,62 @@ onChange={(id: number, value: any) => {
 
 
 
-<video src="./react-rerender.assets/fixed.mp4"></video>
+<video src="/react-rerender.assets/fixed.mp4"></video>
+
+
+
+
+
+
+## 最终代码
+
+
+
+```tsx
+const Item: React.FC<{ id: any; value: any; onChange: any }> = memo(({ id, value, onChange }: any) => {
+  return (
+    <div
+      style={{
+        width: "200px",
+        display: "inline-block",
+      }}
+    >
+      <h3>{id}</h3>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(id, e.target.value)}
+      />
+    </div>
+  );
+});
+
+const Parent = () => {
+  const [items, setItems] = useState([
+    { value: "", id: 1 },
+    { value: "", id: 2 },
+    { value: "", id: 3 },
+  ]);
+  const onChange = useCallback((id: any, value: any) => {
+    setItems(
+      items => items.map((item) => {
+        if(item.id === id) {
+          item.value = value
+        }
+        return item;
+      })
+    );
+  }, []);
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <div>{JSON.stringify(items)}</div>
+      {items.map((item, index) => (
+        <Item key={index} id={item.id} value={item.value} onChange={onChange} />
+      ))}
+    </div>
+  );
+};
+
+```
+
