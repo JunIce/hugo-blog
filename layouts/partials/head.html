@@ -10,8 +10,7 @@
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 {{ end }}
 
-{{ $sass := resources.Get "css/style.scss" }}
-{{ $style := $sass | resources.ToCSS }}
+{{ $style := resources.Get "css/style.scss" | toCSS | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
 <link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}" type="image/x-icon" />
