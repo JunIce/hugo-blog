@@ -47,3 +47,6 @@ poweredBy:
 
 publishDateShort:
   other: '{{ .PublishDate.Format "Jan 2" }}'
+
+categories:
+  other: Categories
