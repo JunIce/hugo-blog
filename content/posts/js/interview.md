@@ -1,14 +1,20 @@
 ---
 title: "Interview"
 date: 2022-03-16T17:56:26+08:00
-draft: truet'y
+draft: true
 ---
 
 
 
 
 
-## 1. typeof null == object
+
+
+# 面试八股文
+
+
+
+## typeof null == object
 
 
 
@@ -22,3 +28,14 @@ draft: truet'y
 
 
 
+## 输入一个URL地址到浏览器完成渲染的整个过程
+
+
+
+1. 浏览器输入地址，并回车
+2. 浏览器查找当前url是否存在缓存，比对缓存是否过期
+3. DNS解析url对应IP
+4. 根据ip建立tcp连接
+5. 发送http请求
+6. 服务器处理请求，浏览器接收HTTP响应
+7. 浏览器解析并渲染页面
