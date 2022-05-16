@@ -1,8 +1,8 @@
 ---
 title: "原生跨页面通信方案"
-date: 2022-05-05T16:42:07+08:00
+date: 2022-05-016T16:42:07+08:00
 tags:
-categories:
+categories: ["跨页面通信"]
 draft: false
 ---
 
