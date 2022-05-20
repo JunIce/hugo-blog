@@ -1,5 +1,5 @@
 ---
-title: "React Rerender重绘"
+title: "React Rerender重绘原理"
 date: 2022-05-08T20:13:40+08:00
 tags:
 categories: ["react"]
@@ -10,7 +10,7 @@ draft: false
 
 
 
-# react rerender
+# react rerender原理
 
 
 
