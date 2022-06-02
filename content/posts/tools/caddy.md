@@ -217,3 +217,22 @@ app.listen("3000", () => {
 
 
 
+### SPA 单页面应用
+
+
+
+```
+:8001 {
+    header Custom-Header "caddy-server"
+    encode gzip
+    handle /api/* {
+        reverse_proxy http://localhost:3000
+    }
+
+    handle {
+		try_files {path} /index.html
+		file_server
+	}
+}
+```
+
