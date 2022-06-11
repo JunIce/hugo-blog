@@ -28,6 +28,12 @@ draft: false
 
 
 
+>   "version": "3.0.0-alpha.9"
+
+
+
+
+
 `packages/vite/src/node/server/ws.ts`
 
 
