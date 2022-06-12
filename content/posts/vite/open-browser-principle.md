@@ -1,5 +1,5 @@
 ---
-title: "打开浏览器原理"
+title: "vite -- 打开浏览器原理"
 date: 2022-05-31T07:13:26+08:00
 tags: ["vite", "open browser"]
 categories: ["vite"]
