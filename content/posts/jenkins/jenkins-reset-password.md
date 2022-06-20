@@ -1,12 +1,18 @@
 ---
-title: "Jenkins忘记密码后重置或找回密码"
+title: "jenkins忘记密码后重置或找回密码"
 date: 2021-09-28T21:26:52+08:00
 draft: false
 tags: ["jenkins", "linux"]
 categories: ["jenkins"]
 ---
 
-## Jenkins忘记密码后重置或找回密码
+
+
+
+
+# Jenkins 忘记密码后重置或找回密码
+
+
 
 ### 方法1
 
@@ -47,5 +53,4 @@ cd /var/lib/jenkins/users/admin_xxxxxx
 ```
 
 新密码为123456
-
 
