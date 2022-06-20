@@ -98,5 +98,22 @@ docker run \
 
 
 
+### 配置插件清华源
 
 
+
+https://mirrors.tuna.tsinghua.edu.cn/jenkins/
+
+
+
+1. 在jenkins插件管理页面，找到高级tab
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a395c9fa6ddd4a20b9838f4129201b56~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+2. 输入清华源的升级json
+
+https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/231a9ffdf8f148b6b4220c6ba7380d42~tplv-k3u1fbpfcp-watermark.image?)
