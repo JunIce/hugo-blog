@@ -1,7 +1,8 @@
 ---
-title: "Ssh Push Error"
+title: "ssh 错误整理"
 date: 2021-11-26T14:32:57+08:00
 draft: true
+tags: ["ssh"]
 ---
 
 ### 问题
@@ -60,3 +61,12 @@ git@e.coding.net: Permission denied (publickey).
 - 2、更换秘钥生成算法，使用 ed25519 算法生成 
 `ssh-keygen -t ed25519 -C "your email"`
 - 3、降低 OpenSSH版本
+
+
+## 使用 SSH 连接报 Bad owner or permissions on C:\\Users\\Administrator/.ssh/config 错误问题解决
+
+### 解决方案
+
+- 进入如下路径C:\Users\用户名.ssh，你会看到有config这个文件
+- 右击config,属性→安全→高级→禁止继承→删除所有继承→确定
+- 如果系统是英文： Properties -> Security -> Advanced -> Disable Inheritance -> Remove all inherited permissions from this object
