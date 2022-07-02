@@ -435,3 +435,132 @@ function setSelected(el: HTMLSelectElement, value: any) {
 }
 ```
 
+
+
+## vOn
+
+用于绑定元素事件
+
+
+
+```html
+<!-- 方法处理器 -->
+<button v-on:click="doThis"></button>
+<!-- 停止冒泡 -->
+<button @click.stop="doThis"></button>
+```
+
+
+
+**v-on**官方内置了一些修饰符，可以一定程度上减少我们平时需要加的处理代码
+
+
+
+```typescript
+const systemModifiers = ['ctrl', 'shift', 'alt', 'meta']
+
+type KeyedEvent = KeyboardEvent | MouseEvent | TouchEvent
+
+const modifierGuards: Record<
+  string,
+  (e: Event, modifiers: string[]) => void | boolean
+> = {
+  stop: e => e.stopPropagation(),
+  prevent: e => e.preventDefault(),
+  self: e => e.target !== e.currentTarget,
+  ctrl: e => !(e as KeyedEvent).ctrlKey,
+  shift: e => !(e as KeyedEvent).shiftKey,
+  alt: e => !(e as KeyedEvent).altKey,
+  meta: e => !(e as KeyedEvent).metaKey,
+  left: e => 'button' in e && (e as MouseEvent).button !== 0,
+  middle: e => 'button' in e && (e as MouseEvent).button !== 1,
+  right: e => 'button' in e && (e as MouseEvent).button !== 2,
+  exact: (e, modifiers) =>
+    systemModifiers.some(m => (e as any)[`${m}Key`] && !modifiers.includes(m))
+}
+```
+
+
+
+
+
+
+
+
+
+## vShow
+
+
+
+```html
+<h1 v-show="ok">Hello!</h1>
+```
+
+
+
+**v-show**在开发过程中也是频繁使用的指令，用于控制元素的显示隐藏
+
+- true: display:block;
+- false: display:none;
+
+
+
+**生命周期处理**
+
+- **beforeMount**:记录下原始display的状态，并且设置元素的display的值
+- **mounted**:处理transition相关的业务
+- **updated**:更新元素的display的值
+- **beforeUnmount**:更新元素的display的值
+
+
+
+```typescript
+export const vShow: ObjectDirective<VShowElement> = {
+  beforeMount(el, { value }, { transition }) {
+    // 记录元素原始状态
+    el._vod = el.style.display === 'none' ? '' : el.style.display
+    if (transition && value) {
+      transition.beforeEnter(el)
+    } else {
+      // 更新
+      setDisplay(el, value)
+    }
+  },
+  mounted(el, { value }, { transition }) {
+    if (transition && value) {
+      transition.enter(el)
+    }
+  },
+  updated(el, { value, oldValue }, { transition }) {
+    if (!value === !oldValue) return
+    if (transition) {
+      if (value) {
+        transition.beforeEnter(el)
+        setDisplay(el, true)
+        transition.enter(el)
+      } else {
+        transition.leave(el, () => {
+          setDisplay(el, false)
+        })
+      }
+    } else {
+      // 更新
+      setDisplay(el, value)
+    }
+  },
+  beforeUnmount(el, { value }) {
+    // 更新
+    setDisplay(el, value)
+  }
+}
+
+// 更新元素display的值，true为原始状态，false为none
+function setDisplay(el: VShowElement, value: unknown): void {
+  el.style.display = value ? el._vod : 'none'
+}
+```
+
+
+
+
+
