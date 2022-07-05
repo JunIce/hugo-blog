@@ -1,0 +1,18 @@
+{
+  "name": "my-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "index": "hli -i 'content/posts/**' -o 'public/lunr.json' -l 'yaml' -d '---'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@e.coding.net:volcan0/node-api/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hugo-lunr-indexer": "^1.1.3"
+  }
+}
