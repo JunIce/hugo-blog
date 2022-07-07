@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "index": "node ./bin/hli.js -i 'content/posts/**' -o 'public/lunr.json' -l 'yaml' -d '---'"
+    "index": "node ./bin/hli.js -i 'content/posts/**' -o 'static/lunr.json' -l 'yaml' -d '---'"
   },
   "repository": {
     "type": "git",

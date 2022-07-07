@@ -15,6 +15,12 @@
 
 <link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}" type="image/x-icon" />
 
+{{ $js1 := resources.Get "js/lunr.js" | fingerprint}}
+<script src="{{ $js1.Permalink }}"></script>
+
+{{ $js := resources.Get "js/custom.js" | fingerprint}}
+<script src="{{ $js.Permalink }}"></script>
+
 {{ if .Site.Params.enableGoogleAnalytics }} 
     {{ template "_internal/google_analytics_async.html" . }}
 {{ end }}
