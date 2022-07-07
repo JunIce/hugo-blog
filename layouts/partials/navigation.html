@@ -1,5 +1,6 @@
 <section class="navigation-wrapper">
 <nav class="navigation">
+	{{ partial "search.html" . }}
 	{{ if not .IsHome }}
 		<a href="{{ "/" | relURL }}"> <span class="arrow">←</span>{{ with .Site.Params.home }}{{ . }}{{ else }}{{ i18n "home" }}{{ end }}</a>
 	{{ end }}

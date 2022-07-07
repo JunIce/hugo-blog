@@ -37,3 +37,16 @@ parseChildren采用了一种从前向后匹配的机制，不断的去改写`con
 
 
 ![parse (1).png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c43c0f7e8be442cd9980c070d4eef931~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+
+
+## parseInterpolation
+
+
+
+解析插值操作
+
+
+

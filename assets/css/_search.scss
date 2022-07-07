@@ -1,3 +1,6 @@
+.search-item {
+  width: 260px;
+}
 .search-form {
   background-color: #fff;
   display: flex;
@@ -5,8 +8,9 @@
   justify-content: space-between;
   border-radius: 4px;
   position: relative;
-  height: 2.834rem;
+  height: 36px;
   border: 1px solid #c2c8d1;
+
   transition: width 0.2s;
   .search-input {
     border: none;
@@ -14,7 +18,7 @@
     padding: 0.6rem 0 0.6rem 1rem;
     box-shadow: none;
     outline: none;
-    font-size: 1.1rem;
+    // font-size: 1.1rem;
     color: #8a919f;
     background-color: transparent;
     transition: width 0.3s;
@@ -29,9 +33,10 @@
   }
   .search-icon {
     display: inline-block;
-    width: 1.33rem;
-    padding: 0 .8333rem 0 0;
+    // width: 1.33rem;
+    // padding: 0 .8333rem 0 0;
     cursor: pointer;
-    margin: 7px 15px;
+    margin: 10px 15px;
+    vertical-align: middle;
   }
 }

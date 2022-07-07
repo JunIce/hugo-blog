@@ -159,11 +159,15 @@ html[theme='dark-mode'] {
   .navigation-wrapper {
     height: 50px;
   }
+  
   nav.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
     padding: 20px 20px 0;
     height: 50px;
-    /* background: #fff;
-    background: rgba(255, 255, 255, 0.9); */
+
     margin: 0 auto;
     text-align: right;
     z-index: 100;
