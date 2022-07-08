@@ -15,8 +15,8 @@ permalinks:
 
 paginate: 8
 
-googleAnalytics: your-google-analytics-id
-disqusShortname: your-disqus-shortname
+# googleAnalytics: your-google-analytics-id
+# disqusShortname: your-disqus-shortname
 
 # Hugo Configure Markup
 # More info: https://gohugo.io/getting-started/configuration-markup#
