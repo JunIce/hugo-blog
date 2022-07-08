@@ -17,6 +17,10 @@
 
 {{ $js1 := resources.Get "js/lunr.js" | fingerprint}}
 <script src="{{ $js1.Permalink }}"></script>
+{{ $js2 := resources.Get "js/lunr.stemmer.support.js" | fingerprint}}
+<script src="{{ $js2.Permalink }}"></script>
+{{ $js3 := resources.Get "js/lunr.zh.js" | fingerprint}}
+<script src="{{ $js3.Permalink }}"></script>
 
 {{ $js := resources.Get "js/custom.js" | fingerprint}}
 <script src="{{ $js.Permalink }}"></script>

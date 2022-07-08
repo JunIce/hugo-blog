@@ -1,4 +1,5 @@
 const lunrSearcher = lunr(function () {
+    this.use(lunr.zh);
     this.ref("id")
     this.field('title');
     this.field("tags", { boost: 4 });
