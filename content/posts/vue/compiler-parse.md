@@ -112,5 +112,468 @@ function parseInterpolation(
 
 
 
+## parseTag
+
+
+
+解析字符串中的html标签
+
+
+
+```typescript
+function parseTag(
+  context: ParserContext,
+  type: TagType,
+  parent: ElementNode | undefined
+): ElementNode | undefined {
+ 
+
+  // Tag open.
+  const start = getCursor(context)
+  // 正则匹配标签名
+  const match = /^<\/?([a-z][^\t\r\n\f />]*)/i.exec(context.source)!
+  // 拿到当前的标签名
+  const tag = match[1]
+  const ns = context.options.getNamespace(tag, parent)
+
+  // 删除标签名长度的字符串
+  advanceBy(context, match[0].length)
+  // 去除source上的空白符
+  advanceSpaces(context)
+
+  // save current state in case we need to re-parse attributes with v-pre
+  // 保存当前的坐标
+  const cursor = getCursor(context)
+  // 当前source备份
+  const currentSource = context.source
+
+  // check <pre> tag
+  // 是否是pre标签
+  if (context.options.isPreTag(tag)) {
+    context.inPre = true
+  }
+
+  // Attributes.
+  // 解析出标签的属性
+  let props = parseAttributes(context, type)
+
+  // check v-pre
+  // 是否含有v-pre属性
+  if (
+    type === TagType.Start &&
+    !context.inVPre &&
+    props.some(p => p.type === NodeTypes.DIRECTIVE && p.name === 'pre')
+  ) {
+    context.inVPre = true
+    // reset context
+    // 恢复备份，重置source的值， 过滤出没有v-pre的属性
+    extend(context, cursor)
+    context.source = currentSource
+    // re-parse attrs and filter out v-pre itself
+    props = parseAttributes(context, type).filter(p => p.name !== 'v-pre')
+  }
+
+  // Tag close.
+  // 是否是自闭合标签
+  let isSelfClosing = false
+  if (context.source.length === 0) {
+    emitError(context, ErrorCodes.EOF_IN_TAG)
+  } else {
+    // 当前剩余字符串如果是已/>开头，说明是自闭合标签
+    isSelfClosing = startsWith(context.source, '/>')
+    if (type === TagType.End && isSelfClosing) {
+      emitError(context, ErrorCodes.END_TAG_WITH_TRAILING_SOLIDUS)
+    }
+    // 自闭合标签，就删除2个字符，否则删除一个字符
+    advanceBy(context, isSelfClosing ? 2 : 1)
+  }
+
+  if (type === TagType.End) {
+    return
+  }
+
+  // 2.x deprecation checks
+  // vue2语法的兼容
+  if (
+    __COMPAT__ &&
+    __DEV__ &&
+    isCompatEnabled(
+      CompilerDeprecationTypes.COMPILER_V_IF_V_FOR_PRECEDENCE,
+      context
+    )
+  ) {
+    let hasIf = false
+    let hasFor = false
+    // 属性中是否含有if或者for， 即v-if 或者v-for
+    for (let i = 0; i < props.length; i++) {
+      const p = props[i]
+      if (p.type === NodeTypes.DIRECTIVE) {
+        if (p.name === 'if') {
+          hasIf = true
+        } else if (p.name === 'for') {
+          hasFor = true
+        }
+      }
+      if (hasIf && hasFor) {
+        warnDeprecation(
+          CompilerDeprecationTypes.COMPILER_V_IF_V_FOR_PRECEDENCE,
+          context,
+          getSelection(context, start)
+        )
+        break
+      }
+    }
+  }
+  // 标签类型， 判断出是否是元素标签，slot，template, 还是组件
+  let tagType = ElementTypes.ELEMENT
+  if (!context.inVPre) {
+    if (tag === 'slot') {
+      tagType = ElementTypes.SLOT
+    } else if (tag === 'template') {
+      if (
+        props.some(
+          p =>
+            p.type === NodeTypes.DIRECTIVE && isSpecialTemplateDirective(p.name)
+        )
+      ) {
+        tagType = ElementTypes.TEMPLATE
+      }
+    } else if (isComponent(tag, props, context)) {
+      tagType = ElementTypes.COMPONENT
+    }
+  }
+
+  return {
+    type: NodeTypes.ELEMENT,
+    ns,
+    tag,
+    tagType,
+    props,
+    isSelfClosing,
+    children: [],
+    loc: getSelection(context, start),
+    codegenNode: undefined // to be created during transform phase
+  }
+}
+```
+
+
+
+## parseAttributes
+
+
+
+解析标签上的属性
+
+
+
+### parseAttributes
+
+
+
+```typescript
+function parseAttributes(
+  context: ParserContext,
+  type: TagType
+): (AttributeNode | DirectiveNode)[] {
+  const props = []
+  // 标签名的集合
+  const attributeNames = new Set<string>()
+  
+  // 由开头开始遍历
+  while (
+    context.source.length > 0 &&
+    !startsWith(context.source, '>') &&
+    !startsWith(context.source, '/>')
+  ) {
+    if (startsWith(context.source, '/')) {
+      emitError(context, ErrorCodes.UNEXPECTED_SOLIDUS_IN_TAG)
+      advanceBy(context, 1)
+      advanceSpaces(context)
+      continue
+    }
+    if (type === TagType.End) {
+      emitError(context, ErrorCodes.END_TAG_WITH_ATTRIBUTES)
+    }
+	
+    // 拿到当前的属性
+    const attr = parseAttribute(context, attributeNames)
+
+    // Trim whitespace between class
+    // https://github.com/vuejs/core/issues/4251
+    // 删除class属性的空格
+    if (
+      attr.type === NodeTypes.ATTRIBUTE &&
+      attr.value &&
+      attr.name === 'class'
+    ) {
+      attr.value.content = attr.value.content.replace(/\s+/g, ' ').trim()
+    }
+	// 属性容器添加
+    if (type === TagType.Start) {
+      props.push(attr)
+    }
+
+    if (/^[^\t\r\n\f />]/.test(context.source)) {
+      emitError(context, ErrorCodes.MISSING_WHITESPACE_BETWEEN_ATTRIBUTES)
+    }
+    // 删除空格
+    advanceSpaces(context)
+  }
+  return props
+}
+
+```
+
+
+
+### parseAttribute
+
+
+
+解析属性的键值对
+
+
+
+```typescript
+function parseAttribute(
+  context: ParserContext,
+  nameSet: Set<string>
+): AttributeNode | DirectiveNode {
+  __TEST__ && assert(/^[^\t\r\n\f />]/.test(context.source))
+
+  // Name.
+  // 解析出标签名
+  const start = getCursor(context)
+  // 匹配出=号之前的字符串
+  const match = /^[^\t\r\n\f />][^\t\r\n\f />=]*/.exec(context.source)!
+  // 拿到属性名
+  const name = match[0]
+
+  // 属性名如果重复，报错
+  if (nameSet.has(name)) {
+    emitError(context, ErrorCodes.DUPLICATE_ATTRIBUTE)
+  }
+  // 添加
+  nameSet.add(name)
+
+  if (name[0] === '=') {
+    emitError(context, ErrorCodes.UNEXPECTED_EQUALS_SIGN_BEFORE_ATTRIBUTE_NAME)
+  }
+  {
+    const pattern = /["'<]/g
+    let m: RegExpExecArray | null
+    while ((m = pattern.exec(name))) {
+      emitError(
+        context,
+        ErrorCodes.UNEXPECTED_CHARACTER_IN_ATTRIBUTE_NAME,
+        m.index
+      )
+    }
+  }
+
+  // 删除字符串属性名长度的字符
+  advanceBy(context, name.length)
+
+  // Value
+  // 值
+  let value: AttributeValue = undefined
+  // 
+  if (/^[\t\r\n\f ]*=/.test(context.source)) {
+    // 删除等号之前的空格
+    advanceSpaces(context)
+    // 删除等号
+    advanceBy(context, 1)
+    // 删除等号之后的空格
+    advanceSpaces(context)
+    // 解析出具体的值
+    value = parseAttributeValue(context)
+    if (!value) {
+      emitError(context, ErrorCodes.MISSING_ATTRIBUTE_VALUE)
+    }
+  }
+  // 开始位置
+  const loc = getSelection(context, start)
+  // 如果不是v-pre，并且以v-开头的属性
+  if (!context.inVPre && /^(v-[A-Za-z0-9-]|:|\.|@|#)/.test(name)) {
+    const match =
+      /(?:^v-([a-z0-9-]+))?(?:(?::|^\.|^@|^#)(\[[^\]]+\]|[^\.]+))?(.+)?$/i.exec(
+        name
+      )!
+
+    let isPropShorthand = startsWith(name, '.')
+    let dirName =
+      match[1] ||
+      (isPropShorthand || startsWith(name, ':')
+        ? 'bind'
+        : startsWith(name, '@')
+        ? 'on'
+        : 'slot')
+    let arg: ExpressionNode | undefined
+
+    if (match[2]) {
+      const isSlot = dirName === 'slot'
+      const startOffset = name.lastIndexOf(match[2])
+      const loc = getSelection(
+        context,
+        getNewPosition(context, start, startOffset),
+        getNewPosition(
+          context,
+          start,
+          startOffset + match[2].length + ((isSlot && match[3]) || '').length
+        )
+      )
+      let content = match[2]
+      let isStatic = true
+
+      if (content.startsWith('[')) {
+        isStatic = false
+
+        if (!content.endsWith(']')) {
+          emitError(
+            context,
+            ErrorCodes.X_MISSING_DYNAMIC_DIRECTIVE_ARGUMENT_END
+          )
+          content = content.slice(1)
+        } else {
+          content = content.slice(1, content.length - 1)
+        }
+      } else if (isSlot) {
+        // #1241 special case for v-slot: vuetify relies extensively on slot
+        // names containing dots. v-slot doesn't have any modifiers and Vue 2.x
+        // supports such usage so we are keeping it consistent with 2.x.
+        content += match[3] || ''
+      }
+
+      arg = {
+        type: NodeTypes.SIMPLE_EXPRESSION,
+        content,
+        isStatic,
+        constType: isStatic
+          ? ConstantTypes.CAN_STRINGIFY
+          : ConstantTypes.NOT_CONSTANT,
+        loc
+      }
+    }
+
+    if (value && value.isQuoted) {
+      const valueLoc = value.loc
+      valueLoc.start.offset++
+      valueLoc.start.column++
+      valueLoc.end = advancePositionWithClone(valueLoc.start, value.content)
+      valueLoc.source = valueLoc.source.slice(1, -1)
+    }
+
+    const modifiers = match[3] ? match[3].slice(1).split('.') : []
+    if (isPropShorthand) modifiers.push('prop')
+
+    // 2.x compat v-bind:foo.sync -> v-model:foo
+    if (__COMPAT__ && dirName === 'bind' && arg) {
+      if (
+        modifiers.includes('sync') &&
+        checkCompatEnabled(
+          CompilerDeprecationTypes.COMPILER_V_BIND_SYNC,
+          context,
+          loc,
+          arg.loc.source
+        )
+      ) {
+        dirName = 'model'
+        modifiers.splice(modifiers.indexOf('sync'), 1)
+      }
+
+      if (__DEV__ && modifiers.includes('prop')) {
+        checkCompatEnabled(
+          CompilerDeprecationTypes.COMPILER_V_BIND_PROP,
+          context,
+          loc
+        )
+      }
+    }
+
+    return {
+      type: NodeTypes.DIRECTIVE,
+      name: dirName,
+      exp: value && {
+        type: NodeTypes.SIMPLE_EXPRESSION,
+        content: value.content,
+        isStatic: false,
+        // Treat as non-constant by default. This can be potentially set to
+        // other values by `transformExpression` to make it eligible for hoisting.
+        constType: ConstantTypes.NOT_CONSTANT,
+        loc: value.loc
+      },
+      arg,
+      modifiers,
+      loc
+    }
+  }
+
+  // missing directive name or illegal directive name
+  if (!context.inVPre && startsWith(name, 'v-')) {
+    emitError(context, ErrorCodes.X_MISSING_DIRECTIVE_NAME)
+  }
+
+  return {
+    type: NodeTypes.ATTRIBUTE,
+    name,
+    value: value && {
+      type: NodeTypes.TEXT,
+      content: value.content,
+      loc: value.loc
+    },
+    loc
+  }
+}
+
+```
+
+
+
+
+
+## parseText
+
+
+
+解析纯文本字符串
+
+
+
+```typescript
+function parseText(context: ParserContext, mode: TextModes): TextNode {
+
+  // 构建解析文本字符串的结束集合， 其中 < 表示标签的开始符， delimiters[0]表示插值的开始位置
+  const endTokens =
+    mode === TextModes.CDATA ? [']]>'] : ['<', context.options.delimiters[0]]
+ // 假定是整个字符串的长度
+  let endIndex = context.source.length
+  for (let i = 0; i < endTokens.length; i++) {
+    // 分别从下标1的位置开始向后查找，直到找到最近的匹配索引
+    const index = context.source.indexOf(endTokens[i], 1)
+    if (index !== -1 && endIndex > index) {
+      // 找到最短的字符位置
+      endIndex = index
+    }
+  }
+
+  // .... code
+
+  // 开始位置
+  const start = getCursor(context)
+  // 根据最后的下标位置进行截取，并且更改原字符串
+  const content = parseTextData(context, endIndex, mode)
+
+  // 构造成最终对象
+  return {
+    type: NodeTypes.TEXT,
+    content,
+    loc: getSelection(context, start)
+  }
+}
+```
+
+
+
 
 
