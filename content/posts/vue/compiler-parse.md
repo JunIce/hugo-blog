@@ -24,6 +24,8 @@ draft: false
 
 
 
+baseParse的主要作用就是把vue sfc中的template模板，解析编译成一个树形对象，最终会把这个树形结构转化成对应的js对象
+
 
 
 ### parseChildren
@@ -386,7 +388,7 @@ function parseAttribute(
     advanceBy(context, 1)
     // 删除等号之后的空格
     advanceSpaces(context)
-    // 解析出具体的值
+    // 解析出具体的值对象
     value = parseAttributeValue(context)
     if (!value) {
       emitError(context, ErrorCodes.MISSING_ATTRIBUTE_VALUE)
@@ -394,7 +396,7 @@ function parseAttribute(
   }
   // 开始位置
   const loc = getSelection(context, start)
-  // 如果不是v-pre，并且以v-开头的属性
+  // 如果不是v-pre，并且	以v-开头的属性
   if (!context.inVPre && /^(v-[A-Za-z0-9-]|:|\.|@|#)/.test(name)) {
     const match =
       /(?:^v-([a-z0-9-]+))?(?:(?::|^\.|^@|^#)(\[[^\]]+\]|[^\.]+))?(.+)?$/i.exec(
@@ -402,18 +404,23 @@ function parseAttribute(
       )!
 
     let isPropShorthand = startsWith(name, '.')
+    // 指令名称
     let dirName =
       match[1] ||
       (isPropShorthand || startsWith(name, ':')
         ? 'bind'
+        // 已@符号开头
         : startsWith(name, '@')
         ? 'on'
         : 'slot')
     let arg: ExpressionNode | undefined
 
     if (match[2]) {
+      // v-slot
       const isSlot = dirName === 'slot'
+      // 从后向前查找索引
       const startOffset = name.lastIndexOf(match[2])
+      // 位置
       const loc = getSelection(
         context,
         getNewPosition(context, start, startOffset),
@@ -423,9 +430,11 @@ function parseAttribute(
           startOffset + match[2].length + ((isSlot && match[3]) || '').length
         )
       )
+      // 拿到值
       let content = match[2]
       let isStatic = true
 
+      // 动态属性
       if (content.startsWith('[')) {
         isStatic = false
 
@@ -456,14 +465,18 @@ function parseAttribute(
       }
     }
 
+    // 值有引号的情况
     if (value && value.isQuoted) {
       const valueLoc = value.loc
+      // 偏移量指针后移，
       valueLoc.start.offset++
       valueLoc.start.column++
       valueLoc.end = advancePositionWithClone(valueLoc.start, value.content)
+      // 从第一个位置开始取值到倒数第一位
       valueLoc.source = valueLoc.source.slice(1, -1)
     }
 
+    // 修饰符列表
     const modifiers = match[3] ? match[3].slice(1).split('.') : []
     if (isPropShorthand) modifiers.push('prop')
 
@@ -530,6 +543,66 @@ function parseAttribute(
 
 
 
+### parseAttributeValue
+
+
+
+解析属性值
+
+
+
+```typescript
+function parseAttributeValue(context: ParserContext): AttributeValue {
+  // 获取开头位置
+  const start = getCursor(context)
+  let content: string
+
+  // 拿到第一个字符
+  const quote = context.source[0]
+  const isQuoted = quote === `"` || quote === `'`
+  if (isQuoted) {
+    // Quoted value.
+    // 带引号的值，去除一位
+    advanceBy(context, 1)
+
+    // 尾部索引
+    const endIndex = context.source.indexOf(quote)
+    if (endIndex === -1) {
+      content = parseTextData(
+        context,
+        context.source.length,
+        TextModes.ATTRIBUTE_VALUE
+      )
+    } else {
+      content = parseTextData(context, endIndex, TextModes.ATTRIBUTE_VALUE)
+      // 去除尾部一个字符
+      advanceBy(context, 1)
+    }
+  } else {
+    // Unquoted
+    const match = /^[^\t\r\n\f >]+/.exec(context.source)
+    if (!match) {
+      return undefined
+    }
+    const unexpectedChars = /["'<=`]/g
+    let m: RegExpExecArray | null
+    while ((m = unexpectedChars.exec(match[0]))) {
+      emitError(
+        context,
+        ErrorCodes.UNEXPECTED_CHARACTER_IN_UNQUOTED_ATTRIBUTE_VALUE,
+        m.index
+      )
+    }
+    content = parseTextData(context, match[0].length, TextModes.ATTRIBUTE_VALUE)
+  }
+
+  // 返回一个对象
+  return { content, isQuoted, loc: getSelection(context, start) }
+}
+```
+
+
+
 
 
 ## parseText
@@ -574,6 +647,41 @@ function parseText(context: ParserContext, mode: TextModes): TextNode {
 ```
 
 
+
+### parseTextData
+
+
+
+解析文本数据
+
+
+
+```typescript
+function parseTextData(
+  context: ParserContext,
+  length: number,
+  mode: TextModes
+): string {
+  // 文本原始值
+  const rawText = context.source.slice(0, length)
+  // 删除到source上对应的长度
+  advanceBy(context, length)
+  if (
+    mode === TextModes.RAWTEXT ||
+    mode === TextModes.CDATA ||
+    !rawText.includes('&')
+  ) {
+    return rawText
+  } else {
+    // DATA or RCDATA containing "&"". Entity decoding required.
+    // 如果包含&,就会当成值去解析
+    return context.options.decodeEntities(
+      rawText,
+      mode === TextModes.ATTRIBUTE_VALUE
+    )
+  }
+}
+```
 
 
 
