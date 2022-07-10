@@ -2,6 +2,7 @@
 title: "React组件测试问题方案 -- not wrapped in act"
 date: 2022-02-26T11:57:01+08:00
 draft: true
+tags: ["test", "react"]
 categories: ["React"]
 ---
 
