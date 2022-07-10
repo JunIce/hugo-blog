@@ -24,6 +24,48 @@ draft: false
 
 
 
+## 引用分组
+
+
+
+括号分组的编号规则是从左向右计数，从1开始
+
+
+
+**无论括号如何嵌套，分组的编号都是根据开括号出现顺序来计数的；开括号是从左向右数起第多少个开括号，整个括号分组的编号就是多少。**
+
+
+
+![234c457cd5085fd7b40bf20dfbda276c.jpeg](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1f603d8e250415ea3ce8c4ffd619883~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+
+
+反向引用（back-reference），它允许在正则表达式内部引用之前的捕获分组匹配的文本（也就是左侧），其形式也是\num
+，其中num表示所引用分组的编号，编号规则与之前介绍的相同。
+
+```typescript
+/([a-z])\1/.match('a@qq.com')  // qq
+
+```
+
+
+
+其中\1表示反向引用的值
+
+
+
+#### 非引用分组
+
+非捕获分组类似普通的捕获分组，只是在开括号后紧跟一个问号和冒号（?:xxxx）
+
+
+
+> (?:\d{4})-(\d{2})-(\d{2}) 
+
+
+
 ## 位置匹配
 
 
@@ -67,5 +109,143 @@ draft: false
 
 // 2. 小写和大写组合
 /(?=.*[a-z])(?=.*[A-Z])/
+```
+
+
+
+## RegExp
+
+
+
+如果使用 RegExp的 exec()和 test()函数，并且设定了全局模式，正则表达式的匹配就会从lastIndex的位置开始，并且在每次匹配成功之后重新设定lastIndex。
+
+
+
+### exec
+
+
+
+> RegExp.exec(string)
+
+
+
+RegExp对象中存在 lastIndex变量，它指定下次开始尝试匹配的位置。
+
+指定全局模式g之后，RegExp对象每次匹配成功，都会把匹配的结束位置更新到lastIndex，下次调用时从lastIndex开始尝试匹配
+
+```typescript
+var pattern = /\d{4}-\d{2}-\d{02}/u
+
+var str = "2022-01-05 2022-05-23"
+
+var matchArray = pattern.exec(str)
+```
+
+
+
+和**String.match**方法对比
+
+- **Regexp.exec()**总是返回单次的匹配结果。
+- 对**String.match()**来说，如果指定了全局模式，则会返回一个字符串数组，其中包含各次成功匹配的文本，但不包含任何其他信息。
+
+
+
+### test
+
+
+
+> RegExp.test(string) => boolean
+
+
+
+lastIndex 索引后会发生变化
+
+每个RegExp对象都包含状态变量lastIndex。如果指定了全局模式，每次执行RegExp.test()时，都会从字符串中的lastIndex偏移值开始尝试匹配，所以如果用同一个RegExp多次验证字符串，必须记得每次调用之后，**将lastIndex设定为0**，否则就可能出错了。
+
+
+
+### String.match
+
+
+
+### String.search
+
+
+
+### String.replace
+
+
+
+### String.split
+
+
+
+
+
+## 注意点
+
+
+
+#### **\b 匹配成功只有一种情况：一边必须保证\w（等价于[0-9a-zA-Z_]）匹配成功，另一边必须保证\w匹配不成功。**
+
+![_2022-07-10_15-06-01.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe518fa91cc14b9cad22f571e0e4fc88~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+以下情况都是true
+
+```typescript
+/a\b/u.test("a, ")
+// true
+/a\b/u.test("a，")
+// true
+/a\b/u.test("a。")
+// true
+```
+
+
+
+#### 命名分组
+
+ES2017新增了对命名分组的支持。如果使用了命名分组，具体写法是（? <name> regex），其中name为捕获分组的名称。
+
+
+
+```typescript
+pattern = /(? <year>\d{4})-(? <month>\d{2})-(? <day>\d{2})/u;
+result = pattern.exec("2017-12-25");
+
+// => result.groups.year === '2017'
+// => result.groups.month === '12'
+// => result.groups.day === '25
+```
+
+
+
+**除非复用RegExp对象，否则每次遇到/regex/或new RegExp(regex)时，都会重新生成RegExp对象，这样就会造成死循环。**
+
+
+
+需要重新定义变量后再使用
+
+
+
+
+
+```typescript
+
+// 身份证
+^[1-9]\d{14}(\d{2}[0-9x])?$
+
+// html标签匹配
+^<[^/]([^>]*[^/])? >$
+   
+// 匹配路径
+'/foo/bar_qux.php'.match(/[a-z]+([a-z]+(_[a-z]+)?\.php)/)
+
+// 邮箱匹配
+
+[-\w.]{1,64}@([-a-zA-Z0-9]{1,63}\.)[-a-zA-Z0-9]{1,63}
+
 ```
 
