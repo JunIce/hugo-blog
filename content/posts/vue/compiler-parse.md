@@ -685,3 +685,70 @@ function parseTextData(
 
 
 
+## parseComment
+
+
+
+解析html中注释的部分
+
+
+
+```typescript
+function parseComment(context: ParserContext): CommentNode {
+  __TEST__ && assert(startsWith(context.source, '<!--'))
+
+  const start = getCursor(context)
+  let content: string
+
+  // Regular comment.
+  // 正则匹配字符串中的-->符号
+  const match = /--(\!)?>/.exec(context.source)
+  if (!match) {
+    // 没有匹配到任何相关-->的情况下，删掉开始位置的4个字符
+    // 并且修改位置，抛错
+    content = context.source.slice(4)
+    advanceBy(context, context.source.length)
+    emitError(context, ErrorCodes.EOF_IN_COMMENT)
+  } else {
+    // 匹配到的情况下
+    
+    // 匹配到的index小于等于3，抛错
+    if (match.index <= 3) {
+      emitError(context, ErrorCodes.ABRUPT_CLOSING_OF_EMPTY_COMMENT)
+    }
+    // match[1]有值，说明匹配到了！，注释语法错误
+    if (match[1]) {
+      emitError(context, ErrorCodes.INCORRECTLY_CLOSED_COMMENT)
+    }
+    // 删除对应index长度
+    content = context.source.slice(4, match.index)
+
+    // Advancing with reporting nested comments.
+    // 字符串复制
+    const s = context.source.slice(0, match.index)
+    let prevIndex = 1,
+      nestedIndex = 0
+    
+    // 防止里面有嵌套注释符号的原因
+    while ((nestedIndex = s.indexOf('<!--', prevIndex)) !== -1) {
+      advanceBy(context, nestedIndex - prevIndex + 1)
+      if (nestedIndex + 4 < s.length) {
+        emitError(context, ErrorCodes.NESTED_COMMENT)
+      }
+      prevIndex = nestedIndex + 1
+    }
+    advanceBy(context, match.index + match[0].length - prevIndex + 1)
+  }
+
+  return {
+    type: NodeTypes.COMMENT,
+    content,
+    loc: getSelection(context, start)
+  }
+}
+```
+
+
+
+
+
