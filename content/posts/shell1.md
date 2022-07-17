@@ -265,5 +265,90 @@ test -e test.sh # 判断文件是否存在， 存在就是真，否则为假， 
 
 
 
+### 正则表达式
+
+```perl
+read -p "请输入字符" var1
+
+[[ ! "$var1" =~ [1-3] ]] && {
+	echo "你输入的字符必须是1，2，3"
+	exit 1
+}
+
+echo "你输入的字符是${var1}"
+```
+
+
+
+### if...then
+
+```perl
+if <条件表达式>
+then
+	....
+elif <条件表达式>
+then
+	....
+else
+	....
+fi
+```
+
+
+
+### 内存
+
+```perl
+free -m  # 查看系统内存
+```
+
+
+
+### 函数
+
+
+
+```perl
+# 1. 
+function funcName() {
+	# ....
+	return returnValue
+}
+
+# 2. 
+function funcName{
+  # ....
+	return returnValue
+}
+
+# 3. 
+funcName() {
+  # ....
+	return returnValue
+}
+```
+
+
+
+
+
+### 函数执行概念
+
+
+
+- 执行shell函数，直接写函数名字即可
+- 函数必须先定义，再执行，自上而下加载
+- 函数体内定义的变量，为局部变量
+- 函数体内添加return语句，作用是退出函数，且赋予返回值给调用该函数的程序
+- return和exit
+  - return上结束函数的执行
+  - exit是结束shell环境
+- 函数如果写在一个单独的文件内，需要用source读取
+- 函数内使用local关键字，定义局部变量
+
+
+
+
+
 
 
