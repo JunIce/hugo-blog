@@ -1,14 +1,12 @@
 ---
-title: "linux基础知识"
+title: "linux 下常用命令行"
 date: 2022-07-17T16:39:17+08:00
-tags:
-categories:
+tags: ["linux"]
+categories: ["linux"]
 draft: false
 ---
 
-
-
-# linux基础知识
+# linux 下常用命令行
 
 - id 查看当前登陆用户的相关信息
 - groups 当前用户的组
@@ -296,6 +294,239 @@ chown: changing ownership of ‘test.sh’: Operation not permitted
 ```perl
 [john@VM-0-6-centos ~]$ chgrp root test.sh
 ```
+
+
+
+### file
+
+查看文件类型
+
+```perl
+[root@VM-0-6-centos ~]# file hugo
+hugo: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
+[root@VM-0-6-centos ~]# file spider_job.sh
+spider_job.sh: ASCII text
+```
+
+
+
+### find
+
+查找文件
+
+```perl
+find PATH -name FILENAME
+```
+
+
+
+### locate
+
+定位文件
+
+```perl
+[root@VM-0-6-centos ~]# updatedb
+[root@VM-0-6-centos ~]# locate httpd.conf
+/etc/httpd/conf/httpd.conf
+/usr/lib/tmpfiles.d/httpd.conf
+```
+
+
+
+### whereis/which
+
+查找可执行文件
+
+```perl
+[root@VM-0-6-centos ~]# whereis hugo
+hugo: /usr/local/bin/hugo
+[root@VM-0-6-centos ~]# which hugo
+/usr/local/bin/hugo
+```
+
+
+
+### gzip/gunzip
+
+压缩和解压单个文件
+
+```perl
+[root@VM-0-6-centos ~]# echo "hello world" > i.log
+[root@VM-0-6-centos ~]# cat i.log
+hello world
+[root@VM-0-6-centos ~]# gzip i.log
+[root@VM-0-6-centos ~]# gunzip i.log.gz
+```
+
+
+
+### mount
+
+硬盘挂载
+
+```perl
+mount DEVICE MOUNT_POINT
+
+# 直接输入mount会显示所有挂载
+[root@VM-0-6-centos ~]# mount
+sysfs on /sys type sysfs (rw,relatime)
+proc on /proc type proc (rw,relatime)
+```
+
+
+
+### 查看启动自动挂载
+
+```perl
+[root@VM-0-6-centos ~]# cat /etc/fstab
+UUID=21dbe030-aa71-4b3a-8610-3b942dd447fa            /                    ext4       noatime,acl,user_xattr 1 1
+proc                 /proc                proc       defaults              0 0
+sysfs                /sys                 sysfs      noauto                0 0
+debugfs              /sys/kernel/debug    debugfs    noauto                0 0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
+```
+
+
+
+### sort
+
+管道排序
+
+- -r: 反向排序
+- -n: 采取数字排序
+- -k: 指定第几列
+- -t: 指定分割符
+
+```perl
+[root@VM-0-6-centos john]# cat test.txt
+b:3
+c:2
+a:4
+e:5
+d:1
+f:11
+[root@VM-0-6-centos john]# cat test.txt | sort
+a:4
+b:3
+c:2
+d:1
+e:5
+f:11
+[root@VM-0-6-centos john]# cat test.txt | sort -r
+f:11
+e:5
+d:1
+c:2
+b:3
+a:4
+[root@VM-0-6-centos john]# cat test.txt | sort -t ":" -k 2
+d:1
+f:11
+c:2
+b:3
+a:4
+e:5
+[root@VM-0-6-centos john]# cat test.txt | sort -t ":" -k 2 -n
+d:1
+c:2
+b:3
+a:4
+e:5
+f:11
+```
+
+
+
+### uniq
+
+管道操作符uniq通常配合sort一起使用
+
+```perl
+uniq命令只会对比相邻的行，如果有连续相同的若干行则删除重复内容，仅输出一行。如果相同的行非连续，则uniq命令不具备删除效果。第二次则在使用sort排序后再使用uniq命令，这时就达到了预期的效果。
+```
+
+
+
+### cut
+
+截取文本
+
+```perl
+[root@VM-0-6-centos john]# cat test.txt | cut -f 2 -d ":"
+3
+2
+4
+5
+1
+11
+```
+
+
+
+### paste
+
+文本合并
+
+- -d指定分割符
+
+```perl
+[root@VM-0-6-centos john]# cat a.txt
+1
+2
+3
+4
+5
+[root@VM-0-6-centos john]# cat b.txt
+a
+b
+c
+d
+f
+e
+[root@VM-0-6-centos john]# paste -d ":" a.txt b.txt
+1:a
+2:b
+3:c
+4:d
+5:f
+:e
+```
+
+
+
+### split
+
+文件分割，如果文件是字符，可以分割成多个指定行数的文件
+
+如果文件是二进制文件，只能指定分割后文件的大小分割
+
+```perl
+[root@VM-0-6-centos john]# split -l 1 a.txt
+split -b 64m big_bin small_bin_
+```
+
+
+
+### host
+
+查询DNS记录，如果使用域名作为host的参数，则返回该域名的IP
+
+```perl
+[root@VM-0-6-centos john]# host www.baidu.com
+www.baidu.com is an alias for www.a.shifen.com.
+www.a.shifen.com has address 112.80.248.76
+www.a.shifen.com has address 112.80.248.75
+```
+
+
+
+### 进程
+
+进程表示程序的一次执行过程，它是应用程序的运行实例，是一个动态的过程。
+
+进程包括动态执行的程序和数据两部分。
+
+所有的进程都可能存在3种状态：运行态、就绪态、阻塞态。
 
 
 
