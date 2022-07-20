@@ -530,6 +530,95 @@ www.a.shifen.com has address 112.80.248.75
 
 
 
+### 任务
+
+#### jobs
+
+查看所有任务
+
+`ctrl+z`把正在执行的任务停止
+
+#### bg taskId
+
+把停止的任务放到后台继续运行
+
+#### fg taskId
+
+把后台任务切换到前台运行
+
+
+
+### eval
+
+把对应的字符串解析成命令行
+
+```perl
+[john@VM-0-6-centos ~]$ cmd="ls -l"
+[john@VM-0-6-centos ~]$ eval $cmd
+total 32
+-rw-r--r-- 1 root root 10 Jul 19 21:21 a.txt
+-rw-r--r-- 1 root root 12 Jul 19 21:21 b.txt
+-rw-r--r-- 1 root root 25 Jul 19 21:09 test.txt
+-rw-r--r-- 1 root root  2 Jul 19 21:24 xaa
+-rw-r--r-- 1 root root  2 Jul 19 21:24 xab
+-rw-r--r-- 1 root root  2 Jul 19 21:24 xac
+-rw-r--r-- 1 root root  2 Jul 19 21:24 xad
+-rw-r--r-- 1 root root  2 Jul 19 21:24 xae
+```
+
+
+
+### exec
+
+
+
+### read
+
+读取命令行输入
+
+read是按行读取的，用回车符区分一行
+
+```perl
+[john@VM-0-6-centos ~]$ cat export.sh
+#!/usr/bin/bash
+#export var=100
+echo -n "how many apples do you have?"
+read N
+echo "you have ${N} apples"
+
+
+[john@VM-0-6-centos ~]$ bash export.sh
+how many apples do you have?10
+you have 10 apples
+```
+
+
+
+```perl
+# 当前shell
+[john@VM-0-6-centos ~]$ echo $SHELL
+/bin/bash
+# 当前shell版本
+[john@VM-0-6-centos ~]$ echo $BASH_VERSION
+4.2.46(2)-release
+# 当前登陆用户id
+[john@VM-0-6-centos ~]$ echo $EUID
+1000
+```
+
+
+
+- FUNCNAME当前执行函数名
+- HISTFILE记录历史命令的文件位置
+- HOSTNAME当前主机名
+- HOSTTYPE主机架构
+- MACHTYPE主机类型GUN标志
+- LANG当前系统语言环境
+
+
+
+
+
 
 
 
