@@ -617,7 +617,55 @@ you have 10 apples
 
 
 
+### test
 
+测试文件目录等语句
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/62fea1095f034811a7fe8418f1b45d5c~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+测试文件是否存在时，使用$?打印语句返回
+
+```perl
+[john@VM-0-6-centos ~]$ test -e test.txt
+[john@VM-0-6-centos ~]$ echo $?
+0
+[john@VM-0-6-centos ~]$ test -e test123.txt
+[john@VM-0-6-centos ~]$ echo $?
+1
+```
+
+
+
+### 字符串测试
+
+| 字符 | 说明                                   |
+| ---- | -------------------------------------- |
+| -n   | 字符串为非空时返回真，否则为假         |
+| -z   | 字符串为空时返回真，否则为假           |
+| =    | 两边字符串相等时为真，否则为假         |
+| !=   | 两边字符串不相等时为真，否则为假       |
+| >    | 左边字符串排在右边之前时为真，否则为假 |
+| <    | 右边字符串排在左边之前时为真，否则为假 |
+
+
+
+### 循环
+
+```perl
+[john@VM-0-6-centos ~]$ for a in {1..10};do echo "$a";done
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
 
 
 
