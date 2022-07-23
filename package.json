@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "gen": "node ./bin/gen.js",
     "index": "node ./bin/hli.js -i 'content/posts/**' -o 'static/lunr.json' -l 'yaml' -d '---'"
   },
   "repository": {
@@ -13,6 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@node-rs/jieba": "^1.6.1",
     "hugo-lunr-indexer": "^1.1.3"
+  },
+  "devDependencies": {
+    "lunr-chinese": "^1.2.0"
   }
 }

@@ -1,7 +1,0 @@
-# [submodule "themes/LoveIt"]
-# 	path = themes/LoveIt
-# 	url = https://github.com/dillonzq/LoveIt.git
-
-[submodule "demo/work-note"]
-	path = demo/work-note
-	url = git@github.com:JunIce/work-note.git

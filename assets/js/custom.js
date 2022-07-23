@@ -1,8 +1,8 @@
 const lunrSearcher = lunr(function () {
     this.use(lunr.zh);
-    this.ref("id")
+    this.ref("uri")
     this.field('title');
-    this.field("tags", { boost: 4 });
+    // this.field("tags", { boost: 4 });
     this.field('content');
 
     fetch("/lunr.json")
@@ -10,7 +10,7 @@ const lunrSearcher = lunr(function () {
         .then(data => {
             for (let i = 0; i < data.length; i++) {
                 let item = data[i]
-                item.id = i+1
+                // item.id = i+1
                 this.add(item)
             }
         })

@@ -2,7 +2,19 @@
     {
         "uri": "",
         "content": "\n\ntitle: command ab\ndate: 2021-10-19T13:41:27+08:00\ndraft: true\ntags: [\"linux\"]\n\nab\n\nab参数翻译如下：-n 即requests，用于指定压力测试/总请求数。\n-c 即concurrency，用于指定压力测试的并发数。\n-t 即timelimit，测试执行最大秒数，它可以让测试限制在一个固定的总时间以内，默认值为50000。\n-s 即timeout，请求最大等待时长，默认30s\n-b 即windowsize，TCP发送/接收的缓冲大小(单位：字节)。\n-p 即postfile，发送POST请求时需要上传的文件，文件格式如\"p1=1&p2=2\"。使用方法是 -p 123.txt 。 （配合-T）\n-u 即putfile，发送PUT请求时需要上传的文件。（配合-T）\n-T 即content-type，用于设置Content-Type请求头信息，如 -T \"application/x-www-form-urlencoded”，默认值为text/plain。（配合-p）\n-v 即verbosity，设置显示信息的详细程度 – 4或更大值会显示头信息， 3或更大值可以显示响应代码(404, 200等), 2或更大值可以显示警告和其他信息。\n-w 以HTML表格形式打印结果。\n-i 使用HEAD请求代替GET请求。\n-x 插入字符串作为table标签的属性。\n-y 插入字符串作为tr标签的属性。\n-z 插入字符串作为td标签的属性。\n-C 添加cookie信息，例如：\"Apache=1234\"。此参数可以重复，用逗号分割。提示：可以借助session实现原理传递 JSESSIONID参数， 实现保持会话的功能，如-C \"c1=1234,c2=2,c3=3, JSESSIONID=FF056CD16DA9D71CB131C1D56F0319F8\"。\n-H 添加任意的请求头，例如：\"Accept-Encoding: gzip\"，请求头将会添加在现有的多个请求头之后(可以重复该参数选项以添加多个)。\n-A 添加一个基本的网络认证信息，用户名和密码之间用英文冒号隔开。\n-P 添加一个基本的代理认证信息，用户名和密码之间用英文冒号隔开。如-P proxy-auth-username:password\n-X 指定使用的代理服务器和端口号，例如:\"126.10.10.3:88\"。\n-V 显示版本号并退出。\n-k 使用HTTP的KeepAlive特性。\n-d 不显示百分比。\n-S 不显示预估和警告信息。\n-q 超过150个请求后不显示进度\n-l 接受可变文档长度（用于动态页面）\n-g filename 输出结果信息到gnuplot格式的文件中。\n-e filename 输出结果信息到CSV格式的文件中。\n-r 指定接收到错误信息时不退出程序。\n-m method 方法名\n-h 帮助\n\n> ab -n 10000 -c 50 -C ww_token=4e82e7102baec028586a05c512e9b969 -p \"put.txt\" -T \"multipart/form-data; boundary=----WebKitFormBoundaryCICCZksMPABLeATX\"  https://voice-maker-pre.mobvoi.com/apis/tts-web-api/v1/articles/426687\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "请求",
+            "添加",
+            "ab",
+            "信息",
+            "10",
+            "显示",
+            "测试",
+            "指定",
+            "标签",
+            "字符串"
+        ]
     },
     {
         "uri": "/posts/2021/09/git-submodule/",
@@ -10,6 +22,26 @@
         "content": "\nsubmodule\n\n平时我们在管理项目的时候都是用git来进行管理，git管理很方便，但是一旦项目越来越大，单个git仓库管理起来就没有那么方便了\n这个时候我们就可以使用git的另一个工具submodule来管理我们的项目\n\nsubmodule 是用来管理主项目和子项目之间的关系。\n\n使用\n\ngit submodule add\n\n此时主项目中会多出一个文件.gitmodules，此文件是用来管理子模块的\n\n以此博客为例\n\n[submodule \"themes/LoveIt\"]\n\tpath = themes/LoveIt\n\turl = https://github.com/dillonzq/LoveIt.git\n\n安装\n\n平时我们clone项目都是使用git clone xxx下载项目，如果项目中有子模块，这种方式就不能下载下来了\n\n如果希望子模块代码也获取到，一种方式是在克隆主项目的时候带上参数 --recurse-submodules，这样会递归地将项目中所有子模块的代码拉取。\n\n另一种方式\n\ngit submodule init && git submodule update\n\n更新所有模块\n\ngit submodule foreach 'git pull origin master'\n\ngit submodule update --init --recursive --remote\n\n单独更新一个子模块\n\ngit submodule update --init --remote a/submodule/path\n\n删除某个子模块\n\ngit submodule deinit project-sub-1\n\ngit rm project-sub-1\n\nissues\n\n1.版本跟踪里出现git submodule commit xxxxx错误\n\n解决方法\n\n> git submodule update\n",
         "tags": [
             "git"
+        ],
+        "title_tokens": [
+            "git",
+            " ",
+            "submodule",
+            " ",
+            "使用",
+            "方法"
+        ],
+        "content_tokens": [
+            "git",
+            "submodule",
+            "模块",
+            "项目",
+            "update",
+            "LoveIt",
+            "init",
+            "管理",
+            "clone",
+            "path"
         ]
     },
     {
@@ -18,75 +50,270 @@
         "content": "\ngit使用手册\n\ntrack\n\ngit branch --track master origin/main\n\n等价于\n\ngit branch --set-upstream-to=origin/main master\n\n其中--set-upstream-to 和 -u等价\n\ngit branch -u origin/main master\n\n跟踪本地master分支到远程的main分支\n",
         "tags": [
             "git"
+        ],
+        "title_tokens": [
+            "git",
+            " ",
+            "使用",
+            "方法"
+        ],
+        "content_tokens": [
+            "git",
+            "main",
+            "master",
+            "branch",
+            "origin",
+            "set",
+            "track",
+            "upstream",
+            "等价",
+            "分支"
         ]
     },
     {
         "uri": "",
         "content": "\n\n  \n    \n\n    \n    Geometry Service: Relation\n\n    \n\n    \n      html,\n      body,\n      #mapDiv {\n        height: 100%;\n        margin: 0;\n        padding: 0;\n        width: 100%;\n      }\n      #info {\n        bottom: 20px;\n        color: #444;\n        height: auto;\n        font-family: arial;\n        left: 20px;\n        margin: 5px;\n        padding: 10px;\n        position: absolute;\n        text-align: left;\n        width: 200px;\n        z-index: 40;\n      }\n      .label {\n        display: inline-block;\n        width: 4em;\n      }\n    \n\n    \n    \n      var map;\n\n      require([\n        \"dojo/dom\",\n        \"dojo/_base/array\",\n        \"dojo/promise/all\",\n        \"dojo/json\",\n\n        \"esri/map\",\n        \"esri/domUtils\",\n        \"esri/graphic\",\n        \"esri/graphicsUtils\",\n        \"esri/geometry/Point\",\n        \"esri/tasks/GeometryService\",\n        \"esri/tasks/Geoprocessor\",\n        \"esri/tasks/FeatureSet\",\n        \"esri/tasks/RelationParameters\",\n        \"esri/Color\",\n        \"esri/symbols/SimpleLineSymbol\",\n        \"esri/symbols/SimpleMarkerSymbol\",\n        \"esri/symbols/SimpleFillSymbol\",\n        \"esri/request\",\n        \"dojo/domReady!\",\n      ], function (\n        dom,\n        array,\n        all,\n        JSON,\n\n        Map,\n        domUtils,\n        Graphic,\n        graphicsUtils,\n        Point,\n        GeometryService,\n        Geoprocessor,\n        FeatureSet,\n        RelationParameters,\n        Color,\n        SimpleLineSymbol,\n        SimpleMarkerSymbol,\n        SimpleFillSymbol,\n        esriRequest\n      ) {\n        var geoprocessor, geometryService, geometries, baseGraphics;\n\n        map = new esri.Map(\"mapDiv\", {\n          basemap: \"osm\",\n          center: [-117.185, 34.052],\n          zoom: 13,\n        });\n        map.on(\"click\", mapClicked);\n\n        geometryService = new GeometryService(\n          \"https://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer\"\n        );\n        geoprocessor = new Geoprocessor(\n          \"https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Network/ESRI_DriveTime_US/GPServer/CreateDriveTimePolygons\"\n        );\n        geoprocessor.setOutSpatialReference({\n          wkid: 4326,\n        });\n\n        function mapClicked(evt) {\n          geometries = [];\n          map.graphics.clear();\n\n          // add a simple marker graphic at the location where the user clicked on the map.\n          var pointSymbol = new SimpleMarkerSymbol(\n            SimpleMarkerSymbol.STYLE_CROSS,\n            22,\n            new SimpleLineSymbol(\n              SimpleLineSymbol.STYLE_SOLID,\n              new Color([0, 128, 0]),\n              4\n            )\n          );\n\n          var clickPointGraphic = new Graphic(evt.mapPoint, pointSymbol);\n          map.graphics.add(clickPointGraphic);\n\n          // use promise/all to monitor when place search and drive time calculation finish\n          all({\n            poiSearch: executeLocalSearch(clickPointGraphic),\n            driveTimes: getDriveTimePolygon(clickPointGraphic),\n          }).then(relateGeometries);\n        }\n\n        function executeLocalSearch(graphic) {\n          // find (up to) 20 pizza restaurants within a the map's current extent\n          var params = {\n            text: \"pizza\",\n            location: JSON.stringify(graphic.geometry.toJson()),\n            bbox: JSON.stringify(map.extent.toJson()),\n            maxLocations: 20,\n            f: \"json\",\n          };\n\n          return esriRequest({\n            url: \"//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find\",\n            content: params,\n            callbackParamName: \"callback\",\n          });\n        }\n\n        function showLocations(response) {\n          // create a symbol (Red Square) for pizza restaurants\n          var pointSymbol = new SimpleMarkerSymbol(\n            SimpleMarkerSymbol.STYLE_SQUARE,\n            6,\n            new SimpleLineSymbol(\n              SimpleLineSymbol.STYLE_SOLID,\n              new Color([0, 0, 0]),\n              1\n            ),\n            new Color([255, 0, 0])\n          );\n\n          // add the pizza restaurants to the map\n          var results = response.locations;\n          baseGraphics = array.map(results, function (r) {\n            var graphic = new Graphic(r.feature);\n            graphic.setSymbol(pointSymbol);\n            return map.graphics.add(graphic);\n          });\n        }\n\n        function getDriveTimePolygon(graphic) {\n          // the graphic representing the selected location is passed onto the GP Task\n          var featureSet = new FeatureSet();\n          featureSet.features = [graphic];\n\n          var params = {\n            Input_Location: featureSet,\n            Drive_Times: 3,\n          };\n          return geoprocessor.execute(params);\n        }\n\n        function showDriveTime(results, messages) {\n          var feature = results[0].value.features[0];\n\n          // add the drive time polygon to the map\n          var polySymbolRed = new SimpleFillSymbol(\n            SimpleLineSymbol.STYLE_SOLID,\n            new SimpleLineSymbol(\n              SimpleLineSymbol.STYLE_SOLID,\n              new Color([0, 0, 0, 1]),\n              1\n            ),\n            new Color([255, 0, 0, 0.2])\n          );\n          feature.setSymbol(polySymbolRed);\n          map.graphics.add(feature);\n        }\n\n        function relateGeometries(results) {\n          // check that both requests completed successfully\n          if (!results.poiSearch || !results.driveTimes) {\n            alert(\"Unable to compute point in polygon.\");\n          }\n          showDriveTime(results.driveTimes);\n          showLocations(results.poiSearch);\n          console.log(\"baseGraphics\", baseGraphics);\n          var relationParams = new RelationParameters();\n          relationParams.geometries1 =\n            graphicsUtils.getGeometries(baseGraphics);\n          relationParams.geometries2 = graphicsUtils.getGeometries(\n            results.driveTimes[0].value.features\n          );\n          relationParams.relation = RelationParameters.SPATIAL_REL_WITHIN;\n\n          geometryService.relation(relationParams).then(addRelateResultsToMap);\n          // alternatively, could use polygon.contains instead of using the geometry service\n        }\n\n        function addRelateResultsToMap(relations) {\n          console.log(\"add relate results\", relations);\n          // create a Green Square symbol\n          var symbol = new SimpleMarkerSymbol(\n            SimpleMarkerSymbol.STYLE_SQUARE,\n            8,\n            new SimpleLineSymbol(\n              SimpleLineSymbol.STYLE_SOLID,\n              new Color([0, 0, 0]),\n              1\n            ),\n            new Color([0, 255, 0])\n          );\n          // highlight the pizza places that satisfy the spatial relation (WITHIN) against the 3-minute drive time polygon\n          array.forEach(relations, function (relation) {\n            baseGraphics[relation.geometry1Index]\n              .setSymbol(symbol)\n              .getDojoShape()\n              .moveToFront();\n          });\n        }\n      });\n    \n  \n\n  \n    \n    \n      Click on the map to show Pizza restaurants that are within 3 minute drive\n      time.\n    \n  \n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "new",
+            "esri",
+            "map",
+            "var",
+            "SimpleLineSymbol",
+            "results",
+            "function",
+            "graphic",
+            "Color",
+            "STYLE"
+        ]
     },
     {
         "uri": "",
         "content": "function classNames() {\n  let classes = [];\n\n  for (let i = 0; i < arguments.length; i++) {\n    if (!arguments[i]) {\n      continue;\n    }\n\n    const arg = arguments[i];\n\n    if (typeof arg === \"string\" || typeof arg === \"number\") {\n      // 直接插入\n      classes.push(arg);\n    } else if (Array.isArray(arg)) {\n      // 子项是数组\n      arg.length && classes.push(classNames.call(null, arg));\n    } else if (typeof arg === \"object\") {\n      // 判断是不是object, 是就进行遍历\n      if (arg.toString() === Object.prototype.toString()) {\n        for (let key in arg) {\n          if (arg[key]) {\n            classes.push(arg[key]);\n          }\n        }\n      } else {\n        // 不是object\n        classes.push(arg.toString());\n      }\n    }\n  }\n\n  return classes.join(\" \");\n}\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "arg",
+            "classes",
+            "push",
+            "arguments",
+            "else",
+            "key",
+            "let",
+            "object",
+            "toString",
+            "typeof"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n\n    \n    \n    \n    Document\n\n\n\n\n    \n        \n            1\n            2\n            3\n            4\n            5\n            6\n        \n    \n\n\n    \n\n        function log (data) {\n            console.log('data :',data)\n        }\n\n        var container = document.querySelector(\".container\")\n\n        var tree = document.createTreeWalker(container, 1)\n\n        let currentNode = tree.currentNode; // 获取当前节点指针\n\n        log(currentNode) // body > div\n\n        tree.nextNode() // 移动指针\n\n        log(tree.firstChild()) // 1\n\n        tree.parentNode() // 切换到父节点\n\n        log(tree.lastChild()) // 6\n\n        log(tree.previousSibling()) // 5\n        log(tree.previousNode()) // 4\n    \n\n\n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "tree",
+            "log",
+            "container",
+            "currentNode",
+            "data",
+            "document",
+            "var",
+            "指针",
+            "节点",
+            "Document"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n\n    \n    \n    \n    Document\n\n\n\n\n    \n        class MyCustomElement extends HTMLElement {\n            constructor() {\n                super()\n                console.log('init', this.childNodes)\n\n                var shadow = this.attachShadow({ mode: 'open' })\n                // 创建一个 spans\n                var wrapper = document.createElement('span');\n                wrapper.setAttribute('class', 'wrapper');\n                var icon = document.createElement('span');\n                icon.setAttribute('class', 'icon');\n                icon.setAttribute('tabindex', 0);\n                var info = document.createElement('span');\n                info.setAttribute('class', 'info');\n                info.textContent = '消费对经济具有持久拉动力，事关保障和改善民生。要贯彻党中央、国务院部署，协同发力、远近兼顾，努力稳定当前消费，综合施策释放消费潜力。'\n\n                shadow.appendChild(wrapper);\n                wrapper.appendChild(icon);\n                wrapper.appendChild(info);\n            }\n\n            connectedCallback() {\n                console.log('Custom square element added to page.');\n            }\n        }\n\n        window.customElements.define('zz-p', MyCustomElement)\n    \n\n\n    \n        sd\n        sdjhfkldsjfklsd\n    \n\n    getSelection\n\n    \n        body {\n            padding: 100px;\n        }\n\n        .box {\n            width: 400px;\n            height: 200px;\n            border: 1px solid #ccc;\n        }\n    \n\n    \n        function btngetSelection() {\n            let selection = shadowRoot.getSelection().getRangeAt(0)\n            console.log(selection.toString())\n        }\n    \n\n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "wrapper",
+            "icon",
+            "info",
+            "class",
+            "setAttribute",
+            "var",
+            "appendChild",
+            "console",
+            "createElement",
+            "document"
+        ]
     },
     {
         "uri": "",
         "content": "function forEach(arr, eachFn, doneFn) {\n    var i = -1;\n    // Resolve array length to a valid (ToUint32) number.\n    var len = arr.length >>> 0;\n\n    // This IIFE is called once now, and then again, by name, for each loop\n    // iteration.\n    (function next(result) {\n        // This flag will be set to true if `this.async` is called inside the\n        // eachFn` callback.\n        var async;\n        // Was false returned from the `eachFn` callback or passed to the\n        // `this.async` done function?\n        var abort = result === false;\n\n        // Increment counter variable and skip any indices that don't exist. This\n        // allows sparse arrays to be iterated.\n        do { ++i; } while (!(i in arr) && i !== len);\n\n        // Exit if result passed to `this.async` done function or returned from\n        // the `eachFn` callback was false, or when done iterating.\n        if (abort || i === len) {\n            // If a `doneFn` callback was specified, invoke that now. Pass in a\n            // boolean value representing \"not aborted\" state along with the array.\n            if (doneFn) {\n                doneFn(!abort, arr);\n            }\n            return;\n        }\n\n        // Invoke the `eachFn` callback, setting `this` inside the callback to a\n        // custom object that contains one method, and passing in the array item,\n        // index, and the array.\n        result = eachFn.call({\n            // If `this.async` is called inside the `eachFn` callback, set the async\n            // flag and return a function that can be used to continue iterating.\n            async: function () {\n                async = true;\n                return next;\n            }\n        }, arr[i], i, arr);\n\n        // If the async flag wasn't set, continue by calling `next` synchronously,\n        // passing in the result of the `eachFn` callback.\n        if (!async) {\n            next(result);\n        }\n    }());\n};\n\n\nvar a = [1,2,3,4,5,6]\n\n\nforEach(a, function(item, index) {\n\n    var done = this.async();\n    // Continue in one second.\n    // setTimeout(done, 1000);\n\n    setTimeout(() => {\n        console.log('item--index: ', item, index)\n        done()\n    }, 2000)\n})",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "async",
+            "callback",
+            "eachFn",
+            "function",
+            "arr",
+            "done",
+            "result",
+            "var",
+            "array",
+            "doneFn"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n    \n    \n    \n    Document\n\n\n    \n        let a = {\n            name: 'jack',\n            getName: function() {\n                console.log(this.name)\n            }\n        }\n\n        let b = new Proxy(a, {\n            get: function(target, key) {\n                console.log('get method :', target, key)\n                return target[key]\n            },\n            set: function(target, prop, value, receiver) {\n                console.log('set method: success');\n                target[prop] = value\n                return true\n            }\n        })\n\n        console.log(b.name)\n\n\n        function sum(a, b) {\n            return a + b\n        }   \n\n        let c = new Proxy(sum, {\n            apply: function(target, context, argsList) {\n                console.log('apply: ', argsList) \n                return target.apply(this, argsList) + 10\n            }\n        })\n\n        console.log(c(1, 4))\n\n    \n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "target",
+            "console",
+            "log",
+            "function",
+            "return",
+            "apply",
+            "argsList",
+            "key",
+            "let",
+            "name"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n    \n    \n    \n    Document\n\n\n    \n        const _Vue = Vue\n\n        return function render(_ctx, _cache) {\n            with (_ctx) {\n                const {\n                toDisplayString: _toDisplayString,\n                openBlock: _openBlock,\n                createElementBlock: _createElementBlock,\n                createCommentVNode: _createCommentVNode,\n                createTextVNode: _createTextVNode,\n                Fragment: _Fragment,\n                renderList: _renderList,\n                createElementVNode: _createElementVNode,\n                normalizeClass: _normalizeClass,\n                } = _Vue;\n\n                return (\n                _openBlock(),\n                _createElementBlock(\n                    \"div\",\n                    {\n                        id: \"foo\",\n                        class: _normalizeClass(bar.baz),\n                    },\n                    [\n                    _createTextVNode(_toDisplayString(world.burn()) + \" \", 1 /* TEXT */),\n                    ok\n                        ? (_openBlock(), _createElementBlock(\"div\", { key: 0 }, \"yes\"))\n                        : (_openBlock(),\n                        _createElementBlock(\n                            _Fragment,\n                            { key: 1 },\n                            [_createTextVNode(\"no\")],\n                            2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */\n                        )),\n                    (_openBlock(true),\n                    _createElementBlock(\n                        _Fragment,\n                        null,\n                        _renderList(list, (value, index) => {\n                        return (\n                            _openBlock(),\n                            _createElementBlock(\"div\", null, [\n                                _createElementVNode(\n                                    \"span\",\n                                    null,\n                                    _toDisplayString(value + index),\n                                    1 /* TEXT */\n                                ),\n                            ])\n                        );\n                        }),\n                        256 /* UNKEYED_FRAGMENT */\n                    )),\n                    ],\n                    2 /* CLASS */\n                )\n                );\n            }\n        }\n    \n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "createElementBlock",
+            "openBlock",
+            "Fragment",
+            "createTextVNode",
+            "toDisplayString",
+            "FRAGMENT",
+            "Vue",
+            "createElementVNode",
+            "div",
+            "normalizeClass"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n    \n    \n    \n    prepend\n\n\n    \n        demo1\n        demo1\n        demo1\n        demo1\n\n        prepend\n        after\n    \n    \n        function prepend(){\n            var h1 = document.querySelector('h1')\n            var p = document.createElement('strong')\n            p.textContent = 'strong'\n            h1.prepend(p)\n        }\n\n        function after() {\n            var h1 = document.querySelector('h2')\n            var p = document.createElement('strong')\n            p.textContent = 'strong'\n            h1.after(p)\n        }\n        \n    \n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "h1",
+            "demo1",
+            "document",
+            "prepend",
+            "strong",
+            "var",
+            "after",
+            "createElement",
+            "function",
+            "querySelector"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n    \n    \n    \n    Document\n\n\n    \n\n    \n\n        function throttle(fn, interval){\n            let flag = true;\n            return function(...args) {\n                let context = this;\n                if(!flag) return;\n                flag = false;\n                setTimeout(() => {\n                    fn.apply(context, args);\n                    flag = true;\n                }, interval)\n            }\n        }\n\n    \n\n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "flag",
+            "args",
+            "context",
+            "fn",
+            "function",
+            "interval",
+            "let",
+            "return",
+            "true",
+            "Document"
+        ]
     },
     {
         "uri": "",
         "content": "\n\n\n    \n    \n    \n    Document\n\n\n    \n\n\n    class MyEvent {\n        constructor() {\n            this._eventMap = new Map()\n        }\n\n\n        on(event, callback) {\n            if(event && typeof callback == 'function') {\n                this._eventMap.has(event) || this._eventMap.set(event, []);\n                this._eventMap.get(event).push(callback);\n            }\n            return this;\n        }\n\n        off(event, callback) {\n            if(event) {\n                if(typeof callback == 'function') {\n                    const callbacks = this._eventMap.get(event) || [];\n                    for(let i in callbacks) {\n                        if(callbacks[i] === callback) {\n                            callbacks.splice(i, 1);\n                        }\n                    }\n                } else {\n                    this._eventMap.delete(event)\n                }\n\n            }\n            return this\n        }\n\n        once(event, callback) {\n\n        }\n\n        emit(event, ...args) {\n            if(!this._eventMap.has(event)) return false;\n            this._eventMap.get(event).map(callback => callback(...args))\n            return true;\n        }\n    }\n\n\n\n\n\n\n\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "event",
+            "callback",
+            "eventMap",
+            "callbacks",
+            "return",
+            "get",
+            "args",
+            "function",
+            "typeof",
+            "Document"
+        ]
     },
     {
         "uri": "/posts/2022/06/config/",
         "title": "jenkinsfile 配置说明",
         "content": "\nagent\n\n运行环境，每个pipeline都需要定义运行环境\n\n在执行引擎中，agent 指令会引起以下操作的执行：\n\n所有在块block中的步骤steps会被Jenkins保存在一个执行队列中。 一旦一个执行器 executor 是可以利用的，这些步骤将会开始执行。\n一个工作空间 workspace 将会被分配， 工作空间中会包含来自远程仓库的文件和一些用于Pipeline的工作文件\n\npipeline {\n    agent {\n        docker { image 'node:7-alpine' }\n    }\n    stages {\n        stage('Test') {\n            steps {\n                sh 'node --version'\n            }\n        }\n    }\n}\n\nenvironment\n\n环境变量，可以提供给下面脚本使用\n\n环境变量可以像下面的示例设置为全局的，也可以是阶段（stage）级别的。 如你所想，阶段（stage）级别的环境变量只能在定义变量的阶段（stage）使用。\n\npipeline {\n    agent any\n\n    environment {\n        DISABLE_AUTH = 'true'\n        DB_ENGINE    = 'sqlite'\n    }\n\n    stages {\n        stage('Build') {\n            steps {\n                sh 'printenv'\n            }\n        }\n    }\n}\n\npipeline\n\nPipelines 由多个步骤（step）组成，允许你构建、测试和部署应用。 Jenkins Pipeline 允许您使用一种简单的方式组合多个步骤， 以帮助您实现多种类型的自动化构建过程。\n\n可以把“步骤（step）”看作一个执行单一动作的单一的命令。 当一个步骤运行成功时继续运行下一个步骤。 当任何一个步骤执行失败时，Pipeline 的执行结果也为失败。\n\n当所有的步骤都执行完成并且为成功时，Pipeline 的执行结果为成功。\n\n每个stages中可以包含多个stage\n\npipeline {\n    agent any\n    stages {\n        stage('Build') {\n            steps {\n                sh 'echo \"Hello World\"'\n                sh '''\n                    echo \"Multiline shell steps works too\"\n                    ls -lah\n                '''\n            }\n        }\n    }\n}\n\npipeline 流水线声明\nstages 阶段，内部可以包含多个stage, 其中内部stage可以自定义名称，方便日志时打印出来\n  steps 步骤， 就是具体脚本平台执行的命令，不同的系统平台有不同的命令\npost 完成时动作，可以用作清理数据\n  awalys 总是会执行\n  success 成功后执行\n  failure 失败后执行\n  unstable 未稳定构建后执行\n  changed 上次成功，这次失败，即状态变更后执行\n\n重试和超时\n\npipeline {\n    agent any\n    stages {\n        stage('Deploy') {\n            steps {\n                retry(3) {\n                    sh './flakey-deploy.sh'\n                }\n\n                timeout(time: 3, unit: 'MINUTES') {\n                    sh './health-check.sh'\n                }\n            }\n        }\n    }\n}\n\n邮件\n\npost {\n    failure {\n        mail to: 'team@example.com',\n             subject: \"Failed Pipeline: ${currentBuild.fullDisplayName}\",\n             body: \"Something is wrong with ${env.BUILD_URL}\"\n    }\n}\n\npost 完成时执行\n\npipeline {\n    agent any\n    stages {\n        stage('Test') {\n            steps {\n                sh 'echo \"Fail!\"; exit 1'\n            }\n        }\n    }\n    post {\n        always {\n            echo 'This will always run'\n        }\n        success {\n            echo 'This will run only if successful'\n        }\n        failure {\n            echo 'This will run only if failed'\n        }\n        unstable {\n            echo 'This will run only if the run was marked as unstable'\n        }\n        changed {\n            echo 'This will run only if the state of the Pipeline has changed'\n            echo 'For example, if the Pipeline was previously failing but is now successful'\n        }\n    }\n}\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "jenkinsfile",
+            " ",
+            "配置",
+            "说明"
+        ],
+        "content_tokens": [
+            "stage",
+            "echo",
+            "sh",
+            "pipeline",
+            "steps",
+            "执行",
+            "Pipeline",
+            "agent",
+            "stages",
+            "步骤"
+        ]
     },
     {
         "uri": "/posts/2022/06/install/",
         "title": "jenkins docker安装说明",
         "content": "\n安装\n\n以docker部署jenkins为例\n\n拉取镜像\n\ndocker pull jenkinsci/blueocean\n\n运行\n\ndocker run \\\n  -u root \\\n  --name jenkins\n  -p 8080:8080 \\\n  -v /data/jenkins-data:/var/jenkins_home \\\n  -v /var/run/docker.sock:/var/run/docker.sock \\\n  jenkinsci/blueocean\n\n把8080端口映射到宿主8080端口\n/var/jenkins_home 映射到宿主 /data/jenkins-data\n/var/run/docker.sock 把宿主的docker运行脚本映射进去\n命名容器的名称为jenkins\n\n容器启动起来以后，可以看到初始密码\n\n安装nodejs插件\n\n先到插件管理下面搜索nodejs插件并安装\n/configureTools下配置nodejs版本，并且勾选自动安装\n\n>  \"Manage Jenkins\" -> \"Global Tool Configuration\" -> \"Add NodeJS\"\n\nGit ssh\n\n配置git ssh\n\n命令行中生成ssh key\n\n   > ssh-keygen -f ~/.ssh/jenkinsagentkey\n\n回到jenkins中， 找到Manage Credentials ， 添加一个新的全局凭证\n\n在输入框中输入ssh生成的private_key\n\n配置插件清华源\n\nhttps://mirrors.tuna.tsinghua.edu.cn/jenkins/\n\n在jenkins插件管理页面，找到高级tab\n\n输入清华源的升级json\n\nhttps://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "jenkins",
+            " ",
+            "docker",
+            "安装",
+            "说明"
+        ],
+        "content_tokens": [
+            "jenkins",
+            "docker",
+            "ssh",
+            "插件",
+            "var",
+            "8080",
+            "data",
+            "run",
+            "nodejs",
+            "sock"
+        ]
     },
     {
         "uri": "/posts/2022/06/issues/",
         "title": "jenkins docker部署问题搜集",
         "content": "\nnode command not found\n\njenkinsci/blueocean使用后发现安装的nodejs版本无法使用，node命令无法找到\n\n因为在docker-apline镜像中存在node依赖问题\n\nhttps://stackoverflow.com/questions/43307107/jenkins-nodejsplugin-node-command-not-found\n\n解决方案是使用官方的镜像https://hub.docker.com/r/jenkins/jenkins",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "jenkins",
+            " ",
+            "docker",
+            "部署",
+            "问题",
+            "搜集"
+        ],
+        "content_tokens": [
+            "node",
+            "jenkins",
+            "com",
+            "command",
+            "docker",
+            "found",
+            "https",
+            "镜像",
+            "使用",
+            "43307107"
+        ]
     },
     {
         "uri": "/posts/2021/09/jenkins-reset-password/",
@@ -95,6 +322,28 @@
         "tags": [
             "jenkins",
             "linux"
+        ],
+        "title_tokens": [
+            "jenkins",
+            "忘记",
+            "密码",
+            "后",
+            "重置",
+            "或",
+            "找回",
+            "密码"
+        ],
+        "content_tokens": [
+            "jenkins",
+            "lib",
+            "var",
+            "10",
+            "2a",
+            "false",
+            "jbcrypt",
+            "密码",
+            "方法",
+            "目录"
         ]
     },
     {
@@ -104,6 +353,21 @@
         "tags": [
             "JS",
             "lodash"
+        ],
+        "title_tokens": [
+            "ArrayEach"
+        ],
+        "content_tokens": [
+            "array",
+            "length",
+            "item",
+            "index",
+            "while",
+            "console",
+            "iteratee",
+            "let",
+            "log",
+            "return"
         ]
     },
     {
@@ -113,6 +377,28 @@
         "tags": [
             "js",
             "asynchronous"
+        ],
+        "title_tokens": [
+            "js",
+            " ",
+            "--",
+            " ",
+            "async",
+            " ",
+            "await",
+            "基本知识"
+        ],
+        "content_tokens": [
+            "async",
+            "thisThrows",
+            "Promise",
+            "catch",
+            "resolve",
+            "return",
+            "函数",
+            "错误",
+            "捕获",
+            "Error"
         ]
     },
     {
@@ -122,6 +408,21 @@
         "tags": [
             "JS",
             "lodash"
+        ],
+        "title_tokens": [
+            "BaseFindIndex"
+        ],
+        "content_tokens": [
+            "index",
+            "array",
+            "fromRight",
+            "baseFindIndex",
+            "fromIndex",
+            "length",
+            "predicate",
+            "return",
+            "const",
+            "function"
         ]
     },
     {
@@ -131,6 +432,23 @@
         "tags": [
             "css",
             "js"
+        ],
+        "title_tokens": [
+            "Classname",
+            " ",
+            "Operation"
+        ],
+        "content_tokens": [
+            "clss",
+            "srcCls",
+            "target",
+            "cls",
+            "const",
+            "filter",
+            "function",
+            "includes",
+            "return",
+            "split"
         ]
     },
     {
@@ -139,6 +457,24 @@
         "content": "\n\nclassnames库是日常工作中用来操作dom中class相关的工具函数，这里我们对它进行解读\n\n使用\n\n> npm install classnames --save\n\nfunction classNames() {\n    let classes = [];\n\n    for (let i = 0; i < arguments.length; i++ ) {\n        if(!arguments[i]) {\n            continue\n        }\n\n        const arg = arguments[i]\n\n        if(typeof arg === 'string' || typeof arg === 'number') {\n            // 直接插入\n            classes.push(arg)\n        } else if (Array.isArray(arg)) {\n            // 子项是数组，递归调用自己\n            arg.length && classes.push(classNames.call(null, arg))\n        } else if(typeof arg === 'object') {\n            // 判断是不是object, 是就进行遍历\n            if(arg.toString() === Object.prototype.toString()) {\n                for(let key in arg) {\n                    if(arg[key]) {\n                        classes.push(arg[key])\n                    }\n                }\n            } else {\n                // 不是object, 直接转成字符串\n                classes.push(arg.toString())\n            }\n        }\n\n    }\n\n    return classes.join(' ')\n}\n`",
         "tags": [
             "js"
+        ],
+        "title_tokens": [
+            "Classnames",
+            "库",
+            "代码",
+            "解读"
+        ],
+        "content_tokens": [
+            "arg",
+            "classes",
+            "push",
+            "arguments",
+            "else",
+            "key",
+            "let",
+            "object",
+            "toString",
+            "typeof"
         ]
     },
     {
@@ -147,13 +483,56 @@
         "content": "\n原生跨页面通信api\n\n各API实现跨页面的优缺点：\n\nBroadcast Channel：实时通信，随时关闭频道，功能全面；浏览器支持效果不好（IE-都不支持，chrome-54）\nstorageEvent：浏览器支持效果好、API直观。部分浏览器隐身模式下，无法设置localStorage（如safari）。可能因LocalStorage清理不及时而引起问题\nshareworker：异步处理，不占用主线程，不用 ie 浏览器的话，还是非常推荐的（IE-都不支持）\nserviceworker：浏览器支持度不高，开启service worker可能会导致浏览器的缓存数据大大增加（IE-都不支持）\nwindow.open + window.opener：实现方式不优雅，无法形成统一的解决方案，且在强制刷新页面后会失去关联导致无法通信；实现简单，浏览器兼容性好\npostMessage：点对点通信，局限性比较大，可扩展性比较差。\n",
         "tags": [
             "跨页面通信"
+        ],
+        "title_tokens": [
+            "原生",
+            "跨",
+            "页面",
+            "通信",
+            "方案"
+        ],
+        "content_tokens": [
+            "浏览器",
+            "IE",
+            "支持",
+            "页面",
+            "通信",
+            "API",
+            "window",
+            "无法",
+            "实现",
+            "可扩展性"
         ]
     },
     {
         "uri": "/posts/2021/11/cookie/",
         "title": "Axios 中 Cookie 操作及代码详解",
         "content": "1)Cookie名称，Cookie名称必须使用只能用在URL中的字符，一般用字母及数字，不能包含特殊字符，如有特殊字符想要转码。如js操作cookie的时候可以使用escape()对名称转码。\\\n> 2)Cookie值，Cookie值同理Cookie的名称，可以进行转码和加密。\\\n> 3)Expires，过期日期，一个GMT格式的时间，当过了这个日期之后，浏览器就会将这个Cookie删除掉，当不设置这个的时候，Cookie在浏览器关闭后消失。\\\n> 4)Path，一个路径，在这个路径下面的页面才可以访问该Cookie，一般设为“/”，以表示同一个站点的所有页面都可以访问这个Cookie。\\\n> 5)Domain，子域，指定在该子域下才可以访问Cookie，例如要让Cookie在a.test.com下可以访问，但在b.test.com下不能访问，则可将domain设置成a.test.com。\\\n> 6)Secure，安全性，指定Cookie是否只能通过https协议访问，一般的Cookie使用HTTP协议既可访问，如果设置了Secure（没有值），则只有当使用https协议连接时cookie才可以被页面访问. \\\n> 7)HttpOnly，如果在Cookie中设置了\"HttpOnly\"属性，那么通过程序(JS脚本、Applet等)将无法读取到Cookie信息。\n\nfunction doCookie() {\n  return {\n    write: function write(name, value, expires, path, domain, secure) {\n      var cookie = [];\n      cookie.push(name + \"=\" + encodeURIComponent(value));\n\n      if (utils.isNumber(expires)) {\n        cookie.push(\"expires=\" + new Date(expires).toGMTString());\n      }\n\n      if (utils.isString(path)) {\n        cookie.push(\"path=\" + path);\n      }\n\n      if (utils.isString(domain)) {\n        cookie.push(\"domain=\" + domain);\n      }\n\n      if (secure === true) {\n        cookie.push(\"secure\");\n      }\n\n      document.cookie = cookie.join(\"; \");\n    },\n\n    read: function read(name) {\n      var match = document.cookie.match(\n        new RegExp(\"(^|;\\\\s)(\" + name + \")=()\")\n      );\n      return match ? decodeURIComponent(match[3]) : null;\n    },\n\n    remove: function remove(name) {\n      this.write(name, \"\", Date.now() - 86400000);\n    },\n  };\n}\n",
-        "tags": []
+        "tags": [],
+        "title_tokens": [
+            "Axios",
+            " ",
+            "中",
+            " ",
+            "Cookie",
+            " ",
+            "操作",
+            "及",
+            "代码",
+            "详解"
+        ],
+        "content_tokens": [
+            "Cookie",
+            "cookie",
+            "name",
+            "domain",
+            "push",
+            "访问",
+            "expires",
+            "function",
+            "match",
+            "path"
+        ]
     },
     {
         "uri": "/posts/2021/10/dom-element-api/",
@@ -162,6 +541,27 @@
         "tags": [
             "Element",
             "js"
+        ],
+        "title_tokens": [
+            "HTML",
+            " ",
+            "Element",
+            " ",
+            "API",
+            " ",
+            "用法"
+        ],
+        "content_tokens": [
+            "Element",
+            "document",
+            "span",
+            "var",
+            "节点",
+            "元素",
+            "container",
+            "h1",
+            "插入",
+            "querySelector"
         ]
     },
     {
@@ -171,13 +571,54 @@
         "tags": [
             "js",
             "utils"
+        ],
+        "title_tokens": [
+            "事件",
+            "总线",
+            "EventBus"
+        ],
+        "content_tokens": [
+            "event",
+            "callback",
+            "eventMap",
+            "callbacks",
+            "return",
+            "get",
+            "args",
+            "function",
+            "typeof",
+            "总线"
         ]
     },
     {
         "uri": "/posts/2022/05/event-loop/",
         "title": "js Event Loop 事件循环执行机制",
         "content": "\nJavascript engine list\n\nv8引擎高效原因\n\nV8) — open source, developed by Google, written in C++\nRhino) — managed by the Mozilla Foundation, open source, developed entirely in Java\nSpiderMonkey) — the first JavaScript engine, which back in the days powered Netscape Navigator, and today powers Firefox\nJavaScriptCore — open source, marketed as Nitro and developed by Apple for Safari\nKJS) — KDE’s engine originally developed by Harri Porten for the KDE project’s Konqueror web browser\nChakra (JScript9)) — Internet Explorer\nChakra (JavaScript)) — Microsoft Edge\nNashorn), open source as part of OpenJDK, written by Oracle Java Languages and Tool Group\nJerryScript — is a lightweight engine for the Internet of Things.\n\nV8把JavaScript代码编译成机器码，而不是使用解释器.\n\n它通过像许多现代 JavaScript 引擎（例如 SpiderMonkey 或 Rhino (Mozilla)）一样实现 JIT（即时）编译器，在执行时将 JavaScript 代码编译成机器代码\n\nv8不生成任何字节码或者其他中间代码\n\n异步（asynchronous     [eɪˈsɪŋkrənəs]）执行运行机制\n\n所有同步任务都在主线程上执行，形成一个执行栈\n主线程之外还存在一个任务队列，异步任务有了结果，就会在任务队列中放置一个事件\n同步任务执行完毕后，系统就会读取任务队列中的任务\n\n宏任务\n\nI/O\nsetTimeout\nsetInterval\nsetImmediate(node.js)\nrequestAnimationFrame\n\n微任务\n\nPromise.then\n\nprocess.nextTick(node.js)\nMutationObserver\n\nNode.js中的Event Loop\n\nNode.js采用v8作为js的解析引擎，I/O处理方面采用libuv\n\n运行机制：\n\nv8解析javascript脚本文件\n调用Node API\nlibuv负责Node API的执行。把任务分配给不同的线程，形成EventLoop, 把结果以异步的方式返回给v8引擎\nv8把结果返回给用户\n\nnodejs的event loop分为6个阶段\n\ntimers：执行setTimeout() 和 setInterval()中到期的callback。\nI/O callbacks：上一轮循环中有少数的 I/O callback 会被延迟到这一轮的这一阶段执行\nidle, prepare：队列的移动，仅内部使用\npoll：最为重要的阶段，执行I/O callback，在适当的条件下会阻塞在这个阶段\ncheck：执行setImmediate的callback\nclose callbacks：执行close事件的callback，例如socket.on(\"close\",func)\n\n注意点\n\n每个阶段完成后，都会执行清空微任务队列\ntimers阶段执行创建的setImmediate事件，会在本轮循环的check阶段执行完毕，而timers阶段创建的setTimeout事件，会进入下轮循环执行\nNode中同个MicroTask队列下， process.nextTick比Promise更加优先\n\n事件循环执行代码解析\n\nlet count = 0;\n\n(function(count) {\n    console.log('count1:', count);\n    a(++count)\n    console.log('count1-1:',count);\n})(count)\n\nasync function a(count) {\n    console.log('count2:', count);\n    await b(count++)\n    console.log('count3:', count);\n}\n\nasync function b(count) {\n    console.log('count4:', count);\n}\n\nnew Promise((resolve) => {\n    console.log('count6:', count);\n    resolve(count++)\n}).then(count => {\n    console.log('count7:', count);\n})\n\nsetTimeout(() => {\n    console.log('count8:', count);\n    Promise.resolve().then(() => {\n        console.log('count8-1', count);\n    })\n})\n\nconsole.log('count9:', count);\n\n开头是一个自执行函数， 执行到count1\na函数调用 count2\na里面调用b，b是一个异步函数，这里b会执行 count4\n回到a函数， count3推送微任务队列\n回到一开始的自执行函数，往下执行 count1-1\n自执行函数同步任务执行完毕，主任务同步任务执行\n执行到new Promise\ncount6打印， then方法推到微任务队列\n往下执行，一个setTimeout推入宏任务队列\ncount9打印\n微任务队列执行，先入先出原则\n执行count3\n执行count7\n宏任务队列执行\n执行count8,宏任务重产生微任务\n清空微任务，打印count8-1\n\n引用\n\nhttps://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "js",
+            " ",
+            "Event",
+            " ",
+            "Loop",
+            " ",
+            "事件",
+            "循环",
+            "执行",
+            "机制"
+        ],
+        "content_tokens": [
+            "count",
+            "执行",
+            "console",
+            "log",
+            "任务",
+            "队列",
+            "v8",
+            "JavaScript",
+            "Node",
+            "Promise"
+        ]
     },
     {
         "uri": "/posts/2021/11/isElement/",
@@ -186,6 +627,24 @@
         "tags": [
             "js",
             "dom"
+        ],
+        "title_tokens": [
+            "判断",
+            "是不是",
+            "DOM",
+            "元素"
+        ],
+        "content_tokens": [
+            "obj",
+            "object",
+            "typeof",
+            "DOM2",
+            "HTMLElement",
+            "W3",
+            "return",
+            "works",
+            "Browsers",
+            "Chrome"
         ]
     },
     {
@@ -194,6 +653,23 @@
         "content": "\n是否是promise\nexport function isPromise(object: any): object is Promise {\n  return Promise.resolve(object) === object;\n}\n`",
         "tags": [
             "js"
+        ],
+        "title_tokens": [
+            "常用",
+            "判断",
+            "函数"
+        ],
+        "content_tokens": [
+            "object",
+            "Promise",
+            "any",
+            "export",
+            "function",
+            "isPromise",
+            "promise",
+            "resolve",
+            "return",
+            "是否是"
         ]
     },
     {
@@ -202,6 +678,24 @@
         "content": "\nJSON.parse\n\n> > JSON.parse(text[, reviver])\n>\n\nreviver\n\n转换器，如果传入该参数 (函数)，可以用来修改解析生成的原始值，调用时机在 parse 函数返回之前。\n\n解析值本身以及它所包含的所有属性，会按照一定的顺序（从最最里层的属性开始，一级级往外，最终到达顶层，也就是解析值本身）分别的去调用 reviver 函数\n\n从最内层开始，按照层级顺序，依次向外遍历\n\nJSON.stringify\n\n> > JSON.stringify(value[, replacer [, space]])\n>\n\nvalue转换规则\n\n值如果有 toJSON() 方法，按toJSON方法输出。\n非数组对象的属性 转换后顺序不固定。\n布尔值、数字、字符串会转换成原始值。\n常规对象中undefined、函数以及 symbol ，会被忽略\n数组中 undefined、函数以及 symbol 会 被转换成 null。\n函数、undefined 被单独转换时，会返回 undefined。\n循环引用的对象会报错。\nsymbol 属性键的属性都会被移除。\nDate 会转为字符串。\nNaN 、Infinity 、 null 都会被当做 null。\nMap/Set/WeakMap/WeakSet，仅会序列化可枚举的属性。\n\nreplacer\n\n2个参数，包括key和value\n\nfunction replacer(key, value) {\n  if (typeof value === \"string\") {\n    return undefined;\n  }\n  return value;\n}\n\nvar foo = {foundation: \"Mozilla\", model: \"box\", week: 45, transport: \"car\", month: 7};\nvar jsonString = JSON.stringify(foo, replacer); // {\"week\":45,\"month\":7}\n\nspace\n\n参数用来控制结果字符串里面的间距, 用来格式化json\n\nJSON.stringify({ a: 2 }, null, \" \");   // '{\\n \"a\": 2\\n}'\n",
         "tags": [
             "JSON.stringify"
+        ],
+        "title_tokens": [
+            "JSON",
+            ".",
+            "stringify",
+            "方法"
+        ],
+        "content_tokens": [
+            "JSON",
+            "value",
+            "undefined",
+            "null",
+            "replacer",
+            "stringify",
+            "属性",
+            "函数",
+            "parse",
+            "reviver"
         ]
     },
     {
@@ -210,6 +704,23 @@
         "content": "\ntoNumber\n\nlodash中转数字函数\n\nfunction isObject(value) {\n  const type = typeof value\n  return value != null && (type === 'object' || type === 'function')\n}\n\nfunction isSymbol(value) {\n  const type = typeof value\n  return type == 'symbol' || (type === 'object' && value != null && getTag(value) == '[object Symbol]')\n}\n\n/* Used as references for various Number constants. /\nconst NAN = 0 / 0\n\n/* Used to match leading and trailing whitespace. /\nconst reTrim = /^\\s+|\\s+$/g\n\n/* Used to detect bad signed hexadecimal string values. /\n// 是否是十六进制数据\nconst reIsBadHex = /^[-+]0x[0-9a-f]+$/i\n\n/* Used to detect binary string values. /\nconst reIsBinary = /^0b[01]+$/i\n\n/* Used to detect octal string values. /\nconst reIsOctal = /^0o[0-7]+$/i\n\n/* Built-in method references without a dependency on root. /\nconst freeParseInt = parseInt\n\nfunction toNumber(value) {\n  // 类型是Number\n  if (typeof value === 'number') {\n    return value\n  }\n  // 类型是symbol\n  if (isSymbol(value)) {\n    return NAN\n  }\n  // 如果是对象，取出对象的值或者转成字符串\n  if (isObject(value)) {\n    const other = typeof value.valueOf === 'function' ? value.valueOf() : value\n    value = isObject(other) ? ${other} : other\n  }\n  // 不是字符串的情况\n  if (typeof value !== 'string') {\n    return value === 0 ? value : +value\n  }\n  // 去除两边空格\n  value = value.replace(reTrim, '')\n  // 是否是二进制数据\n  const isBinary = reIsBinary.test(value)\n  // 是否是八进制数据\n  return (isBinary || reIsOctal.test(value))\n    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)\n    : (reIsBadHex.test(value) ? NAN : +value)\n}\n\nparseInt函数解析\n\n第一个参数，string\n第二个参数， 2～36 表示解析数据的基数\n\n> parseInt函数将其第一个参数转换为一个字符串，对该字符串进行解析，然后返回一个整数或 NaN。\n> 如果不是NaN，返回值将是以第一个参数作为指定基数 radix 的转换后的十进制整数。(例如，radix为10，就是可以转换十进制数，为8可以转换八进制数\"07\"，16可以转换十六进制数\"0xff\"，以此类推)。\n> 对于 radix 为10以上的，英文字母表示大于9的数字。例如，对于十六进制数（基数16），则使用 A 到 F 。\n> 如果 parseInt 遇到的字符不是指定 radix 参数中的数字，它将忽略该字符以及所有后续字符，并返回到该点为止已解析的整数值。 parseInt 将数字截断为整数值。 允许前导和尾随空格。\n",
         "tags": [
             "js"
+        ],
+        "title_tokens": [
+            "Lodash",
+            " ",
+            "ToNumber"
+        ],
+        "content_tokens": [
+            "value",
+            "const",
+            "return",
+            "type",
+            "Used",
+            "function",
+            "parseInt",
+            "string",
+            "typeof",
+            "other"
         ]
     },
     {
@@ -219,6 +730,29 @@
         "tags": [
             "js",
             "小程序"
+        ],
+        "title_tokens": [
+            "小",
+            "程序",
+            "中",
+            "监听",
+            "data",
+            "中",
+            "数据",
+            "变化",
+            "方式"
+        ],
+        "content_tokens": [
+            "page",
+            "key",
+            "监听",
+            "data",
+            "Page",
+            "watch",
+            "function",
+            "value",
+            "Object",
+            "console"
         ]
     },
     {
@@ -227,6 +761,23 @@
         "content": "\nno-refresh-page\n\n>  history.pushState(\n>    {},\n>    null,\n>    this.$route.path + '#' + encodeURIComponent(params)\n>  )",
         "tags": [
             "js"
+        ],
+        "title_tokens": [
+            "防抖",
+            "与",
+            "节流"
+        ],
+        "content_tokens": [
+            "encodeURIComponent",
+            "history",
+            "no",
+            "null",
+            "page",
+            "params",
+            "path",
+            "pushState",
+            "refresh",
+            "route"
         ]
     },
     {
@@ -235,12 +786,44 @@
         "content": "\n\nfunction plus(num1, num2) {\n    const num1Digits = (num1.toString().split('.')[1] || '').length;\n    const num2Digits = (num2.toString().split('.')[1] || '').length;\n    const baseNumber = Math.pow(10, Math.max(num1Digits, num2Digits));\n    return (num1 * baseNumber + num2 * baseNumber) / baseNumber;\n}\n\nfunction minus(num1, num2) {\n    return plus(num1, -1 * num2);\n}\n",
         "tags": [
             "js"
+        ],
+        "title_tokens": [
+            "数字",
+            "加减",
+            "问题",
+            "解决",
+            "精度",
+            "问题"
+        ],
+        "content_tokens": [
+            "num1",
+            "num2",
+            "baseNumber",
+            "const",
+            "Math",
+            "function",
+            "length",
+            "num1Digits",
+            "num2Digits",
+            "plus"
         ]
     },
     {
         "uri": "",
         "content": "\n\ntitle: \"performance\"\ndate: 2022-06-27T17:11:11+08:00\ndraft: true\ntags: [\"bind\"]\n\nfunction test(f) {\n    console.time()\n    let i = 0\n    while (i++ performance.now())\n`",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "11",
+            "performance",
+            "00",
+            "06",
+            "08",
+            "2022",
+            "27T17",
+            "bind",
+            "console",
+            "date"
+        ]
     },
     {
         "uri": "/posts/2021/11/lerna/",
@@ -249,6 +832,25 @@
         "tags": [
             "js",
             "nodejs"
+        ],
+        "title_tokens": [
+            "Lerna",
+            " ",
+            "包",
+            "管理器",
+            "命令行"
+        ],
+        "content_tokens": [
+            "lerna",
+            "exec",
+            "npm",
+            "cd",
+            "packages",
+            "demo",
+            "init",
+            "js",
+            "mkdir",
+            "20"
         ]
     },
     {
@@ -257,6 +859,23 @@
         "content": "\n查看端口占用\n\n> lsof -i tcp:80\n\n所有端口\n\n> netstat -ntlp\n\n查看端口进程\n\n> netstat -lnp|grep 端口号\n\n> netstat -anp|grep 端口号\n\nLinux内核版本命令\n> cat /proc/version\n\n> uname -a\n\n查看Linux系统版本的命令\n> lsb_release -a\n\n> cat /etc/redhat-release\n\n> cat /etc/issue\n\nldd\n\nldd 用来打印或者查看程序运行所需的共享库,常用来解决程序因缺少某个库文件而不能运行的一些问题。ldd不是一个可执行程序，而只是一个shell脚本。\n\nbash-5.1# ldd ./node\n\t/lib64/ld-linux-x86-64.so.2 (0x7f42c6fe6000)\n\tlibdl.so.2 => /lib64/ld-linux-x86-64.so.2 (0x7f42c6fe6000)\nError loading shared library libstdc++.so.6: No such file or directory (needed by ./node)\n\tlibm.so.6 => /lib64/ld-linux-x86-64.so.2 (0x7f42c6fe6000)\nError loading shared library libgcc_s.so.1: No such file or directory (needed by ./node)\n\tlibpthread.so.0 => /lib64/ld-linux-x86-64.so.2 (0x7f42c6fe6000)\n\tlibc.so.6 => /lib64/ld-linux-x86-64.so.2 (0x7f42c6fe6000)\nError loading shared library ld-linux-x86-64.so.2: No such file or directory (needed by ./node)\n",
         "tags": [
             "linux"
+        ],
+        "title_tokens": [
+            "Linux",
+            " ",
+            "常用命令"
+        ],
+        "content_tokens": [
+            "so",
+            "64",
+            "ld",
+            "linux",
+            "x86",
+            "0x7f42c6fe6000",
+            "lib64",
+            "ldd",
+            "node",
+            "Error"
         ]
     },
     {
@@ -267,13 +886,59 @@
             "安装教程",
             "WSL",
             "linux"
+        ],
+        "title_tokens": [
+            "Windows",
+            " ",
+            "WSL",
+            " ",
+            "安装",
+            " ",
+            "Homebrew"
+        ],
+        "content_tokens": [
+            "brew",
+            "bin",
+            "linuxbrew",
+            "eval",
+            "install",
+            "shellenv",
+            "test",
+            "git",
+            "homebrew",
+            "echo"
         ]
     },
     {
         "uri": "/posts/2022/05/creat-react-app-issue/",
         "title": "create-react-app 使用中相关问题整理",
         "content": "\n1.test添加代码覆盖率\n\n命令修改为\n\nreact-scripts test --coverage --watchAll=false\n\npackage.json\n\n\"jest\": {\n  \"collectCoverageFrom\": [\n    \"src/*/.{js,jsx,ts,tsx}\",\n    \"!/node_modules/\"\n  ],\n  \"coverageThreshold\": {\n    \"global\": {\n      \"lines\": 90,\n      \"statements\": 90\n    }\n  }\n}\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "create",
+            "-",
+            "react",
+            "-",
+            "app",
+            " ",
+            "使用",
+            "中",
+            "相关",
+            "问题",
+            "整理"
+        ],
+        "content_tokens": [
+            "90",
+            "test",
+            "collectCoverageFrom",
+            "coverage",
+            "coverageThreshold",
+            "false",
+            "global",
+            "jest",
+            "js",
+            "json"
+        ]
     },
     {
         "uri": "/posts/2022/05/forwardRef/",
@@ -281,6 +946,24 @@
         "content": "\nForwardRef\n\nforwardRef\n\nref\n\nRef挂载到DOM元素上时，就是对DOM元素本身的使用\nRef挂载到Class组件的时候，就是class组件实例的引用，可以调用实例本身的属性和方法\nRef不能作用到函数式组件上，函数式组件没有实例，所以就要使用这个forwardRef包裹一下函数式组件\n\nForwardRef\n\nForwardRef在react中用作ref转发\n\nfowardRef传入一个函数，返回值是一个react组件\n\n> React.forwardRef()\n\n其中第二个参数就是ref, 可以透传到任意dom元素上\n\nconst Demo = React.forwardRef((props, ref) => {\n\n\treturn (\n\n        //...\n\n  );\n})\n\nuseImperativeHandle\n\n函数式组件中配合useImperativeHandle一起使用\n\n当你函数式组件需要暴露给外部组件一个对象时，需要使用useImperativeHandle勾子函数进行暴露\n\nconst Child = forwardRef((props, ref) => {\n  const [color, setColor] = useState(\"red\");\n  // To customize the value that the parent will get in their ref.current:\n  // pass the ref object to useImperativeHandle as the first argument.\n  // Then, whatever will be returned from the callback in the second argument,\n  // will be the value of ref.current.\n  // Here I return an object with the toggleColor method on it, for the parent to use:\n  useImperativeHandle(ref, () => ({\n    toggleColor: () => setColor(prevColor => prevColor === \"red\" ? \"blue\" : \"red\")\n  }));\n  return yo;\n});\n\nclass Parent extends Component {\n  childRef = createRef();\n  handleButtonClicked = () => {\n    // Ref passed to a function component wrapped in forwardRef.\n    // Note that nothing has changed for this Parent component\n    // compared with the class component in example 2!\n    this.childRef.current.toggleColor();\n  }\n  render() {\n    return (\n\n        toggle color!\n\n    );\n  }\n}\n",
         "tags": [
             "react"
+        ],
+        "title_tokens": [
+            "React",
+            " ",
+            "ForwardRef",
+            "用法"
+        ],
+        "content_tokens": [
+            "ref",
+            "组件",
+            "forwardRef",
+            "useImperativeHandle",
+            "函数",
+            "Ref",
+            "return",
+            "ForwardRef",
+            "class",
+            "component"
         ]
     },
     {
@@ -289,6 +972,26 @@
         "content": "\nReact Hooks Functional对应class Component生命周期写法\n\ncomponentDidMount\n\nuseEffect(() => {\n  // Your code here\n}, []);\n\ncomponentDidUpdate\n\nuseEffect(() => {\n  // Your code here\n}, [yourDependency]);\n\ncomponentWillUnmount\n\nuseEffect(() => {\n  // componentWillUnmount\n  return () => {\n     // Your code here\n  }\n}, [yourDependency]);\n\nRef.current作为useEffect的依赖\n\n> Mutable values like 'ref.current' aren't valid dependencies because mutating them doesn't re-render the component.\n\n因为引用不会触发渲染，因此不会触发useEffect渲染\n\nconst Foo = () => {\n  const [, render] = useReducer(p => !p, false);\n  const ref = useRef(0);\n\n  const onClickRender = () => {\n    ref.current += 1;\n    render();\n  };\n\n  const onClickNoRender = () => {\n    ref.current += 1;\n  };\n\n  useEffect(() => {\n    console.log('ref changed');\n  }, [ref.current]);\n\n  return (\n\n      Render\n      No Render\n\n  );\n};\n\n正确获取组件ref实例\n\nconst Component = () => {\n  const [isMounted, toggle] = useReducer((p) => !p, true);\n  const [elementRect, setElementRect] = useState();\n\n  const handleRect = useCallback((node) => {\n    setElementRect(node?.getBoundingClientRect());\n  }, []);\n\n  return (\n\n      {isMounted && Example}\n      Toggle\n      {JSON.stringify(elementRect, null, 2)}\n\n  );\n};\n\n动态创建portal\n\nimport { memo, useEffect, useRef, useState } from 'react';\nimport { createPortal } from 'react-dom';\n\nconst Portal = ({ id, children }) => {\n\n  const el = useRef(document.getElementById(id) || document.createElement('div'));\n  const [dynamic] = useState(!el.current.parentElement);\n\n  useEffect(() => {\n\n    if (dynamic) {\n      el.current.id = id;\n      document.body.appendChild(el.current);\n    }\n\n    return () => {\n      if (dynamic && el.current.parentElement) {\n        el.current.parentElement.removeChild(el.current);\n      }\n    }\n\n  }, [id]);\n\n  return createPortal(children, el.current);\n};\nexport default memo(Portal);\n",
         "tags": [
             "react"
+        ],
+        "title_tokens": [
+            "React",
+            " ",
+            "函数",
+            "式",
+            "组件",
+            "使用手册"
+        ],
+        "content_tokens": [
+            "const",
+            "current",
+            "el",
+            "useEffect",
+            "ref",
+            "id",
+            "return",
+            "Your",
+            "code",
+            "document"
         ]
     },
     {
@@ -297,25 +1000,125 @@
         "content": "\nuseRef vs createRef\n\n组件每次渲染都会执行createRef生成一个ref对象\nuseRef在第一次渲染后创建一个ref对象, 重新渲染后如果发现已经创建就不会再执行了\n\nimport React, { useRef, createRef, useState } from \"react\";\nimport ReactDOM from \"react-dom\";\n\nfunction App() {\n  const [renderIndex, setRenderIndex] = useState(1);\n  const refFromUseRef = useRef();\n  const refFromCreateRef = createRef();\n  if (!refFromUseRef.current) {\n    refFromUseRef.current = renderIndex;\n  }\n  if (!refFromCreateRef.current) {\n    refFromCreateRef.current = renderIndex;\n  }\n  return (\n\n      Current render index: {renderIndex}\n\n      First render index remembered within refFromUseRef.current:\n      {refFromUseRef.current}\n\n      First render index unsuccessfully remembered within\n      refFromCreateRef.current:\n      {refFromCreateRef.current}\n\n       setRenderIndex(prev => prev + 1)}>\n        Cause re-render\n\n  );\n}\n\nconst rootElement = document.getElementById(\"root\");\nReactDOM.render(, rootElement);\n\n",
         "tags": [
             "react"
+        ],
+        "title_tokens": [
+            "React",
+            " ",
+            "Ref",
+            " ",
+            "and",
+            " ",
+            "CreateRef"
+        ],
+        "content_tokens": [
+            "current",
+            "refFromCreateRef",
+            "refFromUseRef",
+            "render",
+            "const",
+            "createRef",
+            "renderIndex",
+            "useRef",
+            "index",
+            "渲染"
         ]
     },
     {
         "uri": "/posts/2022/05/react-rerender/",
         "title": "React Rerender重绘原理",
         "content": "\nreact rerender原理\n\nreact中组件重绘是一个不可避免的问题，因为react中组件的更新方式就是旧组件销毁，新组件替代旧组件的形式。而且react组件中以树的形式进行构建，必然带来的就是父组件更新，其所有的子组件都会更新\n\n// 父组件\nfunction ListComp() {\n  const [list, setList] = useState([\n    {\n      id: 1,\n      value: \"\",\n    },\n    {\n      id: 2,\n      value: \"\",\n    },\n    {\n      id: 3,\n      value: \"\",\n    },\n  ]);\n\n  return (\n\n      {JSON.stringify(list)}\n\n        {list.map((item, idx) => (\n           {\n              setList(\n                list.map((item) => {\n                  if (item.id === id) {\n                    item.value = value;\n                  }\n                  return item;\n                })\n              );\n            }}\n          >\n        ))}\n\n  );\n}\n\n// 子组件\nfunction Item({ id, value, onChange }) {\n  return (\n\n      {id}\n       onChange(id, e.target.value)}\n      />\n\n  );\n}\n\n在只输入一个输入框的同时，其他子组件都在重新渲染\n\n当组件的状态发生变化时，组件及其子组件都会rerender\n\n如果不想子组件发生不必要的render，使用memo包裹一下组件\n\nconst Item = memo(() => Item)\n\n可以看到父组件更新后，子组件不会再发生rerender了\n\n我重新包裹一下我们的子组件Item\n\nconst ItemWrapper = memo(Item)\n\n子组件还是会发生不必要的rerender\n\n当组件使用memo包裹后还会发生rerender，说明组件又props发生了变化\n\n排查后就是onChange属性发生了变化， 每次父组件rerender后子组件都会重新生产一个onChange事件\n\nonChange={(id: number, value: any) => {\n  setList(\n    list.map((item) => {\n      if (item.id === id) {\n        item.value = value;\n      }\n      return item;\n    })\n  );\n}}\n\n使用useCallback对属性进行缓存，useCallback会生成一个函数缓存\n\n  const onChange = useCallback((id: any, value: any) => {\n    setList((preList) =>\n      preList.map((item) => {\n        if (item.id === id) {\n          item.value = value;\n        }\n        return item;\n      })\n    );\n  }, []);\n\n最终代码\n\nconst Item: React.FC = memo(({ id, value, onChange }: any) => {\n  return (\n\n      {id}\n       onChange(id, e.target.value)}\n      />\n\n  );\n});\n\nconst Parent = () => {\n  const [items, setItems] = useState([\n    { value: \"\", id: 1 },\n    { value: \"\", id: 2 },\n    { value: \"\", id: 3 },\n  ]);\n  const onChange = useCallback((id: any, value: any) => {\n    setItems(\n      items => items.map((item) => {\n        if(item.id === id) {\n          item.value = value\n        }\n        return item;\n      })\n    );\n  }, []);\n\n  return (\n\n      {JSON.stringify(items)}\n      {items.map((item, index) => (\n\n      ))}\n\n  );\n};\n\nhttps://alexsidorenko.com/blog/react-list-rerender/\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "React",
+            " ",
+            "Rerender",
+            "重绘",
+            "原理"
+        ],
+        "content_tokens": [
+            "id",
+            "value",
+            "组件",
+            "item",
+            "onChange",
+            "const",
+            "return",
+            "rerender",
+            "Item",
+            "any"
+        ]
     },
     {
         "uri": "/posts/2022/05/react-usage-issue/",
         "title": "React Usage Issue",
         "content": "\nnot assignable to type LegacyRef\\\n\nuseRef定义一个ref时，报不能推断类型\n\nimport React, { useRef, RefObject } from 'react';\n\nfunction Test()\n{\n    const node = useRef(null);\n\n    if (\n        node &&\n        node.current &&\n        node.current.contains()\n    ){ console.log(\"current accessed\")}\n\n    return\n}\n\n因为useRef是使用HTMLElement定义的泛型，所以说不能推断，改成ref所对应的标签泛型就可以了\n\nCannot assign to 'current' because it is a read-only property\n\n当在react中使用useRef定义ref时，报这样的错误, 因为结果走到React.RefObject\n\nuseRef有这3种定义\n\nfunction useRef(initialValue: T): MutableRefObject;\n\nfunction useRef(initialValue: T|null): RefObject;\n\nfunction useRef(): MutableRefObject;\n\nuseRef初始值设为null\nuseRef定义了一个初始的类型\n\nconst elem = useRef(null);\n\ntype Test = typeof elem; // Test = React.RefObject\n`",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "React",
+            " ",
+            "Usage",
+            " ",
+            "Issue"
+        ],
+        "content_tokens": [
+            "useRef",
+            "RefObject",
+            "current",
+            "function",
+            "node",
+            "null",
+            "定义",
+            "React",
+            "Test",
+            "ref"
+        ]
     },
     {
         "uri": "/posts/2022/05/react-usage/",
         "title": "react 使用方法",
         "content": "\nHooks\n\n1. forceUpdate\n\nconst [state, updateState] = React.useState();\nconst forceUpdate = React.useCallback(() => updateState({}), []);\n\nClass Componet\n\n1.forceUpdate\n\n this.forceUpdate();\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "react",
+            " ",
+            "使用",
+            "方法"
+        ],
+        "content_tokens": [
+            "forceUpdate",
+            "React",
+            "const",
+            "updateState",
+            "Class",
+            "Componet",
+            "Hooks",
+            "state",
+            "useCallback",
+            "useState"
+        ]
+    },
+    {
+        "uri": "/posts/2022/07/regex/",
+        "title": "正则表达式",
+        "content": "\n正则表达式\n\n| 特殊字符   | 正则表达式 | 记忆方式                                     |\n| ---------- | ---------- | -------------------------------------------- |\n| 换行符     | \\n         | new line                                     |\n| 换页符     | \\f         | form feed                                |\n| 回车符     | \\r         | return                                   |\n| 空白符     | \\s         | space                                    |\n| 制表符     | \\t         | tab                                      |\n| 垂直制表符 | \\v         | vertical tab                             |\n| 回退符     | [\\b]       | backspace,之所以使用[]符号是避免和\\b重复 |\n\n引用分组\n\n括号分组的编号规则是从左向右计数，从1开始\n\n无论括号如何嵌套，分组的编号都是根据开括号出现顺序来计数的；开括号是从左向右数起第多少个开括号，整个括号分组的编号就是多少。\n\n反向引用（back-reference），它允许在正则表达式内部引用之前的捕获分组匹配的文本（也就是左侧），其形式也是\\num\n，其中num表示所引用分组的编号，编号规则与之前介绍的相同。\n\n/([a-z])\\1/.match('a@qq.com')  // qq\n\n其中\\1表示反向引用的值\n\n非引用分组\n\n非捕获分组类似普通的捕获分组，只是在开括号后紧跟一个问号和冒号（?:xxxx）\n\n> (?:\\d{4})-(\\d{2})-(\\d{2})\n\n位置匹配\n\n^ 开头位置\n&结尾位置\n\\b单位边界位置\n\\B非单词边界位置\n(?=p) 正向先行断言\n(?!p)  负向先行断言\n(? RegExp.exec(string)\n\nRegExp对象中存在 lastIndex变量，它指定下次开始尝试匹配的位置。\n\n指定全局模式g之后，RegExp对象每次匹配成功，都会把匹配的结束位置更新到lastIndex，下次调用时从lastIndex开始尝试匹配\n\nvar pattern = /\\d{4}-\\d{2}-\\d{02}/u\n\nvar str = \"2022-01-05 2022-05-23\"\n\nvar matchArray = pattern.exec(str)\n\n和String.match方法对比\n\nRegexp.exec()总是返回单次的匹配结果。\n对String.match()来说，如果指定了全局模式，则会返回一个字符串数组，其中包含各次成功匹配的文本，但不包含任何其他信息。\n\ntest\n\n> RegExp.test(string) => boolean\n\nlastIndex 索引后会发生变化\n\n每个RegExp对象都包含状态变量lastIndex。如果指定了全局模式，每次执行RegExp.test()时，都会从字符串中的lastIndex偏移值开始尝试匹配，所以如果用同一个RegExp多次验证字符串，必须记得每次调用之后，将lastIndex设定为0，否则就可能出错了。\n\nString.match\n\nString.search\n\nString.replace\n\nString.split\n\n注意点\n\n\\b 匹配成功只有一种情况：一边必须保证\\w（等价于[0-9a-zA-Z_]）匹配成功，另一边必须保证\\w匹配不成功。\n\n以下情况都是true\n\n/a\\b/u.test(\"a, \")\n// true\n/a\\b/u.test(\"a，\")\n// true\n/a\\b/u.test(\"a。\")\n// true\n\n命名分组\n\nES2017新增了对命名分组的支持。如果使用了命名分组，具体写法是（?  regex），其中name为捕获分组的名称。\n\npattern = /(? \\d{4})-(? \\d{2})-(? \\d{2})/u;\nresult = pattern.exec(\"2017-12-25\");\n\n// => result.groups.year === '2017'\n// => result.groups.month === '12'\n// => result.groups.day === '25\n\n除非复用RegExp对象，否则每次遇到/regex/或new RegExp(regex)时，都会重新生成RegExp对象，这样就会造成死循环。\n\n需要重新定义变量后再使用\n\n// 身份证\n^[1-9]\\d{14}(\\d{2}[0-9x])?$\n\n// html标签匹配\n^]*)? >$\n\n// 匹配路径\n'/foo/barqux.php'.match(/[a-z]+([a-z]+([a-z]+)?\\.php)/)\n\n// 邮箱匹配\n\n[-\\w.]{1,64}@([-a-zA-Z0-9]{1,63}\\.)[-a-zA-Z0-9]{1,63}\n",
+        "tags": [
+            "regex"
+        ],
+        "title_tokens": [
+            "正则表达式"
+        ],
+        "content_tokens": [
+            "分组",
+            "RegExp",
+            "匹配",
+            "lastIndex",
+            "String",
+            "test",
+            "括号",
+            "match",
+            "exec",
+            "pattern"
+        ]
     },
     {
         "uri": "/posts/2022/07/tcp-ip/",
@@ -324,13 +1127,48 @@
         "tags": [
             "tcp",
             "ip"
+        ],
+        "title_tokens": [
+            "TCP",
+            "/",
+            "IP",
+            "学习",
+            "笔记"
+        ],
+        "content_tokens": [
+            "ACK",
+            "TCP",
+            "发送",
+            "报文",
+            "seq",
+            "确认",
+            "ack",
+            "客户端",
+            "收到",
+            "IP"
         ]
     },
     {
         "uri": "/posts/2022/06/caddy/",
         "title": "Caddy ",
         "content": "\ncaddy\n\n是一个类似于nginx的web服务器，只不过是用Go写的，在配置上，要比nginx配置更简单，配置文件使用caddyfile， 默认开箱就是支持https的\n\n下载\n\nDownload Caddy (caddyserver.com)\n\n安装\n\nInstall — Caddy Documentation (caddyserver.com)\n\nwindows\n\n下载指定打包后的exe文件，放到system32目录下，就能在终端中使用了\n\n> // 格式化\n>\n> caddy fmt\n>\n>  // 前台运行\n>\n> caddy run\n>\n>  // 后台运行\n>\n> caddy start\n\ncaddyfile语法\n\n一个可选的全局配置块需要在文件的最上方\n否则，文件的最上方总是服务的地址address\n所有的指令和匹配器必须放在网站块中，这里没有全局scope或者通过网站块继承\n如果只有一个网站块， {}就是可选的\n\nusage\n\n配置目录下新建文件名为Caddyfile的文件，caddy区别于nginx最大的特点就是配置文件简单，对于新手来说非常友好\n\nlocalhost\nrespond \"hello caddy1\"\n\n配置文件目录下执行caddy run,就可以看到在控制台里有日志打印记录\n\n其中看到localhost:2019什么的，其实是当前caddy服务的端口\n\n浏览器中输入localhost:2019/config，能看到当前caddyfile最终转换成的json配置文件\n\n配置文件中第一行是localhost\n\n浏览器中输入localhost, 最终就是返回我们第二行输入的respond出来的字符串\n\n这里我们就能看到，caddy作为一个正向代理，反向代理，最合适不过了\n\n接口代理\n\n新建一个模拟接口\n\nconst http = require(\"http\")\n\nconst app = http.createServer((req, res) => {\n    res.writeHead(200, { 'Content-Type': 'application/json' });\n    res.end(JSON.stringify({\n      data: 'Hello World!'\n    }));\n})\n\napp.listen(\"3000\", () => {\n    console.log(\"listening at port 3000\");\n})\n\n现在接口地址是3000端口， 访问3000时，会返回data\n\n现在有个需求，需要访问8001端口时，代理到3000端口上\n\n:8001 {\n    reverse_proxy http://localhost:3000\n}\n\n两三行解决，第一块是写的:8001加一个大括号， 即默认是localhost:8001, 大括号即是site block\n\n可以在同一个配置文件中写多个网站的配置代理\n\nreverse_proxy: 代理的指令\n\n> reverse_proxy /api/* http://localhost:3000\n\n即把所有的/api路由结尾的都代理到3000端口\n\n相比于之前的nginx，或者说webpack中的devServer配置代理的操作，都简化了不少\n\n添加自定义请求header\n\n:8001 {\n    header Custom-Header \"caddy-server\"\n    reverse_proxy http://localhost:3000\n}\n\n配置中自定义添加header指令，就能添加自定义请求头了\n\nheader Location http:// https://\n\n替换header中location  http为https\n\n静态文件服务\n\n:8001 {\n    file_server browse\n}\n\nfile_server是一个文件服务的指令， 加上browse, 就是文件列表可视化，搭一个简易的文件服务，美滋滋\n\nSPA 单页面应用\n\n:8001 {\n    header Custom-Header \"caddy-server\"\n    encode gzip\n    handle /api/* {\n        reverse_proxy http://localhost:3000\n    }\n\n    handle {\n\t\ttry_files {path} /index.html\n\t\tfile_server\n\t}\n}\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "Caddy",
+            " "
+        ],
+        "content_tokens": [
+            "3000",
+            "caddy",
+            "localhost",
+            "http",
+            "8001",
+            "header",
+            "配置文件",
+            "proxy",
+            "reverse",
+            "server"
+        ]
     },
     {
         "uri": "/posts/2021/11/frp/",
@@ -339,12 +1177,44 @@
         "tags": [
             "工具",
             "go"
+        ],
+        "title_tokens": [
+            "go",
+            " ",
+            "Frp",
+            " ",
+            "工具",
+            "使用"
+        ],
+        "content_tokens": [
+            "frp",
+            "frps",
+            "8099",
+            "http",
+            "ini",
+            "客户端",
+            "port",
+            "systemd",
+            "端口",
+            "目录"
         ]
     },
     {
         "uri": "",
         "content": "�PNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0003�\u0000\u0000\u0000�\b\u0006\u0000\u0000\u0000\u001a�\u0001\u0016\u0000\u0000 \u0000IDATx���y\\���?��i�\u0016�P#�\u0010�ݍBʾd+�e,\u0019�X>a�\f\u0006c\u001a�2�\u0018ˌu�[�,!��P�!T�6�RR:����\\�?���t���\u0012������辯���s��������\u00161�\u0018\b!�\u0010B\b!��\u001d��.\u0000!�\u0010B\b!���A\u0001!!�\u0010B\b!��)\n\b\t!�\u0010B\b!DMQ@H\b!�\u0010B\b!j�\u0002BB\b!�\u0010B\bQS\u0014\u0010~ ���8��>���[��\u0019]S�p��i���B�R��/�4+���\f��N��۹N�CYY\u0019jkkQ]]�3g�\u0000��N(//GCC\u0003\"\"\"���`�O�B�Y�f�׺)���\u000e\b!�}�v��o�\u0006\u0000�{i2f̘~��\u0012\u0011\u0011��ńp\u00181�\b�K��;����\u001fkmm\u0005�A�3��777#!!\u0001����h4�>}:\\]]�Z����C����?\u001a��l�t�WXX����Ac0qww\u001f0^�c:\u000f\u0013&L�x���\u001eJ�\u0012���f���݋��d��zL�6\r\u001e\u001e\u001e\u0016��A***������j�\u001d;\u0016���puu�J�bBhe�'c��uBAA\u0001\n\n\n�ݏ�üy��?�IN��]������zO!\u0004����鐜����\u0000��ߊ\u0015+\u0006������z\\�n��]�~�\u0004.%%\u0005\u0019\u0019\u0019X�t)�~�m�Ǟ/��\u0012eeery��:�\u000f\u0002��\t��eѢE��\u001f�8h\f&��hJDDDC��qG\u0018S\u0017���\u0012���~��J%�\u00108u�\u0014���\u0010\u001d\u001dm�����h�Oooo\u0000��s�,ޯ��A~~��Ե�ʕ+��@���\u0003\u0000�K�*++-֝:u\n@_�vo\u000b�`I��`0[6u#��/���@�&]�����\u0001=}L�cnn�ף��1//\u000f������7k���N�|\u0018>>>��8{�ly~��˗��w�Ell,\u0002\u0003\u0003��ىK�.���ߢ5pӦM���Ç\u001f~�Ç\u000fcܸqr\u000b��\u0005\u000b�\u0012MS\fk֬��mې���g�}\u0016===�p�\u0002�F�ټ�DDD��0!\u001c\u0006>\u001e\u0013&L@ff��\b&%%���������(�]�h\u0011",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "\r\n",
+            "3g",
+            "5p",
+            "6u",
+            "777",
+            "7k",
+            "8h",
+            "8u",
+            "Ac0qww",
+            "BB"
+        ]
     },
     {
         "uri": "/posts/2022/06/mp3-data-struct/",
@@ -352,6 +1222,23 @@
         "content": "\nmp3数据结构\n\nMP3文件大体上分为三个部分：ID3V2 + 音频数据 + ID3V1\n\nid3v1\n\nid3v1固定128个byte，以tag字符开头\n\nid3v2\n\nB[0:2]\t标识头，必须为“ID3”\nB[3]\t版本号，ID3V2.3 就记录3\nB[4]\t副版本号，此版本记录为0\nB[5]\t标志字节，一般为0，只使用高三位，其它位为0\n\t\t\ta：表示是否使用Unsynchronisation；\n\t\t\tb：表示是否有扩展头部，一般没有，所以一般也不设置；\n\t\t\tc：表示是否为测试标签，99.99%的标签都不是测试标签，不设置\nB[6:9]\t标签大小，共四个字节，每个字节只使用低7位，最高位不使用恒为0，计算时将最高位去掉，得到28bit的数据，计算公式如下：Size=(Size[0]&0x7F)0x200000+(Size[1]&0x7F)0x400+(Size[2]&0x7F)*0x80+(Size[3]&0x7F)\n\nmp3 frame\n\n数据帧结构\n\n| 4字节帧头 | 2字节可选CRC,取决于帧头的第16位 | 32字节通道信息 | 声音数据 |\n| --------- | ------------------------------- | -------------- | -------- |\n|           |                                 |                |          |\n\n4个字节帧头\n",
         "tags": [
             "mp3"
+        ],
+        "title_tokens": [
+            "mp3",
+            " ",
+            "数据结构"
+        ],
+        "content_tokens": [
+            "字节",
+            "Size",
+            "0x7F",
+            "标签",
+            "版本号",
+            "99",
+            "ID3V2",
+            "id3v1",
+            "mp3",
+            "数据"
         ]
     },
     {
@@ -360,6 +1247,24 @@
         "content": "\nPartial\n\n可选类型, 把原本必选的参数都改成可选参数\n\ninterface Crew {\n  age: number;\n  name: string;\n}\n\nconst Jerry:Crew = {\n    age: 10,\n    name: 'jack'\n};\n\ntype AnonymousPeople = Partial;\n\nconst tom: AnonymousPeople = {\n    name: 'Tom'\n};\n\nkeyof\n\nkeyof用于获取对象的key\n\ntype Point = {\n  x: number;\n  y: number;\n}\n\ntype KPoint = keyof Point; // x | y\n\ntypeof\n\nconst point = {\na : 1,\nb: 'test'\n}\ntype P = keyof typeof point; // type '\"a\" || \"b\"'\n\nconst coordinate: P = 'z' // Type '\"z\"' is not assignable to type '\"a\" | \"b\"'.\n\ninfer\n\n推断返回类型\n\nconst add = (x: number, y: number) => x + y\ntype D = ReturnType // number\n\ntype ReturnType any> = T extends (...args: any) => infer R ? R : any\n\n> infer 的作用是让 TypeScript 自己推断，并将推断的结果存储到一个类型变量中，infer 只能用于 extends 语句中。\n\nextends\n\n条件类型是一种由条件表达式所决定的类型\n\n条件类型使类型具有了不唯一性，增加了灵活性\n\n> T extends U ? X : Y\n\n若类型T可以被赋值给类型U， 则返回X， 否则返回Y\n\n> A extends B\n\nA是B的超集，A包括B所有的属性，甚至更多\n\nA extends B is a lot like ‘A is a superset of B’, or, to be more verbose, ‘A has all of B’s properties, and maybe some more’.\n\nany & unknown\n\n顶层类型\n\nany:  绕过类型检查，直接可用\nunknown： 必须判断类型才能使用\n\nnever & void\n\nnever： 任何类型都不赋值， 只能是never\nvoid： 可以被赋值的类型\n\n类型约束\n\ntype MyType = T extends { message: any } ? T[\"message\"] : never\n\n内置类型函数\n\n// Exclude null and undefined from T\n// 判断是否为undefined\ntype NonNullable =\n  T extends null | undefined ? never : T\n\n// Obtain the parameters of a function type in a tuple\n// 类型判断\ntype Parameters =\n  T extends (...args: infer P) => any ? P : never\n\n// Obtain the parameters of a constructor function type in a tuple\ntype ConstructorParameters =\n  T extends new (...args: infer P) => any ? P : never\n\n// Obtain the return type of a function type\n// 返回值推断\ntype ReturnType =\n  T extends (...args: any[]) => infer R ? R : any\n\n// Obtain the return type of a constructor function type\n//\ntype InstanceType =\n  T extends new (...args: any[]) => infer R ? R : any\n\n示例\n\ntype Action =\n  {\n    type: \"INIT\"\n  }\n  | {\n    type: \"SYNC\"\n  }\n  | {\n    type: \"LOG_IN\"\n    emailAddress: string\n  }\n  | {\n    type: \"LOGINSUCCESS\"\n    accessToken: string\n  }\n\ntype ActionType = Action[\"type\"]\n\ntype ExcludeTypeKey = T extends \"type\" ? never : T\n\ntype ExcludeTypeArguments = A extends { type: T }\n  ? {\n    [k in Exclude]: A[k]\n  }\n  : never\n\nfunction dispatch(type: T, args: ExcludeTypeArguments) {\n\n}\n\ndispatch(\"LOG_IN\", {\n  emailAddress: '123'\n})\n\ndispatch(\"INIT\", {})\n\n引用\n\nhttps://artsy.github.io/blog/2018/11/21/conditional-types-in-typescript/",
         "tags": [
             "typescript"
+        ],
+        "title_tokens": [
+            "typescript",
+            " ",
+            "泛型",
+            "类型"
+        ],
+        "content_tokens": [
+            "type",
+            "extends",
+            "any",
+            "never",
+            "类型",
+            "infer",
+            "args",
+            "number",
+            "const",
+            "function"
         ]
     },
     {
@@ -368,6 +1273,22 @@
         "content": "\nvite\n\nresolveConfig\n\n找到vite对应的config文件，并且判断config文件类型，是否是ts文件还是mjs文件\n通过esbuild去解析config文件中对应的代码，并且生成对应的文件保存到磁盘上",
         "tags": [
             "vite"
+        ],
+        "title_tokens": [
+            "源码",
+            "解析"
+        ],
+        "content_tokens": [
+            "config",
+            "文件",
+            "vite",
+            "对应",
+            "esbuild",
+            "mjs",
+            "resolveConfig",
+            "ts",
+            "文件类型",
+            "并且"
         ]
     },
     {
@@ -377,6 +1298,28 @@
         "tags": [
             "vite",
             "client"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "--",
+            " ",
+            "客户端",
+            "错误",
+            "弹窗",
+            "展示"
+        ],
+        "content_tokens": [
+            "err",
+            "file",
+            "text",
+            "const",
+            "link",
+            "message",
+            "el",
+            "frame",
+            "loc",
+            "plugin"
         ]
     },
     {
@@ -386,6 +1329,25 @@
         "tags": [
             "vite",
             "client"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "Client",
+            "客户端",
+            "源码"
+        ],
+        "content_tokens": [
+            "const",
+            "dep",
+            "path",
+            "update",
+            "vite",
+            "更新",
+            "href",
+            "payload",
+            "new",
+            "reload"
         ]
     },
     {
@@ -395,6 +1357,25 @@
         "tags": [
             "vite",
             "env"
+        ],
+        "title_tokens": [
+            "vite",
+            "中",
+            "env",
+            "环境变量",
+            "使用"
+        ],
+        "content_tokens": [
+            "env",
+            "key",
+            "file",
+            "process",
+            "const",
+            "mode",
+            "vite",
+            "prefix",
+            "ENV",
+            "dotenv"
         ]
     },
     {
@@ -403,6 +1384,27 @@
         "content": "\nvite hmr热更新源码\n\nvite中在文件发生改动时，server端会监听文件的变化，当文件发生变化会通知客户端重新发起请求，重新渲染页面\n\n源码位置\n\n>   \"version\": \"3.0.0-alpha.9\"\n\npackages/vite/src/node/server/hmr.ts\n\nhandleHMRUpdate\n\n热更新主入口函数\n\n文件类型判断\n\n判断更新的文件类型是什么文件，如果是配置文件就会重新启动服务\n\n\tconst shortFile = getShortName(file, config.root)\n  const fileName = path.basename(file)\n\n  const isConfig = file === config.configFile\n  const isConfigDependency = config.configFileDependencies.some(\n    (name) => file === name\n  )\n  const isEnv =\n    config.inlineConfig.envFile !== false &&\n    (fileName === '.env' || fileName.startsWith('.env.'))\n  // 配置文件\n  if (isConfig || isConfigDependency || isEnv) {\n    // auto restart server\n    debugHmr([config change] ${colors.dim(shortFile)})\n    config.logger.info(\n      colors.green(\n        ${path.relative(process.cwd(), file)} changed, restarting server...\n      ),\n      { clear: true, timestamp: true }\n    )\n    try {\n      // 重新启动\n      await server.restart()\n    } catch (e) {\n      config.logger.error(colors.red(e))\n    }\n    return\n  }\n\n构造上下文\n\n构造出热更新上下文\n\n  const hmrContext: HmrContext = {\n    file,\n    timestamp,\n    modules: mods ? [...mods] : [],\n    read: () => readModifiedFile(file),\n    server\n  }\n\nTips: 热更新的时候，vite官方之前是直接读取变化的文件，会发生有些时候读取时间过早读不到内容的情况，所以用了一个定时轮训的方式，读取文件变化的时间modified time,只要文件修改时间发生变化就返回出文件内容buffer\n\nasync function readModifiedFile(file: string): Promise {\n  const content = fs.readFileSync(file, 'utf-8')\n  if (!content) {\n    const mtime = fs.statSync(file).mtimeMs\n    await new Promise((r) => {\n      let n = 0\n      const poll = async () => {\n        n++\n        const newMtime = fs.statSync(file).mtimeMs\n        if (newMtime !== mtime || n > 10) {\n          r(0)\n        } else {\n          setTimeout(poll, 10)\n        }\n      }\n      setTimeout(poll, 10)\n    })\n    return fs.readFileSync(file, 'utf-8')\n  } else {\n    return content\n  }\n}\n\n响应插件的热更新\n\n这里会进行过滤需要更新的模块，提高更新的效率，避免全量更新\n\n  for (const plugin of config.plugins) {\n    if (plugin.handleHotUpdate) {\n      const filteredModules = await plugin.handleHotUpdate(hmrContext)\n      // 这里会进行过滤需要更新的模块，提高更新的效率，避免全量更新\n      if (filteredModules) {\n        hmrContext.modules = filteredModules\n      }\n    }\n  }\n\n如果文件是html，直接走全量更新\n\n if (file.endsWith('.html')) {\n    config.logger.info(colors.green(page reload ) + colors.dim(shortFile), {\n      clear: true,\n      timestamp: true\n    })\n    ws.send({\n      type: 'full-reload',\n      path: config.server.middlewareMode\n        ? '*'\n        : '/' + normalizePath(path.relative(config.root, file))\n    })\n  }\n\n最后走到updateModules\n\nupdateModules\n\n对模块进行遍历\n\n校验模块的有效性\n每个模块进行更新边界整理，就是走propagateUpdate方法\n整体搜集放入到updates数组中，最后通过websocket返回给前端\n\n\tconst updates: Update[] = []\n  const invalidatedModules = new Set()\n  let needFullReload = false\n\n  for (const mod of modules) {\n    invalidate(mod, timestamp, invalidatedModules)\n    if (needFullReload) {\n      continue\n    }\n\n    const boundaries = new Set()\n    const hasDeadEnd = propagateUpdate(mod, boundaries)\n    if (hasDeadEnd) {\n      needFullReload = true\n      continue\n    }\n\n    updates.push(\n      ...[...boundaries].map(({ boundary, acceptedVia }) => ({\n        type: ${boundary.type}-update as Update['type'],\n        timestamp,\n        path: boundary.url,\n        acceptedPath: acceptedVia.url\n      }))\n    )\n  }\n\n通知更新\n\n// 全量更新\nif (needFullReload) {\n  ws.send({\n    type: 'full-reload'\n  })\n} else {\n  // 范围更新\n  ws.send({\n    type: 'update',\n    updates\n  })\n}\n\npropagateUpdate\n\n> time to update\n",
         "tags": [
             "hmr"
+        ],
+        "title_tokens": [
+            "vite",
+            "--",
+            "hmr",
+            "热",
+            "更新",
+            "源码",
+            "解读"
+        ],
+        "content_tokens": [
+            "const",
+            "file",
+            "config",
+            "更新",
+            "server",
+            "type",
+            "colors",
+            "path",
+            "timestamp",
+            "true"
         ]
     },
     {
@@ -411,6 +1413,25 @@
         "content": "\nVite -- moduleGraph源码解读\n\nvite中使用moduleGraph去记录模块之间的引用关系\n\n源码位置\n\npackages/vite/src/node/server/moduleGraph.ts\n\n>   \"version\": \"3.0.0-alpha.9\"\n\nModuleNode\n\nModuleNode是moduleGraph中的最小颗粒，每个模块都会用一个node去表示，其中每个node中都记录了当前模块的所有信息，包括编译之后的结果\n\nclass ModuleNode {\n  /**\n   Public served url path, starts with /\n   */\n  url: string\n  /**\n   Resolved file system path + query\n   */\n  id: string | null = null\n  file: string | null = null\n  type: 'js' | 'css'\n  info?: ModuleInfo\n  meta?: Record\n  importers = new Set()\n  importedModules = new Set()\n  acceptedHmrDeps = new Set()\n  isSelfAccepting?: boolean\n  transformResult: TransformResult | null = null\n  ssrTransformResult: TransformResult | null = null\n  ssrModule: Record | null = null\n  ssrError: Error | null = null\n  lastHMRTimestamp = 0\n  lastInvalidationTimestamp = 0\n\n  constructor(url: string) {\n    this.url = url\n    this.type = isDirectCSSRequest(url) ? 'css' : 'js'\n    // #7870\n    // The isSelfAccepting value is set by importAnalysis, but some\n    // assets don't go through importAnalysis.\n    if (isHTMLRequest(url) || canSkipImportAnalysis(url)) {\n      this.isSelfAccepting = false\n    }\n  }\n}\n\nModuleGraph\n\n模块依赖容器类\n\n容器类有4个属性，分别用来记录url、id、文件和模块之间的对应关系\n\n  urlToModuleMap = new Map()\n  idToModuleMap = new Map()\n  // a single file may corresponds to multiple modules with different queries\n  fileToModulesMap = new Map>()\n  safeModulesPath = new Set()\n\nconstructor\n\n构造函数，这里从实例外部传入了一个resolveId函数，把解析id的能力留到外部去做\n\nconstructor(\n    private resolveId: (\n      url: string,\n      ssr: boolean\n    ) => Promise\n  ) {}\n\nresolveUrl\n\n解析url参数\n\n去除url后面的查询参数，保证url最终指向的是同一个模块\n上下文推断可以知道，this.resolveId 最终肯定是个对象，有个id属性\n用node.extname去解析出扩展名\n用url.parseUrl解析url\n把url处理成统一格式并返回\n\n  // for incoming urls, it is important to:\n  // 1. remove the HMR timestamp query (?t=xxxx)\n  // 2. resolve its extension so that urls with or without extension all map to\n  // the same module\n  async resolveUrl(url: string, ssr?: boolean): Promise {\n    url = removeImportQuery(removeTimestampQuery(url))\n    const resolved = await this.resolveId(url, !!ssr)\n    const resolvedId = resolved?.id || url\n    const ext = extname(cleanUrl(resolvedId))\n    const { pathname, search, hash } = parseUrl(url)\n    if (ext && !pathname!.endsWith(ext)) {\n      url = pathname + ext + (search || '') + (hash || '')\n    }\n    return [url, resolvedId, resolved?.meta]\n  }\n\nensureEntryFromUrl\n\n解析url拿到对应的属性\n\n添加到对应的urlToModuleMap、idToModuleMap、fileToModulesMap中，便于后续更新\n\n  async ensureEntryFromUrl(rawUrl: string, ssr?: boolean): Promise {\n    const [url, resolvedId, meta] = await this.resolveUrl(rawUrl, ssr)\n    let mod = this.urlToModuleMap.get(url)\n    if (!mod) {\n      // 模块不存在，记录依赖关系\n      mod = new ModuleNode(url)\n      if (meta) mod.meta = meta\n      this.urlToModuleMap.set(url, mod)\n      mod.id = resolvedId\n      this.idToModuleMap.set(resolvedId, mod)\n      const file = (mod.file = cleanUrl(resolvedId))\n      let fileMappedModules = this.fileToModulesMap.get(file)\n      if (!fileMappedModules) {\n        fileMappedModules = new Set()\n        this.fileToModulesMap.set(file, fileMappedModules)\n      }\n      fileMappedModules.add(mod)\n    }\n    return mod\n  }\n\nupdateModuleInfo\n\n用于更新模块之间依赖信息的\n\n/**\n   Update the module graph based on a module's updated imports information\n   If there are dependencies that no longer have any importers, they are\n   returned as a Set.\n   */\n  async updateModuleInfo(\n    mod: ModuleNode,\n    importedModules: Set,\n    acceptedModules: Set,\n    isSelfAccepting: boolean,\n    ssr?: boolean\n  ): Promise | undefined> {\n    mod.isSelfAccepting = isSelfAccepting\n    // 之前的引入的依赖\n    const prevImports = mod.importedModules\n    // 重置依赖为一个set\n    const nextImports = (mod.importedModules = new Set())\n    // 这个变量用于保存那些不再有任何依赖的模块\n    let noLongerImported: Set | undefined\n    // update import graph\n    for (const imported of importedModules) {\n      const dep =\n        typeof imported === 'string'\n\t\t      // 依赖是个字符串的时候，都会再去走一下获取文件的逻辑\n          ? await this.ensureEntryFromUrl(imported, ssr)\n          : imported\n      // 加入到模块的importers中去\n      dep.importers.add(mod)\n\n      nextImports.add(dep)\n    }\n    // remove the importer from deps that were imported but no longer are.\n    prevImports.forEach((dep) => {\n      // 比对，新模块中没有就删除掉\n      if (!nextImports.has(dep)) {\n        dep.importers.delete(mod)\n        if (!dep.importers.size) {\n          // 加入到0依赖的set中\n          // dependency no longer imported\n          ;(noLongerImported || (noLongerImported = new Set())).add(dep)\n        }\n      }\n    })\n    // update accepted hmr deps\n    // 遍历加入到模块acceptedHmrDeps队列中\n    const deps = (mod.acceptedHmrDeps = new Set())\n    for (const accepted of acceptedModules) {\n      const dep =\n        typeof accepted === 'string'\n          ? await this.ensureEntryFromUrl(accepted, ssr)\n          : accepted\n      deps.add(dep)\n    }\n    return noLongerImported\n  }\n\ncreateFileOnlyEntry\n\n用于解决只记录文件依赖属性的文件， 类型于引入的css需要实现热更新\n\n  createFileOnlyEntry(file: string): ModuleNode {\n    file = normalizePath(file)\n    let fileMappedModules = this.fileToModulesMap.get(file)\n    if (!fileMappedModules) {\n      fileMappedModules = new Set()\n      this.fileToModulesMap.set(file, fileMappedModules)\n    }\n\n    const url = ${FS_PREFIX}${file}\n    for (const m of fileMappedModules) {\n      if (m.url === url || m.id === file) {\n        return m\n      }\n    }\n\n    const mod = new ModuleNode(url)\n    mod.file = file\n    fileMappedModules.add(mod)\n    return mod\n  }\n",
         "tags": [
             "websocket"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "ModuleGraph",
+            "源码",
+            "解读"
+        ],
+        "content_tokens": [
+            "url",
+            "mod",
+            "const",
+            "file",
+            "new",
+            "Set",
+            "null",
+            "fileMappedModules",
+            "dep",
+            "string"
         ]
     },
     {
@@ -420,6 +1441,27 @@
         "tags": [
             "vite",
             "open browser"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "--",
+            " ",
+            "打开",
+            "浏览器",
+            "原理"
+        ],
+        "content_tokens": [
+            "open",
+            "app",
+            "await",
+            "arguments",
+            "Opens",
+            "browser",
+            "com",
+            "https",
+            "image",
+            "sindresorhus"
         ]
     },
     {
@@ -429,12 +1471,47 @@
         "tags": [
             "vite",
             "plugin"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "--",
+            " ",
+            "pluginContainer",
+            "插件",
+            "容器",
+            "源码",
+            "解读"
+        ],
+        "content_tokens": [
+            "id",
+            "result",
+            "ctx",
+            "const",
+            "plugin",
+            "options",
+            "ssr",
+            "return",
+            "code",
+            "null"
         ]
     },
     {
         "uri": "",
         "content": "�PNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0002�\u0000\u0000\u0004�sg#$�Sl4�t�?\r%\r�V4�����6n�I6�\"�d��Θ��83���OEP|1�\u0014Ŀ�� (�\u000f�>�/�\n%�� (>���P苦�;3�i���e�|��{�g�\u0005蹪X��\u0014\u0001\u0016��-\u00172�s���=+����\u0017\u0006�WQ\u001d+]�L\u00026O\u000bw�[�C�{_�������F\u001d\u0015 q\u001fb��\u000b��\u0001�U�v\u0001z��\u001f?�Z\u001e�b�1@�/z��c��s>~�if�,�ӈ\u0005USj��\u0010����F\f�1��_�Mj���b�uݠ�p�a��m�h��mçϙ�>��a\\�+5%��Q�K���F�\b�km}�\u001c�ۖ��\u0011?\u0006��ޚ��\u0011�D\\��\u0007�������!~�6�,�-��7��S�ث��Ŝ�vķ5Z��;\u0004���[���r�mS�����5��{yD���yH�}r�9��|��-\u0007�����\u0015ă��FA������J\u0010\u0003\u0019j\u001a�I.��\u000e[/�]m���K\f\u00177�\u001fK\u0016���R��D��r��Y\u0006�Q��O�-����Q��\u0017|�|�6���\r�\t\u0005(�0��\nMX\u0003\u0011d(@\u0006�\u0016�h��\u000e\u00062\u0014�\u0014\u0019�_�f\u0017\u001b���\u0016�\u001a���\u0016�e�\\c\u0013?~,7\u0002?&\u0019 \u0012ك�^2I��q2\u0001\"y�\u0000if�-�\u0004`)���r����m��n\u0018�����\u001a�?2���6�Xn4$69,�m���,�\u00143ܶf��-%�\u0015�Ŷ\u0015���W��ʬ|\f\"\"\"y��?\u0000�=��K׸r�\n�{�}\u0014\u0015\u0015J4*i���bƌ�\b\f\f�����\u0002�_�\u001eǎ\u001d�qdԘ��uk-l;3�-�\u000f�v��\u0016�\u0007`9p;\u0013�M��[Jb�f駖��F�;11�2\u00000p\u0013\u0011����4����$��͛7�d�\u0012\u0014\u0015\u0015Ir=)̙3\u0007�ڵs�\t\t\t�֭;v�څ۷�\u001c�삂�1k�L�h���k�����7�H\u001d�k�K\\��6\fצ��![,�[�\u0016%\u0016�]\u0019���sK��v�u'&&�\u0001I\"\"jp22��w���)SТE\u000b̜9\u0003K�,EYY������l,^�\u0018\u000f��p�9�l5x7�R��7o�}���~`` ���q����\u001a����\u0005��~K\u0013��4ib�ޤI\u0013���,���_w-��������{\u0013\u00115D���HI�av^���˗����������J�4�ZЖ�|D��\u000fM:�A������H(\u0014���V]]���|�c���r�h�Z-�Tu��MTU��6�p96)�Y�\u0016�??\u0001���\u000e�WTTlv,??\u001fW���;\u001d\u001c\u001c���P\u0000��\u0007�C��R�v�\u001a\u0016,X�g�}\u0006=z�@�6m����C������8|�0����T*�P(���\u001e=R���\u0002\u001f\u001f\u001f�:����ڵ����rHw\u0017�N�ֹ��\u000f�5k�ҵ\"\"�ހ��zv\ru\u000b�y{�\u0013�\u0010�j��t�p_i�m�Gie�h?11�n\u0001L;��\u001f\u0019\"\"\"[BC���K����i,[����11�x��\u0000\u0000\u0016,�\u0007�^\u0015\u000f��]��\u0003��SO��F��\u001b���P�[�n\u0018>|\u0018ڵkg�YgϞÆ\r\u001bp���F6>>*��/��\u001b\u0013G}��:��FR]]m�=;;�\u001d\u0000-�a[�Ƕ�ض�>L�\r�@d���1)f�ł�i���,]����^(((��\u001d;0x�`O\u000f�d�ñcGq��Q�i�\u0016w��\u0013�ڵC�6m�f�u:\u001d.\\����S8u*��E:ޢ�F�ի?\u0001`�L�^�\u000e�v2]�\u001b\"����.%\b�8K�ʫ�\u001d%�\u0013�DDD�������֭�����\b�ޥK\u0017q��E\u0000��␐\u0010��Ԡ��\u0006UUUN-B�n55\u001a|��j��?�=���j��&]�\u0017�8{}���-U\u0000�4��e\u0000���\u0001љ�eS�PS�A~~�\\O[��iLoM_nc�췳�1��:ܮ�d[!������U�2��Y�&9^|#֧^�Y�����\u001a,[y��|k7[��ٺkg�4C8\u0011\u0011\u0011\u0011�J�,�t����\u0019G�\u00044�Ǟe\u0001�&۵�\u0002fX\u001b�\u0018.\u000bHDDD�xر,`\u0002��3�jz�ڲ�����>�|u���\u0012[K�q\u0006�����>^�-6�\u0005\u0006\u000f\u001e,�?/��w����q�:�^���\n+W���0\u0000\u0000���\u0011g�\u0016��L�T�W^��ٳq��m�xHH\b�ϟo�����\u0013C$\"\"�\u0006���lJqr�\u000eoT�\u0014���?�y�\u001d�������hٲ%���\u001f�Wa�\u0018%��\u0002�Mq�_�\u001b7\n�IIIf�#F�\u0010�333QYY!�w�(l��梢��,��kWQ]]m�����F��\u0017��\u00193f 6���\u000f !�1��j|��j|\u0018=z�\u0000�_��G�\u001e�ѣ\u0007���q��U\u001c8p\u0010۷o�\u001a�]�u�V�\u001c����j5�\u000e\u001d��C����\f�.]�/�����4��o\"\"�Ƃ3�T������ԩSF}��뇈\b�>\u0013\u0011\u0011QC��M�Nx ��oJ���\nC�P\"�O��E\u001d^��}3�;w�\u0012��\u000f\u001f���\u0018\u0004\u0005�\u001f\u0016,..\u0016�Ѿz�n\u0015���(��\u000f\b\b\u0010^����[�裏𷿍7\n�]��?�)���\f,\\��l%\u0016�\u0007M���\u001a2\u0006n���F\u0003\u001fOUb�B�\u0010�����u�V�t\"99\tÆս���w���c�\u000ea[�Vc\t\u0016��`�����F�\u001e��_���_��޽������DVV�����D�_ll\u000b(\u0014�����\u0017^\u0010�`�\u0007���sF���\r�DDD�\u0001\u00037y�#\u0017uX�x`\u000e\u000b��3��\u001a�:VW\u001b�6\u001ah�B_�l�>��*++���\t@\u001f�SS\u0007\nm�6m\u0012=�ܹ�(--\u0013����?aРAF}�J\u001fL�8\t���V�߲eK$''!99\t�&MD������k�\u001eqqq�~�xk��\u0007`ժUX�t\t֮]�nݬ�J�T�Ν�1̙3\u0007~~~f}F��\u001f*U݂Hb\u000fX\u0012\u0011\u00115d\\\u0016���X��>l_�\u0005�\u0004\u0002��Y\u0017�S�*p�\u0014x��\u001a\u0000�ĕ5\u0018q�\u0012-������-��nz�{��\u001b7b�ԩ\u0000 ���ڵk(--�x�{ｋٳg\u000b�����SO�ʕ+P��\u0010\u001b\u001b#\\K��\u001a�\u0006�����ѧ�~f[�RaٲeHO?��웨�֠]��HL�[�[��b�\u0006��\u0007\u001f|P(�Q�Tx��q8v�ݟӦM\u00187n\u001c\u0000�Y�fX�j\u0015\u000e\u001d:���B��~�ԩ�Ѳ�yyy\f�DD��0p�W蟬����3�_�6����p}�\f\u000f\u0004�?���O���\u0000��ϸ��6\u0007\u000e\u001c�F�1��ݼy��s�\u001d;����\u001acƌ\u0011��T*�W�\u0003@QQ\u0011��~���cNN\u000e���\u001b�\u001a5\nJ�\u0012J�R�m6U^^��^{\ree�O���&b���-۷oG��݅W������;�\u0014�{��U��\u001f�9t}\"\"���%%�\u0015z�S�˹>F\u000fA��Q`�\u0018%�=^�����*��\u0002}�f��c�B��]\u0014�n�\u000fR�[gs�4\u001a\r\u0016-Z���\u001f���KĔ��bӦMx���\u0002?\u0011\u0011Qc�@�¼�_��M����\u0014ٶ�511�\u001f�Ơ�\u0001\u0000M7=���&�m\u0015��\u001f>n��Wk�R\u0013oִi(Z���V�C^^�\u001f\u000f9:7H$$$���\u0004gϞCU�}E�M�����P��o���P\u001f��\u0017_`���V��@\\\\\u001cڴi�k׮#33�o�$\"\"�\u0014>�/�\f��\u0001�����\u0013\u0001h��\u001f��_M���\u0003+�09Β\u0012\"O+,,��c\u0005�\\+//\u0017yy�N�A�B�Dddݺ����6��õkWq���h\u0012\u0011\u00115\u0016\f��\u0016\u0017��W\u0017q�=�y��\u0001\u00183f��C�gϞ�������'\u0006nr��Jԋ�\u000eқ2e��\u0002J���|њs\"\"\"��\u000fM\u0012�\u0019���h���\u001c�\u0017���\u0010\u0011\u0011�o��&\"3gΜFӦ!���AFF\u0006~�q\u0007\u001f~$\"\"r\u0012\u00037\u0011�ټy���H����^,)!\"\"\"\"�\u0011\u00037\u0011\u0011\u0011\u0011��\u0018������d��MDDDD$#\u0006n\"\"\"\"\"\u00191p\u0013\u0011\u0011\u0011\u0011Ɉ������HF\f�DDDDD2b�&\"\"\"\"�\u0011\u00037\u0011\u0011\u0011\u0011��\u0018������d��MDDDD$#\u0006n\"\"\"\"\"\u00191p\u0013\u0011\u0011\u0011\u0011Ɉ������HF\f�DDDDD2b�&\"\"\"\"�\u0011\u00037\u0011\u0011\u0011\u0011��\u0018������d��MDDDD$#\u0006n\"\"\"\"\"\u0019�>\u0001h\u0019=\u0012];NE�s�5�!��q*ڷz�kC���7RZҡC\u0007�}[3�DDD��1p{���J�\\�\u0012�N�\u0016B����`ڴiP�Tزe+���k�;l\u0003@�\u0004�\u001f�4\u0014��\n]\u0012��u�0t�8\u001b���$���t���j{RR�҇\u001a�\u0006ee�+�\u0010\u0011\u0011Q����e��������ɓ\b\b\b�\u0013O��J���͛�a�g�6\u0000t�%M�\u0006���1�O�d�t��ԁ���\u0017m��m���\u0007\u000b��ϟwϠ���ȫ1p{���*����8~�8��������o���:'I\u0017��3�R�W^y\u0005���F�CBB0�|�W���w�\u001e\u001e\u0011\u0011\u0011y!�R⥪���r�JO\u000f\u0003\u0000\u0010\u001e�@�\u0018�l����:����;＃��R\\�|\u0019-[�Dp��Ò�ϟǉ\u0013'}����h?����`[�V#;;[v���\u0013˖\u0005˂���l���\u00035\u001f�N\u0018;v��{�\u001f��,��j�\u0010E\u0011E5x���L\u001e\u0018�W\u001e𩧞�\u0005ۢ(>�wI��]�a��\u0019z�vNN���\u0007\u0000xyy���ȎmݺU��7s�\f��u�رR�-�\"���Kc\b\t\t�����K\u0001�!�3�\u0000\u0010\u001f\u000bj��LuUyzz!00P\u001as�7\u0018�����\u001d\u0000�4�-xzz���DDdZ��&�\u0001\u000b\u000b\u000bh�Z�����r�O\u0014W��۷\u001f���R�8y�$L�>��~��͡V��pa\u0010��\u0012\u0001\u0000mۺ`��E�\";��3���\u0007i�x6�X?���R�\r\u0000�o�cժ�e�222�h�b)�\u0006���\u0018|��Ҿ�s�\n�r�*|����\u0012l���bРA�~EyŇ\u000e\u001dƆ\r\u001b�m\u0000\u00188p�,���oC��wG\u001e\u0004�\u0000P����\u0013���\u0002��cƌ��\u0013\u001f\u000b����~�~�Ю];\u0000@@@�\u0014����a߾}z�(�����g�u���]�W��/�\u0018{ٕ���(m���ʂm\u0000HLL�֭[������T�oC����a�M\r���\"^_]��W\u0017����`62�\bݧi�|����A��>M[/�������x��\u000e\u001c8 m\u000b����]����\r\u0006����di\u0014'N���\u001a׿�vNڶ��0Z�#>�\u0016�\\����Uѵk7�]�V��q���r�k�Z|��W�ꩧ����$��ox��޽Ll�T�\u0017okk\u000bGG'Y�={� ##C�\u000f\b\b@��OJK֋���K�\u0019�?$����J�2�V2x�`i;**\n�U{��TnO׮]\r�9s�\ff͚�Y�f\u0019|>���\u001a\u0016��P���\u0003�\u001c\\��2\u0019\u000bi���W���[:*���5??\u000f�(J��*�\nYYY\u0006�FF^,����B����ݻ�)�W(\u0014��d�;w���r����,������V/7�ر\b�9s�ܾnݺe�^-[���+�Pp�|1\u001e\u001f\u001f\u001f�8\u0011!;��{K�~�:\b�\u0000;;;��?��s{��EFF���32ґ��\u000eGG�lsٴ���$�~��^\u001fՕ���\u000e\u001d:\u0000\u0000ڷo�͛7���È�����\u0013\u0011Q��\u0019njT\".�R�={��[_(1k�\u0000';��\u0019u�v��\u0004\\�\u0000I\u0014˟\u0001�ljGAAA�\u0006fDZ�� ��\u001a��)\"�g�\ry�Gd��r�������M�\u0002��Z�;WR�eʔ������{DF^����JJ�����\u001b��6i�Z�={\u0016����ᇒ��VVVh�Ī��ADDUǀ�\u001a\u001d{\u001b`�$\u0001?�Qbp\u000f\u0001֖��Q�EX��3ݍY�Z�^^^���n��R�D@�\\i_�V#.M�\u000e\u001de\u000f;�[�\u000e\u001f}�EZ\tT�T��w\u0003*\u001c���%U]�\r{V�  �\"\"\"\f/��P\bhݺM�}�eoo�y��a޼�x�w�-�x��qپ�U�*ߋ���\u000e\u0003nj�ܝ�O�\u0011\u0010\u0016������1�n����d\u000f�Μ9\u0003mۺ���\u0002�weu�O����1\u001d�\u0010\u00000uc!��\u0016��k\u001f�`���\u0007*�������� [����JZ!�����c��@\u0014\u0015�z�t�E�n%+4~��\u000e��e׭]�\u000e�6m� \bP*�\b\f\fļy��\u001dSDD\u0004F�\u001c)�k4\u001a��w�\u0015�Yq���#?�h\u000b\u0016/^\u0004{{{\u0000�U4�|�I�mO�:��?�V������1��\u001a��>\n)-䛓\"���,p�泺���\r�x�n;7_�n�~\u0011ߜ,\th��n����\u0005l��O�\u0002�ҕ;��˟�7�_U�>���\u000b�\u0014+,�z�Ϯ]��f�\u001a$%%\u0019>\u001e�u\u0015�.]Dtt��>\u0006\r\u001a\u0004kk�*�7>>\u001e���F�X[�`�����򄽽=���QP�ENN6����ȑ#���U��\u001a\u0012\u00100\u0017���\u0000\u0000?�'0q��\u001a�IDD\r\u0007\u0003n\"�7\u001d:t����T����C�\u000e�С\u0003F�\u001a���X,]�\f\u001a����^{�`\u001f�h4�r\u0003[�R�wޙ�.]:C\u0010�ϖ[XX���\u001a-Z����\u0013�z�*V�X\u0001�V[���֮];Y�*�=�޽S�����aa�\u0012\"�\u0017�=7\u0002\u000b\u0017.�T����͛7�ٹ���ec�\u0014\u001f|�\u0001�u�\u0017l\u001bҡC\u0007lڴ\t���վ���.m߽{��6\u0011�C�3�DT�z�ꅗ_~Iv��_������￯�iӦ�ر#�{�9888\u0000\u0000ll��b�r���[\u0010��r��~�:���*\u001cÝ;�A�B!`��5h֬�tL\u0014E������/� 99\u0019..mѹsg���\u001b66�4\u0016[[[�_�\u001e\u000b\u0016,�V���͛q��\u00194kf�_~9S�뉈�ac�MDu�W^���Z-V�\\����S:v��]���#�d\\�X���!C�`���\u0000�ӧO���?7�n���x��ЪU+�{�޽{8|�p���DDT�\u0018p\u0013U���-\u0000ݬ��s+�\\�\u0002���6� ���\u001e�'Oƀ\u0001\u0003�x�\u0012�\u0001���\u0013V�Xnp����\u0002...pqqA׮]\u0011\u0018\u0018�\u0017\u0000��4���\r\u0000���\u000b�\u0016\u0005I���3r�(�\u001d;F� \b�������1`�\u0000̟\u001f���\u0004�v��\u0016X�d\u0011ڵs3؇��=&L��!C� 0���ϓ�)(�@\u0014E)@�ܹ3Μ1��|�D\u0004N��0ڦ�����파�J\u0007�YYY8r�;i�=))���vpp����+�\u0014S*��3g\u000e|||��\t�\u0000�J�\t\u0013&`Ĉ\u0011���Sn5\u0017\"\"�\u001fL)!�&A\u0010�l�RY����\u000bQ�\u0007��۷������W(\u0004�\\�B/ؾ�>222de朝��z�j��i۶�^���jQXX��K/�$\u000b��Z-\u0012\u0013�\u0010\u001f\u001f/��R�����\u0006�QV�X�\u0017l���\"77Wv���\u0019˗\u0007\u001b\u001ckvv��ݷo_�\u001b7\u000e����35g��v�!����_a޼y�7o\u001e�����\u001e\u001a�.]&\u000b��j5��n\"55U�~���ǒ%�k��DDT3��&�&A\u0010�����݋��\b���B�T�k�nx������\u0005�������ƕ+W��\u0007\u000f\u001e,]\u000f\u0000�N����ۥ�W\u0010�0q��\u00180`\u0000\u0000�,hӦ͐�}�踒���s�N\\��^5�aÆI۷n�cɒ%�ԑ\u0001\u0003\u0006��7�\u0000\u0000�����~8~��t~���ЪUIi���h�^�\u000699�\u0000�Ʀ)��{\u0017���\u0000tA��!C��?������b\t����?�aÆ���/ ��T���>���_��W�\\\u0001�nݦ�FDDDU�\u0019njT\".��}\u0010\u001b�\u001e#���\u0002և��☈�'����?�,�~�΍\u001b��}'''��X��������:�ѱ\u0005,,�afffpYq��\t�����O>�����L��۵sC@@\u0000DQDjj*._����0��t�Y`+++�޽���\u0015stt,��(\u0016\"�͛�`eG�Ν+I�(��p��EYP7e��r�pppĒ%K�t�R,]�\u0014M���\u0013�~�$pW�T\u0006�+/kР�ҶF�)��aM�;w^V�eذa���\n��9s�,��t������aeem�1�F���n={�2�F�ɗ}P��jR��\u0010\u0011��0�F��\u0019��\u001d\u0001a�J)�\u000e�_�\u0006�\u00000{�l�i#O\u001d����ҥ��f���.Tڎ��%\u000b^'M���v�ʕ+d�j2�maa\u0001\u001f�N�����`�fkk�\u0001\u0003�����3J�-�-y�����q�٩�j�J�o�\u001e���P�T��\u0019aa�T���\u0000���\u000b\u0006�lc�\u0014�V�/��r�ܹ\n_ku�b!6l�(�\u000b�����\u000fJ\u0011��÷h�\u0002\u001b6l����t,99\u0019�.]�k�h�\"lڴ\t۶}��^z�J�rqq��no�=UZP�4\u000f��h۶�=x���*݃��L�9��`D�\u0016���\"�c�∪YI�\u0005;E��\u0016��pܝ\u0001�6�����/HXk�J%�\u0015�j5\u0012\u0012\u0012���W�$55\u0015'NDȎݼy\u0013�۷\u0007\u0000��=�^�z�ƍ\u001b��˃���^\u001f5u��Y��ji�3g�֭x���\u0015(�J888�ǧ��C=_��غ�ct��M�p��SO���\u000fqqq��ʂ��\u001b���d3�\u001f~������t\u001c;v\f�\u0006\r\u0002�\u000blG�\u001e�g�}\u0016III�u�\u0016,,,���\b��[���h4���ʗ#��������_ѧO\u001fil�ǿ��c� &&\u0006ii�prrD�6mмys���j5V�Z�ק��#����\u001b6l(���J���۷\u000f�z�>\u001c)�J�]�\u0016W�����d\u0014\u0014h���.�\u000f�\u001eh=p�`��\r����1�\u0006�\u0010\u0011���\u0002��4��\u0006�{�$ ����\u001c�� �ClS7\u0016bxo\u0001.N��Q��\\\u000b�:^irϞ�x�\u0015݌����\u0014@�v��},Z�H��ƍ��b�\n�\u0001B�R\tOOOY\u001b�V��~�I\nNk���M�0k�,)U���\u0005��.z�DQħ�nGdd��F��\u0005\u000b\u0016bٲ�R�mnnn�u�����\u0010�Ep\u0000`ǎ\u001dHHH�k��&\u0005�VVVR�;C\u0012\u0013��hQP�\u000fY���͛q��]\f\u001f��t����h����ױ|�r�\u0005t\u0000�8�%55\u0015\u0007\u000f\u001e�ȑ#!\b\u0002\u0004A�f��R��X�t)rs��a\u0006\"\"2�)%� ��QHi!ߜ�-�^}:bbb\f��x��5̞폴��� �9��\n\n\n�4�K�.a�ԩ�z����/�.��}�6���q��O\u0006�HH��iӦ��ٳ\u0006�-�\"n�N���?\u000e\u001c8P�X���\u0011\u0018�_ܹs�`?��;y�\u0014�ΝSn�m���س�K,_�\u001c���F�\u0015\u0014\u0014��o�cѢE\u0006�m@Wڰ���(�8r�*\u0007�\u0007\u000e\u001c@`` ���\f�V�Z��\u0017/b�Է\u0011\u0017\u0017W������\u0014(IN,�������~\u0004\u0003�\u0015����V�\u0017�4�\u000b\u0000@�#��@����+\u0010����/�\u0014�#E8\u001d�\u000b�\u001fi��H?�ޢ6��\"��H�\u0004��\u0000�6\n\u0004�\u0013��Q��\u001d\u001eT(�|צ/�,I��0a�\u0014�6m�\f\u001e\u001e�hڴ)n݊GRR����5Qcef&�ϯ(�ؾ��*��\u0013\u0011Q�ǀ���~��g���\u001e\u0000-,�����qKII��\u001b7q�N\u0006���\u0011\u001a\u001a�r~DD\u000f)\u0006�DU�u���\u001e\u0002=\u0004���a�����0���\u000e4�2\u000fDDDDD\u000f\u0019\u0006�DDDDD&Ā�����Ȅ\u0018p\u0013\u0011\u0011\u0011\u0011�\u0010\u0003n\"\"\"\"\"\u0013b�MDDDDdB\f������L�\u00017\u0011\u0011\u0011\u0011�\t1�&\"\"\"\"2!\u0006�DDDDD&Ā�����Ȅ\u0018p\u0013\u0011\u0011\u0011\u0011�\u0010\u0003n\"\"\"\"\"\u0013b�MDDDDdB\f������L�\u00017\u0011\u0011\u0011\u0011�\t1�&\"\"\"\"2!\u0006�DDDDD&Ā�����Ȅ��=\u0000�g��\u0004���3�DD��1���\u0016XXX��ҲF}X[[C�����\n�����ܢ\u0016�2N\u0010�`cӴV�j��\n��6��Wyjk�DDDU�\u0019n�j\u001a0` �~�)�j�\nVVV\u0000\u0000Q\u0014q��=\u001c>|\u0018��G\u0001������\u0005���\u0011x�g`cc\u0003A�}��j�HH���{�!**�൞���;w.\u0000��ٳ��\u001d\u0018;v,�w�֭[A\u0010\u0004deeaʔ)X�z\r�7�\u0005\u0000\u001c8p\u0000?��c�cR*�شi\u0013��t�\u0014\u0005\u0007\u0007#..N����\u0003���*��ݥ\u000f\b�(\"//\u000f�N����\u0007�V�\u001a�?00\u0010nnn\u0010E\u0011�;\u000f���\u00185j\u0014���`cc\r\u0000ؼy3~���r�Xl�ƍhҤ\tDQ��ٳ���O[[[���\u001bpww�J����5\u001a\r�^��\u001d;v 55��{\u0011\u0011\u0011�\u0004\u0003n�*R*��3g\u000e|||��\t�\u0000�J�\t\u0013&`Ĉ\u0011���\u0003�F}�\u0016-Z 88\u0018���\u0006�o��\r�����ӧ�e�\u0016�666Mac��\r���¢EA���48ތ�\f�n�\n\u00000l�0�\u0001w߾�`k�\u000b�EQDRR���k���СC\f�nkkk\f\u001d:\u0014\u0003\u0006\f�A�};^�����4�޽{��W�-\u0005�UU:�����\u000b����\u0011\u0010\u0010`�[\u0003\u000b\u000b\u000bt��\u0019�ׯ�'�|��~:Q�1\u0010\u0011\u0011U\u0006SJ��h��e�`[�V#.�&RSSe�3����d�b�뭭m�z�j�`;;;\u001b\u001a�Fv�o߾�8q���m�V/��j�(,,\u0004\u0000���Hǝ����U\f\u001c8@ڎ���}X\u0018?^?��h4��Ζ\u001d���@p�\n�CƏM\u0016lk�Z�����\u0014�4OO/\u0004\u0006\u0006�f�322\u0010\u001b\u001b\u000b�Z-k;i�[�����M�����\u0019nj�bS��ɺ�˷�\u0002ve���\"ܽ\u000f��\u0001��\u0015u2��m]���\"퇇�c׮]�Z(0g�\u001ct��\u0015\u0000���\n[[[deeI-�Ν#�u=r�;���\r�Z-\u0000�ٹ\u0015�-[*��\f\u001a4\b��\u0003�����-99\u0019;w�ĕ+B\u0014\u000b��W��\u0005�Z-�7x�3���o��W*�pss��\u000f\u001d:,{�C��\u0004�99�\b\n\n�ƤT*1n܋\u0018>�Yi֬w\u0010\u001c\u001clt̢(����8y�$�ܹc�mUL�8A�V��\b\nZ���\u0004�X��m�j�J)�\u001f=�\u0005�\\����ODDT\u001ag����}\\��\u000b���B\\�^2�\u0019\u0019[��Ӵx>Hw���Bt��Edl-L�V���]�.(((\u0013l\u0003@\u0011֭[���h���\"55\u0015*�J:kg���W�l�#G�o�^)�\u001b�Kx\u0000\u0000 \u0000IDAT\u0006���$�����MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>��MD�j��\u0000\u0000 \u0000IDATDDD�C\f�DDDDD>��MDDDD�C\f�DDDDD>t�\u0003�h�������l�,�\u0019n\"\"\"\"\"\u001fb�&\"\"\"\"�!\u0006n\"\"\"\"\"\u001fb�&\"\"\"\"�!w\u00037/v$\"\"\"��:�2qW�ps�\u0012\"\"\"\"�s\"k�\u0012��=�s�\u0013\u0011\u0011\u0011�_��2���|9�-��&\"\"\"\":\u0017���j+p3\u001c\u0013\u0011\u0011\u0011\u0011uN�,��\u0019no\u0004u�}\"\"\"\"��9�K�\u0003wg:\u0015�\u001e��%\"\"\"\":\u0017��_]ͺv���*%�\u001d \u0011\u0011\u0011\u0011�����U�\u0002�*Pg0'\"\"\"\"o��1�$oz;p;���PMDDDD]�Y^�jf��ѡ/�2g������W|�5]���f�;;[��7��MDDDD��E\u0016�t��lI�����j�pMDDDDg���\u000eܞt����cDDDDD���\\�\\�ew����MDDDD�vNdLO\u0003�;w��\u0016��!\"\"\"\"�\fws�O��J�v40W��f\u0018������[\u001ceNodZ���ōo�\t�\\&������͓����nw\u0002wg�G\\9�\"\"\"\"\"w�rgIg\u0017Mz%|{��I[����;�\u0003$\"\"\"\"_�^�\u000f\u000e�}v]���ݙz\u0016W�9z�\f�DDDD�){�\u0015��7f�����\f�'E�ξM\u0010\u0011\u0011\u0011\u0011y�7r�G�ߞ�ڽ33ێ�q��������Q�t�I\u001d��N{\u0013[��������[�\u00106ژ�8q\"���ODDDDq����V��3�\u001f��a;��y2{\u0007\\����]\u0005�����DDDD�Y�\\(i빽���o����\u0012O\u0006b���+D\u0019������S�̜\u001e��ή��j=���\u0019{��\"�J�����]�r\u0012�\u0019\u0013�eW�~�w�^��Z͊�~{�ܶ�qp�������e+K:ʠ����t���\u0002���V;g\u001f\u0004\u00037\u0011\u0011\u0011\u0011��Y�tgb�ka��\u0013'N$�𵉈���",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "DDDDD",
+            "MDDDD",
+            "99",
+            "6m",
+            "1p",
+            "3g",
+            "55",
+            "11",
+            "6l",
+            "8p"
+        ]
     },
     {
         "uri": "/posts/2022/06/vite-origin-1/",
@@ -443,6 +1520,30 @@
         "tags": [
             "vite",
             "plugin"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "--",
+            " ",
+            "从",
+            "0",
+            "阅读",
+            "vite",
+            "之",
+            "1"
+        ],
+        "content_tokens": [
+            "const",
+            "descriptor",
+            "script",
+            "res",
+            "template",
+            "vue",
+            "file",
+            "pathname",
+            "code",
+            "prevDescriptor"
         ]
     },
     {
@@ -452,6 +1553,25 @@
         "tags": [
             "vite",
             "websockt"
+        ],
+        "title_tokens": [
+            "vite",
+            "--",
+            "server",
+            "对应",
+            "源码"
+        ],
+        "content_tokens": [
+            "file",
+            "const",
+            "server",
+            "await",
+            "watcher",
+            "中间件",
+            "config",
+            "ignored",
+            "moduleGraph",
+            "node"
         ]
     },
     {
@@ -461,6 +1581,24 @@
         "tags": [
             "vite",
             "websocket"
+        ],
+        "title_tokens": [
+            "Vite",
+            " ",
+            "Websocket",
+            "源码"
+        ],
+        "content_tokens": [
+            "event",
+            "customListeners",
+            "wss",
+            "client",
+            "parsed",
+            "return",
+            "else",
+            "err",
+            "payload",
+            "const"
         ]
     },
     {
@@ -469,6 +1607,26 @@
         "content": "\n问题清单\n\nvite中使用optional chain ?. 失效问题\n\n引入rollup-plugin-esbuild\n\nimport { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\nimport esbuild from 'rollup-plugin-esbuild'\n\n// https://vitejs.dev/config/\nexport default defineConfig({\n  plugins: [\n    vue(),\n\n    {\n      ...esbuild({\n        target: 'chrome70',\n        // 如有需要可以在这里加 js ts 之类的其他后缀\n        include: /\\.vue$/,\n        loaders: {\n          '.vue': 'js',\n        },\n      }),\n      enforce: 'post',\n    }\n  ],\n})\n",
         "tags": [
             "vite"
+        ],
+        "title_tokens": [
+            "vite",
+            "使用",
+            "中",
+            "相关",
+            "问题",
+            "整理"
+        ],
+        "content_tokens": [
+            "vue",
+            "esbuild",
+            "import",
+            "plugin",
+            "defineConfig",
+            "js",
+            "rollup",
+            "vite",
+            "vitejs",
+            "chain"
         ]
     },
     {
@@ -477,6 +1635,25 @@
         "content": "\nvite 中有关 websocket 的使用\n\n封装\n\n项目是基于第三方npm包 ws, 这个包是为服务端使用websocket而设计的，并不适用浏览器中，项目地址 https://github.com/websockets/ws\n\n项目中文件路径\n\n>   \"version\": \"3.0.0-alpha.9\"\n\npackages/vite/src/node/server/ws.ts\n\n源码\n\n源码中有三个比较重要的变量\n\n  let wss: WebSocketServerRaw\n\n  const customListeners = new Map>>()\n  const clientsMap = new WeakMap()\n\nwss：websocket的实例对象\n\ncustomListeners: 一个map类型，保存了类型所对对应的变量数据结构，其中WebSocketCustomListener也是一个对象\n\nexport type WebSocketCustomListener = (\n  data: T,\n  client: WebSocketClient\n) => void\n\nclientsMap:  客户类型所对于的weakMap类型，保存的是连接实例对应的对象，\n\n连接部分和消息处理部分的源码\n\nwss.on('connection', (socket) => {\n    socket.on('message', (raw) => {\n      if (!customListeners.size) return\n      let parsed: any\n      try {\n        parsed = JSON.parse(String(raw))\n      } catch {}\n      if (!parsed || parsed.type !== 'custom' || !parsed.event) return\n      const listeners = customListeners.get(parsed.event)\n      if (!listeners?.size) return\n      const client = getSocketClient(socket)\n      listeners.forEach((listener) => listener(parsed.data, client))\n    })\n    socket.send(JSON.stringify({ type: 'connected' }))\n    if (bufferedError) {\n      socket.send(JSON.stringify(bufferedError))\n      bufferedError = null\n    }\n  })\n\n连接成功后会发送一个connected事件\n\n      socket.send(JSON.stringify({ type: 'connected' }))\n\n消息处理部分会先把字符串反序列化，上下文中可以看出对象有一个type属性和data属性\n\n从customListeners中取出对应的type所对存储的事件集合\n\ngetSocketClient对于即将发送的数据进行包装成特定格式，并且存入到clientsMap中\n\nfunction getSocketClient(socket: WebSocketRaw) {\n    if (!clientsMap.has(socket)) {\n      clientsMap.set(socket, {\n        send: (...args) => {\n          let payload: HMRPayload\n          if (typeof args[0] === 'string') {\n            payload = {\n              type: 'custom',\n              event: args[0],\n              data: args[1]\n            }\n          } else {\n            payload = args[0]\n          }\n          socket.send(JSON.stringify(payload))\n        },\n        socket\n      })\n    }\n    return clientsMap.get(socket)!\n  }\n\n\u0003\t5. 对事件集合进行遍历执行\n\nlisteners.forEach((listener) => listener(parsed.data, client))\n\n错误处理部分的源码\n\n  wss.on('error', (e: Error & { code: string }) => {\n    if (e.code === 'EADDRINUSE') {\n      config.logger.error(\n        colors.red(WebSocket server error: Port is already in use),\n        { error: e }\n      )\n    } else {\n      config.logger.error(\n        colors.red(WebSocket server error:\\n${e.stack || e.message}),\n        { error: e }\n      )\n    }\n  })\n\n函数返回\n\n函数最终返回一个对象，包括事件的注册、解除、发送对于的数据、连接关闭、获取所有的连接等等\n\n注册\n\n其实就是向customListeners中存入对应事件的Set\n\n{\n  on: ((event: string, fn: () => void) => {\n      if (wsServerEvents.includes(event)) wss.on(event, fn)\n      else {\n        if (!customListeners.has(event)) {\n          customListeners.set(event, new Set())\n        }\n        customListeners.get(event)!.add(fn)\n      }\n    })\n}\n\n解除\n\n找到对应事件并且删除\n\n    off: ((event: string, fn: () => void) => {\n      if (wsServerEvents.includes(event)) {\n        wss.off(event, fn)\n      } else {\n        customListeners.get(event)?.delete(fn)\n      }\n    }) as WebSocketServer['off'],\n\n获取所有的客户端连接实例\n\n把websocket实例上所有的客户端连接进行去重，并且查看是否储存在clientsMap中\n\n get clients() {\n      return new Set(Array.from(wss.clients).map(getSocketClient))\n },\n\n发送\n\n对于传入的参数进行判断，以特点的格式进行发送，拿客户端连接实例的数组并遍历，最终把数据广播发送出去\n\n  send(...args: any[]) {\n      let payload: HMRPayload\n      if (typeof args[0] === 'string') {\n        payload = {\n          type: 'custom',\n          event: args[0],\n          data: args[1]\n        }\n      } else {\n        payload = args[0]\n      }\n\n      if (payload.type === 'error' && !wss.clients.size) {\n        bufferedError = payload\n        return\n      }\n\n      const stringified = JSON.stringify(payload)\n      wss.clients.forEach((client) => {\n        // readyState 1 means the connection is open\n        if (client.readyState === 1) {\n          client.send(stringified)\n        }\n      })\n    },\n\n关闭\n\n遍历客户端数组并关闭，并返回一个promise对象\n\n  close() {\n      return new Promise((resolve, reject) => {\n        wss.clients.forEach((client) => {\n          client.terminate()\n        })\n        wss.close((err) => {\n          if (err) {\n            reject(err)\n          } else {\n            if (httpsServer) {\n              httpsServer.close((err) => {\n                if (err) {\n                  reject(err)\n                } else {\n                  resolve()\n                }\n              })\n            } else {\n              resolve()\n            }\n          }\n        })\n      })\n    }\n",
         "tags": [
             "websocket"
+        ],
+        "title_tokens": [
+            "vite",
+            " ",
+            "中",
+            "websocket",
+            "使用"
+        ],
+        "content_tokens": [
+            "event",
+            "socket",
+            "wss",
+            "args",
+            "customListeners",
+            "payload",
+            "client",
+            "type",
+            "else",
+            "error"
         ]
     },
     {
@@ -485,15 +1662,66 @@
         "content": "\nvue内置指令\n\n>   \"version\": \"3.2.37\"\n\nvue因为在核心中内置了一些指令，开箱即用就非常nice\n\nv-model\n\nvue中最具特色的指令就是v-mode了，可以把input的值进行绑定，结合双向绑定，可以最少代码就能把输入的值显示到页面上\n\nMessage is: {{ message }}\n\n看一下vue3下面的具体实现\n\n> packages/runtime-dom/src/directives/vModel.ts\n\nvModelDynamic\n\n在不同的生命周期下调用不同的勾子函数，包括created,mounted,beforeUpdate,updated这四个生命周期\n\nexport const vModelDynamic: ObjectDirective = {\n  created(el, binding, vnode) {\n    callModelHook(el, binding, vnode, null, 'created')\n  },\n  mounted(el, binding, vnode) {\n    callModelHook(el, binding, vnode, null, 'mounted')\n  },\n  beforeUpdate(el, binding, vnode, prevVNode) {\n    callModelHook(el, binding, vnode, prevVNode, 'beforeUpdate')\n  },\n  updated(el, binding, vnode, prevVNode) {\n    callModelHook(el, binding, vnode, prevVNode, 'updated')\n  }\n}\n\nfunction callModelHook(\n  el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement,\n  binding: DirectiveBinding,\n  vnode: VNode,\n  prevVNode: VNode | null,\n  hook: keyof ObjectDirective\n) {\n  const modelToUse = resolveDynamicModel(\n    el.tagName,\n    vnode.props && vnode.props.type\n  )\n  // 这里modelToUse就可以看出是一个包含不同生命周期函数的对象，隐藏了最终的实现，其实就是一种adapter模式\n  const fn = modelToUse[hook] as DirectiveHook\n  fn && fn(el, binding, vnode, prevVNode)\n}\n\nresolveDynamicModel\n\n这里一看，其实是根据不同的标签名走不同的分支了，正常需要去用v-model的元素就这么几类了\n\nfunction resolveDynamicModel(tagName: string, type: string | undefined) {\n  switch (tagName) {\n    case 'SELECT':\n      return vModelSelect\n    case 'TEXTAREA':\n      return vModelText\n    default:\n      switch (type) {\n        case 'checkbox':\n          return vModelCheckbox\n        case 'radio':\n          return vModelRadio\n        default:\n          return vModelText\n      }\n  }\n}\n\ngetModelAssigner\n\n这是一个非常重要的函数了，直接决定了绑定元素对外响应的所绑定的函数\n\nconst getModelAssigner = (vnode: VNode): AssignerFn => {\n  const fn =\n    vnode.props!['onUpdate:modelValue'] ||\n    (COMPAT && vnode.props!['onModelCompat:input'])\n  return isArray(fn) ? value => invokeArrayFns(fn, value) : fn\n}\n\n最终响应的是props上的update:modelValue所绑定的事件，这里就和vue2不太一样了，内部绑定的值也换成modelValue了\n\n官方文档说明\n\nhttps://v3.cn.vuejs.org/guide/migration/v-model.html#v-model\n\nvModelText 常规文本绑定\n\ncreated生命周期内绑定事件，lazy修饰符表示走不同的监听方法\n\nmounted生命周期内重置输入框初始值\n\nbeforeUpdate周期内旧值和新值不相等时，会重新赋值\n\nexport const vModelText: ModelDirective = {\n  created(el, { modifiers: { lazy, trim, number } }, vnode) {\n    el._assign = getModelAssigner(vnode)\n    // 元素是否包含number属性\n    const castToNumber =\n      number || (vnode.props && vnode.props.type === 'number')\n    // 事件绑定，lazy修饰符表示走不同的监听方法\n    addEventListener(el, lazy ? 'change' : 'input', e => {\n      if ((e.target as any).composing) return\n      let domValue: string | number = el.value\n      // trim修饰符\n      if (trim) {\n        domValue = domValue.trim()\n      }\n      // 是否是数字，是数字格式化\n      if (castToNumber) {\n        domValue = toNumber(domValue)\n      }\n      el._assign(domValue)\n    })\n\n    // 包含trim修饰符时，监听change方法同样需要trim\n    if (trim) {\n      addEventListener(el, 'change', () => {\n        el.value = el.value.trim()\n      })\n    }\n    if (!lazy) {\n      addEventListener(el, 'compositionstart', onCompositionStart)\n      addEventListener(el, 'compositionend', onCompositionEnd)\n      // Safari  = {\n  // #4096 array checkboxes need to be deep traversed\n  deep: true,\n  created(el, _, vnode) {\n    el._assign = getModelAssigner(vnode)\n    addEventListener(el, 'change', () => {\n      // model绑定的值\n      const modelValue = (el as any)._modelValue\n      // 元素上的value值\n      const elementValue = getValue(el)\n      // checked状态\n      const checked = el.checked\n      const assign = el._assign\n\n      if (isArray(modelValue)) { // 绑定值是数组\n        const index = looseIndexOf(modelValue, elementValue)\n        const found = index !== -1\n        // 当前选中了，但是绑定值中没有，需要插入\n        if (checked && !found) {\n          // 放入并响应\n          assign(modelValue.concat(elementValue))\n        } else if (!checked && found) { // 没有选中，但是绑定值中有对应值，则需要删除\n          const filtered = [...modelValue] // 复制\n          filtered.splice(index, 1) // 删除\n          assign(filtered)\n        }\n      } else if (isSet(modelValue)) { // 绑定值是Set\n        const cloned = new Set(modelValue) // 复制\n        if (checked) {\n          cloned.add(elementValue)\n        } else {\n          cloned.delete(elementValue)\n        }\n        assign(cloned)\n      } else {\n        assign(getCheckboxValue(el, checked))\n      }\n    })\n  },\n  // set initial checked on mount to wait for true-value/false-value\n  mounted: setChecked,\n  beforeUpdate(el, binding, vnode) {\n    el._assign = getModelAssigner(vnode)\n    setChecked(el, binding, vnode)\n  }\n}\n\nfunction setChecked(\n  el: HTMLInputElement,\n  { value, oldValue }: DirectiveBinding,\n  vnode: VNode\n) {\n  // store the v-model value on the element so it can be accessed by the\n  // change listener.\n  // 预先重置元素上的modelValue值\n  ;(el as any)._modelValue = value\n  if (isArray(value)) {\n    el.checked = looseIndexOf(value, vnode.props!.value) > -1\n  } else if (isSet(value)) {\n    el.checked = value.has(vnode.props!.value)\n  } else if (value !== oldValue) {\n    el.checked = looseEqual(value, getCheckboxValue(el, true))\n  }\n}\n\nvModelRadio\n\n和checkbox相比绑定事件内的处理更少了\n\nexport const vModelRadio: ModelDirective = {\n  created(el, { value }, vnode) {\n    el.checked = looseEqual(value, vnode.props!.value)\n    el._assign = getModelAssigner(vnode)\n    addEventListener(el, 'change', () => {\n      el._assign(getValue(el))\n    })\n  },\n  beforeUpdate(el, { value, oldValue }, vnode) {\n    el._assign = getModelAssigner(vnode)\n    if (value !== oldValue) {\n      el.checked = looseEqual(value, vnode.props!.value)\n    }\n  }\n}\n\nvModelSelect\n\nexport const vModelSelect: ModelDirective = {\n  //  value need to be deep traversed\n  deep: true,\n  created(el, { value, modifiers: { number } }, vnode) {\n    // 是否是Set类型\n    const isSetModel = isSet(value)\n    addEventListener(el, 'change', () => {\n      // 选中的值\n      const selectedVal = Array.prototype.filter\n      \t// filter筛选出所有selected的对象\n        .call(el.options, (o: HTMLOptionElement) => o.selected)\n        .map((o: HTMLOptionElement) =>\n             // 取出其中的值，需要是数字的转换为number类型\n          number ? toNumber(getValue(o)) : getValue(o)\n        )\n      // 调用\n      el._assign(\n        el.multiple\n          ? isSetModel\n            ? new Set(selectedVal)\n            : selectedVal\n          : selectedVal[0]\n      )\n    })\n    el._assign = getModelAssigner(vnode)\n  },\n  // set value in mounted & updated because  relies on its children\n  // s.\n  mounted(el, { value }) {\n    setSelected(el, value)\n  },\n  beforeUpdate(el, _binding, vnode) {\n    // 更新绑定回调函数\n    el._assign = getModelAssigner(vnode)\n  },\n  updated(el, { value }) {\n    setSelected(el, value)\n  }\n}\n\n// 设置选中\nfunction setSelected(el: HTMLSelectElement, value: any) {\n  // 是否多选\n  const isMultiple = el.multiple\n\n  // 。。。\n\n  for (let i = 0, l = el.options.length; i  -1\n      } else {\n        // Set类型\n        option.selected = value.has(optionValue)\n      }\n    } else {\n      if (looseEqual(getValue(option), value)) {\n        // 重新覆盖当前对象上的selectedIndex\n        if (el.selectedIndex !== i) el.selectedIndex = i\n        return\n      }\n    }\n  }\n  if (!isMultiple && el.selectedIndex !== -1) {\n    // 默认值-1\n    el.selectedIndex = -1\n  }\n}\n\nvOn\n\n用于绑定元素事件\n\nv-on官方内置了一些修饰符，可以一定程度上减少我们平时需要加的处理代码\n\nconst systemModifiers = ['ctrl', 'shift', 'alt', 'meta']\n\ntype KeyedEvent = KeyboardEvent | MouseEvent | TouchEvent\n\nconst modifierGuards: Record void | boolean\n> = {\n  stop: e => e.stopPropagation(),\n  prevent: e => e.preventDefault(),\n  self: e => e.target !== e.currentTarget,\n  ctrl: e => !(e as KeyedEvent).ctrlKey,\n  shift: e => !(e as KeyedEvent).shiftKey,\n  alt: e => !(e as KeyedEvent).altKey,\n  meta: e => !(e as KeyedEvent).metaKey,\n  left: e => 'button' in e && (e as MouseEvent).button !== 0,\n  middle: e => 'button' in e && (e as MouseEvent).button !== 1,\n  right: e => 'button' in e && (e as MouseEvent).button !== 2,\n  exact: (e, modifiers) =>\n    systemModifiers.some(m => (e as any)[${m}Key] && !modifiers.includes(m))\n}\n\nvShow\n\nHello!\n\nv-show在开发过程中也是频繁使用的指令，用于控制元素的显示隐藏\n\ntrue: display:block;\nfalse: display:none;\n\n生命周期处理\n\nbeforeMount:记录下原始display的状态，并且设置元素的display的值\nmounted:处理transition相关的业务\nupdated:更新元素的display的值\nbeforeUnmount:更新元素的display的值\n\nexport const vShow: ObjectDirective = {\n  beforeMount(el, { value }, { transition }) {\n    // 记录元素原始状态\n    el._vod = el.style.display === 'none' ? '' : el.style.display\n    if (transition && value) {\n      transition.beforeEnter(el)\n    } else {\n      // 更新\n      setDisplay(el, value)\n    }\n  },\n  mounted(el, { value }, { transition }) {\n    if (transition && value) {\n      transition.enter(el)\n    }\n  },\n  updated(el, { value, oldValue }, { transition }) {\n    if (!value === !oldValue) return\n    if (transition) {\n      if (value) {\n        transition.beforeEnter(el)\n        setDisplay(el, true)\n        transition.enter(el)\n      } else {\n        transition.leave(el, () => {\n          setDisplay(el, false)\n        })\n      }\n    } else {\n      // 更新\n      setDisplay(el, value)\n    }\n  },\n  beforeUnmount(el, { value }) {\n    // 更新\n    setDisplay(el, value)\n  }\n}\n\n// 更新元素display的值，true为原始状态，false为none\nfunction setDisplay(el: VShowElement, value: unknown): void {\n  el.style.display = value ? el._vod : 'none'\n}\n",
         "tags": [
             "vue3"
+        ],
+        "title_tokens": [
+            "vue",
+            " ",
+            "--",
+            " ",
+            "内置",
+            "指令",
+            "源码",
+            "分析"
+        ],
+        "content_tokens": [
+            "el",
+            "value",
+            "vnode",
+            "const",
+            "assign",
+            "绑定",
+            "binding",
+            "checked",
+            "modelValue",
+            "transition"
         ]
     },
     {
         "uri": "/posts/2022/07/compiler-parse/",
         "title": "vue3 -- @vue/compiler-core parse处理整体流程",
-        "content": "\n@vue/compiler-core\n\n>   \"version\": \"3.2.37\"\n\n> packages/compiler-core/src/parse.ts\n\nbaseParse\n\nparseChildren\n\nparseChildren采用了一种从前向后匹配的机制，不断的去改写context.source上的字符串\n\n其中parseChildren是处理核心，最终parseElement也会走回到这里，逻辑有点像vue patch的处理逻辑\n\nparseInterpolation\n\n解析插值操作\n\nfunction parseInterpolation(\n  context: ParserContext,\n  mode: TextModes\n): InterpolationNode | undefined {\n  // 拿到插值表达式的开始符和结束符\n  const [open, close] = context.options.delimiters\n\n  // 除去开始符，开始计算结束符的索引\n  const closeIndex = context.source.indexOf(close, open.length)\n  // 索引是-1，说明没有结束符，报错\n  if (closeIndex === -1) {\n    emitError(context, ErrorCodes.XMISSINGINTERPOLATION_END)\n    return undefined\n  }\n\n  // 拿到当前上下文的开始位置，这是包括开始符和结束符的\n  const start = getCursor(context)\n  // 修改source 字符串，从头删除 开始符长度\n  advanceBy(context, open.length)\n  // 储存常量，开始符和结束符的位置，这个时候开始符和结束符的位置是一致的\n  const innerStart = getCursor(context)\n  const innerEnd = getCursor(context)\n  // 计算出开始符和结束符直接的字符长度\n  const rawContentLength = closeIndex - open.length\n  // 截取出对应长度，其实就是插值表达式了\n  const rawContent = context.source.slice(0, rawContentLength)\n  // 解析出整个插值表达式的字符串，并且修改source上的剩余字符串\n  const preTrimContent = parseTextData(context, rawContentLength, mode)\n  // 字符串trim\n  const content = preTrimContent.trim()\n  // 开头的偏移量， 说明有空格\n  const startOffset = preTrimContent.indexOf(content)\n  if (startOffset > 0) {\n    // 修改innerStart上的对应偏移参数\n    advancePositionWithMutation(innerStart, rawContent, startOffset)\n  }\n  // 计算出结尾的偏移量\n  const endOffset =\n    rawContentLength - (preTrimContent.length - content.length - startOffset)\n  // 对应修改innerEnd上的对应偏移参数\n  advancePositionWithMutation(innerEnd, rawContent, endOffset)\n  // 同时修改source上的字符串，去除尾部标签长度的字符串\n  advanceBy(context, close.length)\n\n  return {\n    type: NodeTypes.INTERPOLATION,\n    content: {\n      type: NodeTypes.SIMPLE_EXPRESSION,\n      isStatic: false,\n      // Set isConstant to false by default and will decide in transformExpression\n      constType: ConstantTypes.NOT_CONSTANT,\n      content,\n      loc: getSelection(context, innerStart, innerEnd)\n    },\n    loc: getSelection(context, start)\n  }\n}\n",
+        "content": "\n@vue/compiler-core\n\n>   \"version\": \"3.2.37\"\n\n> packages/compiler-core/src/parse.ts\n\nbaseParse\n\nbaseParse的主要作用就是把vue sfc中的template模板，解析编译成一个树形对象，最终会把这个树形结构转化成对应的js对象\n\nparseChildren\n\nparseChildren采用了一种从前向后匹配的机制，不断的去改写context.source上的字符串\n\n其中parseChildren是处理核心，最终parseElement也会走回到这里，逻辑有点像vue patch的处理逻辑\n\nparseInterpolation\n\n解析插值操作\n\nfunction parseInterpolation(\n  context: ParserContext,\n  mode: TextModes\n): InterpolationNode | undefined {\n  // 拿到插值表达式的开始符和结束符\n  const [open, close] = context.options.delimiters\n\n  // 除去开始符，开始计算结束符的索引\n  const closeIndex = context.source.indexOf(close, open.length)\n  // 索引是-1，说明没有结束符，报错\n  if (closeIndex === -1) {\n    emitError(context, ErrorCodes.XMISSINGINTERPOLATION_END)\n    return undefined\n  }\n\n  // 拿到当前上下文的开始位置，这是包括开始符和结束符的\n  const start = getCursor(context)\n  // 修改source 字符串，从头删除 开始符长度\n  advanceBy(context, open.length)\n  // 储存常量，开始符和结束符的位置，这个时候开始符和结束符的位置是一致的\n  const innerStart = getCursor(context)\n  const innerEnd = getCursor(context)\n  // 计算出开始符和结束符直接的字符长度\n  const rawContentLength = closeIndex - open.length\n  // 截取出对应长度，其实就是插值表达式了\n  const rawContent = context.source.slice(0, rawContentLength)\n  // 解析出整个插值表达式的字符串，并且修改source上的剩余字符串\n  const preTrimContent = parseTextData(context, rawContentLength, mode)\n  // 字符串trim\n  const content = preTrimContent.trim()\n  // 开头的偏移量， 说明有空格\n  const startOffset = preTrimContent.indexOf(content)\n  if (startOffset > 0) {\n    // 修改innerStart上的对应偏移参数\n    advancePositionWithMutation(innerStart, rawContent, startOffset)\n  }\n  // 计算出结尾的偏移量\n  const endOffset =\n    rawContentLength - (preTrimContent.length - content.length - startOffset)\n  // 对应修改innerEnd上的对应偏移参数\n  advancePositionWithMutation(innerEnd, rawContent, endOffset)\n  // 同时修改source上的字符串，去除尾部标签长度的字符串\n  advanceBy(context, close.length)\n\n  return {\n    type: NodeTypes.INTERPOLATION,\n    content: {\n      type: NodeTypes.SIMPLE_EXPRESSION,\n      isStatic: false,\n      // Set isConstant to false by default and will decide in transformExpression\n      constType: ConstantTypes.NOT_CONSTANT,\n      content,\n      loc: getSelection(context, innerStart, innerEnd)\n    },\n    loc: getSelection(context, start)\n  }\n}\n\nparseTag\n\n解析字符串中的html标签\n\nfunction parseTag(\n  context: ParserContext,\n  type: TagType,\n  parent: ElementNode | undefined\n): ElementNode | undefined {\n\n  // Tag open.\n  const start = getCursor(context)\n  // 正则匹配标签名\n  const match = /^]*)/i.exec(context.source)!\n  // 拿到当前的标签名\n  const tag = match[1]\n  const ns = context.options.getNamespace(tag, parent)\n\n  // 删除标签名长度的字符串\n  advanceBy(context, match[0].length)\n  // 去除source上的空白符\n  advanceSpaces(context)\n\n  // save current state in case we need to re-parse attributes with v-pre\n  // 保存当前的坐标\n  const cursor = getCursor(context)\n  // 当前source备份\n  const currentSource = context.source\n\n  // check  tag\n  // 是否是pre标签\n  if (context.options.isPreTag(tag)) {\n    context.inPre = true\n  }\n\n  // Attributes.\n  // 解析出标签的属性\n  let props = parseAttributes(context, type)\n\n  // check v-pre\n  // 是否含有v-pre属性\n  if (\n    type === TagType.Start &&\n    !context.inVPre &&\n    props.some(p => p.type === NodeTypes.DIRECTIVE && p.name === 'pre')\n  ) {\n    context.inVPre = true\n    // reset context\n    // 恢复备份，重置source的值， 过滤出没有v-pre的属性\n    extend(context, cursor)\n    context.source = currentSource\n    // re-parse attrs and filter out v-pre itself\n    props = parseAttributes(context, type).filter(p => p.name !== 'v-pre')\n  }\n\n  // Tag close.\n  // 是否是自闭合标签\n  let isSelfClosing = false\n  if (context.source.length === 0) {\n    emitError(context, ErrorCodes.EOFINTAG)\n  } else {\n    // 当前剩余字符串如果是已/>开头，说明是自闭合标签\n    isSelfClosing = startsWith(context.source, '/>')\n    if (type === TagType.End && isSelfClosing) {\n      emitError(context, ErrorCodes.ENDTAGWITHTRAILINGSOLIDUS)\n    }\n    // 自闭合标签，就删除2个字符，否则删除一个字符\n    advanceBy(context, isSelfClosing ? 2 : 1)\n  }\n\n  if (type === TagType.End) {\n    return\n  }\n\n  // 2.x deprecation checks\n  // vue2语法的兼容\n  if (\n    COMPAT &&\n    DEV &&\n    isCompatEnabled(\n      CompilerDeprecationTypes.COMPILERVIFVFOR_PRECEDENCE,\n      context\n    )\n  ) {\n    let hasIf = false\n    let hasFor = false\n    // 属性中是否含有if或者for， 即v-if 或者v-for\n    for (let i = 0; i\n            p.type === NodeTypes.DIRECTIVE && isSpecialTemplateDirective(p.name)\n        )\n      ) {\n        tagType = ElementTypes.TEMPLATE\n      }\n    } else if (isComponent(tag, props, context)) {\n      tagType = ElementTypes.COMPONENT\n    }\n  }\n\n  return {\n    type: NodeTypes.ELEMENT,\n    ns,\n    tag,\n    tagType,\n    props,\n    isSelfClosing,\n    children: [],\n    loc: getSelection(context, start),\n    codegenNode: undefined // to be created during transform phase\n  }\n}\n\nparseAttributes\n\n解析标签上的属性\n\nparseAttributes\n\nfunction parseAttributes(\n  context: ParserContext,\n  type: TagType\n): (AttributeNode | DirectiveNode)[] {\n  const props = []\n  // 标签名的集合\n  const attributeNames = new Set()\n\n  // 由开头开始遍历\n  while (\n    context.source.length > 0 &&\n    !startsWith(context.source, '>') &&\n    !startsWith(context.source, '/>')\n  ) {\n    if (startsWith(context.source, '/')) {\n      emitError(context, ErrorCodes.UNEXPECTEDSOLIDUSIN_TAG)\n      advanceBy(context, 1)\n      advanceSpaces(context)\n      continue\n    }\n    if (type === TagType.End) {\n      emitError(context, ErrorCodes.ENDTAGWITH_ATTRIBUTES)\n    }\n\n    // 拿到当前的属性\n    const attr = parseAttribute(context, attributeNames)\n\n    // Trim whitespace between class\n    // https://github.com/vuejs/core/issues/4251\n    // 删除class属性的空格\n    if (\n      attr.type === NodeTypes.ATTRIBUTE &&\n      attr.value &&\n      attr.name === 'class'\n    ) {\n      attr.value.content = attr.value.content.replace(/\\s+/g, ' ').trim()\n    }\n\t// 属性容器添加\n    if (type === TagType.Start) {\n      props.push(attr)\n    }\n\n    if (/^/.test(context.source)) {\n      emitError(context, ErrorCodes.MISSINGWHITESPACEBETWEEN_ATTRIBUTES)\n    }\n    // 删除空格\n    advanceSpaces(context)\n  }\n  return props\n}\n\nparseAttribute\n\n解析属性的键值对\n\nfunction parseAttribute(\n  context: ParserContext,\n  nameSet: Set\n): AttributeNode | DirectiveNode {\n  TEST && assert(/^/.test(context.source))\n\n  // Name.\n  // 解析出标签名\n  const start = getCursor(context)\n  // 匹配出=号之前的字符串\n  const match = /^*/.exec(context.source)!\n  // 拿到属性名\n  const name = match[0]\n\n  // 属性名如果重复，报错\n  if (nameSet.has(name)) {\n    emitError(context, ErrorCodes.DUPLICATE_ATTRIBUTE)\n  }\n  // 添加\n  nameSet.add(name)\n\n  if (name[0] === '=') {\n    emitError(context, ErrorCodes.UNEXPECTEDEQUALSSIGNBEFOREATTRIBUTE_NAME)\n  }\n  {\n    const pattern = /[\"' v-model:foo\n    if (COMPAT && dirName === 'bind' && arg) {\n      if (\n        modifiers.includes('sync') &&\n        checkCompatEnabled(\n          CompilerDeprecationTypes.COMPILERVBIND_SYNC,\n          context,\n          loc,\n          arg.loc.source\n        )\n      ) {\n        dirName = 'model'\n        modifiers.splice(modifiers.indexOf('sync'), 1)\n      }\n\n      if (DEV && modifiers.includes('prop')) {\n        checkCompatEnabled(\n          CompilerDeprecationTypes.COMPILERVBIND_PROP,\n          context,\n          loc\n        )\n      }\n    }\n\n    return {\n      type: NodeTypes.DIRECTIVE,\n      name: dirName,\n      exp: value && {\n        type: NodeTypes.SIMPLE_EXPRESSION,\n        content: value.content,\n        isStatic: false,\n        // Treat as non-constant by default. This can be potentially set to\n        // other values by transformExpression to make it eligible for hoisting.\n        constType: ConstantTypes.NOT_CONSTANT,\n        loc: value.loc\n      },\n      arg,\n      modifiers,\n      loc\n    }\n  }\n\n  // missing directive name or illegal directive name\n  if (!context.inVPre && startsWith(name, 'v-')) {\n    emitError(context, ErrorCodes.XMISSINGDIRECTIVE_NAME)\n  }\n\n  return {\n    type: NodeTypes.ATTRIBUTE,\n    name,\n    value: value && {\n      type: NodeTypes.TEXT,\n      content: value.content,\n      loc: value.loc\n    },\n    loc\n  }\n}\n\nparseAttributeValue\n\n解析属性值\n\nfunction parseAttributeValue(context: ParserContext): AttributeValue {\n  // 获取开头位置\n  const start = getCursor(context)\n  let content: string\n\n  // 拿到第一个字符\n  const quote = context.source[0]\n  const isQuoted = quote === \" || quote === '\n  if (isQuoted) {\n    // Quoted value.\n    // 带引号的值，去除一位\n    advanceBy(context, 1)\n\n    // 尾部索引\n    const endIndex = context.source.indexOf(quote)\n    if (endIndex === -1) {\n      content = parseTextData(\n        context,\n        context.source.length,\n        TextModes.ATTRIBUTE_VALUE\n      )\n    } else {\n      content = parseTextData(context, endIndex, TextModes.ATTRIBUTE_VALUE)\n      // 去除尾部一个字符\n      advanceBy(context, 1)\n    }\n  } else {\n    // Unquoted\n    const match = /^+/.exec(context.source)\n    if (!match) {\n      return undefined\n    }\n    const unexpectedChars = /[\"''] : [' index) {\n      // 找到最短的字符位置\n      endIndex = index\n    }\n  }\n\n  // .... code\n\n  // 开始位置\n  const start = getCursor(context)\n  // 根据最后的下标位置进行截取，并且更改原字符串\n  const content = parseTextData(context, endIndex, mode)\n\n  // 构造成最终对象\n  return {\n    type: NodeTypes.TEXT,\n    content,\n    loc: getSelection(context, start)\n  }\n}\n\nparseTextData\n\n解析文本数据\n\nfunction parseTextData(\n  context: ParserContext,\n  length: number,\n  mode: TextModes\n): string {\n  // 文本原始值\n  const rawText = context.source.slice(0, length)\n  // 删除到source上对应的长度\n  advanceBy(context, length)\n  if (\n    mode === TextModes.RAWTEXT ||\n    mode === TextModes.CDATA ||\n    !rawText.includes('&')\n  ) {\n    return rawText\n  } else {\n    // DATA or RCDATA containing \"&\"\". Entity decoding required.\n    // 如果包含&,就会当成值去解析\n    return context.options.decodeEntities(\n      rawText,\n      mode === TextModes.ATTRIBUTE_VALUE\n    )\n  }\n}\n",
         "tags": [
             "vue3",
             "@vue/compiler-sfc"
+        ],
+        "title_tokens": [
+            "vue3",
+            " ",
+            "--",
+            " ",
+            "@",
+            "vue",
+            "/",
+            "compiler",
+            "-",
+            "core",
+            " ",
+            "parse",
+            "处理",
+            "整体",
+            "流程"
+        ],
+        "content_tokens": [
+            "context",
+            "const",
+            "source",
+            "type",
+            "content",
+            "length",
+            "loc",
+            "name",
+            "NodeTypes",
+            "return"
         ]
     },
     {
@@ -503,6 +1731,34 @@
         "tags": [
             "vue3",
             "@vue/compiler-sfc"
+        ],
+        "title_tokens": [
+            "vue3",
+            " ",
+            "--",
+            " ",
+            "@",
+            "vue",
+            "/",
+            "compiler",
+            "-",
+            "sfc",
+            " ",
+            "工具",
+            "源码",
+            "解读"
+        ],
+        "content_tokens": [
+            "const",
+            "descriptor",
+            "options",
+            "push",
+            "plugins",
+            "result",
+            "插件",
+            "compiler",
+            "node",
+            "source"
         ]
     },
     {
@@ -512,6 +1768,33 @@
         "tags": [
             "vue3",
             "@vue/compiler-sfc"
+        ],
+        "title_tokens": [
+            "vue3",
+            " ",
+            "--",
+            " ",
+            "@",
+            "vue",
+            "/",
+            "compiler",
+            "-",
+            "sfc",
+            " ",
+            "工具",
+            "解读"
+        ],
+        "content_tokens": [
+            "CAAC",
+            "vue",
+            "Object",
+            "Function",
+            "ref",
+            "name",
+            "defineComponent",
+            "setup",
+            "import",
+            "const"
         ]
     },
     {
@@ -520,6 +1803,29 @@
         "content": "\nVue3 cssVars\n\n>   \"version\": \"3.2.37\"\n\nvue3中单文件SFC有个新特性，就是在css里可以使用变量了\n\n    123\n\nconst color = 'red'\n\n h1 {\n    color: v-bind(color)\n }\n\n具体的代码就是使用v-bind去绑定变量值，这里预览的结果就是h1会显示出红色\n\n查看h1的标签，可以看到\n\ncolor使用的是 css自带的变量var语法进行绑定的\n\n并且把变量值绑定到父元素上，通过js写入到父元素的行内样式里\n\ncss变量绑定分为2个阶段\n\n编译阶段，把变量转换成css var变量语法机制\n运行时阶段，js动态改变父元素上的变量绑定\n\ndoCompileStyle\n\n这个函数是compileStyle的主函数，其主要作用就是把SFC中的css部分编译识别出来\n\n其中也有很多处理代码，最终也是使用postcss去处理\n\n// .....\nconst shortId = id.replace(/^data-v-/, '')\nconst longId = data-v-${shortId}\n\nconst plugins = (postcssPlugins || []).slice()\nplugins.unshift(cssVarsPlugin({ id: shortId, isProd }))\n\n// ....\n\n可以看到其中最第一位的就是在plugins的首位插入了一个插件，就是cssVarsPlugin\n\ncssVarsPlugin\n\n插件中通过正则匹配v-bind在字符串中的位置进行匹配替换\n\nconst vBindRE = /v-bind\\s*\\(/g\n//....\n\nexport const cssVarsPlugin: PluginCreator = opts => {\n  const { id, isProd } = opts!\n  return {\n    postcssPlugin: 'vue-sfc-vars',\n    Declaration(decl) {\n      // rewrite CSS variables\n      const value = decl.value\n      if (vBindRE.test(value)) {\n        // 重置匹配位置到首位\n        vBindRE.lastIndex = 0\n        // 匹配后的字符\n        let transformed = ''\n\n        let lastIndex = 0\n        let match\n\n        while ((match = vBindRE.exec(value))) {\n          // 匹配字符的开始位置\n          const start = match.index + match[0].length\n          const end = lexBinding(value, start)\n          if (end !== null) {\n            const variable = normalizeExpression(value.slice(start, end))\n            transformed +=\n              value.slice(lastIndex, match.index) +\n              var(--${genVarName(id, variable, isProd)})\n            lastIndex = end + 1\n          }\n        }\n        decl.value = transformed + value.slice(lastIndex)\n      }\n    }\n  }\n}\ncssVarsPlugin.postcss = true\n\n最终会在transformed进行字符串拼接， 并且生成一个var(--${genVarName(id, variable, isProd)})字符串，其中genVarname会根据当前组件的id进行生成，生产环境就是用随机字符串生成的\n\nlastIndex会在拼接后向后移动1位\n\n最后css转换后的值，v-bind就被替换成css的var()语法\n\nlexBinding\n\nlexBinding函数要结合上下文来看，v-bind的括号中变量是有多重形式的\n\n其中可能会有括号\n\nfont-weight: v-bind(\"count.toString(\");\nfont-weight: v-bind(xxx);\n\n官方代码中就是使用for循环，结合switch\\case, 最终找到最后一个),返回索引值，也就是end值\n\nfunction lexBinding(content: string, start: number): number | null {\n  let state: LexerState = LexerState.inParens\n  let parenDepth = 0\n\n  for (let i = start; i  0) {\n            parenDepth--\n          } else {\n            return i\n          }\n        }\n        break\n      case LexerState.inSingleQuoteString:\n        if (char === ') {\n          state = LexerState.inParens\n        }\n        break\n      case LexerState.inDoubleQuoteString:\n        if (char === \") {\n          state = LexerState.inParens\n        }\n        break\n    }\n  }\n  return null\n}\n\nnormalizeExpression\n\n传入的是context截取的从开始到结束的字符串\n\n如果是'/\",返回去除的字符串\n\nfunction normalizeExpression(exp: string) {\n  exp = exp.trim()\n  if (\n    (exp[0] === ' && exp[exp.length - 1] === ') ||\n    (exp[0] === \" && exp[exp.length - 1] === \")\n  ) {\n    return exp.slice(1, -1)\n  }\n  return exp\n}\n\ngenCssVarsCode\n\n编译后要去动态响应值的变化，就必然要通过js去控制css的值，这里通过genCssVarsCode函数去生存响应的代码\n\nvars 通过编译后搜集的变量名\nbindings 当前组件中script暴露的变量\nid 当前组件的id\n\nexport function genCssVarsCode(\n  vars: string[],\n  bindings: BindingMetadata,\n  id: string,\n  isProd: boolean\n) {\n  // 根据当前组件css搜集的变量名，生成以逗号分隔的字符串，最后用大括号包围\n  const varsExp = genCssVarsFromList(vars, id, isProd)\n  // 组装成一个对象，其中content就是之前生成的字符串\n  const exp = createSimpleExpression(varsExp, false)\n\n  // ....\n\n  const transformed = processExpression(exp, context)\n  // ... 这里是伪代码， 中间还有其他判断\n  const transformedString = transformed.content\n\n  // 最终会生成一个字符串\n  return ${CSSVARSHELPER}(ctx => (${transformedString}))\n}\n\n我们把中间的变量替换过来，就是\n\n> \\useCssVars(\\ctx => ({\n>\n> // ..... 中间就是css的动态变量的代码\n>\n> }))\n\nuseCssVars\n\nwatchPostEffect是在组件更新之后调用\n\n同时在onMounted钩子函数内，使用MutationObserver监听父元素下的子元素变化，只要子元素发生变化，都会调用setVars函数\n\nexport function useCssVars(getter: (ctx: any) => Record) {\n  if (!BROWSER && !TEST) return\n\n  const instance = getCurrentInstance()\n  /* istanbul ignore next */\n  if (!instance) {\n    DEV &&\n      warn(useCssVars is called without current active component instance.)\n    return\n  }\n\n  const setVars = () =>\n    setVarsOnVNode(instance.subTree, getter(instance.proxy!))\n  watchPostEffect(setVars)\n  onMounted(() => {\n    const ob = new MutationObserver(setVars)\n    ob.observe(instance.subTree.el!.parentNode, { childList: true })\n    onUnmounted(() => ob.disconnect())\n  })\n}\n\nsetVarsOnVNode\n\n根据vode向上递归，找到非组件的父元素，要知道useCssVars是在运行时执行的，所以就是你写的html 元素节点\n\n最后就是把属性写入到父元素的style属性内\n\nfunction setVarsOnVNode(vnode: VNode, vars: Record) {\n  if (FEATURE_SUSPENSE && vnode.shapeFlag & ShapeFlags.SUSPENSE) {\n    const suspense = vnode.suspense!\n    vnode = suspense.activeBranch!\n    if (suspense.pendingBranch && !suspense.isHydrating) {\n      suspense.effects.push(() => {\n        setVarsOnVNode(suspense.activeBranch!, vars)\n      })\n    }\n  }\n\n  // drill down HOCs until it's a non-component vnode\n  // vnode 向上递归，直到vnode不存在component属性\n  while (vnode.component) {\n    vnode = vnode.component.subTree\n  }\n\n  // 设定属性值\n  if (vnode.shapeFlag & ShapeFlags.ELEMENT && vnode.el) {\n    setVarsOnNode(vnode.el as Node, vars)\n  } else if (vnode.type === Fragment) {\n    // 如果是Fragment，递归调用\n    ;(vnode.children as VNode[]).forEach(c => setVarsOnVNode(c, vars))\n  } else if (vnode.type === Static) {\n    // 静态节点\n    let { el, anchor } = vnode\n    while (el) {\n      setVarsOnNode(el as Node, vars)\n      if (el === anchor) break\n      el = el.nextSibling\n    }\n  }\n}\n\nfunction setVarsOnNode(el: Node, vars: Record) {\n  // 根据nodeType, 如果node是元素属性\n  if (el.nodeType === 1) {\n    const style = (el as HTMLElement).style\n    // 使用setProperty\n    for (const key in vars) {\n      style.setProperty(--${key}, vars[key])\n    }\n  }\n}\n",
         "tags": [
             "vue3"
+        ],
+        "title_tokens": [
+            "vue",
+            " ",
+            "--",
+            " ",
+            "cssVars",
+            " ",
+            "css",
+            "绑定",
+            "变量"
+        ],
+        "content_tokens": [
+            "const",
+            "vnode",
+            "exp",
+            "el",
+            "vars",
+            "css",
+            "id",
+            "value",
+            "bind",
+            "return"
         ]
     },
     {
@@ -528,12 +1834,43 @@
         "content": "\n\n对于ElementUI样式进行改造\n\n.#{$prefix}-field-drawer {\n  > .el-drawer__header {\n    background-color: var(--theme);\n    padding-bottom: 20px;\n    color: #fff;\n  }\n\n  > .el-drawer__body {\n    padding-left: 8px;\n    padding-right: 8px;\n  }\n\n  .flow-field-tab {\n    .el-tabs__nav-wrap {\n      padding-bottom: 10px;\n\n      &::after {\n        background-color: var(--theme);\n      }\n    }\n    .el-tabs__active-bar {\n      display: none;\n    }\n\n    .el-tabs__item {\n      padding: 6px 12px;\n      height: unset;\n      line-height: unset;\n    }\n\n    .el-tabs__item.is-active {\n      background-color: #e5edf3;\n      border-radius: 5px;\n      color: #6c95ca;\n    }\n\n    .field-title {\n      font-size: 16px;\n      font-weight: 500;\n      color: #333333;\n      line-height: 22px;\n      margin-bottom: 20px;\n    }\n\n    .field-table {\n      .el-radio__label {\n        display: none;\n      }\n    }\n  }\n}\n",
         "tags": [
             "elementui"
+        ],
+        "title_tokens": [
+            "elementui",
+            " ",
+            "Tab",
+            "样式",
+            "改造"
+        ],
+        "content_tokens": [
+            "el",
+            "color",
+            "padding",
+            "field",
+            "tabs",
+            "background",
+            "bottom",
+            "drawer",
+            "height",
+            "20px"
         ]
     },
     {
         "uri": "",
         "content": "\n\ntitle: \"vue2 -- 核心diff 源码解读\"\ndate: 2022-01-11T10:18:05+08:00\ndraft: true\ntags: [\"vue\", \"javascript\"]\n\nvue2 组件diff过程\npatchVnode\n\n打补丁过程\n\nfunction patchVnode(\n    oldVnode,\n    vnode,\n    insertedVnodeQueue,\n    ownerArray,\n    index,\n    removeOnly\n) {\n    // 旧node和新node相等，直接退出\n    if (oldVnode === vnode) {\n        return;\n    }\n\n    var elm = (vnode.elm = oldVnode.elm);\n\n    var oldCh = oldVnode.children;\n    var ch = vnode.children;\n\n    // 如果新vnode没有text\n    if (isUndef(vnode.text)) {\n        // 新老vnode都存在children的情况下\n        if (isDef(oldCh) && isDef(ch)) {\n            if (oldCh !== ch) { // 并且不相等\n                // 走updateChildren 逻辑\n                updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly);\n            }\n        } else if (isDef(ch)) {\n            // 新vnode存在children， 老的没有children\n            // 先清除text文本\n            if (isDef(oldVnode.text)) {\n                nodeOps.setTextContent(elm, \"\");\n            }\n            // 在生产新的vnode\n            addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);\n        } else if (isDef(oldCh)) {\n            // 老的vnode下是children， 清空数组\n            removeVnodes(elm, oldCh, 0, oldCh.length - 1);\n        } else if (isDef(oldVnode.text)) {\n            // 老的vnode下是text， 直接清空\n            nodeOps.setTextContent(elm, \"\");\n        }\n    } else if (oldVnode.text !== vnode.text) {\n        // 如果新vnode有text， 直接调用dom api 更新文本\n        nodeOps.setTextContent(elm, vnode.text);\n    }\n}\n\n// 更新子元素\nfunction updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {\n    var oldStartIdx = 0;\n    var newStartIdx = 0;\n    var oldEndIdx = oldCh.length - 1;\n    var oldStartVnode = oldCh[0];\n    var oldEndVnode = oldCh[oldEndIdx];\n    var newEndIdx = newCh.length - 1;\n    var newStartVnode = newCh[0];\n    var newEndVnode = newCh[newEndIdx];\n    var oldKeyToIdx, idxInOld, vnodeToMove, refElm;\n\n    // removeOnly is a special flag used only by\n    // to ensure removed elements stay in correct relative positions\n    // during leaving transitions\n    var canMove = !removeOnly;\n\n    {\n        // 检查重复key并提示到控制台\n        checkDuplicateKeys(newCh);\n    }\n\n    while (oldStartIdx  oldEndIdx) {\n        refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;\n        // 把剩下的从start到end的数据遍历插入到对应的位置\n        addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);\n    } else if (newStartIdx > newEndIdx) { // 数组变短，新的数组开始结束指针提前相遇\n        // 遍历删除掉旧数组中不需要得到元素\n        removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);\n    }\n}\n",
-        "tags": []
+        "tags": [],
+        "content_tokens": [
+            "vnode",
+            "var",
+            "oldCh",
+            "elm",
+            "text",
+            "newCh",
+            "ch",
+            "oldVnode",
+            "children",
+            "isDef"
+        ]
     },
     {
         "uri": "/posts/2022/05/commons-chunk-plugin/",
@@ -541,13 +1878,49 @@
         "content": "\nwebpack CommonsChunkPlugin\n\n代码分片是webpack中重要的优化手段，对于一个比较大的chunk，有必要提取出当前chunk中依赖的不经常变化的库\n\nusage\n\nnew webpack.optimize.CommonsChunkPlugin()\n\n配置项\n\n{\n\t name: string, // 提取出来的chunk的名称\n   names: string[], // 名称输入字符串数组时，相当于多次调用本插件\n   filename: string, //\n   minSize: number,\n   minChunks: number|Infinity|function(module, count) => boolean, // 最少引用次数\n   chunks: string[], // 这里的chunks， 和入口部分的chunk一一对应，如果出现在其中，就会被单独提取出来，如果省略，即所有入口chunk都会被选择\n   children: boolean,\n   deepChildren: boolean,\n   async: boolean|string,\n}\n",
         "tags": [
             "webpack"
+        ],
+        "title_tokens": [
+            "webpack",
+            " ",
+            "代码",
+            "分片"
+        ],
+        "content_tokens": [
+            "chunk",
+            "string",
+            "boolean",
+            "webpack",
+            "CommonsChunkPlugin",
+            "chunks",
+            "number",
+            "提取",
+            "入口",
+            "名称"
         ]
     },
     {
         "uri": "/posts/2022/05/principle/",
         "title": "webpack 打包原理",
         "content": "\nwebpack\n\n知识点\n\n通过入口文件循环遍历每个模块，把对应的模块交给对应的loader去处理, 所以webpack建议把你开发应用所有需要的资源都通过js去引用。\n\nLoader机制是webpack最核心的机制，可以通过loader加载前端需要的任何资源\n\nloader的执行顺序是从后往前\nloader处理特殊类型资源文件的加载，plugin实现各种自动化的构建任务，扩展打包\nloader只在模块加载环节使用，plugin覆盖全webpack生命周期\n\n工作原理\n\nwebpack cli启动打包流程\n载入webpack核心模块，创建Compiler对象\n使用Compiler对象开始编译整个项目\n从入口文件开始，解析模块依赖，形成依赖关系树\n递归依赖树，将每个模块交给对应的Loader处理\n合并Loader处理完的结果，将结果打包输出到dist目录\n",
-        "tags": []
+        "tags": [],
+        "title_tokens": [
+            "webpack",
+            " ",
+            "打包",
+            "原理"
+        ],
+        "content_tokens": [
+            "webpack",
+            "loader",
+            "模块",
+            "Loader",
+            "加载",
+            "打包",
+            "Compiler",
+            "plugin",
+            "处理",
+            "依赖"
+        ]
     },
     {
         "uri": "/posts/2021/10/webpack-loader-plugin/",
@@ -556,18 +1929,74 @@
         "tags": [
             "js",
             "webpack"
+        ],
+        "title_tokens": [
+            "Webpack",
+            " ",
+            "Loader",
+            " ",
+            "Plugin"
+        ],
+        "content_tokens": [
+            "loader",
+            "Plugins",
+            "webpack",
+            "BasicPlugin",
+            "Loaders",
+            "bundle",
+            "compiler",
+            "source",
+            "work",
+            "执行"
         ]
     },
     {
         "uri": "/posts/2022/06/concept/",
         "title": "webrtc 相关概念",
         "content": "\nwebRTC传输技术\n\nRTP\n\nRTP（Real-time Transport Protocol，实时传输协议）通过IP网络实时传输音频和视频。RTP常用于流媒体服务的通信系统，例如网络电话、WebRTC视频电话会议、电视服务等.\n\n具有较低的延时。\n数据包在网络传输的过程中可能会丢失，到达对等端的顺序也可能发生变化。对等端收到RTP数据包后，需要根据数据包的序列号和时间戳进行重新组合。\n支持多播（multicast），尽管目前WebRTC还没有使用这个特性，但是在海量用户通话场景，这个特性就变得很重要。\n\nRTP会为每个媒体流建立一个会话，即音频和视频流使用单独的RTP会话，这样接收端就能选择性地接收媒体流。RTP使用的端口号为偶数，每个关联的RTCP端口为下一个较高的奇数，端口号范围为1024～65535。\n\nRTCP\n\nRTCP（RTP Control Protocol）是实时传输协议（RTP）的姊妹协议，其基本功能和数据包结构在RFC 3550中定义。RTCP为RTP会话提供带外统计信息和控制信息，与RTP协作提供多媒体数据的传输和打包功能，其本身不传输任何媒体数据。\n\nRTP通常在偶数UDP端口上发送，而RTCP消息将在下一个更高的奇数端口发送。\n\nWebRTC使用的是SRTP。SRTP是RTP的一个配置文件，旨在为单播和多播应用程序中的RTP数据提供加密、消息身份验证和完整性以及重放攻击保护等安全功能。\n\nSRTP和SRTCP默认的加密算法是AES，攻击者虽然无法解密数据，但可以伪造或重放以前发送的数据。因此，SRTP标准还提供了确保数据完整性和安全性的方法。\n\nSDP\n\nSDP（Session Description Protocol）是用于描述媒体信息的协议，以文本格式描述终端功能和首选项。\n\nSDP广泛用于会话启动协议（SIP）、RTP和实时流协议（RSP）。\n",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "webrtc",
+            " ",
+            "相关",
+            "概念"
+        ],
+        "content_tokens": [
+            "RTP",
+            "RTCP",
+            "数据包",
+            "传输",
+            "SRTP",
+            "Protocol",
+            "SDP",
+            "WebRTC",
+            "协议",
+            "实时"
+        ]
     },
     {
         "uri": "/posts/2022/06/windows-jenkins/",
         "title": "windows下docker运行jenkins",
         "content": "\nwindows下docker运行jenkins\n\nimage\n\n> docker pull jenkinsci/blueocean\n\nrun\n\n> docker run --name jenkinsci-blueocean -u root --rm  -d -p 7005:8080 -p 50000:50000 -v D:\\workspace\\jenkinsData:/var/jenkins_home jenkinsci/blueocean",
-        "tags": null
+        "tags": null,
+        "title_tokens": [
+            "windows",
+            "下",
+            "docker",
+            "运行",
+            "jenkins"
+        ],
+        "content_tokens": [
+            "blueocean",
+            "docker",
+            "jenkinsci",
+            "50000",
+            "jenkins",
+            "run",
+            "7005",
+            "8080",
+            "home",
+            "image"
+        ]
     }
 ]

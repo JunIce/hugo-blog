@@ -90,14 +90,14 @@
          return isLunr2 ? new lunr.Token(t.toLowerCase()) : t.toLowerCase()
        })
  
-       nodejiebaDictJson && nodejieba.load(nodejiebaDictJson)
+      //  nodejiebaDictJson && nodejieba.load(nodejiebaDictJson)
  
-       var str = obj.toString().trim().toLowerCase();
-       var tokens = [];
+      //  var str = obj.toString().trim().toLowerCase();
+      //  var tokens = [];
  
-       nodejieba.cut(str, true).forEach(function(seg) {
-         tokens = tokens.concat(seg.split(' '))
-       })
+      //  nodejieba.cut(str, true).forEach(function(seg) {
+      //    tokens = tokens.concat(seg.split(' '))
+      //  })
  
        tokens = tokens.filter(function(token) {
          return !!token;
