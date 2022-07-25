@@ -84,6 +84,56 @@ interface Element {
 
 ## Locations
 
+位置用作索引文档，方便文档在进行插入删除时进行定位。
+
+### Path
+
+`Path`是最低等级的方式去关联一个位置。每个路径都表示一个`Node`节点相对于父`Node`的相对位置。
+
+> type Path = number[]
+
+
+
+整个Editor的Path就是[]
+
+
+
+### Point
+
+point 要相对于path来说就更具体， 包含一个offset表示一个更具体的文本。
+
+```typescript
+interface Point {
+  path: Path
+  offset: number
+}
+```
+
+你可以把它想象成一个光标
+
+
+
+### Range
+
+range代表的是一个范围，其中有一个起点和终点
+
+```typescript
+interface Range {
+  anchor: Point
+  focus: Point
+}
+```
+
+其中只是anchor和focus只是关联在文档中的位置，而不去关联elements
+
+
+
+### Selection
+
+选取API。选取是一种特别的Range
+
+
+
 
 
 
