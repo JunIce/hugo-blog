@@ -3,6 +3,7 @@ title: "webpack5 基础配置"
 date: 2021-10-30T15:33:17+08:00
 draft: true
 tags: ["webpack"]
+categories: ["webpack"]
 ---
 
 ## webpack 基础配置

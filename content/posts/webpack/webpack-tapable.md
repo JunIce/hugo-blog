@@ -2,7 +2,7 @@
 title: "Webpack Tapable插件机制源码解读"
 date: 2022-02-05T10:08:32+08:00
 draft: true
-tags: ["webpack"]
+tags: ["webpack", "tapable"]
 categories: ["webpack"]
 ---
 
