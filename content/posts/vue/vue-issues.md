@@ -21,3 +21,25 @@ https://github.com/vuejs/composition-api/issues/213
 
 
 
+### Cannot find module '@vue/cli-plugin-eslint'
+
+vue在使用lerna初始化vue项目后，运行项目会报错 `Cannot find module '@vue/cli-plugin-eslint'`
+
+https://github.com/vuejs/vue-cli/issues/4911
+
+#### 解决方案
+```json
+{
+// ....
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@vue/cli-plugin-eslint",
+      "**/@vue/cli-plugin-eslint/**"
+    ]
+  },
+  // ....
+}
+```
