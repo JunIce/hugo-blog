@@ -40,3 +40,16 @@ $ git submodule add 子模块存储网址
 $ git commit -m '备注'
 $ git push
 ```
+
+
+### 3.npm publish 时出现私有错误
+
+```bash
+npm ERR! code E402
+npm ERR! 402 Payment Required - PUT https://registry.npmjs.org/@rj_12%2fvue2 - You must sign up for private packages
+```
+
+**方案**
+```bash
+npm publish --access public
+```

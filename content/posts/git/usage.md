@@ -33,3 +33,8 @@ categories: ["git"]
 `git branch -u origin/main master`
 
 跟踪本地master分支到远程的**main**分支
+
+
+### git init 默认main分支
+
+`git config --global init.defaultBranch main`
