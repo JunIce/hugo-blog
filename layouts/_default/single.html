@@ -4,18 +4,16 @@
     <h1 class="title">{{ .Title }}</h1>
 
     <div class="tip">
-        <time datetime="{{ .PublishDate }}">{{ i18n "publishDateFull" . }}</time>
+        Published: <time datetime="{{ .PublishDate }}">{{ $.Page.PublishDate.Format "January 02, 2006" }}</time>
+        <span class="split">
+          ·
+        </span>
+        LastMod: {{ $.Page.Lastmod.Format "January 02, 2006" }}
         <span class="split">
           ·
         </span>
         <span>
           {{ i18n "wordCount" . }}
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          {{ i18n "minuteRead" . }}
         </span>
     </div>
 

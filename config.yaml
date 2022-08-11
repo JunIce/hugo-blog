@@ -8,6 +8,7 @@ defaultContentLanguage: en
 
 # !!! exampleSite only, you may need to delete the line: `themesDir: ../../` 
 themesDir: ../../
+enableGitInfo: true
 
 hasCJKLanguage: true
 permalinks:
@@ -39,6 +40,12 @@ social:
   github: https://github.com/JunIce
   juejin: https://juejin.cn/user/2717648473319415
 
+frontmatter:
+  lastmod:
+  - lastmod
+  - :git
+  - date
+  - publishDate
 
 # Site parameters
 params:
