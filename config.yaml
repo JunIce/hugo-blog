@@ -77,6 +77,8 @@ params:
   hiddenPostSummaryInHomePage: false
   # Website copy write, default: '© Copyright 2021 ❤️ {params.author}'
   copyright: '© Copyright 2020 ❤️ rongjun.qiu' 
+  
+  tools: Tools
 
   # Extra links in navigation
   links:

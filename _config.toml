@@ -156,6 +156,10 @@ theme = "LoveIt"
     url = "/about-me"
     name = "关于我"
     weight = 4
+  [[menu.main]]
+    url = "/tools"
+    name = "工具"
+    weight = 5
 
 # Hugo 解析文档的配置
 [markup]
