@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@node-rs/jieba": "^1.6.1",
+    "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",

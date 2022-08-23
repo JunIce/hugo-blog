@@ -1,4 +1,13 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "_common.scss";
 @import "_custom.scss";
 @import "_term.scss";
 @import "_search.scss";
+
+html {
+    font-size: 14px;
+}

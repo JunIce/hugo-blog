@@ -1,8 +1,9 @@
 
 module.exports = {
-    plugins: [
-        require("autoprefixer")({
+    plugins: {
+        autoprefixer: {
             "browsers": "last 2 version"
-        })
-    ]
+        },
+        tailwindcss: {},
+    }
 }
