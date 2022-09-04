@@ -186,3 +186,65 @@ Object.keys(target).concat(getEnumerableOwnPropertySymbols(target))
 
 
 
+## 笔记
+
+1. `in`和`hasOwnProperty`区别
+   1. 都可以用来对象内是否含有对应属性
+   2. 都支持判断ES6内的`symbols`
+   3. 不同点就是`in`可以判断出原型链上通过继承过来的属性，
+   4. `hasOwnProperty`只能判断对象上自己拥有的属性
+
+
+
+```javascript
+const obj = { answer: 42 };
+// 基础属性判断
+'answer' in obj; // true
+obj.hasOwnProperty('answer'); // true
+
+'does not exist' in obj; // false
+obj.hasOwnProperty('does not exist'); // false
+
+// symbol对象判断
+const symbol = Symbol('answer');
+const obj = { [symbol]: 42 };
+
+symbol in obj; // true
+obj.hasOwnProperty(symbol); // true
+
+// 继承属性判断
+'constructor' in obj; // true
+'__proto__' in obj; // true
+'hasOwnProperty' in obj; // true
+
+obj.hasOwnProperty('constructor'); // false
+obj.hasOwnProperty('__proto__'); // false
+obj.hasOwnProperty('hasOwnProperty'); // false
+
+
+class BaseClass {
+  get baseProp() {
+    return 42;
+  }
+}
+class ChildClass extends BaseClass {
+  get childProp() {
+    return 42;
+  }
+}
+const base = new BaseClass();
+const child = new ChildClass();
+
+// 对于es6中 getters/setters判断
+'baseProp' in base; // true
+'childProp' in child; // true
+'baseProp' in child; // true
+
+base.hasOwnProperty('baseProp'); // false
+child.hasOwnProperty('childProp'); // false
+child.hasOwnProperty('baseProp'); // false
+```
+
+
+
+![](http://cdn.storycn.cn/blog/hasownproperty.png)
