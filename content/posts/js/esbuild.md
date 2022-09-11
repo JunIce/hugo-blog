@@ -235,5 +235,76 @@ require('esbuild').transformSync('<div/>', {
 
 
 
+### jsx factory
 
+设置`jsx`编译后的方法名
+
+默认`jsx`元素会被编译成`React.createElement`元素
+
+
+
+```javascript
+<div>Example text</div>
+
+// ==
+// 编译后结果
+React.createElement("div", null, "Example text");
+```
+
+
+
+或者在transform的时候设置
+
+```javascript
+require("esbuild").transformSync("<div/>", {
+  jsxFactory: "h",
+  loader: "jsx"
+})
+```
+
+
+
+如果是在使用typescript开发，可以设置`tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "jsxFactory": "h"
+  }
+}
+```
+
+
+
+或者在使用时添加注释 `// @jsx h`
+
+
+
+
+
+### Pure
+
+特殊注释`/* @__PURE__ */` 或者 `/* #__PURE__ */`是用来标注特殊函数，在打包时可以进行优化，如果没有使用到这个函数，就不会最终打包到bundle中
+
+
+
+### Tree shaking
+
+摇树优化
+
+当项目中有相应的函数没有被使用到时，编译器在打包的时候会对函数进行搜集，如果没有使用到最终会被移除出bundle
+
+
+
+esbuild的tree shaking依赖于es6的 import 和 export语法， CommonJS模块就不能支持Tree shaking
+
+默认esbuild的tree shaking只有在format为iife的情况下才是打开的，其他模式下都是关闭的，可以手动设置为true
+
+```javascript
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  treeShaking: true,
+  outfile: 'out.js',
+})
+```
 
