@@ -6,7 +6,7 @@ tags: ["vue3"]
 categories: ["vue"]
 ---
 
-## setup script
+# setup script
 
 setup script 是 vue3 中新加的开发模式，加在原来 vue sfc script 部分
 
@@ -133,3 +133,47 @@ const MyComponent = defineAsyncComponent(() => import(./MyComponent.vue))
   <MyComponent />
 </template>
 ```
+
+
+
+
+
+## setup 中需要使用name属性注册组件名
+
+
+
+```vue
+<template>
+  <button :class="['text' + size]">size: {{ size }}</button>
+</template>
+
+<script lang="ts">
+export default { name: "test-btn" };
+</script>
+<script setup lang="ts">
+import { defineProps } from "vue";
+import type {PropType} from 'vue'
+defineProps({
+  size: {
+      type: String as PropType<IButtonSize>,
+      default: "base"
+    }
+})
+</script>
+```
+
+
+
+或者使用`unplugin-vue-setup-extend`这个库
+
+```javascript
+yarn add unplugin-vue-setup-extend --dev
+```
+
+```vue
+<template> </template>
+<script setup lang="ts" name="App">
+  // placeholder
+</script>
+```
+
