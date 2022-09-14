@@ -46,6 +46,14 @@ console.log(config.toString());
 
 
 
+## 工程目录
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2eeb8538efa6489a8c745a90dd780e9d~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+## 源码分析
+
 ## ChainedMap、ChainedSet
 
 
@@ -101,6 +109,8 @@ set(key, value) {
 }
 ```
 
+
+
 #### get
 
 获取对应的key的值
@@ -111,6 +121,8 @@ get(key) {
 }
 ```
 
+
+
 #### has
 
 判断store中是否含有对应的key
@@ -120,6 +132,8 @@ has(key) {
     return this.store.has(key);
 }
 ```
+
+
 
 #### clear
 
@@ -132,6 +146,8 @@ clear() {
 }
 ```
 
+
+
 #### delete
 
 删除对应的key
@@ -142,6 +158,8 @@ delete(key) {
     return this;
 }
 ```
+
+
 
 #### getOrCompute
 
@@ -313,6 +331,145 @@ values() {
     const { entries, order } = this.order();
 
     return order.map((name) => entries[name]);
+}
+```
+
+
+
+### ChainedSet
+
+ChainedSet 在 constructor 函数中实例化了一个store, 实际上就是Set的实例
+
+```javascript
+this.store = new Set()
+```
+
+
+
+#### add/clear/delete/has
+
+分别实现就是Set实例的对应的方法
+
+最后返回this，以实现链式调用
+
+
+
+#### prepend/merge
+
+分别是使用Set实例结构后就是数组,
+
+最后返回this，以实现链式调用
+
+```javascript
+prepend(value) {
+    this.store = new Set([value, ...this.store]);
+    return this;
+}
+```
+
+
+
+#### values
+
+返回解构后的store
+
+```javascript
+values() {
+    return [...this.store];
+}
+```
+
+
+
+#### when
+
+条件判断调用，分别是条件为true或者false的回调函数
+
+最后也会返回this, 实现链式调用
+
+```javascript
+when(
+    condition,
+    whenTruthy = Function.prototype,
+    whenFalsy = Function.prototype,
+  ) {
+    if (condition) {
+      whenTruthy(this);
+    } else {
+      whenFalsy(this);
+    }
+
+    return this;
+}
+```
+
+
+
+## Orderable
+
+`orderable`是`webpack-chain`中另一个高阶类函数
+
+通过继承类的形式对类进行扩展，最后返回一个扩展后的类
+
+```javascript
+const Orderable = Cls => class extends Cls {
+  // ....
+}
+```
+
+
+
+#### before/after
+
+这两个函数分别实现了一个`__before`属性和一个`__after`属性,
+
+最终对于实例的属性进行扩展
+
+```javascript
+before(name) {
+    if (this.__after) {
+      throw new Error(
+        `Unable to set .before(${JSON.stringify(
+          name,
+        )}) with existing value for .after()`,
+      );
+    }
+
+    this.__before = name;
+    return this;
+}
+
+after(name) {
+    if (this.__before) {
+      throw new Error(
+        `Unable to set .after(${JSON.stringify(
+          name,
+        )}) with existing value for .before()`,
+      );
+    }
+
+    this.__after = name;
+    return this;
+}
+```
+
+这里正好看到在ChainedMap中看到的order方法中的`__before`方法和`__after`方法, 应该就是这里进行扩展的
+
+
+
+#### merge
+
+```javascript
+merge(obj, omit = []) {
+  if (obj.before) {
+    this.before(obj.before);
+  }
+
+  if (obj.after) {
+    this.after(obj.after);
+  }
+
+  return super.merge(obj, [...omit, 'before', 'after']);
 }
 ```
 
