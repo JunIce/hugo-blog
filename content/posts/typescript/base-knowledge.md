@@ -6,6 +6,8 @@ tags: ["typescript"]
 categories: ["Typescript"]
 ---
 
+
+
 # Typescript
 
 
@@ -13,6 +15,8 @@ categories: ["Typescript"]
 ## interface 和 type
 
 都是用来定义数据类型的，规范数据对象的
+
+
 
 ### 相同点
 
@@ -181,6 +185,8 @@ interface Dispatch<T extends { type: string }> {
 T extends U ? X : Y // 若T能够赋值给U，那么类型是X，否则为Y
 ```
 
+**高级类型的特点是传入类型参数，经过一系列类型运算逻辑后，返回新的类型。**
+
 
 
 #### 值匹配
@@ -282,6 +288,8 @@ type Values = Diff<"x" | "y" | "z", "x">;
 
 
 ## never & unknown & any & void
+
+
 
 `any` 任意类型
 
