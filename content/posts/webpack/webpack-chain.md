@@ -473,3 +473,181 @@ merge(obj, omit = []) {
 }
 ```
 
+
+
+## Config
+
+`Config.js`是本项目的入口文件，也就是外部在使用的时候其实就是实例化的这个文件导出的类。
+
+
+
+```javascript
+const Config = require('webpack-chain');
+
+const config = new Config();
+```
+
+
+
+默认构造函数在实例化的时候，同时也新建了许多其他实例，像`devServer`、`module`等实例
+
+```javascript
+constructor() {
+  super();
+  this.devServer = new DevServer(this);
+  this.entryPoints = new ChainedMap(this);
+  this.module = new Module(this);
+  this.node = new ChainedMap(this);
+  this.optimization = new Optimization(this);
+  this.output = new Output(this);
+  this.performance = new Performance(this);
+  this.plugins = new ChainedMap(this);
+  this.resolve = new Resolve(this);
+  this.resolveLoader = new ResolveLoader(this);
+  this.extend([
+    'amd',
+    'bail',
+    'cache',
+    'context',
+    'devtool',
+    'externals',
+    'loader',
+    'mode',
+    'name',
+    'parallelism',
+    'profile',
+    'recordsInputPath',
+    'recordsPath',
+    'recordsOutputPath',
+    'stats',
+    'target',
+    'watch',
+    'watchOptions',
+  ]);
+}
+```
+
+
+
+在构造函数中同时使用extend方法，扩展实例上的方法
+
+```javascript
+this[method] = value => this.set(method, value);
+```
+
+这样我们就可以在实例上直接用`[实例].`的形式直接调用
+
+
+
+`Config`上还有一个`plugin`方法
+
+```javascript
+plugin(name) {
+    return this.plugins.getOrCompute(name, () => new Plugin(this, name));
+}
+```
+
+
+
+`plugin`通过注册一个`name`，对应一个回调函数，回调函数返回一个Plugin实例
+
+`getOrCompute`方法用于确定`this.plugins`中对于同一个`name`，有且只有一个Plugin实例
+
+```javascript
+config
+  .plugin('clean')
+    .use(CleanPlugin, [['dist'], { root: '/dir' }]);
+```
+
+
+
+`entry`方法用于注册入口文件，webpack首先上是支持多入口的，所以这里也通过`getOrCompute`方法，对于同一个入口，返回一个实例
+
+```javascript
+config
+  .entry('index')
+    .add('src/index.js')
+    .end()
+  .entry('index2')
+    .add('src/index2.js')
+    .end()
+```
+
+
+
+`toString`方法用于返回最后实例化后的配置对象，实际上调用的是`toConfig`方法
+
+```javascript
+toConfig() {
+  const entryPoints = this.entryPoints.entries() || {};
+
+  return this.clean(
+    Object.assign(this.entries() || {}, {
+      node: this.node.entries(),
+      output: this.output.entries(),
+      resolve: this.resolve.toConfig(),
+      resolveLoader: this.resolveLoader.toConfig(),
+      devServer: this.devServer.toConfig(),
+      module: this.module.toConfig(),
+      optimization: this.optimization.toConfig(),
+      plugins: this.plugins.values().map((plugin) => plugin.toConfig()),
+      performance: this.performance.entries(),
+      entry: Object.keys(entryPoints).reduce(
+        (acc, key) =>
+          Object.assign(acc, { [key]: entryPoints[key].values() }),
+        {},
+      ),
+    }),
+  );
+}
+```
+
+返回一个去除了对象空值的配置后的对象
+
+
+
+## Module
+
+Module对应于`webpack.config.js`中的`module`对象
+
+
+
+`webpack.config.js`
+
+```javascript
+module.exports = {
+  module: {
+    // ...
+  }
+}
+```
+
+
+
+`Module`中通过2个方法`defaultRule`和`rule`定义module中的具名规则`rule`
+
+```javascript
+defaultRule(name) {
+  return this.defaultRules.getOrCompute(
+    name,
+    () => new Rule(this, name, 'defaultRule'),
+  );
+}
+
+rule(name) {
+  return this.rules.getOrCompute(name, () => new Rule(this, name, 'rule'));
+}
+```
+
+
+
+具名的rule进行定义
+
+```javascript
+config.module
+  .rule('lint')
+    .test(/\.js$/)
+  .rule('compile')
+    .test(/\.js$/)
+```
+
