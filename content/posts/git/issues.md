@@ -53,3 +53,9 @@ npm ERR! 402 Payment Required - PUT https://registry.npmjs.org/@rj_12%2fvue2 - Y
 ```bash
 npm publish --access public
 ```
+
+### git基于tag创建新分支进行修改
+
+```bash
+git checkout -b branch_name tag_name
+```
