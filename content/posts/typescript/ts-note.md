@@ -1,6 +1,6 @@
 ---
 title: "typescript 学习笔记"
-date: 2022-09-17T22:09:59+08:00
+date: 2022-09-16T19:54:23+08:00
 tags: ["typescript"]
 categories: ["typescript"]
 draft: false
