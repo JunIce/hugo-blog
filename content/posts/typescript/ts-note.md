@@ -148,3 +148,159 @@ type p11 = MyGetPropsRefType<{ref: number}>
 type p12 = MyGetPropsRefType<{ref: undefined}>
 ```
 
+
+
+## 重新构造
+
+
+
+### push 和 unshift
+
+对于已有的数组类型进行添加元素
+
+```typescript
+// push
+type MyPush<Arr extends unknown[], P> = [...Arr, P]
+type p13 = MyPush<[1,2,3], 4>
+
+// unshift
+type MyUnshift<Arr extends unknown[], P> = [P, ...Arr]
+type p14 = MyUnshift<[1,2,3], 4>
+```
+
+
+
+### zip
+
+```typescript
+type MyZip<T extends unknown[], S extends unknown[]> = 
+  T extends [infer T1, ...infer T2] ?
+      S extends [infer S1, ...infer S2] ?
+          [[T1, S1], MyZip<T2, S2>]
+          : []
+      :[]
+
+type p15 = MyZip<["a", "b", "c"], [1, 2, 3]>
+```
+
+
+
+字符串Uppercase、camelCase
+
+```typescript
+// uppercase
+type MyUpperCase<S extends string> = S extends `${infer F}${infer Rest}` ? `${Uppercase<F>}${Rest}` : S
+type p16 = MyUpperCase<"hello">
+
+// camelCase
+type MyCamelCase<S extends string> = S extends `${infer Left}_${infer R}${infer Rest}` ? `${Left}${Uppercase<R>}${MyCamelCase<Rest>}` : S
+
+type p17 = MyCamelCase<'hello_hello_hello_world'>
+```
+
+
+
+### 删除部分字符串
+
+```typescript
+// dropsubstr
+type MyDropStr<S extends string, D extends string> = S extends `${infer Left}${D}${infer L}` ? MyDropStr<`${Left}${L}`, D> : S
+
+type p18 = MyDropStr<"hello_hello_hello_world", "l">
+```
+
+
+
+### 函数参数添加其他参数
+
+```typescript
+// append function args
+type MyAppendArgs<F extends Function, Arg> = F extends (...args: infer Args) => infer ReturnType ? (...args: [...Args, Arg]) => ReturnType : never;
+
+type p19 = MyAppendArgs<(a: number, b: string) => any, boolean>
+```
+
+
+
+### 索引类型
+
+```typescript
+// index object
+type obj = {
+    readonly name: string;
+    age?: number;
+    gender: boolean;
+}
+
+type MyMapping<Obj extends object> = {
+    [K in keyof Obj]: [Obj[K], K]
+}
+
+type p20 = MyMapping<{ a: 1, b: 2 }>
+```
+
+
+
+### 类型对象key转大写
+
+```typescript
+// uppercase key
+type MyUpperCaseKey<Obj extends object> = {
+    [K in keyof Obj as Uppercase<K & string>]: Obj[K]
+}
+type p21 = MyUpperCaseKey<{ acc: 1, b: 2 }>
+```
+
+
+
+### 改变类型readonly、partial
+
+```typescript
+// readonly
+type MyReadonly<T> = {
+    readonly [K in keyof T] : T[K]
+}
+type p22 = MyReadonly<obj>
+
+// partial
+
+type MyPartial<T> = {
+    [K in keyof T] ?: T[K]
+}
+type p23 = MyPartial<obj>
+```
+
+
+
+### 修改部分类型的只读、必填
+
+```typescript
+// mutable
+type MyMutable<T> = {
+    -readonly [K in keyof T] ?: T[K]
+}
+type p24 = MyMutable<obj>
+
+// required
+type MyRequired<T> = {
+    [K in keyof T] -?: T[K]
+}
+type p25 = MyRequired<obj>
+```
+
+
+
+
+
+### 过滤出索引类型中指定的类型
+
+```typescript
+// filterValueType
+type MyFilterByType<T extends MyRecord<string, any>, ValueType> = {
+    [K in keyof T as T[K] extends ValueType ? K : never] : T[K]
+}
+type p26 = MyFilterByType<obj, string>
+```
+
+
+
