@@ -304,3 +304,252 @@ type p26 = MyFilterByType<obj, string>
 
 
 
+### 推断出Promise的返回类型
+
+```typescript
+type MyPromiseValueType<T> = T extends Promise<infer S>
+    ? MyPromiseValueType<S>
+    : T;
+
+type p27 = MyPromiseValueType<Promise<Promise<Promise<string>>>>;
+```
+
+
+
+### 数组类型反转
+
+```typescript
+type MyReverse<T extends unknown[]> = T extends [infer First, ...infer Rest]
+    ? [...MyReverse<Rest>, First]
+    : [];
+type p28 = MyReverse<[1, 2, 3, 4, 5]>;
+
+type IsEqual<A, B> = (A extends B ? true : false) &
+    (B extends A ? true : false);
+```
+
+
+
+### 递归判断数组中是否含有指定类型
+
+```typescript
+type MyInclude<T extends unknown[], S> = T extends [infer First, ...infer Rest]
+    ? IsEqual<S, First> extends true
+        ? true
+        : MyInclude<Rest, S>
+    : false;
+
+type p29 = MyInclude<[1, 2, 3, 4], 4>;
+type p30 = MyInclude<[1, 2, 3, 4], 5>;
+```
+
+
+
+### 删除数组类型中某一个元素
+
+```typescript
+type MyRemoveItem<
+    T extends unknown[],
+    S,
+    R extends unknown[] = []
+> = T extends [infer First, ...infer Rest]
+    ? IsEqual<S, First> extends true
+        ? MyRemoveItem<Rest, S, R>
+        : MyRemoveItem<Rest, S, [...R, First]>
+    : R;
+
+type p31 = MyRemoveItem<[1, 2, 3, 4], 3>;
+```
+
+
+
+### 创建一个指定长度的数组类型
+
+```typescript
+type MyBuildArray<
+    L extends number,
+    El extends unknown = unknown,
+    Result extends unknown[] = []
+> = Result["length"] extends L ? Result : MyBuildArray<L, El, [...Result, El]>;
+
+type p32 = MyBuildArray<6, 1>;
+```
+
+
+
+### 替换字符串类型中指定类型
+
+```typescript
+type MyReplaceAll<
+    Str extends string,
+    From extends string,
+    To extends string
+> = Str extends `${infer Prefix}${From}${infer Suffix}`
+    ? `${Prefix}${To}${MyReplaceAll<Suffix, From, To>}`
+    : Str;
+
+type p33 = MyReplaceAll<"hello_world", "l", "a">;
+```
+
+
+
+### 字符串类型转换成元组类型
+
+```typescript
+type MyStrToUnion<Str extends string> =
+    Str extends `${infer First}${infer Rest}`
+        ? `${First}` | `${MyStrToUnion<Rest>}`
+        : never;
+
+type p34 = MyStrToUnion<"hello">;
+```
+
+
+
+### 递归反转字符串类型
+
+```typescript
+type MyReverseStr<
+    Str extends string,
+    R extends string = ""
+> = Str extends `${infer First}${infer Rest}`
+    ? MyReverseStr<Rest, `${First}${R}`>
+    : R;
+
+type p35 = MyReverseStr<"hello">;
+```
+
+
+
+### 嵌套对象类型转换成readonly
+
+```typescript
+type MyDeepReadonly<Obj extends Record<string, any>> = Obj extends any
+    ? {
+          readonly [k in keyof Obj]: Obj[k] extends object
+              ? Obj[k] extends Function
+                  ? Obj[k]
+                  : MyDeepReadonly<Obj[k]>
+              : Obj[k];
+      }
+    : never;
+
+type obj1 = {
+    a: {
+        b: {
+            c: {
+                f: () => "dong";
+                d: {
+                    e: {
+                        guang: string;
+                    };
+                };
+            };
+        };
+    };
+};
+
+type p36 = MyDeepReadonly<obj1>;
+```
+
+
+
+### 类型中的加法
+
+```typescript
+type MyAdd<A extends number, B extends number> = [
+    ...MyBuildArray<A>,
+    ...MyBuildArray<B>
+]["length"];
+type p37 = MyAdd<12, 34>;
+```
+
+
+
+### 类型中的减法
+
+```typescript
+// substract
+type MySubStract<A extends number, B extends number> = MyBuildArray<A> extends [
+    ...MyBuildArray<B>,
+    ...infer Rest
+]
+    ? Rest["length"]
+    : never;
+type p38 = MySubStract<34, 12>;
+```
+
+
+
+### 类型中的乘法
+
+```typescript
+// mutiply
+type MyMutiply<
+    A extends number,
+    B extends number,
+    Result extends unknown[] = []
+> = B extends 0
+    ? Result["length"]
+    : MyMutiply<A, MySubStract<B, 1>, [...MyBuildArray<A>, ...Result]>;
+
+type p39 = MyMutiply<2, 5>;
+```
+
+
+
+### 类型中的除法
+
+```typescript
+type MyDivide<
+    Num1 extends number,
+    Num2 extends number,
+    Count extends unknown[] = []
+> = Num1 extends 0
+    ? Count["length"]
+    : MyDivide<MySubStract<Num1, Num2>, Num2, [unknown, ...Count]>;
+
+type p40 = MyDivide<20, 5>;
+```
+
+
+
+### 字符串长度
+
+```typescript
+type MyStrLength<
+    S extends string,
+    Count extends unknown[] = []
+> = S extends `${string}${infer Rest}`
+    ? MyStrLength<Rest, [unknown, ...Count]>
+    : Count["length"];
+
+type p41 = MyStrLength<"hello">;
+```
+
+
+
+### 比较两个数的大小
+
+```typescript
+type MyGreaterThen<
+    Num1 extends number,
+    Num2 extends number,
+    Count extends unknown[] = []
+> = Num1 extends Num2
+    ? false
+    : Count["length"] extends Num2
+    ? true
+    : Count["length"] extends Num1
+    ? false
+    : MyGreaterThen<Num1, Num2, [unknown, ...Count]>;
+
+
+type p42 = MyGreaterThen<20, 21>
+type p43 = MyGreaterThen<20, 19>
+```
+
+
+
+
+
