@@ -393,11 +393,62 @@ type PersonKey = {
 
 ```
 
+
+
 ## 联合类型
 
 当类型参数为联合类型，并且在条件类型左边直接引用该类型参数的时候，TypeScript 会把每一个元素单独传入来做类型运算，最后再合并成联合类型，这种语法叫做分布式条件类型。
+
+
 
 ## ts中类型系统的加减乘除
 
 TypeScript 类型系统中没有加减乘除运算符，但是可以通过构造不同的数组然后取 length 的方式来完成数值计算，把数值的加减乘除转化为对数组的提取和构造。
 
+
+
+
+## ts中判断类型是否是联合类型
+
+```typescript
+type IsUnion<A, B = A> =
+    A extends A
+        ? [B] extends [A]
+            ? false
+            : true
+        : never
+```
+
+
+
+- `A extends A` 触发分布式条件类型， 如果是组合类型的话，会把每个类型单独传入
+- `[B] extends [A] ` 判断B整体和A的子元素类型是否一样
+  - 如果A是联合类型，此时传入的类型是A的子元素，而B是一个整体，所以不相等
+  - 如果A是普通的类型，其他类型没有做过特殊处理，所以这里B和A就是相等的
+
+
+
+
+## 联合类型
+
+联合类型中的每个类型都是相互独立的，TypeScript 对它做了特殊处理，也就是遇到字符串类型、条件类型的时候会把每个类型单独传入做计算，最后把每个类型的计算结果合并成联合类型。
+
+
+
+## 特殊类型
+
+any 类型与任何类型的交叉都是 any，也就是 1 & any 结果是 any。
+
+
+
+
+## 元组和数组的区别
+
+元组和数组的 length 属性值不一样
+
+- 数组的length是数字（具体的值）
+- 元组的length是number
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/492925f74eec45479dd42e214849d752~tplv-k3u1fbpfcp-watermark.image?)
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95774c6e1c684614bc3eb0055bc456f2~tplv-k3u1fbpfcp-watermark.image?)
