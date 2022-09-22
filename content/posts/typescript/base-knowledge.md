@@ -452,3 +452,64 @@ any 类型与任何类型的交叉都是 any，也就是 1 & any 结果是 any�
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/492925f74eec45479dd42e214849d752~tplv-k3u1fbpfcp-watermark.image?)
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95774c6e1c684614bc3eb0055bc456f2~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+### 逆变 & 协变
+
+- 逆变： 如果父类型可以赋值给子类型
+- 协变： 如果子类型可以赋值给父类型
+
+
+
+### 联合类型转交叉类型
+
+```typescript
+type MyUnionToIntersection<U> = (
+    U extends U ? (x: U) => unknown : never
+) extends (x: infer R) => unknown
+    ? R
+    : never;
+```
+
+
+
+### 可选索引的值为 undefined 和值类型的联合类型
+
+```typescript
+type MyGetOptional<U extends Record<string, any>> = {
+    [
+        K in keyof U as {} extends Pick<U, K> ? K : never 
+    ] : U[K]
+}
+```
+
+
+
+
+
+### 索引签名特点
+
+索引签名不能构造成字符串字面量类型，因为它没有名字，而其他索引可以。
+
+```typescript
+type RemoveIndexSignature<Obj extends Record<string, any>> = {
+  [
+      Key in keyof Obj 
+          as Key extends `${infer Str}`? Str : never
+  ]: Obj[Key]
+}
+```
+
+
+
+
+
+keyof 只能拿到 class 的 public 索引，private 和 protected 的索引会被忽略
+
+```typescript
+type ClassPublicProps<Obj extends Record<string, any>> = {
+    [Key in keyof Obj]: Obj[Key]    
+}
+```
+
