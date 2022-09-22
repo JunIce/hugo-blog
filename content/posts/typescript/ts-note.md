@@ -551,5 +551,143 @@ type p43 = MyGreaterThen<20, 19>
 
 
 
+### 联合类型中指定字符大写
+
+```typescript
+// union
+type a1 = "a" | "b" | "c";
+type MyUpperCaseA<T extends string> = T extends "a" ? MyUpperCase<T> : T;
+type p44 = MyUpperCaseA<a1>;
+```
+
+
+
+### 删除置顶位置字符串，并且指定字符大写
+
+```typescript
+// camelCase
+type MyCamelCaseNext<T extends string> =
+    T extends `${infer L}_${infer R}${infer Rest}`
+        ? `${L}${Uppercase<R>}${MyCamelCaseNext<Rest>}`
+        : T;
+
+type p45 = MyCamelCaseNext<"aa_bb_cc">;
+```
+
+
+
+### 数组元素中每个元素都进行处理
+
+```typescript
+type MyCamelCaseArr<Arr extends unknown[]> = Arr extends [
+    infer Item,
+    ...infer Rest
+]
+    ? [MyCamelCaseNext<Item & string>, ...MyCamelCaseArr<Rest>]
+    : [];
+
+type p46 = MyCamelCaseArr<['aa_aa_aa', 'bb_bb_bb', 'cc_cc_cc']>
+```
+
+
+
+联合类型处理
+
+```typescript
+type p47 = MyCamelCaseNext<'aa_aa_aa' | 'bb_bb_bb' | 'cc_cc_cc'>
+```
+
+
+
+### 是否是联合类型
+
+```typescript
+type IsUnion<A, B = A> = A extends A ? 
+    [B] extends [A] ? false : true
+    : never
+
+type p48 = IsUnion<'aa_aa_aa' | 'bb_bb_bb' | 'cc_cc_cc'>
+type p49 = IsUnion<'aa'>
+```
+
+
+
+### 数组转联合类型
+
+```typescript
+type MyUnionTest = ['aaa', 'bbb'][number]
+```
+
+
+
+```typescript
+// 数组转Union
+type MyUnionTest = ['aaa', 'bbb'][number]
+
+type MyBEM<Block extends string, Element extends string[], Modifiers extends string[]> = `${Block}__${Element[number]}--${Modifiers[number]}`
+
+type bemResult = MyBEM<'hello', ['aaa', 'bbb'], ['warning', 'success']>;
+```
+
+
+
+### 联合类型两两组合问题
+
+```typescript
+// combination
+type Combination<A extends string, B extends string> = A | B | `${A}${B}`| `${B}${A}`
+
+type p50 = Combination<'a', 'b'>
+
+type MyAllCombination<A extends string, B extends string = A> = A extends A ? Combination<A, MyAllCombination<Exclude<B, A>>> : never;
+
+type p51 = MyAllCombination<'a'| 'b'|'c'>
+```
+
+
+
+### IsAny
+
+```typescript
+// is any
+type MyIsAny<T> = 'a' extends ('b' & T) ? true : false
+type p52 = MyIsAny<any>
+```
+
+
+
+### IsEqual
+
+```typescript
+// isEqual
+type MyIsEqual<A, B> =  (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? true : false
+
+type p53 = MyIsEqual<'a', 'a'>
+type p54 = MyIsEqual<'a', any>
+```
+
+
+
+### IsNever
+
+```typescript
+// isNever
+type MyIsNever<T> = [T] extends [never] ? true : false;
+type p55 = MyIsNever<never>
+type p56 = MyIsNever<'123'>
+```
+
+
+
+### IsTuple
+
+```typescript
+// isTuple
+type MyNotEqual<A, B> = MyIsEqual<A, B> extends true ? false : true
+type MyIsTuple<T> = T extends readonly [...params: infer Eles] ? MyNotEqual<Eles['length'], number> :false
+type p57 = MyIsTuple<number[]>
+type p58 = MyIsTuple<[1,2,3]>
+```
+
 
 
