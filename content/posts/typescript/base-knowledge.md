@@ -12,6 +12,20 @@ categories: ["Typescript"]
 
 
 
+
+
+**模式匹配做提取，重新构造做变换。**
+
+**递归复用做循环，数组长度做计数。**
+
+**联合分散可简化，特殊特性要记清。**
+
+**基础扎实套路熟，类型体操可通关。**
+
+
+
+
+
 ## interface 和 type
 
 都是用来定义数据类型的，规范数据对象的
@@ -527,3 +541,40 @@ type ClassPublicProps<Obj extends Record<string, any>> = {
 - 索引类型的索引为字符串字面量类型，而可索引签名不是，可以用这个特性过滤掉可索引签名。
 - keyof 只能拿到 class 的 public 的索引，可以用来过滤出 public 的属性。
 - 默认推导出来的不是字面量类型，加上 as const 可以推导出字面量类型，但带有 readonly 修饰，这样模式匹配的时候也得加上 readonly 才行。
+
+
+
+### QueryString
+
+```typescript
+// queryString
+type MyQueryStr<T extends string> = T extends `${infer First}&${infer Rest}`
+    ? MergeParams<ParseQuery<First>, MyQueryStr<Rest>>
+    : ParseQuery<T>;
+type ParseQuery<T extends string> = T extends `${infer First}=${infer Last}`
+    ? { [K in First]: Last }
+    : never;
+type MergeParams<
+    OneParam extends Record<string, any>,
+    OtherParam extends Record<string, any>
+> = {
+    [Key in keyof OneParam | keyof OtherParam]: Key extends keyof OneParam
+        ? Key extends keyof OtherParam
+            ? MergeValues<OneParam[Key], OtherParam[Key]>
+            : OneParam[Key]
+        : Key extends keyof OtherParam
+        ? OtherParam[Key]
+        : never;
+};
+type MergeValues<One, Other> = One extends Other
+    ? One
+    : Other extends unknown[]
+    ? [One, ...Other]
+    : [One, Other];
+
+
+type p61 = MyQueryStr<'a=1&b=2&c=3&d=4'>
+
+```
+
+
