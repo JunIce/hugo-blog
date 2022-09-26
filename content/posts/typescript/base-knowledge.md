@@ -578,3 +578,106 @@ type p61 = MyQueryStr<'a=1&b=2&c=3&d=4'>
 ```
 
 
+
+### chunk
+
+通过currItem的length属性判断是否到达指定长度，到达了就新组成一个新数组，否则插入到CurrItem后面
+
+```typescript
+// chunk
+type Chunk<
+    arr extends unknown[],
+    len extends number,
+    CurrItem extends unknown[] = [],
+    res extends unknown[] = []
+> = arr extends [infer First, ...infer Rest]
+    ? CurrItem["length"] extends len
+        ? Chunk<Rest, len, [First], [...res, CurrItem]>
+        : Chunk<Rest, len, [...CurrItem, First], res>
+    : [...res, CurrItem];
+
+type p64 = Chunk<[1, 2, 3, 4, 5, 6], 3>;
+```
+
+
+
+#### 元组转对象
+
+`K extends keyof any`过滤`null`、`undefined` 等类型
+
+```typescript
+// tupleToObject
+type TupleToObject<T extends unknown[], Value> = T extends [
+    infer First,
+    ...infer Rest
+]
+    ? {
+          [K in First as K extends keyof any
+              ? K
+              : never]: Rest extends unknown[]
+              ? TupleToObject<Rest, Value>
+              : Value;
+      }
+    : Value;
+
+type p65 = TupleToObject<["a", "b", "c"], 1>;
+```
+
+
+
+#### PartialObjectPropByKeys
+
+属性可选
+
+
+
+- 通过Partial高级属性构造可选属性
+- 通过Pick筛选出指定属性
+- Extract提取出对应的属性
+- Omit 放弃掉原类型中对应的属性
+- 最后取两个类型的交叉类型
+- ts 的类型只有在用到的的时候才会去计算，通过一个Copy类型进行计算
+
+
+
+```typescript
+type PartialObjectPropByKeys<
+    Obj extends Record<string, any>,
+    Key extends keyof Obj
+> = MyCopy<Partial<Pick<Obj, Extract<keyof Obj, Key>>> & Omit<Obj, Key>>;
+
+interface Dong {
+    name: string;
+    age: number;
+    address: string;
+}
+
+type MyCopy<Obj extends Record<string, any>> = {
+    [K in keyof Obj]: Obj[K];
+};
+
+type p66 = PartialObjectPropByKeys<Dong, "name">;
+
+```
+
+
+
+
+
+#### UnionToTuple
+
+- ReturnType 返回的是最后一个重载的返回值类型
+
+```typescript
+type MyTupleToUnion<T> = MyUnionToIntersection<
+    T extends any ? () => T : never
+> extends () => infer R
+    ? [...MyTupleToUnion<Exclude<T, R>>, R]
+    : [];
+
+type p69 = MyTupleToUnion<"a" | "b" | "c">;
+```
+
+
+
+联合类型的处理之所以麻烦，是因为不能直接 infer 来取其中的某个类型，我们是利用了**取重载函数的返回值类型拿到的是最后一个重载类型的返回值**这个特性，把联合类型转成交叉类型来构造重载函数，然后取返回值类型的方式来取到的最后一个类型。然后加上递归，就实现了所有类型的提取。
