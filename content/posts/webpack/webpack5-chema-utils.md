@@ -42,6 +42,10 @@ webpack中调用 `schema-utils` 校验配置对象
 
 
 
+## ajv
+
+
+
 `ajv`支持`7`种默认基本数据类型
 
 - number
@@ -78,6 +82,56 @@ webpack中调用 `schema-utils` 校验配置对象
 - oneof指令： 数值必须满足且只能满足条件之一
 - allof指令： 必须满足所有条件
 - if/then/else： 条件复合条件
+
+
+
+### 异步校验
+
+shema必须加上`$async`属性
+
+
+
+```javascript
+jv.addKeyword({
+  keyword: "idExists",
+  async: true,
+  type: "number",
+  validate: checkIdExists,
+})
+
+async function checkIdExists(schema, data) {
+  // .....
+}
+
+const schema = {
+  $async: true,
+  properties: {
+    userId: {
+      type: "integer",
+      idExists: {table: "users"},
+    },
+    postId: {
+      type: "integer",
+      idExists: {table: "posts"},
+    },
+  },
+}
+
+const validate = ajv.compile(schema)
+
+validate({userId: 1, postId: 19})
+  .then(function (data) {
+    // ....
+  })
+```
+
+
+
+最终在校验对象时，validate会返回一个`Promise`对象
+
+
+
+
 
 
 
