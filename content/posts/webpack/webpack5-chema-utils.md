@@ -1,6 +1,6 @@
 ---
 title: "webpack5 schema-utils"
-date: 2022-09-29T05:59:58+08:00
+date: 2022-09-29T18:59:58+08:00
 tags: ["webpack5"]
 categories: ["webpack"]
 draft: false
