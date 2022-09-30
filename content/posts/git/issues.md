@@ -59,3 +59,28 @@ npm publish --access public
 ```bash
 git checkout -b branch_name tag_name
 ```
+
+
+
+
+
+### 4. warning: remote HEAD refers to nonexistent ref, unable to checkout(远程 HEAD 指向一个不存在的引用，无法检出。)
+
+
+
+由于远程分支的默认分支上main，而本地分支的默认分支上master，在clone的时候会出现这个错误
+
+
+
+- 方案1
+
+```bash
+git symbolic-ref HEAD refs/heads/main
+```
+
+-  方案2(切换分支的方法)
+
+1. `git branch -a `
+2. `git checkout remotes/origin/Zoro`
+3. `git checkout -b remotes/origin/Zoro`
+4. `git branch -m remotes/origin/Zoro master`
