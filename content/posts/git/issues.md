@@ -66,7 +66,7 @@ git checkout -b branch_name tag_name
 
 ### 4. warning: remote HEAD refers to nonexistent ref, unable to checkout(远程 HEAD 指向一个不存在的引用，无法检出。)
 
-
+https://stackoverflow.com/questions/11893678/warning-remote-head-refers-to-nonexistent-ref-unable-to-checkout
 
 由于远程分支的默认分支上main，而本地分支的默认分支上master，在clone的时候会出现这个错误
 
