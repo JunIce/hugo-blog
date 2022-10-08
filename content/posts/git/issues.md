@@ -84,3 +84,12 @@ git symbolic-ref HEAD refs/heads/main
 2. `git checkout remotes/origin/Zoro`
 3. `git checkout -b remotes/origin/Zoro`
 4. `git branch -m remotes/origin/Zoro master`
+
+
+###  git 更新 (would clobber existing tag)
+
+强制更新本地的tags和远程一致
+
+```bash
+git fetch --tags -f
+```
