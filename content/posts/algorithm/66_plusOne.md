@@ -65,6 +65,14 @@ Thus, the result should be [1,0].
 
 ### 解答
 
+
+
+思路
+
+数组从后往前遍历，如果数字+1大于10，则前一位需要进1
+
+
+
 ```typescript
 function plusOne(digits: number[]) {
   for (let i = digits.length - 1; i >= 0; i--) {
