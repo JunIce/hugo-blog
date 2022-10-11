@@ -86,10 +86,22 @@ git symbolic-ref HEAD refs/heads/main
 4. `git branch -m remotes/origin/Zoro master`
 
 
-###  git 更新 (would clobber existing tag)
+###  5. git 更新 (would clobber existing tag)
 
 强制更新本地的tags和远程一致
 
 ```bash
 git fetch --tags -f
 ```
+
+
+
+### 6. fatal: refusing to merge unrelated histories
+
+增加`--allow-unrelated-histories`参数
+
+```perl
+git pull origin master --allow-unrelated-histories
+git pull --allow-unrelated-histories
+```
+
