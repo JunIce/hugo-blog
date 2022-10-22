@@ -24,4 +24,15 @@ draft: false
 
 1. 添加关键字 `required`
 2. 添加默认值
-3. 
+
+
+
+
+
+### flutter 运行时 "Your session has expired. Please log in."
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a4aeb3e3c2cc473796f3c7cada848938~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+> Xcode ——>Preferences…——> accounts 重新登录 ——> fix
