@@ -1,6 +1,6 @@
 ---
 title: "7. Reverse Integer"
-date: 2022-10-19T11:41:23+08:00
+date: 2022-11-05T11:41:23+08:00
 draft: true
 categories: ["algorithm"]
 ---
