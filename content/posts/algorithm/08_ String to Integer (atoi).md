@@ -130,3 +130,40 @@ var myAtoi = function(str) {
 };
 ```
 
+基本循环解决
+
+```typescript
+function myAtoi(s: string): number {
+  let result = "";
+  s = s.trim()
+  let sIndex = 0;
+  let base = 1;
+
+  if(s[0] == '-') {
+    sIndex = 1;
+    base = -1
+  }
+
+  if(s[0] == '+') {
+    sIndex = 1
+  }
+
+  for (let i = sIndex; i < s.length; i++) {
+    if (s[i] == " ") {
+      break;
+    } else if (!Number.isNaN(Number(s[i]))) {
+      result += s[i];
+    } else {
+      break;
+    }
+  }
+
+  const max = Math.pow(2, 31);
+  console.log(base, result);
+  if (Number(result) >= max) {
+    return base == 1 ? max - 1 : -max
+  }
+
+  return Number.isNaN(Number(result)) ? 0 : Number(result) * base;
+}
+```
