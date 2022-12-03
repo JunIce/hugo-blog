@@ -77,3 +77,8 @@ class CardPanelHeader extends StatelessWidget {
     this.trailingPanelTextColor = const Colors.grey.shade600,
   }) : super(key: key);
 ```
+
+
+### 生成对应的应用图标
+
+[https://icon.wuruihong.com/](https://icon.wuruihong.com/)
