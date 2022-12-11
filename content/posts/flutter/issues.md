@@ -82,3 +82,122 @@ class CardPanelHeader extends StatelessWidget {
 ### 生成对应的应用图标
 
 [https://icon.wuruihong.com/](https://icon.wuruihong.com/)
+
+
+
+### Column children中动态添加元素
+
+在`children`中进行`if`判断
+
+```dart
+Column(
+     children: <Widget>[
+     if(condition1)
+      widget1,
+     if(condition2)
+     widget2,
+_    ..._getWeatherDataWidgets(),
+],)
+```
+
+
+
+### The method '[\]' can't be unconditionally invoked because the receiver can be 'null
+
+
+
+简单判断
+
+```dart
+var list = someList;
+if (list != null) {
+  int a = list[0]; // No error
+}
+```
+
+使用**`?`** and **`??`**:
+
+```dart
+int a = someList?[0] ?? -1;
+```
+
+如果是数组中进行索引，加个`!`进行强制判断
+
+```dart
+int a = someList![0];
+```
+
+
+
+### 背景色渐变
+
+
+
+```dart
+Container(
+  width: 60,
+  height: 60,
+  decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(30)),
+      boxShadow: [
+        BoxShadow(
+          color: Color.fromARGB(255, 111, 187, 249),
+          blurRadius: 5,
+          spreadRadius: 0.0,
+        ),
+      ],
+      gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromARGB(255, 80, 174, 252),
+            Color.fromARGB(255, 32, 131, 212),
+          ])),
+  child: Icon(
+    Icons.edit_rounded,
+    color: Colors.white,
+    size: 30,
+  ),
+),
+```
+
+
+
+### 行平均4等份
+
+```dart
+Row(
+  children: [
+    Expanded(
+      flex: 1, // you can play with this value, by default it is 1
+      child: Child1(),
+    ),
+    Expanded(
+      flex: 1, 
+      child: Child2(),
+    ),
+    Expanded(
+      flex: 1, 
+      child: Child3(),
+    ),
+    Expanded(
+      flex: 1, 
+      child: Child4(),
+    ),
+  ],
+);
+```
+
+
+
+### Unable to upgrade Flutter: no origin repository configured
+
+
+
+```perl
+flutter channel stable
+flutter upgrade --force
+```
+
+
+
