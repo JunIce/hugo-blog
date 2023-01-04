@@ -75,3 +75,10 @@ const elem = useRef<HTMLDivElement>(null);
 
 type Test = typeof elem; // Test = React.RefObject<HTMLDivElement>
 ```
+
+```bash
+error expect@29.3.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "17.5.0"
+error Found incompatible module.
+```
+
+如果是使用yarn安装时加上`yarn --ignore-engines`
