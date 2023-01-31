@@ -16,7 +16,7 @@ categories: ["jenkins"]
 
 ### 方法1
 
-找到`jenkins`家目录中的`config.xml`把其中
+找到`jenkins`home目录中的`config.xml`把其中
 
 ```xml
 <useSecurity>false</useSecurity>
@@ -28,6 +28,7 @@ categories: ["jenkins"]
 
 - /var/lib/jenkins
 - ~/.jenkins
+- /var/jenkins_home
 
 ### 方法2
 输出的就是密码
@@ -54,3 +55,34 @@ cd /var/lib/jenkins/users/admin_xxxxxx
 
 新密码为123456
 
+### 方法4
+
+
+
+- 删除`config.xml`中相关参数
+
+```xml
+<useSecurity>true</useSecurity>
+<authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
+<denyAnonymousReadAccess>true</denyAnonymousReadAccess>
+</authorizationStrategy>
+<securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+<disableSignup>true</disableSignup>
+<enableCaptcha>false</enableCaptcha>
+</securityRealm>
+```
+
+
+
+- 重启服务
+- 菜单 -> 管理 -> 全局安全配置
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/93379f1e6d6a43828834bdeae542a16a~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
+- 设置后重新注册**新用户**
+
+- 重新改回`config.xml`
+
+- 重启
