@@ -8,13 +8,11 @@ categories: ["vue"]
 
 
 
-
-
 # h函数
 
 `vue`中用来创建`vnode`的主函数，会生成一个`vnode`对象
 
-`@vue/reactivity` version `3.2.31`
+`@vue/runtime-core` version `3.2.45`
 
 
 
