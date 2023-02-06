@@ -20,7 +20,16 @@ categories: ["vue"]
 
 ### createVnode -> _createVnode
 
+创建vnode，如果参数传入的已经是个组件
 
+```typescript
+createVnode(Component, null, {})
+```
+
+根据传入的type进行区分，走不同的逻辑
+
+- 组件：走克隆逻辑
+- 新标签：走创建逻辑
 
 ```typescript
 function _createVNode(
@@ -122,6 +131,38 @@ function _createVNode(
 
 
 
+创建基础的vnode对象，就是用来描述组件的一个js对象
+
+
+
+其中对于ref的初始化
+
+#### normalizeRef
+
+也就是我们在元素上定义ref的时候，内部vnode对象上有个记录ref的对象
+
+其中i就是当前渲染的组件的实例了
+
+```typescript
+const normalizeRef = ({
+  ref,
+  ref_key,
+  ref_for
+}: VNodeProps): VNodeNormalizedRefAtom | null => {
+  return (
+    ref != null
+      ? isString(ref) || isRef(ref) || isFunction(ref)
+        ? { i: currentRenderingInstance, r: ref, k: ref_key, f: !!ref_for }
+        : ref
+      : null
+  ) as any
+}
+```
+
+
+
+#### 全部代码
+
 ```typescript
 function createBaseVNode(
   type: VNodeTypes | ClassComponent | typeof NULL_DYNAMIC_COMPONENT,
@@ -176,10 +217,6 @@ function createBaseVNode(
       : ShapeFlags.ARRAY_CHILDREN
   }
 
-  // validate key
-  if (__DEV__ && vnode.key !== vnode.key) {
-    warn(`VNode created with invalid key (NaN). VNode type:`, vnode.type)
-  }
 
   // track vnode for block tree
   if (
