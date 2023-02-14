@@ -50,4 +50,29 @@ import * as components from './components';
 export default components.HelloWorld;
 ```
 
+### Syntax Error: Thread Loader
 
+vue.config.js 中关闭 `parallel: false`
+
+
+### Cannot find module '@/pages/test-flow.vue' or its corresponding type declarations.
+ts不能识别vue文件
+
+- 关闭volar（如果你在使用vue2，但是安装的vue3的插件）
+
+- 声明文件
+
+```typescript
+declare module '*.vue';
+```
+
+###  Property 'install' is missing in type '{ micro: {}; }' but required in type 'PluginObject<any>'
+
+引入第三方库的时候，报没有install方法
+
+更改写法
+```js
+import * as ABC from "../lib/xxxx.umd.js";
+```
+
+### Exports and export assignments are not permitted in module augmentations.
