@@ -76,3 +76,36 @@ import * as ABC from "../lib/xxxx.umd.js";
 ```
 
 ### Exports and export assignments are not permitted in module augmentations.
+
+
+
+### Unexpected aliasing of 'this' to local variable.
+
+vue中由于this指向问题，出现eslint报错
+
+解决方法就是对于this进行重新定义变量
+```js
+let that = this;
+someFn(function(arg) {
+  return that.foo = arg;
+});
+```
+
+### use @Ref declare with ref in v-for element 
+
+```typescript
+<template>
+    <div>
+        <div v-for="index in 10" :key="index" ref="myRefs">
+        	{{index}}    
+    	</div>
+    </div>
+</template>
+
+<script lang="ts">
+import {Ref,Options,Vue} from 'vue-property-decorator'
+export default Text extends Vue{
+    @Ref() myRefs!: HTMLDivElement[];
+}
+</script>
+```
