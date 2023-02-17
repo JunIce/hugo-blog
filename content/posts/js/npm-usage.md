@@ -39,3 +39,12 @@ npm ERR! A complete log of this run can be found in:
 
 
 https://stackoverflow.com/questions/43824012/how-to-publish-npm-scoped-packages-npm-scope-not-found
+
+
+### npm 安装本地包
+
+https://stackoverflow.com/questions/14381898/local-dependency-in-package-json
+
+```js
+npm install --save file:src/assets/js/FILE_NAME
+```
