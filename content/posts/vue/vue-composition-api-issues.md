@@ -35,3 +35,5 @@ categories: ["vue"]
 [https://github.com/vuejs/composition-api/issues/372](https://github.com/vuejs/composition-api/issues/372)
 
 [https://github.com/vuejs/composition-api/issues/340](https://github.com/vuejs/composition-api/issues/340)
+
+[https://github.com/vuejs/composition-api/issues/181](https://github.com/vuejs/composition-api/issues/181)
