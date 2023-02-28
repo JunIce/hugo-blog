@@ -11,3 +11,9 @@
 [jsbench性能查询](https://jsbench.me/)
 
 [浏览器兼容性 browserslist](https://browsersl.ist/#q=defaults)
+
+
+[Prettier](https://prettier.io/docs/en/index.html)
+
+
+[ESLint - Pluggable JavaScript Linter](https://eslint.org/docs/latest/)
