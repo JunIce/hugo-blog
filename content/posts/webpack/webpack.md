@@ -21,3 +21,24 @@ categories: ["webpack"]
 升级`html-webpack-plugin` 到 v5版本
 
 
+### this.getOptions is not a function
+
+webpack中使用`source-map-loader`会报以下错误
+
+```js
+this.getOptions is not a function
+```
+
+https://webpack.js.org/migrate/5/#getoptions-method-for-loaders
+
+webpack5中内置了utils
+
+`source-map-loader`版本2.0以后就要升级到webpack5， webpack只能是`1.x.x`版本
+
+```js
+config.module.rules.push({
+    test: /\.(js|mjs|jsx|ts|tsx)$/,
+    use: ['source-map-loader'],
+    enforce: 'pre',
+});
+```
