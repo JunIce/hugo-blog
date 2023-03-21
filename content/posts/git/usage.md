@@ -65,3 +65,33 @@ fi
 // next
 git push -f
 ```
+
+
+
+### git rebase 之后的操作
+
+
+
+rebase之前
+
+```bash
+A--B--C------F--G  (master)
+       \    
+        D--E  (feature)
+```
+
+rebase之后
+
+```
+A--B--C------F--G  (master)
+                 \
+                  D'--E'  (feature)
+```
+
+因为远程分支已经落后，需要使用`--force`命令强制更新远程分支
+
+
+
+这里推荐使用`--force-with-lease`
+
+[Git push rejected after feature branch rebase - Stack Overflow](https://stackoverflow.com/questions/8939977/git-push-rejected-after-feature-branch-rebase)
