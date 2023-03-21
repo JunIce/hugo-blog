@@ -24,3 +24,5 @@
 [国旗相关数据https://flagicons.lipis.dev/](https://flagicons.lipis.dev/)
 
 [国旗相关数据http://doc.chacuo.net/iso-3166-1/](http://doc.chacuo.net/iso-3166-1/)
+
+[rust-lang playground](https://play.rust-lang.org/)
