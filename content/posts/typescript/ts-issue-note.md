@@ -109,3 +109,15 @@ export default Text extends Vue{
 }
 </script>
 ```
+
+
+### An interface declaring no members is equivalent to its supertype.
+
+```typescript
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AuthConfig {}
+```
+
+```typescript
+"rules": { "no-empty-interface": false }
+```
