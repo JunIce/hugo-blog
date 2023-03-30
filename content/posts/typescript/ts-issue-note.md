@@ -121,3 +121,74 @@ export interface AuthConfig {}
 ```typescript
 "rules": { "no-empty-interface": false }
 ```
+
+
+
+### Cannot assign to 'current' because it is a read-only property
+
+[(useRef) Cannot assign to 'current' because it is read-only property | bobbyhadz](https://bobbyhadz.com/blog/react-cannot-assign-to-current-because-read-only-property)
+
+From
+
+```js
+const myRef = useRef<MyType>(null)
+```
+
+To
+
+```js
+const myRef = useRef<MyType | null>(null)
+```
+
+
+
+
+
+### 3.0000000000000004e+33  is beyond boundary when transfer to integer, the results may not be accurate
+
+
+
+使用`decimal.js`
+
+```js
+const decimalJs = require("decimal.js")
+const x = new decimalJs('9999999')
+const res = x.times('9999999.99').toString()
+console.log(`res`, res) // "99999989900000.01"
+
+```
+
+
+
+###  findDOMNode is deprecated in StrictMode.
+
+
+
+```react
+<React.StrictMode>
+  <App />
+</React.StrictMode>
+```
+
+
+
+删除`StrictMode`标签
+
+
+
+
+
+### The left-hand side of an assignment expression may not be an optional property access.
+
+
+
+```js
+// This line threw
+document.getElementById('output')?.innerHTML = url.toString()
+```
+
+chang to
+
+```js
+objectVariableName!.propertyName = 'some value to assign';
+```
