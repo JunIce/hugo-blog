@@ -10,13 +10,13 @@
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 {{ end }}
 
-<!-- {{ $style := resources.Get "css/style.scss" | resources.PostCSS | toCSS }} -->
+{{ $style := resources.Get "css/style.css" | resources.PostCSS }}
 
 {{ if hugo.IsProduction }}
 {{ $style = $style | minify | fingerprint | resources.PostProcess }}
 {{ end }}
 
-<!-- <link rel="stylesheet" href="{{ $style.Permalink }}"> -->
+<link rel="stylesheet" href="{{ $style.Permalink }}">
 
 <link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}" type="image/x-icon" />
 

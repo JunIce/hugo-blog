@@ -15,6 +15,7 @@ const px = (px) => `${px}px`;
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: ["./layouts/**/*.html"],
   important: true,
 
   // purge: {
@@ -31,7 +32,7 @@ module.exports = {
   //   ],
   //   mode: "all",
   // },
-  darkMode: false,
+  darkMode: 'media',
   theme: {
     extend: {},
   },
