@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}">
-  <head>
-    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+<html lang="{{ $.Site.LanguageCode | default " en" }}" class="scroll-smooth">
 
-    {{ partial "head.html" . }}
+<head>
+  <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
 
-  </head>
+  {{ partial "head.html" . }}
 
-  <body>
-    {{ partial "navigation.html" . }}
+</head>
 
-    <main class="main">
-      {{ block "main" . }}{{ end }}
-    </main>
-    
-    {{ partial "footer.html" . }}
-  </body>
+<body>
+  {{ partial "navigation.html" . }}
+
+  <main class="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+</body>
+
 </html>

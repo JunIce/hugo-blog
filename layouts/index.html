@@ -1,22 +1,22 @@
 {{ define "main" }}
-{{ partial "profile.html" . }}
+<!-- {{ partial "profile.html" . }} -->
 
-<div id="list-page">
+<div class="w-4/5 mx-auto sm:px-4">
     {{ $pages := .Site.RegularPages }}
     {{ $paginator := .Paginate ($pages) }}
     {{ range $paginator.Pages }}
         {{ $title := .Title }}
         {{ $summary := .Summary }}
-        <section class="item">
+        <section class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 dark:text-white shadow-xl mb-8 h-60 hover:shadow-lg">
           <div>
-            <h1 class="title"><a href='{{ .RelPermalink }}'>{{ $title }}</a></h1>
-            <div class ="date">
+            <h1 class="title text-2xl mb-2"><a href='{{ .RelPermalink }}'>{{ $title }}</a></h1>
+            <div class ="date mb-2">
                 <time datetime="{{ .PublishDate }}">{{ i18n "publishDate" . }}</time>  
             </div>
           </div>
 
           {{ if ne .Site.Params.hiddenPostSummaryInHomePage true }}
-              <div class="summary">{{ $summary | plainify | htmlUnescape }}</div>
+              <div class="text-base leading-8 text-white/70">{{ $summary | plainify | htmlUnescape }}</div>
           {{ end }}
 
         </section>

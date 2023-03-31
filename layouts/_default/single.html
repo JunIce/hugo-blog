@@ -1,43 +1,42 @@
 {{ define "main" }}
 
-<section id="single" class="text-lg font-semibold">
-    <h1 class="title">{{ .Title }}</h1>
+<section id="single" class="w-4/5 mx-auto">
+  <h1 class="text-2xl text-center font-bold">{{ .Title }}</h1>
 
-    <div class="tip">
-        Published: <time datetime="{{ .PublishDate }}">{{ $.Page.PublishDate.Format "January 02, 2006" }}</time>
-        <span class="split">
-          ·
-        </span>
-        LastMod: {{ $.Page.Lastmod.Format "January 02, 2006" }}
-        <span class="split">
-          ·
-        </span>
-        <span>
-          {{ i18n "wordCount" . }}
-        </span>
-    </div>
-
-    
-    {{ if or .Site.Params.showToc .Params.showToc }}
-        {{ partial "toc.html" . }}
-    {{ end }}
+  <div class="mt-4 text-gray-500 text-md text-center">
+    Published: <time datetime="{{ .PublishDate }}">{{ $.Page.PublishDate.Format "January 02, 2006" }}</time>
+    <span class="split">
+      ·
+    </span>
+    LastMod: {{ $.Page.Lastmod.Format "January 02, 2006" }}
+    <span class="split">
+      ·
+    </span>
+    <span>
+      {{ i18n "wordCount" . }}
+    </span>
+  </div>
 
 
-    <div class="content">
-      {{ .Content }}
-    </div>
+  {{ if or .Site.Params.showToc .Params.showToc }}
+  {{ partial "toc.html" . }}
+  {{ end }}
 
+
+  <div class="mt-16">
+    {{ .Content }}
+  </div>
+
+  <div>
     {{ with .Params.tags }}
-        <div class="tags">
-            {{ range . }}
-                <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
-            {{ end }}
-        </div>
+    <div class="tags flex mt-8">
+      {{ range . }}
+      <a class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg" href="{{ " tags/" | absURL }}{{
+        . | urlize }}">{{ . }}</a>
+      {{ end }}
+    </div>
     {{ end}}
-    
-    <!-- {{ partial "comment.html" . }} -->
-
+  </div>
 </section>
 
 {{ end }}
-

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        class MyCustomElement extends HTMLElement {
+            constructor() {
+                super()
+                console.log('init', this.childNodes)
+
+                var shadow = this.attachShadow({ mode: 'open' })
+                // 创建一个 spans
+                var wrapper = document.createElement('span');
+                wrapper.setAttribute('class', 'wrapper');
+                var icon = document.createElement('span');
+                icon.setAttribute('class', 'icon');
+                icon.setAttribute('tabindex', 0);
+                var info = document.createElement('span');
+                info.setAttribute('class', 'info');
+                info.textContent = '消费对经济具有持久拉动力，事关保障和改善民生。要贯彻党中央、国务院部署，协同发力、远近兼顾，努力稳定当前消费，综合施策释放消费潜力。'
+
+                shadow.appendChild(wrapper);
+                wrapper.appendChild(icon);
+                wrapper.appendChild(info);
+            }
+
+            connectedCallback() {
+                console.log('Custom square element added to page.');
+            }
+        }
+
+        window.customElements.define('zz-p', MyCustomElement)
+    </script>
+
+
+    <div class="box" contenteditable="true">
+        <zz-p>sd</zz-p>
+        <span>sdjhfkldsjfklsd</span>
+    </div>
+
+    <button onclick="btngetSelection()">getSelection</button>
+
+    <style>
+        body {
+            padding: 100px;
+        }
+
+        .box {
+            width: 400px;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+
+    <script>
+        function btngetSelection() {
+            let selection = shadowRoot.getSelection().getRangeAt(0)
+            console.log(selection.toString())
+        }
+    </script>
+</body>
+
+</html>

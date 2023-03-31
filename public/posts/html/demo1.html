@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prepend</title>
+</head>
+<body>
+    <div>
+        <h1>demo1</h1>
+        <h2>demo1</h2>
+        <h3>demo1</h3>
+        <h4>demo1</h4>
+
+        <button onclick="prepend()">prepend</button>
+        <button onclick="after()">after</button>
+    </div>
+    <script>
+        function prepend(){
+            var h1 = document.querySelector('h1')
+            var p = document.createElement('strong')
+            p.textContent = 'strong'
+            h1.prepend(p)
+        }
+
+        function after() {
+            var h1 = document.querySelector('h2')
+            var p = document.createElement('strong')
+            p.textContent = 'strong'
+            h1.after(p)
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,9 +1,6 @@
-<footer id="footer">
-    {{ if .Site.Social }}
-        {{ partial "social.html" . }}
-    {{ end }}
+<footer id="footer" class="flex pt-6 pb-20 justify-center items-center">
 
-    <div class="copyright">
+    <div class="copyright mr-4 ml-4">
     {{ with .Site.Params.copyright }}
         {{ . | markdownify }}
     {{ else }}

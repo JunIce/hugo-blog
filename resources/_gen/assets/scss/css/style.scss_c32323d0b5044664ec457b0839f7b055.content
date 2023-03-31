@@ -500,46 +500,6 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ; }
 
-.container {
-  width: 100%; }
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px; } }
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px; } }
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px; } }
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px; } }
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px; } }
-
-.block {
-  display: block !important; }
-
-.table {
-  display: table !important; }
-
-.transform {
-  -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important; }
-
-.text-lg {
-  font-size: 1.125rem !important;
-  line-height: 1.75rem !important; }
-
-.font-semibold {
-  font-weight: 600 !important; }
-
 html[theme='dark-mode'] {
   filter: invert(1) hue-rotate(180deg); }
 
