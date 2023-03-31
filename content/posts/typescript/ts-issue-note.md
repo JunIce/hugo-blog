@@ -192,3 +192,16 @@ chang to
 ```js
 objectVariableName!.propertyName = 'some value to assign';
 ```
+
+
+### This module is declared with using 'export =', and can only be used with a default import when using the 'allowSyntheticDefaultImports' flag.
+
+
+```json
+{
+    "compilerOptions": {
+        // ....
+        "allowSyntheticDefaultImports": true,
+    }
+}
+```
