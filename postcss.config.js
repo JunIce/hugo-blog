@@ -1,9 +1,9 @@
-
 module.exports = {
-    plugins: {
-        autoprefixer: {
-            "browsers": "last 2 version"
-        },
-        tailwindcss: {},
-    }
-}
+  plugins: {
+    "postcss-import": {},
+    autoprefixer: {},
+    tailwindcss: {
+      config: "tailwind.config.js",
+    },
+  },
+};

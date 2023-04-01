@@ -10,22 +10,11 @@
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 {{ end }}
 
-{{ $style := resources.Get "css/style.css" | resources.PostCSS }}
-
-{{ if hugo.IsProduction }}
-{{ $style = $style | minify | fingerprint | resources.PostProcess }}
-{{ end }}
+{{- $style := resources.Get "css/style.scss" | resources.ToCSS | resources.PostCSS | fingerprint }}
 
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
 <link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}" type="image/x-icon" />
-
-<!-- {{ $js1 := resources.Get "js/lunr.js" | fingerprint}}
-<script src="{{ $js1.Permalink }}"></script>
-{{ $js2 := resources.Get "js/lunr.stemmer.support.js" | fingerprint}}
-<script src="{{ $js2.Permalink }}"></script>
-{{ $js3 := resources.Get "js/lunr.zh.js" | fingerprint}}
-<script src="{{ $js3.Permalink }}"></script> -->
 
 {{ $js := resources.Get "js/custom.js" | fingerprint}}
 <script src="{{ $js.Permalink }}"></script>
