@@ -27,8 +27,9 @@ build:
 # More info: https://gohugo.io/getting-started/configuration-markup#
 markup:
   highlight:
+    lineNos: true
     guessSyntax: true
-    style: emacs
+
   tableOfContents:
     endLevel: 3
     ordered: false
@@ -99,5 +100,5 @@ params:
     ## e.g.
     # - js/custom.js # local js in `static/js/custom.js`
     # - https://example.com/custom.js # remote js
-    - https://cdn.bootcdn.net/ajax/libs/highlight.js/11.7.0/es/highlight.min.js
+    - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js
       # - https://cdn.tailwindcss.com
