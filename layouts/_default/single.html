@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <section id="single" class="w-4/5 mx-auto">
-  <h1 class="text-2xl text-center font-bold">{{ .Title }}</h1>
+  <h1 class="text-3xl text-center font-bold">{{ .Title }}</h1>
 
   <div class="mt-4 text-gray-500 text-md text-center">
     Published: <time datetime="{{ .PublishDate }}">{{ $.Page.PublishDate.Format "January 02, 2006" }}</time>
@@ -23,7 +23,7 @@
   {{ end }}
 
 
-  <div class="mt-16">
+  <div id="md-Content" class="mt-16">
     {{ .Content }}
   </div>
 
@@ -31,7 +31,7 @@
     {{ with .Params.tags }}
     <div class="tags flex mt-8">
       {{ range . }}
-      <a class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg" href="{{ " tags/" | absURL }}{{
+      <a class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg mr-2" href="{{ " tags/" | absURL }}{{
         . | urlize }}">{{ . }}</a>
       {{ end }}
     </div>

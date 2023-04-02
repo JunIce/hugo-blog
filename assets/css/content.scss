@@ -1,0 +1,61 @@
+#md-Content {
+
+    h2 {
+        @apply text-3xl;
+        @apply font-bold;
+        @apply py-6;
+    }
+
+    h3 {
+        @apply text-xl;
+        @apply font-semibold;
+        @apply py-6;
+    }
+
+    h4 {
+        @apply text-base;
+        @apply font-normal;
+        @apply py-6;
+    }
+
+    >p {
+        @apply text-lg;
+        @apply mb-3;
+
+        &>code {
+            @apply px-2;
+            @apply py-1;
+            @apply bg-neutral-100;
+            @apply text-gray-600;
+            @apply rounded-sm;
+        }
+    }
+
+    li code {
+        @apply bg-neutral-100;
+        @apply text-gray-600;
+    }
+
+    >blockquote,
+    >.highlight {
+        @apply mb-4;
+    }
+
+    blockquote {
+        @apply w-full;
+        @apply px-10;
+        @apply py-4;
+        @apply bg-slate-50;
+        @apply rounded;
+        @apply text-gray-500;
+        @apply text-base;
+        @apply border-l-4;
+        @apply border-gray-400;
+    }
+
+    .highlight>div {
+        @apply rounded-md;
+        @apply py-6;
+        background: #282a36;
+    }
+}

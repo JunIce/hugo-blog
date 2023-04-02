@@ -3,6 +3,7 @@
 @import "node_modules/tailwindcss/utilities";
 @import "./highlight.scss";
 @import "./copy-button.scss";
+@import "./content.scss";
 
 
 html {
@@ -12,6 +13,8 @@ html {
 
 .tools-wrapper {
     p {
-        margin-bottom: 20px;
+        @apply text-lg;
+        @apply mb-4;
+        @apply hover:text-blue-600;
     }
 }
