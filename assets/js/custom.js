@@ -1,43 +1,9 @@
-// const lunrSearcher = lunr(function () {
-//     this.use(lunr.zh);
-//     this.ref("uri")
-//     this.field('title');
-//     // this.field("tags", { boost: 4 });
-//     this.field('content');
-
-//     fetch("/lunr.json")
-//         .then(res => res.json())
-//         .then(data => {
-//             for (let i = 0; i < data.length; i++) {
-//                 let item = data[i]
-//                 // item.id = i+1
-//                 this.add(item)
-//             }
-//         })
-// });
-
-// window.onload = function () {
-
-//     const search = document.querySelector('.search-input')
-
-//     console.log(lunrSearcher);
-
-//     search.addEventListener('input', (e) => {
-//         // console.log(e.target.value);
-
-//         let searchStr = e.target.value;
-
-//         if (searchStr.trim()) {
-
-//             let result = lunrSearcher.search(searchStr.trim());
-
-//             console.log('result: ', searchStr.trim(), result);
-//         }
-
-//     })
-// }
-
-hljs.highlightAll();
+window.onload = function () {
+  // 高亮
+  hljs.highlightAll();
+  // 复制按钮
+  addCopyButton();
+};
 
 function addCopyButtons(clipboard) {
   document
@@ -65,27 +31,30 @@ function addCopyButtons(clipboard) {
         );
       });
 
-      var pre = codeBlock.parentNode;
-      if (pre.parentNode.classList.contains("highlight")) {
-        var highlight = pre.parentNode;
-        highlight.parentNode.insertBefore(button, highlight);
-      } else {
-        pre.parentNode.insertBefore(button, pre);
-      }
+      insertAfterHighlight(codeBlock, button);
     });
 }
 
-if (navigator && navigator.clipboard) {
-  addCopyButtons(navigator.clipboard);
-} else {
-  var script = document.createElement("script");
-  script.src =
-    "https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js";
-  script.integrity = "sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=";
-  script.crossOrigin = "anonymous";
-  script.onload = function () {
-    addCopyButtons(clipboard);
-  };
+function insertAfterHighlight(node, target) {
+  while (!node.parentNode.classList.contains("highlight")) {
+    node = node.parentNode;
+  }
+  node.parentNode.insertBefore(target, node);
+}
 
-  document.body.appendChild(script);
+function addCopyButton() {
+  if (navigator && navigator.clipboard) {
+    addCopyButtons(navigator.clipboard);
+  } else {
+    var script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js";
+    script.integrity = "sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=";
+    script.crossOrigin = "anonymous";
+    script.onload = function () {
+      addCopyButtons(clipboard);
+    };
+
+    document.body.appendChild(script);
+  }
 }
