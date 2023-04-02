@@ -38,3 +38,5 @@
 
 //     })
 // }
+
+hljs.highlightAll()

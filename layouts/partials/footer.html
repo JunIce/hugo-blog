@@ -29,3 +29,7 @@
         <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
     {{ end }}
 {{ end }}
+
+{{ $js := resources.Get "js/custom.js" | fingerprint}}
+<script src="{{ $js.Permalink }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>

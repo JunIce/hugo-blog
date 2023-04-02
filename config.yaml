@@ -99,4 +99,5 @@ params:
     ## e.g.
     # - js/custom.js # local js in `static/js/custom.js`
     # - https://example.com/custom.js # remote js
+    - https://cdn.bootcdn.net/ajax/libs/highlight.js/11.7.0/es/highlight.min.js
       # - https://cdn.tailwindcss.com

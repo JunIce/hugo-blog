@@ -4,21 +4,20 @@
 
 		<div class="flex items-center">
 			{{ if not .IsHome }}
-			<a href="{{ " /" | relURL }}" class="ml-4 hover:text-blue-800"> <span class="arrow">←</span>{{ with
+			<a href="{{ "/" | relURL }}" class="ml-4 hover:text-blue-800"> <span class="arrow">←</span>{{ with
 				.Site.Params.home }}{{ . }}{{ else }}{{
 				i18n "home" }}{{ end }}</a>
 			{{ end }}
-			<!-- <a href="{{ "/posts" | relURL }}">{{ with .Site.Params.archive }}{{ . }}{{ else }}{{ i18n "archive" }}{{ end }}</a> -->
-			<a href="{{ " /tags" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tags }}{{ . }}{{
+			<a href="{{ "/tags" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tags }}{{ . }}{{
 				else }}{{ i18n "tags" }}{{ end
 				}}</a>
-			<a href="{{ " /categories" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tags }}{{ .
+			<a href="{{ "/categories" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tags }}{{ .
 				}}{{ else }}{{ i18n "categories"
 				}}{{ end }}</a>
-			<a href="{{ " /about" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.about }}{{ . }}{{
+			<a href="{{ "/about" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.about }}{{ . }}{{
 				else }}{{ i18n "about" }}{{ end
 				}}</a>
-			<a href="{{ " /tools" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tools }}{{ . }}{{
+			<a href="{{ "/tools" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tools }}{{ . }}{{
 				else }}{{ i18n "tools" }}{{ end
 				}}</a>
 

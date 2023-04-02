@@ -1,4 +1,3 @@
-
 @import "node_modules/tailwindcss/base";
 @import "node_modules/tailwindcss/components";
 @import "node_modules/tailwindcss/utilities";
@@ -6,4 +5,11 @@
 
 html {
     font-size: 14px;
+}
+
+
+.tools-wrapper {
+    p {
+        margin-bottom: 20px;
+    }
 }

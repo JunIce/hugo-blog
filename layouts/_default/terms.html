@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ partial "profile.html" . }}
+<!-- {{ partial "profile.html" . }} -->
 
 {{- $taxonomies := .Data.Plural -}}
 {{- $terms := .Data.Terms.ByCount -}}
@@ -38,15 +38,15 @@
 
 {{- /* Tag Cloud Page */ -}}
 {{- else if eq $taxonomies "tags" -}}
-<section id="tags">
+<section id="tags" class="w-3/4 m-auto flex flex-wrap">
     {{ $data := .Data }}
     {{ range $key, $value := .Data.Terms.ByCount }}
     {{ if ($value.Name) }}
-    <span class="tag">
+    <div class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg mb-2 mr-2">
         <a href="{{ "tags/" | relURL }}{{ $value.Name | urlize }}">
             {{ $value.Name }} <span>({{ $value.Count }})</span>
         </a>
-    </span>
+    </div>
     {{ end }}
     {{ end }}
 </section>
