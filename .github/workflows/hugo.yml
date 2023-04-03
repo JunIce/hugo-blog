@@ -56,20 +56,30 @@ jobs:
         run: |
           hugo \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload dist
+        uses: appleboy/scp-action@master
         with:
-          path: ./public
+          # path: ./public
+          host: ${{ secrets.TARGET_HOST }}
+          username: ${{ secrets.TARGET_USERNAME }}
+          password: ${{ secrets.TARGET_PASSWORD }}
+          port: ${{ secrets.TARGET_PORT }}
+
+          source: "./public"
+          target: ${{ secrets.TARGET_PATH }}
 
   # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Deploy to Target Server
+  #       id: deployment
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         host: ${{ secrets.TARGET_HOST }}
+  #         username: ${{ secrets.TARGET_USERNAME }}
+  #         password: ${{ secrets.TARGET_PASSWORD }}
+  #         port: ${{ secrets.TARGET_PORT }}
+  #         script: whoami
+
