@@ -102,3 +102,8 @@ params:
     # - https://example.com/custom.js # remote js
     - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js
       # - https://cdn.tailwindcss.com
+
+# module:
+#   mounts:
+#     - source: "./node_modules/tailwindcss"
+#       target: "assets/css/tailwindcss"
