@@ -1,4 +1,4 @@
-baseURL: https://blog.storycn.cn/
+baseURL: /
 languageCode: en-us
 title: 时间的朋友
 # theme: hugo-theme-mini
