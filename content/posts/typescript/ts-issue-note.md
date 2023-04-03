@@ -205,3 +205,23 @@ objectVariableName!.propertyName = 'some value to assign';
     }
 }
 ```
+
+
+
+### Property does not exist on type 'DetailedHTMLProps, HTMLDivElement>'
+
+
+
+给div设置行内样式style的时候报错
+
+```tsx
+  const dropdownStyle: React.CSSProperties = {
+    position: "absolute",
+    top: position.top + 10,
+    left: position.left,
+  };
+```
+
+
+
+定义样式为`React.CSSProperties`定义
