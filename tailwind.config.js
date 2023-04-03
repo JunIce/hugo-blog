@@ -1,5 +1,5 @@
-const theme = require("tailwindcss/defaultTheme");
-const typography = require("@tailwindcss/typography");
+// const theme = require("tailwindcss/defaultTheme");
+// const typography = require("@tailwindcss/typography");
 
 //const colorBrand = 'var(--color-pretty)';
 
