@@ -3,8 +3,7 @@
 {{ range $key, $val := .Site.Social }}
     <!-- dd -->
     <a class="symbol ml-4 hover:text-cyan-400" href="{{ $val }}" rel="me" target="_blank">
-        {{ $svg :=  print "svgs/" $key ".svg" }}
-        {{ partial $svg (dict "fill" "#bbbbbb" "width" 28 "height" 28 ) }}
+        <img src="/svgs/{{$key}}.svg" class="w-8 h-8 cursor-pointer"/>
     </a>
 {{ end }}
 
