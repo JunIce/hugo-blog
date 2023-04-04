@@ -62,7 +62,7 @@ jobs:
           # path: ./public
           host: ${{ secrets.TARGET_HOST }}
           username: ${{ secrets.TARGET_USERNAME }}
-          password: ${{ secrets.TARGET_PASSWORD }}
+          key: ${{ secrets.TARGET_KEY }}
           port: ${{ secrets.TARGET_PORT }}
 
           source: "public/"
