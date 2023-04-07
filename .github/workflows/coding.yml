@@ -17,4 +17,4 @@ jobs:
           # 注意替换为你的 GitHub 源仓库地址
           github-repo: "git@github.com:JunIce/hugo-blog.git"
           # 注意替换为你的 CODING 目标仓库地址
-          coding-repo: "git@e.coding.net:volcan0/node-api/node-api.git"
+          coding-repo: "git@e.coding.net:volcan0/node-api/blog.git"
