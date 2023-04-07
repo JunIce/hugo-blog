@@ -78,4 +78,17 @@ Error loading shared library ld-linux-x86-64.so.2: No such file or directory (ne
 ```
 
 
+## 解压xz文件
+
+```bash
+tar -xvf node-v18.15.0-linux-x64.tar.xz
+```
+
+
+## ln 创建软连接
+
+```bash
+ln -s /usr/local/node-v18.15.0-linux-x64/bin/node /usr/local/bin/node
+```
+
 
