@@ -37,6 +37,7 @@ Error: rpmdb open failed
 ### wget下载失败 Unable to establish SSL connection.
 
 
+#### 1. 
 
 ```perl
 [root@VM-0-6-centos local]# wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.0.tar.gz && tar -xzvf git-
@@ -57,3 +58,6 @@ To connect to mirrors.edge.kernel.org insecurely, use `--no-check-certificate'.
 wget --no-check-certificate https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.0.tar.gz
 ```
 
+#### 2. 
+
+> --secure-protocol=TLSv1
