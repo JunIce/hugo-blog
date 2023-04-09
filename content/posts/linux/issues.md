@@ -34,7 +34,7 @@ Error: rpmdb open failed
 
 
 
-### wget下载失败
+### wget下载失败 Unable to establish SSL connection.
 
 
 
