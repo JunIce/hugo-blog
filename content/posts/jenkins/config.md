@@ -198,3 +198,28 @@ pipeline {
 }
 ```
 
+
+### dir 切换jenkins中工作目录
+
+pipeline中用于切换目录
+
+
+```bash
+steps {
+    sh "pwd"
+    dir('your-sub-directory') {
+      sh "pwd"
+    }
+    sh "pwd"
+}
+```
+
+Use WORKSPACE environment variable to change workspace directory.
+
+If doing using Jenkinsfile, use following code :
+
+```bash
+dir("${env.WORKSPACE}/aQA"){
+    sh "pwd"
+}
+```
