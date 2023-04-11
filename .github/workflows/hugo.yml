@@ -56,17 +56,17 @@ jobs:
         run: |
           hugo \
             --minify \
-      - name: Upload dist
-        uses: appleboy/scp-action@master
-        with:
-          # path: ./public
-          host: ${{ secrets.TARGET_HOST }}
-          username: ${{ secrets.TARGET_USERNAME }}
-          key: ${{ secrets.TARGET_KEY }}
-          port: ${{ secrets.TARGET_PORT }}
+      # - name: Upload dist
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     # path: ./public
+      #     host: ${{ secrets.TARGET_HOST }}
+      #     username: ${{ secrets.TARGET_USERNAME }}
+      #     key: ${{ secrets.TARGET_KEY }}
+      #     port: ${{ secrets.TARGET_PORT }}
 
-          source: "public/"
-          target: ${{ secrets.TARGET_PATH }}
+      #     source: "public/"
+      #     target: ${{ secrets.TARGET_PATH }}
 
   # Deployment job
   # deploy:
