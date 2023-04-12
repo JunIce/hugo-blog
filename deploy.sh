@@ -1,5 +1,7 @@
 #/bin/sh
 
+hugo --minify
+
 docker rm -f blog
 
 docker build -t blog .
