@@ -1,6 +1,7 @@
-@import "node_modules/tailwindcss/base.css";
-@import "node_modules/tailwindcss/components.css";
-@import "node_modules/tailwindcss/utilities.css";
+@tailwind base; /* Preflight will be injected here */
+@tailwind components;
+@tailwind utilities;
+
 @import "./highlight.scss";
 @import "./copy-button.scss";
 @import "./content.scss";
