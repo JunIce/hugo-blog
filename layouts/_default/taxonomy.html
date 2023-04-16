@@ -1,41 +1,42 @@
 {{ define "main" }}
-{{ partial "profile.html" . }}
 
-<section id="archive">
-   
-    {{ range .Data.Pages.GroupByDate "2006" }}
-        <div class="group">
-            <h3 class="key">
+<div class="w-2/3 mx-auto">
+    <div class="text-black text-center text-2xl font-extrabold">
+        {{.Title | upper }}
+    </div>
+    <section class="mt-6">
+        {{ range .Data.Pages.GroupByDate "2006" }}
+        <div class="mb-4">
+            <h3 class="text-black font-bold text-2xl mb-2">
                 {{ .Key }}
             </h3>
 
             {{ range .Pages }}
-                <div class="value">
-                  <div class="date">
-                      <time datetime="{{ .PublishDate }}">{{ i18n "publishDateShort" . }}</time>
-                  </div>
-                  <div class="title">
-                      <a href="{{ .Permalink }}">
-                          {{ .Title }}
-                      </a>
+            <div class="mb-2">
+                <div class="flex align-middle">
+                    <time datetime="{{ .PublishDate }}" class="text-base ">{{
+                        i18n "publishDateShort" . }}</time>
 
-                      {{ with .Params.tags }}
-                          <div class="tags">
-                              {{ range . }}
-                                  <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
-                              {{ end }}
-                          </div>
-                      {{ end}}
-                  </div>
+                    {{ with .Params.tags }}
+                    <div class="ml-2">
+                        {{ range . }}
+                        <a href="{{ " tags/" | absURL }}{{ . | urlize }}"
+                            class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm mr-1">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end}}
+
+
+                    <a href="{{.Permalink }}" class="text-lg ml-2 text-black hover:text-blue-800">
+                        {{ .Title }}
+                    </a>
                 </div>
-            {{ end }}          
+            </div>
+            {{ end }}
         </div>
-
-    {{ end }}
-
-
-
-</section>
+        {{ end }}
+    </section>
+</div>
 
 
 {{ end }}
