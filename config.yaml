@@ -42,7 +42,7 @@ markup:
 # Social links in footer, support github,twitter,stackoverflow,facebook
 social:
   # e.g.
-  github: https://github.com/JunIce
+  github2: https://github.com/JunIce
   juejin: https://juejin.cn/user/2717648473319415
 
 frontmatter:
