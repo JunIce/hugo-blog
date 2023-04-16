@@ -44,8 +44,8 @@
     {{ $data := .Data }}
     {{ range $key, $value := .Data.Terms.ByCount }}
     {{ if ($value.Name) }}
-    <div class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg hover:py-4 mb-2 mr-2">
-        <a href="{{ " tags/" | relURL }}{{ $value.Name | urlize }}">
+    <div class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg hover:scale-150 mb-2 mr-2">
+        <a href="{{ "tags/" | relURL }}{{ $value.Name | urlize }}">
             {{ $value.Name }} <span>({{ $value.Count }})</span>
         </a>
     </div>
