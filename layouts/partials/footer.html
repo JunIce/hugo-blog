@@ -20,6 +20,8 @@
     {{ end }}
 </footer>
 
+{{ partial "search-pattern.html" . }}
+
 {{ range .Site.Params.customJS }}
     {{ if ( or ( hasPrefix . "http://" ) ( hasPrefix . "https://" ) ) }}
         <!-- remote js -->
