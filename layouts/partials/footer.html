@@ -34,6 +34,9 @@
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script> -->
 
-{{ $jsTemplate := resources.Get "js/custom.js" -}}
-{{ $js := $jsTemplate | resources.ExecuteAsTemplate "custom.js" .}}
-<script src="{{ $js.Permalink }}"></script>
+{{ $jsTemplate := resources.Get "js/search-doc.js" -}}
+{{ $js1 := $jsTemplate | resources.ExecuteAsTemplate "search-doc.js" . | minify | fingerprint }}
+<script src="{{ $js1.Permalink }}" defer></script>
+
+{{ $js := resources.Get "js/custom.js" | minify | fingerprint }}
+<script src="{{ $js.Permalink }}" defer></script>
