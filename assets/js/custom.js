@@ -89,9 +89,51 @@ var index = new FlexSearch.Document({
 
 const search = document.querySelector("#search-container")
 
-search.addEventListener("input", doSearchResult, true)
+search.addEventListener("click", onSearchClick, true)
 
 
+const searchModal = document.querySelector('#search-modal')
+
+searchModal.addEventListener("click", onSearchModalClick, true)
+
+const DocSearchModal = document.querySelector('.DocSearch-Modal')
+
+const modal = {
+  show(){
+    searchModal.classList.remove('hidden')
+    document.body.classList.add('overflow-hidden')
+    search.show = true
+  },
+  hide() {
+    searchModal.classList.add('hidden')
+    document.body.classList.remove('overflow-hidden')
+    search.show = false
+  }
+}
+
+
+function onSearchClick() {
+  if(!search.show) {
+    modal.show()
+  } else {
+    modal.hide()
+  }
+}
+
+function onSearchModalClick(e) {
+  if(!e.target.contains(DocSearchModal) || e.target === DocSearchModal) {
+  } else {
+    modal.hide()
+  }
+}
+
+
+const DocSearchInput = document.querySelector('.DocSearch-Input')
+
+DocSearchInput.addEventListener('input', doSearchResult, true)
+
+
+const resultContainer = document.querySelector('#result-container')
 
 function doSearchResult() {
   const searchQuery = this.value;
@@ -106,5 +148,21 @@ function doSearchResult() {
   }
 
 
-  console.log(flatResults)
+  let html = ''
+  flatResults.forEach((item, key) => {
+    html += renderResultItem(item)
+  })
+  resultContainer.innerHTML = html
+}
+
+
+function renderResultItem(item) {
+  return `<div class="result-item p-4 bg-slate-600 hover:bg-indigo-700 rounded-md">
+  <a href="${item.href}" target="_blank">
+      <div class="text-lg">${item.title}</div>
+      <div class="text-base mt-2 overflow-hidden text-ellipsis">
+          ${item.content}
+      </div>
+  </a>
+</div>`
 }
