@@ -14,6 +14,10 @@
 
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
+{{- $style1 := resources.Get "css/syntax.css" | resources.PostCSS | fingerprint }}
+
+<link rel="stylesheet" href="{{ $style1.Permalink }}">
+
 <link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}" type="image/x-icon" />
 
 {{ if .Site.Params.enableGoogleAnalytics }} 

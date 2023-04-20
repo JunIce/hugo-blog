@@ -1,5 +1,5 @@
 // const theme = require("tailwindcss/defaultTheme");
-// const typography = require("@tailwindcss/typography");
+const typography = require("@tailwindcss/typography");
 
 //const colorBrand = 'var(--color-pretty)';
 
@@ -36,5 +36,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  // plugins: [typography],
+  plugins: [typography],
 };

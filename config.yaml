@@ -29,6 +29,8 @@ markup:
   highlight:
     lineNos: true
     guessSyntax: true
+    noClasses: false
+    style: onedark
 
   tableOfContents:
     endLevel: 3
