@@ -19,4 +19,19 @@ categories: ["css"]
 > ```
 
 
+## 2. h5 ios端安全距离处理
 
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+```
+
+```css
+@supports (padding-bottom: constant(safe-area-inset-bottom)) or (padding-bottom: env(safe-area-inset-bottom)) {
+  #selector {
+    padding-bottom: 0px;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+```
