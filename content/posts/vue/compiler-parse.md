@@ -1,18 +1,18 @@
 ---
-title: "vue3 -- @vue/compiler-core parse处理整体流程"
+title: "vue3 -- @vue/compiler-core baseParse源码"
 date: 2022-07-05T06:29:01+08:00
-tags: ["vue3", "@vue/compiler-sfc"]
+tags: ["vue3", "@vue/compiler-core", "baseParse"]
 categories: ["vue"]
 draft: false
 ---
 
 
 
-# @vue/compiler-core
+# @vue/compiler-core baseParse
 
 
 
->   "version": "3.2.37"
+>   "version": "3.3.0-beta.2"
 
 
 
