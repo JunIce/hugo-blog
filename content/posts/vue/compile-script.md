@@ -4,6 +4,7 @@ date: 2023-04-28T06:29:01+08:00
 tags: ["vue3", "@vue/compiler-sfc", "compileScript"]
 categories: ["vue"]
 draft: false
+type: "vue"
 ---
 
 

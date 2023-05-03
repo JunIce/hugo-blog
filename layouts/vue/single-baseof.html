@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default " en" }}" class="scroll-smooth">
+
+<head>
+  <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+
+  {{ partial "head.html" . }}
+
+</head>
+
+<body class="overflow-auto">
+  {{ partial "navigation.html" . }}
+
+  <main>
+    <div class="hidden lg:block fixed z-20 inset-0 top-20 left-[max(0px,calc(50%-45rem))] right-auto w-[19.5rem] pb-10 px-8 overflow-y-auto"></div>
+    <div class="lg:pl-[19.5rem]">
+        {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+
+  {{ partial "footer.html" . }}
+</body>
+
+</html>

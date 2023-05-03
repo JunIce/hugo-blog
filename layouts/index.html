@@ -16,7 +16,8 @@
           </div>
 
           {{ if ne .Site.Params.hiddenPostSummaryInHomePage true }}
-              <div class="text-base leading-8 text-white/70">{{ $summary | plainify | htmlUnescape }}</div>
+            {{ $s := $summary | plainify | htmlUnescape }}
+              <div class="text-base leading-8 dark:text-white/70">{{ replaceRE `🔗` " " $s }}</div>
           {{ end }}
 
         </section>

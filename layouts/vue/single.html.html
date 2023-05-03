@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section id="single" class="w-4/5 mx-auto">
+  <h1 class="text-3xl text-center font-bold">{{ .Title }}</h1>
+
+  <div class="mt-4 text-gray-500 text-md text-center">
+    Published: <time datetime="{{ .PublishDate }}">{{ $.Page.PublishDate.Format "January 02, 2006" }}</time>
+    <span class="split">
+      ·
+    </span>
+    LastMod: {{ $.Page.Lastmod.Format "January 02, 2006" }}
+    <span class="split">
+      ·
+    </span>
+    <span>
+      {{ i18n "wordCount" . }}
+    </span>
+  </div>
+
+
+  {{ if or .Site.Params.showToc .Params.showToc }}
+  {{ partial "toc.html" . }}
+  {{ end }}
+
+  <div class="mt-16 prose prose-xl prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600 max-w-none">
+    {{ .Content }}
+  </div>
+
+  <div>
+    {{ with .Params.tags }}
+    <div class="tags flex mt-8">
+      {{ range . }}
+      <a class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg mr-2" href="{{ "tags/" | absURL }}{{
+        . | urlize }}">{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end}}
+  </div>
+</section>
+
+{{ end }}
