@@ -1,7 +1,7 @@
 ---
 title: "vue -- hoistStatic原理"
 date: 2023-02-09T15:26:32+08:00
-tags: ["vue3", "hoistStatic"]
+tags: ["vue3", "hoistStatic", "@vue/compiler-core"]
 categories: ["vue"]
 draft: false
 ---
@@ -14,7 +14,7 @@ draft: false
 
 `packages/compiler-core/src/transforms/hoistStatic.ts`
 
->   "version": "3.2.45"
+>   "version": "3.3.0-beta.3"
 
 
 
