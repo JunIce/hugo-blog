@@ -19,6 +19,7 @@ paginate: 8
 build:
   # Used by PurgeCSS
   writeStats: true
+enableRobotsTXT: true
 
 # googleAnalytics: your-google-analytics-id
 # disqusShortname: your-disqus-shortname

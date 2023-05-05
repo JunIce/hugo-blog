@@ -108,11 +108,13 @@ DocSearchInput.addEventListener('input', doSearchResult, true)
 
 
 const resultContainer = document.querySelector('#result-container')
+const emptyResultContainer = document.querySelector('#result-empty')
 
 function doSearchResult() {
   const searchQuery = this.value;
 
   const searchResult = index.search(searchQuery, { limit: 5, enrich: true })
+  emptyResultContainer.classList.remove("hidden")
 
 
   const flatResults = new Map(); // keyed by href to dedupe results
