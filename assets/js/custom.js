@@ -114,7 +114,7 @@ function doSearchResult() {
   const searchQuery = this.value;
 
   const searchResult = index.search(searchQuery, { limit: 5, enrich: true })
-  emptyResultContainer.classList.remove("hidden")
+  emptyResultContainer.classList.add("hidden")
 
 
   const flatResults = new Map(); // keyed by href to dedupe results
