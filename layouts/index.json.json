@@ -1,0 +1,12 @@
+{{ $list := .Site.Pages -}}
+{{ $length := (len $list) -}}
+[
+{{ range $index, $element := $list -}}
+    {
+      "id": "{{ $index }}",
+      "href": "{{ .RelPermalink }}",
+      "title": {{ .Title | jsonify }},
+      "content": {{ .Plain | jsonify }}
+    }{{ if ne (add $index 1) $length }},{{ end }}
+{{ end -}}
+]

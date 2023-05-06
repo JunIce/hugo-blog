@@ -3,6 +3,19 @@ window.onload = function () {
   hljs.highlightAll();
   // 复制按钮
   addCopyButton();
+
+  window.searchIndex = new FlexSearch.Document({
+    tokenize: "forward",
+    cache: 100,
+    document: {
+      id: 'id',
+      store: [
+        "href", "title", "description"
+      ],
+      index: ["title", "description", "content"]
+    },
+    encode: str => str.split("")
+  });
 };
 
 function addCopyButtons(clipboard) {
@@ -86,11 +99,22 @@ const modal = {
 }
 
 
-function onSearchClick() {
+function onSearchClick(e) {
+  this.blur()
+  getSearchIndex()
   if(!search.show) {
     modal.show()
   } else {
     modal.hide()
+  }
+}
+
+function getSearchIndex() {
+  if (!window.isAdd) {
+    fetch("/index.json").then(res => res.json()).then(res => {
+      res.forEach(item => window.searchIndex.add(item))
+      window.isAdd = true
+    })
   }
 }
 
@@ -113,7 +137,7 @@ const emptyResultContainer = document.querySelector('#result-empty')
 function doSearchResult() {
   const searchQuery = this.value;
 
-  const searchResult = index.search(searchQuery, { limit: 5, enrich: true })
+  const searchResult = window.searchIndex.search(searchQuery, { limit: 5, enrich: true })
   emptyResultContainer.classList.add("hidden")
 
 

@@ -116,3 +116,7 @@ deployment:
     pattern: ^.+\\.(js|css|svg|ttf)$
     cacheControl: "max-age=31536000, no-transform, public"
     gzip: true
+
+
+outputs:
+  home: ["HTML","RSS", "JSON"]
