@@ -168,8 +168,9 @@ function renderResultItem(item) {
 function listenDarkMode() {
   const icon = document.querySelector("#darkmode img");
 
-  if (localStorage.getItem("darkMode") == 'false' || localStorage.getItem('darkMode') == null) {
+  if (localStorage.getItem("darkMode") == 'true') {
     document.documentElement.classList.add("dark");
+    icon.src = "/svgs/moon.svg";
   }
 
   icon.addEventListener(

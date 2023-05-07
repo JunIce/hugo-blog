@@ -23,7 +23,7 @@
   {{ end }}
 
 
-  <div class="mt-16 prose prose-xl prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600 max-w-none">
+  <div class="mt-16 prose dark:prose-invert prose-xl prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600 max-w-none">
     {{ .Content }}
   </div>
 
@@ -31,7 +31,7 @@
     {{ with .Params.tags }}
     <div class="tags flex mt-8">
       {{ range . }}
-      <a class="px-2 py-1 bg-slate-100 text-gray-700 rounded-sm text-sm hover:shadow-lg mr-2" href="{{ "tags/" | absURL }}{{
+      <a class="px-2 py-1 bg-slate-100 dark:bg-gray-500 text-gray-700 dark:text-white rounded-sm text-sm hover:shadow-lg mr-2" href="{{ "tags/" | absURL }}{{
         . | urlize }}">{{ . }}</a>
       {{ end }}
     </div>
