@@ -32,7 +32,7 @@ module.exports = {
   //   ],
   //   mode: "all",
   // },
-  darkMode: 'media',
+  darkMode: 'class',
   theme: {
     extend: {},
   },

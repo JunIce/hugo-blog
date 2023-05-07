@@ -1,10 +1,17 @@
-<div id="social" class="flex">
-
-{{ range $key, $val := .Site.Social }}
-    <!-- dd -->
+<!-- {{ range $key, $val := .Site.Social }}
     <a class="symbol ml-4 hover:text-cyan-400" href="{{ $val }}" rel="me" target="_blank">
         <img src="/svgs/{{$key}}.svg" class="w-8 h-8 cursor-pointer"/>
     </a>
-{{ end }}
+{{ end }} -->
 
-</div>
+<a class="symbol ml-4 hover:text-cyan-400" href="https://github.com/JunIce" rel="me" target="_blank">
+    <img src="/svgs/github-logo.svg" class="w-6 h-6 cursor-pointer" />
+</a>
+
+<a class="symbol ml-4 hover:text-cyan-400" href="https://juejin.cn/user/2717648473319415" rel="me" target="_blank">
+    <img src="/svgs/juejin.svg" class="w-6 h-6 cursor-pointer" />
+</a>
+
+<a id="darkmode" class="symbol ml-4 hover:text-cyan-400">
+    <img src="/svgs/sun.svg" class="w-6 h-6 cursor-pointer" />
+</a>

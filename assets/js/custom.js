@@ -8,14 +8,15 @@ window.onload = function () {
     tokenize: "forward",
     cache: 100,
     document: {
-      id: 'id',
-      store: [
-        "href", "title", "description"
-      ],
-      index: ["title", "description", "content"]
+      id: "id",
+      store: ["href", "title", "description"],
+      index: ["title", "description", "content"],
     },
-    encode: str => str.split("")
+    encode: (str) => str.split(""),
   });
+
+  // 暗黑模式
+  listenDarkMode();
 };
 
 function addCopyButtons(clipboard) {
@@ -72,89 +73,85 @@ function addCopyButton() {
   }
 }
 
+const search = document.querySelector("#search-container");
 
+search.addEventListener("click", onSearchClick, true);
 
-const search = document.querySelector("#search-container")
+const searchModal = document.querySelector("#search-modal");
 
-search.addEventListener("click", onSearchClick, true)
+searchModal.addEventListener("click", onSearchModalClick, true);
 
-
-const searchModal = document.querySelector('#search-modal')
-
-searchModal.addEventListener("click", onSearchModalClick, true)
-
-const DocSearchModal = document.querySelector('.DocSearch-Modal')
+const DocSearchModal = document.querySelector(".DocSearch-Modal");
 
 const modal = {
-  show(){
-    searchModal.classList.remove('hidden')
-    document.body.classList.add('overflow-hidden')
-    search.show = true
+  show() {
+    searchModal.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+    search.show = true;
   },
   hide() {
-    searchModal.classList.add('hidden')
-    document.body.classList.remove('overflow-hidden')
-    search.show = false
-  }
-}
-
+    searchModal.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+    search.show = false;
+  },
+};
 
 function onSearchClick(e) {
-  this.blur()
-  getSearchIndex()
-  if(!search.show) {
-    modal.show()
+  this.blur();
+  getSearchIndex();
+  if (!search.show) {
+    modal.show();
   } else {
-    modal.hide()
+    modal.hide();
   }
 }
 
 function getSearchIndex() {
   if (!window.isAdd) {
-    fetch("/index.json").then(res => res.json()).then(res => {
-      res.forEach(item => window.searchIndex.add(item))
-      window.isAdd = true
-    })
+    fetch("/index.json")
+      .then((res) => res.json())
+      .then((res) => {
+        res.forEach((item) => window.searchIndex.add(item));
+        window.isAdd = true;
+      });
   }
 }
 
 function onSearchModalClick(e) {
-  if(!e.target.contains(DocSearchModal) || e.target === DocSearchModal) {
+  if (!e.target.contains(DocSearchModal) || e.target === DocSearchModal) {
   } else {
-    modal.hide()
+    modal.hide();
   }
 }
 
+const DocSearchInput = document.querySelector(".DocSearch-Input");
 
-const DocSearchInput = document.querySelector('.DocSearch-Input')
+DocSearchInput.addEventListener("input", doSearchResult, true);
 
-DocSearchInput.addEventListener('input', doSearchResult, true)
-
-
-const resultContainer = document.querySelector('#result-container')
-const emptyResultContainer = document.querySelector('#result-empty')
+const resultContainer = document.querySelector("#result-container");
+const emptyResultContainer = document.querySelector("#result-empty");
 
 function doSearchResult() {
   const searchQuery = this.value;
 
-  const searchResult = window.searchIndex.search(searchQuery, { limit: 5, enrich: true })
-  emptyResultContainer.classList.add("hidden")
-
+  const searchResult = window.searchIndex.search(searchQuery, {
+    limit: 5,
+    enrich: true,
+  });
+  emptyResultContainer.classList.add("hidden");
 
   const flatResults = new Map(); // keyed by href to dedupe results
-  for (const result of searchResult.flatMap(r => r.result)) {
+  for (const result of searchResult.flatMap((r) => r.result)) {
     if (flatResults.has(result.doc.href)) continue;
     flatResults.set(result.doc.href, result.doc);
   }
 
-
-  let html = ''
+  let html = "";
   flatResults.forEach((item, key) => {
-    html += renderResultItem(item)
-  })
-  resultContainer.innerHTML = html
+    html += renderResultItem(item);
+  });
+  resultContainer.innerHTML = html;
 }
-
 
 function renderResultItem(item) {
   return `<div class="result-item p-4 bg-slate-600 hover:bg-indigo-700 rounded-md">
@@ -164,5 +161,30 @@ function renderResultItem(item) {
           ${item.content}
       </div>
   </a>
-</div>`
+</div>`;
+}
+
+// darkmode
+function listenDarkMode() {
+  const icon = document.querySelector("#darkmode img");
+
+  if (localStorage.getItem("darkMode")) {
+    document.documentElement.classList.add("dark");
+  }
+
+  icon.addEventListener(
+    "click",
+    function () {
+      if (document.documentElement.classList.contains("dark")) {
+        this.src = "/svgs/sun.svg";
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("darkMode", false);
+      } else {
+        this.src = "/svgs/moon.svg";
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("darkMode", true);
+      }
+    },
+    false
+  );
 }
