@@ -168,7 +168,7 @@ function renderResultItem(item) {
 function listenDarkMode() {
   const icon = document.querySelector("#darkmode img");
 
-  if (localStorage.getItem("darkMode")) {
+  if (localStorage.getItem("darkMode") == 'false' || localStorage.getItem('darkMode') == null) {
     document.documentElement.classList.add("dark");
   }
 
