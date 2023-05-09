@@ -2,3 +2,4 @@ node_modules
 *.lock
 resources/_gen
 public
+hugo_stats.json
