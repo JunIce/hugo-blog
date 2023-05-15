@@ -5,42 +5,41 @@
     {{ $pages := .Site.RegularPages }}
     {{ $paginator := .Paginate ($pages) }}
     {{ range $paginator.Pages }}
-        {{ $title := .Title }}
-        {{ $summary := .Summary }}
-        <section class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 dark:text-white shadow-xl mb-8 h-60 hover:shadow-lg">
-          <div>
+    {{ $title := .Title }}
+    {{ $summary := .Summary }}
+    <section
+        class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 dark:text-white shadow-xl mb-8 h-60 hover:shadow-lg">
+        <div>
             <h1 class="title text-2xl mb-2"><a href='{{ .RelPermalink }}'>{{ $title }}</a></h1>
-            <div class ="date mb-2">
-                <time datetime="{{ .PublishDate }}">{{ i18n "publishDate" . }}</time>  
+            <div class="date mb-2">
+                <time datetime="{{ .PublishDate }}">{{ i18n "publishDate" . }}</time>
             </div>
-          </div>
+        </div>
 
-          {{ if ne .Site.Params.hiddenPostSummaryInHomePage true }}
-            {{ $s := $summary | plainify | htmlUnescape }}
-              <div class="text-base leading-8 dark:text-white/70">{{ replaceRE `🔗` " " $s }}</div>
-          {{ end }}
+        {{ if ne .Site.Params.hiddenPostSummaryInHomePage true }}
+        {{ $s := $summary | plainify | htmlUnescape }}
+        <div class="text-base leading-8 dark:text-white/70">{{ replaceRE `🔗` " " $s }}</div>
+        {{ end }}
 
-        </section>
+    </section>
     {{ end }}
 
     {{ if or ($paginator.HasPrev) ($paginator.HasNext) }}
-        <div class="pagination">
-          {{ if $paginator.HasPrev }}
-              <span class="prev">
-                  <a href="{{.Paginator.Prev.URL}}">
-                      <span class="arrow">←</span> {{ with .Site.Params.newerPosts }}{{ . }}{{ else }}{{ i18n "postsNewer" }}{{ end }}
-                  </a>
-            </span>
-          {{ end }}
-          
-          {{ if $paginator.HasNext }}
-              <span class="next">
-                  <a href="{{.Paginator.Next.URL}}">
-                      {{ with .Site.Params.olderPosts }}{{ . }}{{ else }}{{ i18n "postsOlder" }}{{ end }} <span class="arrow">→</span>
-                  </a>
-              </span>
-          {{ end }}
-        </div>
+    <div class="pagination flex justify-between mt-2 text-lg font-bold text-gray-600">
+        {{ if $paginator.HasPrev }}
+        <a href="{{.Paginator.Prev.URL}}" class="hover:text-black">
+            <span class="arrow">←</span> {{ with .Site.Params.newerPosts }}{{ . }}{{ else }}{{ i18n "postsNewer" }}{{
+            end }}
+        </a>
+        {{ end }}
+
+        {{ if $paginator.HasNext }}
+        <a href="{{.Paginator.Next.URL}}" class="hover:text-black">
+            {{ with .Site.Params.olderPosts }}{{ . }}{{ else }}{{ i18n "postsOlder" }}{{ end }} <span
+                class="arrow">→</span>
+        </a>
+        {{ end }}
+    </div>
     {{ end }}
 
 

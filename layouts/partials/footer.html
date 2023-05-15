@@ -1,4 +1,4 @@
-<footer id="footer" class="flex pt-6 pb-20 justify-center items-center">
+<footer id="footer" class="flex pt-6 pb-20 justify-center items-center dark:text-gray-100">
 
     <div class="copyright mr-4 ml-4">
     {{ with .Site.Params.copyright }}
@@ -32,11 +32,6 @@
     {{ end }}
 {{ end }}
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script> -->
-
-{{ $jsTemplate := resources.Get "js/search-doc.js" -}}
-{{ $js1 := $jsTemplate | resources.ExecuteAsTemplate "search-doc.js" . | minify | fingerprint }}
-<script src="{{ $js1.Permalink }}" defer></script>
 
 {{ $js := resources.Get "js/custom.js" | minify | fingerprint }}
 <script src="{{ $js.Permalink }}" defer></script>
