@@ -18,7 +18,7 @@ draft: false
 
 
 
-`@vue/compiler-core`主要处理的是`@vue/compiler-sfc`
+`@vue/compiler-core`主要处理的是`@vue/compiler-sfc`模版部分，最终处理成`render`函数
 
 
 
@@ -247,6 +247,18 @@ return function render(_ctx, _cache) {
 会进行递归调用，组装改节点类型的`type`，最终拼装成`render`执行的`js`函数
 
 
+
+## baseCompile
+
+
+
+baseCompile就是一个组装函数，内部执行了上面3个函数
+
+- baseParse
+- transform
+- generate
+
+最终返回编译后的render函数
 
 
 
