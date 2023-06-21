@@ -63,6 +63,34 @@ function writeServerSendEvent(res, data) {
 
 
 
+数据部分需要通过`data:`开头
+
+```js
+data: message\n
+```
+
+
+
+如果是多行数据
+
+```js
+data: line1\n
+data: line2\n
+```
+
+如果是发送json数据
+
+```js
+data: {\n
+data: "msg": "hello world",\n
+data: "id": 12345\n
+data: }\n
+```
+
+
+
+
+
 
 
 
