@@ -1,8 +1,8 @@
 {{ define "main" }}
-<!-- {{ partial "profile.html" . }} -->
 
 <div class="w-4/5 mx-auto sm:px-4">
     {{ $pages := .Site.RegularPages }}
+    {{ $pages := where $pages "Params.categories" "!=" "algorithm"}}
     {{ $paginator := .Paginate ($pages) }}
     {{ range $paginator.Pages }}
     {{ $title := .Title }}
@@ -10,7 +10,7 @@
     <section
         class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 dark:text-white shadow-xl mb-8 h-60 hover:shadow-lg">
         <div>
-            <h1 class="title text-2xl mb-2"><a href='{{ .RelPermalink }}'>{{ $title }}</a></h1>
+            <h1 class="title text-2xl mb-2"><a href='{{ .RelPermalink }}'>{{ $title }} {{.Params.categories}}</a></h1>
             <div class="date mb-2">
                 <time datetime="{{ .PublishDate }}">{{ i18n "publishDate" . }}</time>
             </div>
