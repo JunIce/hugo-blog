@@ -34,7 +34,11 @@ module.exports = {
   // },
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "a-text": "#525FE1"
+      }
+    },
   },
   plugins: [typography],
 };
