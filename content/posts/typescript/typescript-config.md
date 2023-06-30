@@ -63,3 +63,17 @@ categories: ["Typescript"]
   }
 }
 ```
+
+
+## moduleResolution
+
+- classic
+
+- node
+
+- node16
+
+- nodenext
+
+[moduleResolution](https://zhuanlan.zhihu.com/p/621795173)
+
