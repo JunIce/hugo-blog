@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section id="single" class="flex h-full">
-  <div class="w-1/5">
+  <div class="w-1/5 overflow-y-auto">
     <ul class="py-4">
       {{ $p := .Site.RegularPages }}
       {{ $c := .Title}}
@@ -10,7 +10,7 @@
       {{ end }}
     </ul> 
   </div>
-  <div class="w-4/5 px-6">
+  <div class="w-4/5 px-6 overflow-y-auto">
     <div class="w-full py-8 mx-auto dark:text-gray-100">
       <h1 class="text-3xl text-center font-bold">{{ .Title }}</h1>
 
