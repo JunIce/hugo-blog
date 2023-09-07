@@ -48,3 +48,12 @@ https://stackoverflow.com/questions/14381898/local-dependency-in-package-json
 ```js
 npm install --save file:src/assets/js/FILE_NAME
 ```
+
+
+### Cannot read properties of null (reading 'pickAlgorithm')
+
+```bash
+npm cache clear --force
+
+npm install
+```
