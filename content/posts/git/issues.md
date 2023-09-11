@@ -105,3 +105,11 @@ git pull origin master --allow-unrelated-histories
 git pull --allow-unrelated-histories
 ```
 
+
+### 7 bad boolean config value '=' for 'core.autocrlf'
+
+git 配置设置错了以后查询哪里错误
+
+```bash
+git config --get-all --show-origin --show-scope core.autocrlf
+```
