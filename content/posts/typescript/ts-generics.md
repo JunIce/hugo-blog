@@ -250,6 +250,19 @@ dispatch("INIT", {})
 
 
 
+## Required
+
+通过 -? 移除了可选属性中的 ?，使得属性从可选变为必选的。
+
+```ts
+/**
+ * Make all properties in T required
+ */
+type Required<T> = {
+  [P in keyof T]-?: T[P];
+};
+```
+
 
 
 ## 引用
