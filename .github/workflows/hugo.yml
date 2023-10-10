@@ -3,8 +3,8 @@ name: Deploy Hugo site to Pages
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches: ["master"]
+  # push:
+  #   branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -56,30 +56,13 @@ jobs:
         run: |
           hugo \
             --minify \
-      # - name: Upload dist
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     # path: ./public
-      #     host: ${{ secrets.TARGET_HOST }}
-      #     username: ${{ secrets.TARGET_USERNAME }}
-      #     key: ${{ secrets.TARGET_KEY }}
-      #     port: ${{ secrets.TARGET_PORT }}
 
-      #     source: "public/"
-      #     target: ${{ secrets.TARGET_PATH }}
-
-  # Deployment job
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: Deploy to Target Server
-  #       id: deployment
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.TARGET_HOST }}
-  #         username: ${{ secrets.TARGET_USERNAME }}
-  #         password: ${{ secrets.TARGET_PASSWORD }}
-  #         port: ${{ secrets.TARGET_PORT }}
-  #         script: whoami
+      - name: deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: "./public"
+          server-dir: "./docs/"
 
