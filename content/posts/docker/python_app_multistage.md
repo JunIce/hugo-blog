@@ -2,6 +2,7 @@
 title: "docker python应用多步打包镜像"
 date: 2023-08-28T09:56:39+08:00
 draft: true
+categories: ["docker"]
 ---
 
 # docker python应用多步打包镜像

@@ -2,6 +2,7 @@
 title: "docker 常见问题搜集"
 date: 2023-04-06T09:56:39+08:00
 draft: true
+categories: ["docker"]
 ---
 
 
