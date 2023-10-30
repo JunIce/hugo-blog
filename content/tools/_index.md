@@ -27,3 +27,6 @@
 [rust-lang playground](https://play.rust-lang.org/)
 
 [template-explorer.vue](https://template-explorer.vuejs.org/)
+
+
+[https://v3-migration.vuejs.org](https://v3-migration.vuejs.org/breaking-changes/vnode-lifecycle-events.html#vnode-lifecycle-events)
