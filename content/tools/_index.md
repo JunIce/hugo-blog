@@ -32,3 +32,5 @@
 [https://v3-migration.vuejs.org](https://v3-migration.vuejs.org/breaking-changes/vnode-lifecycle-events.html#vnode-lifecycle-events)
 
 [online playground](https://playcode.io/)
+
+[media-types](https://www.iana.org/assignments/media-types/media-types.xhtml)
