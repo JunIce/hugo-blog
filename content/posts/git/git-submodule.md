@@ -100,3 +100,17 @@ git submodule update --init --remote a/submodule/path
 
 > git submodule update
 
+
+
+### 2. git 子模块submodule dirty
+
+```bash
+git config --global diff.ignoreSubmodules dirty
+```
+
+修改`.git/config`
+```bash
+[diff]
+ignoreSubmodules = dirty
+```
+
