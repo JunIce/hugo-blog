@@ -28,3 +28,31 @@ tags: ["jest"]
 }
 
 ```
+
+
+## windows 调试文件
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Jest Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/jest/bin/jest.js",
+        "--runInBand"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
+```
+
+
+### References
+
+[https://jestjs.io/docs/troubleshooting.html#debugging-in-vs-code](https://jestjs.io/docs/troubleshooting.html#debugging-in-vs-code)
