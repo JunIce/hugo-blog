@@ -146,3 +146,69 @@ function addMapping(loc: Position, name: string | null = null) {
     1. ![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1701996713735-64be9486-6438-4889-a14d-290e8b06b666.png#averageHue=%23333826&clientId=ua8af2a3b-4852-4&from=paste&height=427&id=ua8c791aa&originHeight=427&originWidth=855&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66507&status=done&style=none&taskId=u0dc84f8a-54c6-4144-9ad6-063e7b1123e&title=&width=855)
 36. 修复属性参数为空的情况
     1. ![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1701996789073-cb7b98a3-f121-42df-ba86-89b9fde1f490.png#averageHue=%23222120&clientId=ua8af2a3b-4852-4&from=paste&height=161&id=u17322f39&originHeight=161&originWidth=488&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12528&status=done&style=none&taskId=u2a00e7bf-c7ab-4058-be42-aa7a21353a6&title=&width=488)
+
+37. 分词器在重置方法时调用重置inRCDATA 以致后续解析其他模板时不再报错
+
+38. 在解析模板开始时，重置分词器是否在xml的flag![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702124719291-e533154b-9692-4809-a39e-0599461fa805.png#averageHue=%23121211&clientId=ubd1f17b4-8a40-4&from=paste&height=251&id=u48aa717f&originHeight=502&originWidth=1266&originalType=binary&ratio=2&rotation=0&showTitle=false&size=125469&status=done&style=none&taskId=udc56250f-ce27-4305-b558-be5adeb3358&title=&width=633)
+39. 模板在解析时，不去解析Error作为全局变量![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702124789764-52ef0a48-8642-4959-9db0-6ec8e1740c90.png#averageHue=%23191616&clientId=ubd1f17b4-8a40-4&from=paste&height=296&id=u6c5f4fea&originHeight=592&originWidth=1364&originalType=binary&ratio=2&rotation=0&showTitle=false&size=126048&status=done&style=none&taskId=u1fc6055d-c27e-4b7d-ba73-2169465d135&title=&width=682)
+40. 通过分析ast，找出模版中引入的变量使用（analyze import usage in template via AST (#9729)）
+    1. 解析器新增入口flag，（是否解析语句），默认时true![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702185659945-12078d4e-fe24-412f-9b5e-c1c204fd267d.png#averageHue=%23121212&clientId=ubd1f17b4-8a40-4&from=paste&height=307&id=u2b3b2fe4&originHeight=614&originWidth=892&originalType=binary&ratio=2&rotation=0&showTitle=false&size=96310&status=done&style=none&taskId=uf47212f4-26ed-471b-8a85-457fa17da69&title=&width=446)
+    2. 新增creteSimpleExpression入口函数![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702185787555-817e0267-8c1e-46de-940c-7db7f20c4731.png#averageHue=%233d4b23&clientId=ubd1f17b4-8a40-4&from=paste&height=812&id=ud050b270&originHeight=1624&originWidth=1200&originalType=binary&ratio=2&rotation=0&showTitle=false&size=319282&status=done&style=none&taskId=u3f929d2c-a0df-4bee-81fb-26212dd25af&title=&width=600)
+    3. 解析语句部分
+       1. ![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702185905352-2ad9ffd3-7c17-43d9-8cc8-d8f806d73d18.png#averageHue=%233c4a23&clientId=ubd1f17b4-8a40-4&from=paste&height=252&id=u5523f131&originHeight=504&originWidth=1248&originalType=binary&ratio=2&rotation=0&showTitle=false&size=83988&status=done&style=none&taskId=u33dbe079-1fe6-454b-abd2-411f2d3a511&title=&width=624)
+       2. children部分ast赋值到解析node对象上![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702185984678-53cc8436-872f-45f6-bf6c-957844714417.png#averageHue=%23121212&clientId=ubd1f17b4-8a40-4&from=paste&height=229&id=uac89e259&originHeight=458&originWidth=1514&originalType=binary&ratio=2&rotation=0&showTitle=false&size=82458&status=done&style=none&taskId=u681ba003-97be-4547-baa8-69f85e810b9&title=&width=757)
+       3. 原来的code组装方式由原来的字符串拼接，现在采用Set进行整合去重![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702186445961-2e26aa98-d542-4a7f-92e9-af2a72e11aab.png#averageHue=%23161615&clientId=ubd1f17b4-8a40-4&from=paste&height=498&id=u50b9c228&originHeight=996&originWidth=1168&originalType=binary&ratio=2&rotation=0&showTitle=false&size=204863&status=done&style=none&taskId=u88879568-1825-4c4e-95e6-afa3571d4e0&title=&width=584)
+
+
+
+
+41. v-node指令监听语法升级为错误抛出![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702185109123-64426219-d4f0-400e-a6ec-d324c41e634f.png#averageHue=%231b1514&clientId=ubd1f17b4-8a40-4&from=paste&height=327&id=u06497c29&originHeight=654&originWidth=2494&originalType=binary&ratio=2&rotation=0&showTitle=false&size=220230&status=done&style=none&taskId=u0049e194-3458-475c-86ab-a5eb1b551c5&title=&width=1247)
+
+42. 删除v-is语法
+
+    ![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702184938643-150ac5f9-bb78-4775-a05d-5d8bead5175d.png#averageHue=%23311414&clientId=ubd1f17b4-8a40-4&from=paste&height=254&id=u53a703a7&originHeight=508&originWidth=1270&originalType=binary&ratio=2&rotation=0&showTitle=false&size=106151&status=done&style=none&taskId=u74f76ebb-f48d-4a42-87c4-872f5f4a218&title=&width=635)
+
+43. 修复在v-pre中的插值语法![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702184861000-6d8554d4-e71c-41f1-83a1-16eee2bc7c74.png#averageHue=%23121211&clientId=ubd1f17b4-8a40-4&from=paste&height=212&id=u4c5160ee&originHeight=424&originWidth=1250&originalType=binary&ratio=2&rotation=0&showTitle=false&size=87117&status=done&style=none&taskId=u47a9f73d-1a64-4e5a-8de5-d4991478a05&title=&width=625)
+
+
+### v3.4.0-alpha.4
+
+44. 校验props的validator包含2个参数![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702186679018-e072abf7-7657-4f5f-bfb7-e11e2af9df62.png#averageHue=%23121212&clientId=ubd1f17b4-8a40-4&from=paste&height=281&id=u0345a383&originHeight=562&originWidth=1234&originalType=binary&ratio=2&rotation=0&showTitle=false&size=103613&status=done&style=none&taskId=uf0946d02-6261-4a5f-acbb-8336b216ea7&title=&width=617)
+45. 使用同样的解析参数进行编辑处理![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702186871695-64cff967-8f10-4b19-a81c-f61375031531.png#averageHue=%23161616&clientId=ubd1f17b4-8a40-4&from=paste&height=802&id=u5ec129e9&originHeight=1604&originWidth=1232&originalType=binary&ratio=2&rotation=0&showTitle=false&size=298249&status=done&style=none&taskId=u473b377f-8263-45c7-a3bd-124092791b0&title=&width=616)
+46. 兼容最近的tc39提案，可以动态声明引入的类型[https://github.com/tc39/proposal-import-attributes](https://github.com/tc39/proposal-import-attributes)
+
+```javascript
+import json from "./foo.json" with { type: "json" };
+import("foo.json", { with: { type: "json" } });
+```
+
+ ![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702204573108-abbb00e3-5270-4dcd-b07b-8573c268fcab.png#averageHue=%23171616&clientId=ubd1f17b4-8a40-4&from=paste&height=819&id=kk2te&originHeight=1638&originWidth=1478&originalType=binary&ratio=2&rotation=0&showTitle=false&size=297653&status=done&style=none&taskId=uc3698390-0c4d-4513-8f92-c87dbf04df1&title=&width=739)
+
+47. 透传filename属性![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702204800157-6b01443d-230d-4557-9eb1-6089d21e3d19.png#averageHue=%23141414&clientId=ubd1f17b4-8a40-4&from=paste&height=283&id=u27243e68&originHeight=566&originWidth=1614&originalType=binary&ratio=2&rotation=0&showTitle=false&size=133464&status=done&style=none&taskId=ud9091553-332e-4c6d-bab6-3201d2e1ca2&title=&width=807)
+
+```typescript
+    const ast = baseParse(`<div />`)
+    
+    const calls: any[] = []
+    const plugin: NodeTransform = (node, context) => {
+      calls.push({ ...context })
+    }
+    
+    transform(ast, {
+      filename: '/the/fileName.vue',
+      nodeTransforms: [plugin]
+    })
+    
+    expect(calls.length).toBe(2)
+    expect(calls[1]).toMatchObject({
+      filename: '/the/fileName.vue',
+      selfName: 'FileName'
+    })
+```
+
+48. 提升ssr下面，hydrant对于html属性的检查，是否需要跳过检查![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702206078319-e5291185-73ad-48b3-a5f2-add607e86757.png#averageHue=%23151411&clientId=ubd1f17b4-8a40-4&from=paste&height=215&id=u77190e3f&originHeight=430&originWidth=1554&originalType=binary&ratio=2&rotation=0&showTitle=false&size=97511&status=done&style=none&taskId=u050a2a38-3f78-4ed5-a22e-82c0fd09f29&title=&width=777)
+49. 增加 `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__`标志，用于记录hydrant
+50. 增加MathML语法标签的支持![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702206468845-646d1856-f024-4745-8538-1f65b2669a66.png#averageHue=%23434c27&clientId=ubd1f17b4-8a40-4&from=paste&height=241&id=u945ecc69&originHeight=482&originWidth=1568&originalType=binary&ratio=2&rotation=0&showTitle=false&size=104959&status=done&style=none&taskId=uf07a62ac-4d29-49fd-9e50-2c357c2f842&title=&width=784)
+51. 增加组件类型中对于Slots的输出![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702207086941-296116cd-18af-4517-9cec-63bfb4b5a933.png#averageHue=%233b4723&clientId=ubd1f17b4-8a40-4&from=paste&height=561&id=ub8295515&originHeight=1122&originWidth=1596&originalType=binary&ratio=2&rotation=0&showTitle=false&size=233101&status=done&style=none&taskId=u85a2bad0-c207-4825-8565-7d46fa0e19e&title=&width=798)
+52. 输出`DefineType`![image.png](https://cdn.nlark.com/yuque/0/2023/png/410478/1702207169261-72c20974-f5d1-4ae9-a0ca-1ffb509dc492.png#averageHue=%23141313&clientId=ubd1f17b4-8a40-4&from=paste&height=218&id=uddf225f5&originHeight=436&originWidth=1834&originalType=binary&ratio=2&rotation=0&showTitle=false&size=113710&status=done&style=none&taskId=u12f57d23-4cf9-4f22-b386-9eeb635d02e&title=&width=917)
+
