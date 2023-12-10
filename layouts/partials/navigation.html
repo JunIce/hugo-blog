@@ -20,6 +20,7 @@
 			<a href="{{ "/tools" | relURL }}" class="ml-4 hover:text-blue-800">{{ with .Site.Params.tools }}{{ . }}{{
 				else }}{{ i18n "tools" }}{{ end
 				}}</a>
+			<a href="{{ "/keycode" | relURL }}" class="ml-4 hover:text-blue-800">KeyCode</a>
 
 			{{ range $element := .Site.Params.Links }}
 				<a href="{{ $element.path }}" class="ml-4 hover:text-blue-800">{{ $element.name }}</a>
