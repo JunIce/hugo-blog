@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default " en" }}" class="scroll-smooth w-full h-full">
+
+<head>
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+
+    {{ partial "head.html" . }}
+
+</head>
+
+<body class="h-full dark:bg-gray-950">
+    {{ partial "navigation.html" . }}
+
+    <div class="app-container w-[60%] m-auto pt-32 pb-10"></div>
+
+    <script type="module">
+        import { h, render } from 'https://esm.sh/preact';
+        import keyCodeData, { keyboardDescription } from '/keycode.js'
+
+        const renderTable = (headers, data) => h('div', {
+            class: 'overflow-x-auto shadow-md sm:rounded-lg'
+        },
+            h('table', {
+                class: 'w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'
+            },
+                [
+                    // thead
+                    h('thead', {
+                        class: 'text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'
+                    },
+
+                        h('tr', null,
+                            headers.map(k => h('th', { class: 'px-6 py-6' }, k))
+                        )),
+
+
+                    // tbody
+                    h('tbody', {
+                        class: 'text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'
+                    },
+
+                        data.map(row => {
+                            return h('tr', {
+                                class: 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'
+                            },
+
+                                row.map(k => h('td', { class: 'px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white' }, k)
+                                ),
+                            )
+                        })
+                    )
+                ]
+            ))
+
+        // Create your app
+        const app = h('div', {
+            // class: 'w-full'
+        },
+            h('div', {
+            },
+                [
+                    renderTable(["PROPRTY/METHOD", "DESCRIPTION"], keyboardDescription),
+                    h('div', { class: 'mt-6 bg-gray-50' }),
+                    renderTable(["Key Name", "event.which", "event.key", "event.code", "note"], keyCodeData)
+                ]
+            ),
+        )
+
+        render(app, document.querySelector('.app-container'));
+    </script>
+
+
+
+    </div>
+</body>
+
+</html>
