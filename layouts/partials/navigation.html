@@ -22,6 +22,8 @@
 				}}</a>
 			<a href="{{ "/keycode" | relURL }}" class="ml-4 hover:text-blue-800">KeyCode</a>
 
+			<a href="http://docs-vue.storycn.cn/type-challenges.html" target="_blank" class="ml-4 hover:text-blue-800">TypeChallenges</a>
+
 			{{ range $element := .Site.Params.Links }}
 				<a href="{{ $element.path }}" class="ml-4 hover:text-blue-800">{{ $element.name }}</a>
 			{{ end }}
