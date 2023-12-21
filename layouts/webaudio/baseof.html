@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default " en" }}" class="scroll-smooth w-full h-full">
+
+<head>
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+
+    {{ partial "head.html" . }}
+
+</head>
+
+<body class="h-full dark:bg-gray-950">
+    {{ partial "navigation.html" . }}
+
+    <div class="app-container w-[60%] m-auto pt-32 pb-10"></div>
+
+    <div id="boombox">
+        <div class="boombox-handle"></div>
+
+        <div class="boombox-body">
+            <section class="master-controls">
+                <input type="range" id="volume" class="control-volume" min="0" max="2" value="1" list="gain-vals"
+                    step="0.01" data-action="volume" />
+
+                <label for="volume">VOL</label>
+
+                <input type="range" id="panner" class="control-panner" list="pan-vals" min="-1" max="1" value="0"
+                    step="0.01" data-action="panner" />
+
+                <label for="panner">PAN</label>
+
+            </section>
+
+
+            <audio src="/output.mp3" crossorigin="anonymous"></audio>
+
+
+            <button class="tape-controls-play" data-playing="false">
+                <span>Play/Pause</span>
+            </button>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        let audioCtx;
+
+        // load some sound
+        const audioElement = document.querySelector("audio");
+        let track;
+
+        const playButton = document.querySelector(".tape-controls-play");
+
+        // play pause audio
+        playButton.addEventListener(
+            "click",
+            () => {
+                if (!audioCtx) {
+                    init();
+                }
+
+                // check if context is in suspended state (autoplay policy)
+                if (audioCtx.state === "suspended") {
+                    audioCtx.resume();
+                }
+
+                if (playButton.dataset.playing === "false") {
+                    audioElement.play();
+                    playButton.dataset.playing = "true";
+                    // if track is playing pause it
+                } else if (playButton.dataset.playing === "true") {
+                    audioElement.pause();
+                    playButton.dataset.playing = "false";
+                }
+
+                // Toggle the state between play and not playing
+                let state =
+                    playButton.getAttribute("aria-checked") === "true" ? true : false;
+                playButton.setAttribute("aria-checked", state ? "false" : "true");
+            },
+            false
+        );
+
+        // If track ends
+        audioElement.addEventListener(
+            "ended",
+            () => {
+                playButton.dataset.playing = "false";
+                playButton.setAttribute("aria-checked", "false");
+            },
+            false
+        );
+
+        function init() {
+            audioCtx = new AudioContext();
+            track = new MediaElementAudioSourceNode(audioCtx, {
+                mediaElement: audioElement,
+            });
+
+            // Create the node that controls the volume.
+            const gainNode = new GainNode(audioCtx);
+
+            const volumeControl = document.querySelector('[data-action="volume"]');
+            volumeControl.addEventListener(
+                "input",
+                () => {
+                    gainNode.gain.value = volumeControl.value;
+                },
+                false
+            );
+
+            // Create the node that controls the panning
+            const panner = new StereoPannerNode(audioCtx, { pan: 0 });
+
+            const pannerControl = document.querySelector('[data-action="panner"]');
+            pannerControl.addEventListener(
+                "input",
+                () => {
+                    panner.pan.value = pannerControl.value;
+                },
+                false
+            );
+
+            // connect our graph
+            track.connect(gainNode).connect(panner).connect(audioCtx.destination);
+        }
+
+        // Track credit: Outfoxing the Fox by Kevin MacLeod under Creative Commons
+    </script>
+    <style>
+    </style>
+
+
+    </div>
+</body>
+
+</html>
