@@ -58,3 +58,13 @@ binfmt_misc        0     0     0    - /proc/sys/fs/binfmt_misc
 
 果断删了
 
+
+
+### '/var/lib/mysql/mysql.sock': No such file or directory
+
+docker中跑mysql一段时间后重启不了
+
+修改docker中设置
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92871281491645eb9fe39d079014caae~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2106&h=1058&s=287606&e=png&a=1&b=171d23)
+
