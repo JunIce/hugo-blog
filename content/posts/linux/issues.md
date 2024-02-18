@@ -61,3 +61,19 @@ wget --no-check-certificate https://mirrors.edge.kernel.org/pub/software/scm/git
 #### 2. 
 
 > --secure-protocol=TLSv1
+
+
+#### 3. nohub
+
+```shell
+nohup: ignoring input and appending output to ‘nohup.out’
+或者：
+nohup: failed to run command `xxx.sh’: Permission denied
+```
+
+```shell
+nohup ./xxx.sh > /dev/null 2> /dev/null &
+#./xxx.sh 是你自己需要执行的脚本
+# 例如：
+nohup ./bug > /dev/null 2> /dev/null &
+```
