@@ -8,6 +8,19 @@ draft: false
 
 # python 使用笔记
 
+
+## 国内源
+
+```bash
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip
+```
+
+## windows初始化虚拟环境
+
+```bash
+python -m venv venv
+```
+
 ## Could not install packages due to an EnvironmentError: [WinError 5] Access is denied:
 
 pip安装包没有权限
