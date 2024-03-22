@@ -9,7 +9,11 @@ categories: ["docker"]
 
 
 
+- 清空所有容器日志
 
+```sh
+sudo sh -c 'truncate -s 0 /var/lib/docker/containers/*/*-json.log'
+```
 
 - 查看最新日志调试
 
