@@ -25,6 +25,28 @@ Uppercase大写表示绝对位置，lowercase小写表示相对位置。
 相对位置，这意味着它们的参数相对于上一个命令的端点。
 
 
+### T 
+
+T命令将使用上一条曲线的控制点的反射绘制一条新的二次曲线。尝试改变第一条曲线的控制点，并注意它如何改变第二条曲线。
+
+### A
+
+画弧形
+
+```js
+A rx ry rotation large-arc-flag sweep-flag x y
+```
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/387cef8f383b4375a46ed9dc3effe241~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=670&h=451&s=23647&e=png&b=f8f8f8)
+
+
+
+- 弧是椭圆的一部分;
+- 从当前光标位置到x和y值绘制圆弧;
+- Ry和Ry值控制椭圆的大小;
+- x-axis-rotation值使椭圆绕其x轴旋转;
+- large-arc-flag和sweep-flag值控制绘制四个可能弧中的哪一个。
+
 
 ### 总结如下：
 
