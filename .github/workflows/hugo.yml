@@ -59,12 +59,11 @@ jobs:
           hugo \
             --minify \
 
-      - name: deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          local-dir: "./public/"
-          server-dir: "./blog.storycn.cn/"
+      - name: Install SSH key
+        run: echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
+      - name: zip
+        run: zip -r blog.zip ./public/
+
+      - name: Send files to server
+        run: scp ./blog.zip ${{ secrets.FTP_USER }}@${{ secrets.FTP_SERVER }}:~
