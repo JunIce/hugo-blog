@@ -10,6 +10,14 @@ categories: ["canvas"]
 ## 贝塞尔曲线公式
 
 
+具有3个控制点的贝塞尔曲线被称为二次贝塞尔曲线，而具有4个控制点的贝塞尔曲线被称为三次贝塞尔曲线。
+
+
+三次贝塞尔曲线：其中 两端都称之为控制点
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/777088a7e21543068c424029cd69ff46~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=701&h=361&s=24435&e=png&a=1&b=000000)[](https://miro.medium.com/v2/resize:fit:720/format:webp/1*9e_pl2L3VKFGMSokrBbA2w.png)
+
+
 其中N阶贝塞尔曲线可理解为有N条相连的线段，有N+1个顶点：
 
 （1）一阶贝塞尔曲线：有顶点A、B，组成线段AB，利用线性插值原理，可得轨迹公式为：Path = (1-t)A + tB.
