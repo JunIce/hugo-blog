@@ -59,11 +59,13 @@ jobs:
           hugo \
             --minify \
 
-      - name: Install SSH key
-        run: echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-
       - name: zip
         run: zip -r blog.zip ./public/
 
-      - name: Send files to server
-        run: scp ./blog.zip ${{ secrets.FTP_USER }}@${{ secrets.FTP_SERVER }}:~
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: whoami
