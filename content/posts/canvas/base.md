@@ -23,8 +23,15 @@ ctx.transform(a, b, c, d, e, f);
 
 - transform旋转指定角度
 
+```js
 ctx.transform(cos(弧度),sin(弧度),-sin(弧度),cos(弧度),0,0);
+```
 
+- 倾斜
+
+```js
+matrix(1,tan(θy),tan(θx),1,0,0)
+```
 
 - 计算变换之后的坐标
 
