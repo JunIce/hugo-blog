@@ -34,6 +34,12 @@ networks:
 
 ```
 
+## 2 scale
+
+```bash
+docker-compose scale account=3
+```
+
 
 ## References
 
