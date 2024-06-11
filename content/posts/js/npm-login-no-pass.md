@@ -30,3 +30,8 @@ registry = https://nexus.whatever.registry/respository/npm-whatever-group/
 ```
 
 这样你的项目就可以在CI里面免登录运行了
+
+
+## References
+
+[https://stackoverflow.com/questions/35043155/how-should-i-set-auth-in-npmrc-when-using-a-nexus-https-npm-registry-proxy](https://stackoverflow.com/questions/35043155/how-should-i-set-auth-in-npmrc-when-using-a-nexus-https-npm-registry-proxy)
