@@ -92,3 +92,17 @@ ln -s /usr/local/node-v18.15.0-linux-x64/bin/node /usr/local/bin/node
 ```
 
 
+## zip 压缩文件
+
+不包含当前目录
+
+```bash
+(cd folder && zip -r "/some/absolute/path/package.zip" .)
+```
+
+## 接压缩
+
+```bash
+unzip -o -q dist.zip -d /www/wwwroot/xxxx
+```
+
