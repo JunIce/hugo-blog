@@ -88,3 +88,11 @@ Deleting`node_modules` and `package-lock.json (OR yarn.lock)`
 ```
 rm -rf node_modules && rm -rf package-lock.json
 ```
+
+
+## Error: The package "esbuild-windows-64" could not be found, and is needed by
+
+删除node_modules
+
+npm install --force
+
