@@ -3,7 +3,7 @@ title: "docker 中 nginx使用环境变量"
 date: 2024-06-03T09:56:39+08:00
 draft: true
 tags: ["nginx"]
-categories: ["docker"]
+categories: ["docker", "nginx"]
 ---
 
 # docker 中 nginx使用环境变量
