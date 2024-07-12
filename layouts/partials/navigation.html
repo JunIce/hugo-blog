@@ -1,4 +1,4 @@
-<section class="fixed w-full h-20 shadow-md bg-slate-50 dark:bg-gray-950 dark:text-white">
+<section class="fixed w-full h-20 shadow-md bg-slate-50 dark:bg-gray-950 dark:text-white z-10">
 	<nav class="h-full flex flex-auto justify-between items-center px-20">
 		{{ partial "search.html" . }}
 
@@ -22,6 +22,7 @@
 				}}</a>
 			<a href="{{ "/keycode" | relURL }}" class="ml-4 hover:text-blue-800">KeyCode</a>
 			<a href="{{ "/webaudio" | relURL }}" class="ml-4 hover:text-blue-800">WebAudio</a>
+			<a href="{{ "/colorhub" | relURL }}" class="ml-4 hover:text-blue-800">ColorHub</a>
 
 			<a href="http://docs-vue.storycn.cn/type-challenges.html" target="_blank" class="ml-4 hover:text-blue-800">TypeChallenges</a>
 
@@ -33,8 +34,5 @@
 				{{ partial "social.html" . }}
 			{{ end }}
 		</div>
-		<!-- {{ if .Site.Params.enableRSS }}
-	  <a class="button" href="{{ .Site.RSSLink }}">{{ with .Site.Params.subscribe }}{{ . }}{{ else }}{{ i18n "subscribe" }}{{ end }}</a>
-	{{ end }} -->
 	</nav>
 </section>
