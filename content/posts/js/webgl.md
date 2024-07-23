@@ -12,6 +12,20 @@ draft: false
 
 
 
+![img](../../assets/webgl25a.png)
+
+
+
+### 坐标系
+
+- 中心点(0,0,0)
+
+- 左下角 （-1，-1，0）
+
+- 右上（1,1,0）
+
+  
+
 ### createShader
 
 - `gl.VERTEX_SHADER` 顶点着色器
@@ -50,9 +64,32 @@ program生成后要被使用
 
 
 
+### vertexAttribPointer
+
+> ```js
+> gl.vertexAttribPointer(index, size, type, normalized, stride, offset)
+> ```
 
 
-## Methods
+
+- index 变量属性
+- size 每个顶点属性的组成数量， 即数据中几个数成一组
+- type 类型
+- normalized 是否归一化处理
+- stride 以字节为单位的偏移量
+- offset 顶点属性数组中第一部分的字节偏移量
+
+
+
+### attribute
+
+attribute 声明变量 （储存限定符）
+
+attribute 类型 变量名
+
+
+
+## API Methods
 
 
 
