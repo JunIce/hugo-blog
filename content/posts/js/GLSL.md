@@ -3,7 +3,7 @@ title: "GLSL笔记"
 date: 2024-08-01T09:20:10+08:00
 draft: true
 tags: ["glsl"]
-categories:["webgl"]
+categories: ["webgl"]
 ---
 
 

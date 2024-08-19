@@ -11,19 +11,20 @@
 <body class="h-full dark:bg-gray-950">
     {{ partial "navigation.html" . }}
 
-    <div class="app-container w-[70%] m-auto pt-32 pb-10" >
+    <div class="app-container w-[70%] m-auto pt-32 pb-10">
         <div class="flex flex-wrap justify-center" id="color-content"></div>
         <script>
-            var data = {"code":"200","data":[{"ID":1280,"color1":"050c9c","color2":"3572ef","color3":"3abef9","color4":"a7e6ff","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1279,"color1":"e88d67","color2":"f3f7ec","color3":"006989","color4":"005c78","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1278,"color1":"538392","color2":"6295a2","color3":"80b9ad","color4":"b3e2a7","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1277,"color1":"fdffe2","color2":"83b4ff","color3":"5a72a0","color4":"1a2130","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1276,"color1":"ffde95","color2":"add899","color3":"bc5a94","color4":"f075aa","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1275,"color1":"ef9c66","color2":"fcdc94","color3":"c8cfa0","color4":"78aba8","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1274,"color1":"365e32","color2":"81a263","color3":"e7d37f","color4":"fd9b63","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1273,"color1":"d8efd3","color2":"95d2b3","color3":"55ad9b","color4":"f1f8e8","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1272,"color1":"059212","color2":"06d001","color3":"9bec00","color4":"f3ff90","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"},{"ID":1271,"color1":"102c57","color2":"1679ab","color3":"ffb1b1","color4":"ffcbcb","CreatedAt":"2024-07-12T06:30:25+08:00","UpdatedAt":"2024-07-12T06:30:25+08:00"}]}
-
-
             let el = document.querySelector('#color-content')
 
-            // 循环取出每一项
-            data.data.forEach(item => {
-                let elBox = renderItem(item)
-                el.appendChild(elBox);
-            });
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch("https://blog.storycn.cn/api/color/list").then(res => {
+                    // 循环取出每一项
+                    res.data.forEach(item => {
+                        let elBox = renderItem(item)
+                        el.appendChild(elBox);
+                    });
+                })
+            })
 
             function span(el, text, style) {
                 let spanEl = document.createElement('span');
@@ -81,6 +82,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .color-box-row {
             width: 100%;
             height: 100%;
