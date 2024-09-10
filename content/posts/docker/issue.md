@@ -68,3 +68,12 @@ docker中跑mysql一段时间后重启不了
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92871281491645eb9fe39d079014caae~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2106&h=1058&s=287606&e=png&a=1&b=171d23)
 
+
+
+### Error response from daemon: This node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again.
+
+
+
+###  Cannot change permissions of the file 'private_key.pem.temp' (OS errno 1 - Operation not permitted)
+
+没找到
