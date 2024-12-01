@@ -113,3 +113,19 @@ git 配置设置错了以后查询哪里错误
 ```bash
 git config --get-all --show-origin --show-scope core.autocrlf
 ```
+
+
+### 8. 使用Git时报错Connection reset by xxxx.xxxx.xxxx.xxxx port 22
+
+修改`C:\Users\username\.ssh\config`文件
+
+> C:\Users\username\.ssh\config
+
+增加以下内容
+
+```bash
+Host github.com
+	Hostname ssh.github.com
+	Port 443
+	User git
+```
